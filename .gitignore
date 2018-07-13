@@ -35,3 +35,5 @@ phdthesis.pdf
 *.synctex.gz
 *.tcp
 *.toc
+*.blg
+*.brf

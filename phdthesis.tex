@@ -1,4 +1,4 @@
-﻿%%%%%% Memoir document class modified as needed in UPFthesis
+%%%%%% Memoir document class modified as needed in UPFthesis
 %\def\DRAFTMODE{}   % Comment if generating the final version
 %\def\PRINTVER{}    % Comment if generating the final pdf version (print version has a boundary)
 \documentclass[12pt,a4paper,twoside,showtrims]{memoir}
@@ -32,6 +32,8 @@
 \usepackage{longtable}
 \usepackage{idxlayout} % Default two columns and adds to TOC
 \usepackage{placeins}
+\usepackage{lscape}
+\usepackage{makecell}
 
 \makeindex
 \usepackage{url}
@@ -153,10 +155,10 @@
 %
 %%%%%% Backmatter: Bibliography, Index 
 \backmatter
-%
+
 {\small
-%\bibliography{../Papers/commonPool/allRefs}
-%
+\bibliography{../Papers/commonPool/Thesis_documentation_Rong_GONG}
+
 %\printindex}
 % If printing, add four blank notes pages to write some notes and to hide easter eggs!
 \ifdefined\PRINTVER 

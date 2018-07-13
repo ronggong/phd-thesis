@@ -109,3 +109,77 @@ The primary or original banshi is called 原板 (pinyin: yuanban), with time sig
 Three main unmetred banshi are 导板 (daoban), 回龙 (huilong) and 哭头 (kutou). Daoban is the first melodic line of a chang duan. Huilong follows daoban, and is used to draw out the metred banshi. Kutou, literally crying head, is used for a grievous outburst and can occur after any section of the couplet. The variety of banshi is needed to convey the emotional content of the lyrics. In general, yuanban is related to neutral and narrative lyrics content; manban reflects introspective, and deep emotions; while kuaiban expresses agitation, nervousness.
 
 The precise, clear pronunciation is critical to jingju listening comprehension, and also form an important aural aesthetic value of jingju. The primary focus of this dissertation is the pronunciation aspect of jingju singing. An in-depth description of jingju pronunciation concepts is given in the following section.
+
+\section{A review of automatic assessment of musical performance}
+
+\subsection{General automatic assessment of musical performance}
+
+\begin{landscape}
+\begin{table}[ht!]
+\ContinuedFloat
+\centering
+\begin{tabular}{lcc}
+\toprule
+Authors              & Goal                                          & Methods                                                                                           \\
+\midrule
+\shortcite{Robinea} & To assess saxophone notes                     & \makecell{Extracting metrics for straight,\\crescendo/decrescendo\\and vibrato notes}                          \\\hline
+\shortcite{Mayor2006b}         & Expression categorization and alignment       & \makecell{Rule-based note and\\expression alignment\\using Viterbi algorithm}                                  \\\hline
+\shortcite{Nakanoa}        & \makecell{Singing skill evaluation\\for unknown melodies} & \makecell{Building SVM model\\to classify good and bad performance.}                                          \\\hline
+\shortcite{Caoa}           & Singing quality evaluation                    & \makecell{Building SVM regression model\\between features and\\human judgement scores.}                        \\\hline
+\shortcite{Knighta}        & Trumpet tone quality assessment               & \makecell{Building SVM model\\to classify trumpet tone quality on 7 scales.}                                  \\\hline
+\shortcite{Liu2011a}         & Singing evaluation                            & \makecell{Using correlation coefficient\\to select the best features.}                                        \\\hline
+\shortcite{Tsai2012a}         & Karaoke singing evaluation                    & \makecell{Building linear regression model\\for predicting the overall score.}                                \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the state of the art automatic assessment of musical performance studies.}
+\end{table}
+\end{landscape}
+
+
+\begin{landscape}
+\begin{table}[ht!]
+\ContinuedFloat
+\centering
+\begin{tabular}{lcc}
+\toprule
+Authors              & Goal                                          & Methods                                                                                           \\
+\midrule
+\shortcite{Molinaa}      & Singing voice assessment                      & \makecell{Building nonlinear regression model\\for predicting the human judgement score.}                     \\\hline
+\shortcite{Hana}          & \makecell{Detecting common mistakes\\of flute players}       & \makecell{Using handcrafted features, thresholding\\and Random Forest classifier\\to detect playing mistakes.} \\\hline
+\shortcite{Daido2014a}        & Singing enthusiasm evaluation                 & \makecell{Building linear regression model\\for predicting the human judgement\\of singing enthusiasm.}        \\\hline
+\shortcite{Luoa}          & \makecell{Detection of common violin\\playing mistakes}      & \makecell{Building SVM classifiers\\for detecting four types\\of violin playing mistakes.}                     \\\hline
+\shortcite{Schramm2015b}         & Solfège assessment                            & \makecell{Constructing Gamma probability\\density functions, building Bayesian classifiers\\for each note.}    \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the state of the art automatic assessment of musical performance studies. (continued)}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[ht!]
+\ContinuedFloat
+\centering
+\begin{tabular}{lcc}
+\toprule
+Authors              & Goal                                          & Methods                                                                                           \\
+\midrule
+\shortcite{Guptac}        & Singing mispronunciation detection            & \makecell{DNN-HMM lyrics-to-audio\\forced alignment,\\using an adapted dictionary\\to detect mispronunciation.} \\\hline
+\shortcite{Vidwans2017a}         & \makecell{Assessment of student\\music performance}          & \makecell{Building SVR regression model\\for predicting the human judgement score.}                           \\\hline
+\shortcite{Bozkurta}         & Singing voice assessment                      & \makecell{Building a Multilayer perceptron model\\for predicting the human judgement.}                         \\\hline
+\shortcite{Guptab}           & Singing quality evaluation                    & \makecell{Using both linear regression\\and Multilayer perceptron\\for predicting the human judgement.}        \\\hline
+\shortcite{Wua}           & \makecell{Percussive\\music performance assessment}        & \makecell{Using sparse coding to learn the feature,\\then building SVR modelfor prediction.}                 \\\hline
+\shortcite{Pati2018a}           & Student music performance                     & \makecell{Using fully-convolutional network\\or covolutional recurrent network\\for prediction.}           \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the state of the art automatic assessment of musical performance studies. (continued)}
+\end{table}
+\end{landscape}
+
+
+\subsection{Musical onset detection}
+
+\subsection{Lyrics-to-audio alignment}
+
+\subsection{Lyrics recognition}
+
+\subsection{Neural acoustic embeddings}
