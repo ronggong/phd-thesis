@@ -114,6 +114,269 @@ The precise, clear pronunciation is critical to jingju listening comprehension, 
 
 \subsection{General automatic assessment of musical performance}
 
+Singing voice assessment
+
+\shortcite{Mayor2006b} Old but interesting
+
+Probablistic and rule-based note alignment and expression segmentation.
+
+Their algorithm first alignment the midi note to the singing voice pitch track. They use Viterbi as the alignment algorithm. The cost probablity (similar to emission probability) is not calculated by some GMM models but by heurstic rules. The rules defined on timing, pitch, energy, vibrato and timbre indicate the probabilities of note change and alignment.
+
+The expression segmentation use the similar idea. They defined many rules for attack, sustain, vibrato, release and transition. The HMM topology of the expression is constrait by the note segmentation, thus it is still an alignment problem.
+
+After obtaining the expression segments, they attribute detailed expression labels to the segment, such as scoop-up attack, fall-down release.
+
+The rules are defined by words, so it's not very clear how to implement these rules and how to use these rules as the probabilities.
+
+\shortcite{Nakanoa} They present an assessment method without using any reference MIDI or audio. So the method is suitable for evaluating unknown melodies.
+
+The first feature is to describe the pitch deviation from the semitone pitch grid. The feature is called semitone stability, which is based on a Gaussian filter of the pitch track. The filter amplitude peak is located in the middle of the grid interval. So if a out-of-tune melody pass the filter, the stability will have peak at a high frequency.
+
+The second feature is related to vibrato. They detected the vibrato segment by doing FFT on the pitch track.
+
+The evaluation dataset has 600 songs sung by 12 singers - 6 good and 6 poor.
+
+The SVM is trained in a cross-validation way to classify the good and poor singers.
+
+\shortcite{Caoa} Another paper to find the correlation between objective assessment model with perceptual ratings.
+
+Acoustic measurements:
+(1) Intonation accuracy: recursive alignment, DTW between MIDI pitch and singing pitch
+(2) Rhythm consistency: cosine distance between midi note sequence and singing note sequence; basic-variation-bias
+(3) Timbre brightness: mean frame-wise spectral centroid, 2k-3kHz energy ratio
+(4) Vocal clarity: harmonic-to-noise ratio, narrow band to wide band energy ratio
+
+Assessment model:
+SVM regression on (1) (2) (3) (4) features and the combination of them.
+
+Singing dataset:
+200 clips from 10 subjects, each 15 seconds long
+
+Perceptual experiment:
+5 judges professional, 0-10 rating score
+
+Results:
+Spearman rank correlation coef, and absolute error between the SVM prediction and perceptual judgement score.
+
+Overall performance, correlation > 0.9
+For each aspect (intonation..) > 0.65
+
+\shortcite{Liu2011a} The journal is a little bit weird, but the paper is good.
+
+They introduced a two-step method for solfege assessment.
+
+Step1: note alignment: They use YIN to extract pitch track, then use DTW to align the reference pitch to extracted pitch. To compensate the onset inaccuracy brought by missing consonant pitch track, they used some heuristic rules to adjust the onset.
+
+Step2: singing evaluation on pitch and rhythm. 
+Pitch features: absolute pitch deviation and relative pitch interval
+Rhythm: consine distance between reference and extracted note durations, cumulative note residual by linear regression of the note onsets, lagged tempo reference (LRT)
+
+Results:
+(1) They evaluate onset precision on 993 syllables. The onset adjustment can lead to a smaller onset difference.
+(2) The subjective evaluation is conducted by asking 10 experts to listen to 7 songs. Spearman ranked correlation is measured between experts's rating and the features. Relative interval is the most correlated feature for intonation rating and LRT is the most correlated feature for rhythmic rating
+.
+
+\shortcite{Tsai2012a} Three perceptual dimension rating: intonation, rhythm and volume.
+
+Method:
+Intonation: pitch track + DTW 
+Volume: log-energy + DTW
+Rhythm: pitch strength + HMM classification
+Overall score: linear regression
+
+Remarks:
+(1) They mentioned singing power ratio SPR (peak energy ratio between 2-4kHz and 0-2kHz) is good for evaluating operatic singing voice but not pop singing.
+
+(2) Using HMM model the pitch strength time sequence. The out-of-beat HMM is build by shifting the singing voice ahead and behind K samples.
+
+(3) Experiment uses synthesised data (objective) to validate the model.
+
+\shortcite{Molinaa} Low-level and high-level features for singing voice assessment
+
+Target: real human reference singing, not MIDI
+
+Low-level features: TIE (total intonation error) - sum of the cost matrix values of the alignment path; Root mean square the alignment path linear regression
+
+High-level features: They did the note transcription first. The features are note onset difference, frequency difference, interval difference and their note length weighted version.
+
+Dataset: 27 pitch/rhythm random variations (synthesed) of the target singing. 4 musicians subjective ratings on intonation, rhythm and overall rating.
+
+Evaluation: 
+(1) interjudgement reliability, 
+(2) correlation coefficients between individual feature and rating - TIE and high-level frequency feature works the best for the intonation rating; low-level RMS of alignment path works the best for rhythm rating.
+(3) Quadratic polynominal regression of all the features achieve > 0.95 correlation values for all ratings.
+
+\shortcite{Daido2014a} It's about to build a regression model to predict the singing enthusiam.
+
+The dataset contains 36 singers singing on pop song. Each singer sing twice, first time enthusiastically and second time normally. The stimuli for the subjective evaluation are the phrases (segments) in the dataset.
+
+\shortcite{Schramm2015b} Dataset: solo singing voice, reference score, note-level binary annotation (correct or incorrect): pitch, onset, offset.
+
+Method:
+(1) DTW reference score to transcribed note alignment. Pitch is transcribed by Pyin, note by a hysteresis approach of Emilio Molina.
+(2) For each assessment category: pitch, onset, offset deviations, he constructed the gamma probability density functions for both correct and incorrect class, build a Baysian classifier, then found the fuzzy boundary between the correct and incorrect class.
+
+Evaluation:
+Accuracy > 90%
+No baseline compared
+
+\shortcite{Guptac} This paper has two parts. The first part generalized the mispronounciation rules for the singing voice of the south asian english dialects. Mostly, mispronunciation of the consonants. See table 3.
+
+The second part use ASR system with an adapted dictionary. This dictionary is a modified version of the native american english dictionary (L2 TIMIT), where the mispronunciated phones are either the substitution or the combination of TIMIT phones.
+
+The model is trained by KALDI, DNN-HMM. Then they forced align the lyrics to the audio. Using the adapted dictionary can better detect the mispronunciation. The result is compared with the one detected using L2 dictionary.
+
+\shortcite{Bozkurta} An interesting work of evaluating the singing performance of the conservatory entrance exam.
+
+The first pointed out the problem that although many automatic singing assessment works have been done, there is no openly available dataset. Thus, the comparative study of different algorithm is not feasible.
+
+They collected a dataset which contains the 2599 piano reference and 1018 singing performance of 40 different melodies. These singing performances are labeled as pass or fail by 3 professors.
+
+They didn't open the dataset because the copyright issue. However, they opened the pitch track extracted from these recordings.
+
+They use DTW to align the corresponding singing performance pitch track and the piano reference pitch track. The basline system uses below features (1) Pitch difference histogram (2) DTW cost, (3) the amount of the length change of the DTW alignment.
+
+The classification model is a simple MLP and they got a 0.74 prediction accuracy.
+
+The interesting part of the paper is the description of the exam, and the human judging procedure.
+
+\shortcite{Guptab} Well-written and clear structure.
+
+High lights:
+(1) Follow the singing assessment principle on 6 dimensions:
+Intonation accuracy, rhythmic consistency, pronunciaiton, vibrato, volume and pitch range
+
+(2) Using MFCC based DTW alignment to avoid intonation error
+
+(3) Add cognition modeling L6 norm of 1 second frame disturbance, and L2 norm of all the frame disturbance. 
+
+(4) Experiment various systems with different feature combinations
+
+Remarks:
+(1) For intonation and rhythm, they only use raw features such as pitch track and MFCCs and didn't use note-level features which would be more musical meaningful. However, one needs to take the risk of the inaccurate note transcription.
+
+(2) Some results in Table V are not logical and not explained by authors. E.g. Why many LR and MLP models results on average score have different trends? Check systems 4,5,6 and systems 6,7,8. Why some average score and average leave one out scores have different trends? Check systems 4,5,6 MLP and system LR 7,8,9 on average score and average leave one out scores.
+
+(3) They claim the system 8 improved the baseline B by 98\% on correlation accuracy. This comparision seems, uhmmm... Normally, we don't directly compare two systems with different input feature dimensions. The feature dimension of Baseline B is 3 but that of system 8 is 16.
+
+Instruments music performance assessment
+
+\shortcite{Robinea} To assess the saxphone notes.
+
+They recorded 6 notes with different dynamics: p, mf, f, cresando/decresando, vibrato from different level players.
+
+They extracted feature for stable notes, cresando/decresando notes and vibratos based on pitch and amplitude. The features are quite simple but their description is hard to understand.
+
+They map the feature scores to the marks. In the evaluation, they are very correlated with the players' level.
+
+The features introduced are contrainted by the specific notes - stable, cresando/decresando and vibratos.
+
+\shortcite{Knighta} This work collected 3 trumpet players and 1 trombone player performance. Three levels of dynamics and 3 musical phrase are recorded. In total 239 notes.
+
+They asked 7 raters to rate these notes, and take the round average score as the groundtruth. The intersubject correlations are quite high for 118 notes but quite low for another 121 ones. The rating scale is from 1 to 7. 
+
+They used 56 features, most of them are spectral features. They used SVM as the classifier.
+
+The best part of the paper is the experiment design.
+(1) normal 2, 3, 7 classes classification. All players notes are mixed in the cross-validation folds.
+
+(2) Leave one player out. Train on 3 players and test on another player.
+
+(4) Identify the player experiment.
+
+Results:
+(1) 2 classes > 3 > 7, this is obvious
+(2) leave one player out experiment is worse than (1). This is also understandable. Because the model might fit on the player's characteristics other than the tone quality. E.g. player 4 has more bad tones than good tones. Player 2 has more good tones than bad tones. The training set containing players 2 and 4 might be fitted by their player qualities. Thus, in the test set, if the player characteristics are more close to player 2, it will be classified as good. However, if it is close to player 4, it is bad.
+
+\shortcite{Hana} detect (1) assembeling error (2) fluctuated sound (3) mis-figuring
+
+Assembeling error affects the pitch tuning, they use HPCP peak histogram to detect the tuning center.
+
+fluctuated sound causes inharmonic partials. They use binary masked spectrogram to highlight these particals, then take the sum across the bins as the feature
+
+Mis-fingering is represented by the timbre problems. So they used MFCC + sparse filtering + RF classication method.
+
+All these features are quite effective for detecting corresponding mistakes.
+
+\shortcite{Luoa} Great paper on violin mistakes detection.
+
+They did features + classification system for violin note-level mistakes detection.
+
+Highlights:
+(1) They recorded 26 clips of sucessive legato notes violin playing as the dataset.
+
+(2) Segmentation between notes and within each note (onset, offset, sustain) was achieved using a photo resistor and four rings of surfacemounted light-emitting diodes (SMD LEDs).
+
+\shortcite{Vidwans2017a} score-based features, DTW alignment with the reference score and segmented into notes.
+(1) note steadiness
+(2) duration histogram
+(3) DTW based feature, cost normalized by the DTW length and slope deviation
+(4) note insertion ratio
+(5) note deletion ratio
+
+score-based and score independed features are the best performed one.
+
+Dataset:
+Florida Bandmasters Association
+
+\shortcite{Wua} Using sparse coding unsupervised learning to learn features for the percussive music performance.
+
+Dataset: 274 recordings of middle school snare etudes. Assessment of musicality and rhythmic accuracy. 
+
+Features:
+LHM local histogram matrix:
+(1) IOI (inter-onset interval) histogram vector
+(2) Amplitude histogram vector
+(3) Average MFCC vector
+
+They segment the whole music piece into non-overlapped 10s segments, compute the local histogram vectors of above three features and concatenate these vector in both feature and time dimensions.
+
+Baseline:
+(1) a bunch of features
+(2) statistics of LHM features (crest, skewness, ...)
+(3) Sparse code of STFT
+
+Model:
+SVR
+
+Metrics:
+correlation coef and coef of determination
+
+Results:
+Learned features (Sparse code with LHM) achieve comparable results with the designed features,  Finally, combining the designed features with the SC features, the highest performance can be achieved.
+
+\shortcite{Pati2018a} Neural network on music performance assessement.
+
+Dataset: Saxphone, Clarinet and Flute music excerpts, Middle school and symphonic band playing.
+
+Assessment dimensions: (1) Musicality (2) Note accuracy (3) Rhythmic accuracy (4) Tone quality
+
+Network architectures:
+(1) Fully-convolutional net (FCN) + Pitch track input
+(2) CRNN + mel input
+(3) Late-fuse the representations of (1) and (2)
+
+Baseline:
+Bunch of features + SVR
+
+What to predict?
+The human judagement as the ground truth.
+
+How to predict?
+Minimize the mean square error loss between prediction and the ground truth.
+
+How to evaluate?
+Coefficient of Determination R2 and Pearson correlation coef
+
+Results:
+(1) For symphonic band, net (1) is the best; for middle school, net (3) is the best. They guess as the performing level increases, which is the case of the symphonic band, the pitch is getting more important.
+
+(2) For musicality dimension, all nets work better than the baseline. They said that because the NN can better capture abstract features (musciality).
+
+(3) They found that, on musicality dimension, the NN (1) first layer weights are similar between symphoic band and middle school performings.
+
+(4) They found pitch track salience are more concentrated on silence if the performing has a low musicality.
+
 \begin{landscape}
 \begin{table}[ht!]
 \ContinuedFloat
