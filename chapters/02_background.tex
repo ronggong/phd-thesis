@@ -111,10 +111,12 @@ Three main unmetred banshi are 导板 (daoban), 回龙 (huilong) and 哭头 (kut
 The precise, clear pronunciation is critical to jingju listening comprehension, and also form an important aural aesthetic value of jingju. The primary focus of this dissertation is the pronunciation aspect of jingju singing. An in-depth description of jingju pronunciation concepts is given in the following section.
 
 \section{A review of automatic assessment of musical performance}
+entire music excerpt, note, syllable, phoneme level
+template based, model based
 
 \subsection{General automatic assessment of musical performance}
 
-Singing voice assessment
+We introduce the overview of the studies on general automatic assessment of musical performance in this seciton. In most of these studies, the assessment are conducted for the entire music excerpt. In the other studies, the assessment are performed at musical note-level. A significant number of authors adopt the regression model to predict the human judgement of the musical performance with acoustic features. In \tabref{tab:ch2_automatci_assessment}, we list the goal and methods of each work. We notice that most of the methods are template-based, meaning that the reference performance are provided for a comparision with the target assessing performance. While other methods are model-based, such that the reference performance are not given, and the target performance are assessment using a pre-trained model. In this following part of this section, we firstly present the studies of automatic singing voice assessment. Then we present those of instrumental performance assessment.
 
 \shortcite{Mayor2006b} Old but interesting
 
@@ -128,15 +130,7 @@ After obtaining the expression segments, they attribute detailed expression labe
 
 The rules are defined by words, so it's not very clear how to implement these rules and how to use these rules as the probabilities.
 
-\shortcite{Nakanoa} They present an assessment method without using any reference MIDI or audio. So the method is suitable for evaluating unknown melodies.
-
-The first feature is to describe the pitch deviation from the semitone pitch grid. The feature is called semitone stability, which is based on a Gaussian filter of the pitch track. The filter amplitude peak is located in the middle of the grid interval. So if a out-of-tune melody pass the filter, the stability will have peak at a high frequency.
-
-The second feature is related to vibrato. They detected the vibrato segment by doing FFT on the pitch track.
-
-The evaluation dataset has 600 songs sung by 12 singers - 6 good and 6 poor.
-
-The SVM is trained in a cross-validation way to classify the good and poor singers.
+A model-based method without using any reference MIDI or audio are presented by \shortcite{Nakanoa} for evaluating unknown melodies. The SVM is trained with semitone stability and vibrato features to classify the good and poor singers. The evaluation dataset contains 600 songs sung by 12 singers -- 6 good and 6 poor. \shortcite{Daido2014a} identifies that three features -- A-weighted power, F0 fall-down and vibrato extent, are relevant to singing enthusiasm. Then they build a regression model to predict the human judgement scores of singing enthusiam by combing these three features.
 
 \shortcite{Caoa} Another paper to find the correlation between objective assessment model with perceptual ratings.
 
@@ -205,10 +199,6 @@ Evaluation:
 (1) interjudgement reliability, 
 (2) correlation coefficients between individual feature and rating - TIE and high-level frequency feature works the best for the intonation rating; low-level RMS of alignment path works the best for rhythm rating.
 (3) Quadratic polynominal regression of all the features achieve > 0.95 correlation values for all ratings.
-
-\shortcite{Daido2014a} It's about to build a regression model to predict the singing enthusiam.
-
-The dataset contains 36 singers singing on pop song. Each singer sing twice, first time enthusiastically and second time normally. The stimuli for the subjective evaluation are the phrases (segments) in the dataset.
 
 \shortcite{Schramm2015b} Dataset: solo singing voice, reference score, note-level binary annotation (correct or incorrect): pitch, onset, offset.
 
@@ -394,7 +384,8 @@ Authors              & Goal                                          & Methods  
 \shortcite{Tsai2012a}         & Karaoke singing evaluation                    & \makecell{Building linear regression model\\for predicting the overall score.}                                \\
 \bottomrule   
 \end{tabular}
-\caption{Summary table of the state of the art automatic assessment of musical performance studies.}
+\caption{Summary table of the previous automatic assessment of musical performance studies.}
+\label{tab:ch2_automatci_assessment}
 \end{table}
 \end{landscape}
 
@@ -414,7 +405,7 @@ Authors              & Goal                                          & Methods  
 \shortcite{Schramm2015b}         & Solfège assessment                            & \makecell{Constructing Gamma probability\\density functions, building Bayesian classifiers\\for each note.}    \\
 \bottomrule   
 \end{tabular}
-\caption{Summary table of the state of the art automatic assessment of musical performance studies. (continued)}
+\caption{Summary table of the previous automatic assessment of musical performance studies. (continued)}
 \end{table}
 \end{landscape}
 
@@ -434,7 +425,7 @@ Authors              & Goal                                          & Methods  
 \shortcite{Pati2018a}           & Student music performance                     & \makecell{Using fully-convolutional network\\or covolutional recurrent network\\for prediction.}           \\
 \bottomrule   
 \end{tabular}
-\caption{Summary table of the state of the art automatic assessment of musical performance studies. (continued)}
+\caption{Summary table of the previous automatic assessment of musical performance studies. (continued)}
 \end{table}
 \end{landscape}
 
