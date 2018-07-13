@@ -1,0 +1,172 @@
+% UPF layout, two sides
+% A4: (210,297), B5: (176,250)
+% If using B5, typically you print in A4 and them use trim.
+% So, don't change it.
+\ifdefined\PRINTVER
+	\setstocksize{297mm}{210mm}  % The size of the stock paper (support), A4
+	\settrimmedsize{250mm}{176mm}{*} % B5, the size of the final copy, cut from the stock paper.
+	\setlength{\trimtop}{23mm}   % Top margin: top_stock - top_page
+	\setlength{\trimedge}{17mm}  % Outer later margin: lat_stock - lat_page
+	\setlrmarginsandblock{34mm}{30mm}{*} % 
+	\setulmarginsandblock{27mm}{25mm}{*} % 
+	\trimLmarks % Ls, not crosses (which may leave traces on the final copy) as trimmarks.
+\else
+  \setstocksize{250mm}{176mm}  % The size of the stock paper (support), A4
+	\settrimmedsize{\stockheight}{\stockwidth}{*} % B5, the size of the final copy, cut from the stock paper.
+	\setlength{\trimtop}{0mm}   % Top margin: top_stock - top_page
+	\setlength{\trimedge}{0mm}  % Outer later margin: lat_stock - lat_page
+	\setlrmarginsandblock{32mm}{32mm}{*} % 
+	\setulmarginsandblock{27mm}{25mm}{1.0} % 
+	\showtrimsoff
+\fi
+% Call this to fix layout
+\checkandfixthelayout
+
+\maxsecnumdepth{subsection}
+\setsecnumdepth{subsection}
+\maxtocdepth{subsection}
+\settocdepth{subsection}
+
+% Abstract format
+\renewcommand{\abstractnamefont}{\large\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont}
+%
+% Some new page styles
+% For main matter
+\makeatletter
+\makepagestyle{mainmatter}
+\setlength{\headwidth}{\textwidth}
+\makerunningwidth{mainmatter}{\headwidth}
+\makeheadrule{mainmatter}{\headwidth}{0pt}
+\makeheadposition{mainmatter}{flushright}{flushleft}{}{}
+\makepsmarks{mainmatter}{%
+  \let\@mkboth\markboth
+  \def\chaptermark##1{\markboth{##1}{##1}}    % left mark & right marks
+  \def\sectionmark##1{\markright{%
+    \ifnum \c@secnumdepth>\z@
+      \thesection \ \ %
+    \fi
+    ##1}}
+  \def\tocmark{\markboth{\contentsname}{\contentsname}}%
+  \def\lofmark{\markboth{\listfigurename}{\listfigurename}}%
+  \def\lotmark{\markboth{\listtablename}{\listtablename}}%
+  \def\bibmark{\markboth{\bibname}{\bibname}}%
+  \def\indexmark{\markboth{\indexname}{\indexname}}%
+}
+\makeevenhead{mainmatter}{\normalfont\thepage}{}%\bfseries
+                        {\normalfont\scshape\leftmark}
+\makeoddhead{mainmatter}{\normalfont\scshape\rightmark}{}%
+                       {\normalfont\thepage}%\bfseries
+\ifdraftdoc
+\makeevenfoot{mainmatter}{\thepage}{}{\textit{Draft: \today, \printtime*{}}}
+\makeoddfoot{mainmatter}{\textit{Draft: \today, \printtime*{}}}{}{\thepage}
+\fi
+\makeatother
+% For front matter
+\makepagestyle{frontmatter}
+\makeevenhead{frontmatter}{\normalfont\thepage}{}{}%\bfseries
+\makeoddhead{frontmatter}{}{}{\normalfont\thepage}%\bfseries
+
+\chapterstyle{madsen}
+\renewcommand\partnamefont{\normalfont\Huge\sffamily\scshape\raggedleft}
+\renewcommand\partnumfont{\normalfont\Huge\sffamily\scshape\raggedleft}
+\renewcommand\parttitlefont{\normalfont\HUGE\bfseries\sffamily\raggedleft}
+\setsecheadstyle{\Large\bfseries\sffamily}
+\setsubsecheadstyle{\large\bfseries\sffamily}
+% To add the black chapter box
+\addtolength{\marginparwidth}{3mm}   % This is a hack because memoir adds some extra leeway margins
+\renewcommand*{\printchapternum}{%
+    \makebox[0pt][l]{\hspace{0.4em}%
+      \resizebox{!}{4ex}{%
+        \chapnamefont\bfseries\sffamily\thechapter}%
+    }%
+		\marginpar[]{\raggedleft \colorrule[black]{5.8ex}{5.8ex}}
+  }%	
+\noprelistbreak
+% For backmatter
+\renewcommand\cftappendixname{\appendixname~}
+% A blank page with notes on the top
+\newcommand{\blanknotepage}{
+\newpage
+\thispagestyle{empty}
+\begin{center}
+-- Notes --
+\end{center}
+\mbox{}
+\newpage
+}
+% Bibliography
+\makeatletter
+\newcommand\bibStartNote[1]{\def\@addnote{#1}}
+\providecommand\@addnote{}
+\patchcmd{\thebibliography}
+  {\list}
+  {\@addnote\par\list}
+  {}
+  {}
+\makeatother
+\bibStartNote{The numbers in brackets at the end of each bibliographic entry indicate the pages in which it is cited.}
+% Setting up figures and floats
+\renewcommand{\textfraction}{0.01}
+\renewcommand{\topfraction}{0.99} 
+\renewcommand{\bottomfraction}{0.99}
+\renewcommand{\floatpagefraction}{0.95} % floatpagefraction must always be less than the topfraction.
+\renewcommand{\abovecaptionskip}{5pt}
+% A simple commenting system with colored and highlighted text
+\usepackage{soul}
+%\newcommand\crule[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
+\sethlcolor{yellow}
+\def\update#1{{\color{red} #1}}
+\ifdefined\DRAFTMODE
+	\def\AH#1{{\textbf{\color{green} AH: #1}}}
+	\def\AS#1{{\textbf{\color{orange} AS: #1}}}
+	\def\comment#1{{\textbf{\color{violet} #1}}}
+	\def\note#1{{\textbf{\color{red} #1}}}
+	\def\dtext#1{{\textbf{\color{gray} #1}}}
+	\def\hlt#1{{\hl{\textbf{#1}}}}
+\else
+	\def\AH#1{}
+	\def\AS#1{}
+	\def\comment#1{}
+	\def\dtext#1{}
+	\def\note#1{}
+	\def\hlt#1{}
+\fi
+% Unnumbered footnotes
+\let\svthefootnote\thefootnote
+\newcommand\blankfootnote[1]{%
+  \let\thefootnote\relax\footnotetext{#1}%
+  \let\thefootnote\svthefootnote%
+}
+% CHANGE-UPF: For using A4
+%\settrimmedsize{\stockheight}{\stockwidth}{*} 
+%\setlrmarginsandblock{*}{30mm}{1.3} % 
+%\setulmarginsandblock{30mm}{*}{1.0} % 
+%\captionnamefont{\small\bfseries}
+%\captiontitlefont{\normalsize}
+%\newlength{\leftspace}
+%\setlength{\leftspace}{4cm}
+% Some other options for customization. Left for documentation
+% \newlength{\umargin}
+% \setlength{\umargin}{30mm}
+% % \addtolength{\umargin}{\headheight}
+% % \addtolength{\umargin}{\headsep}
+% \newlength{\lmargin}
+% \setlength{\lmargin}{30mm}
+% % \addtolength{\lmargin}{\footskip}
+%
+% \setlength{\trimedge}{\stockwidth}
+% \addtolength{\trimedge}{-\paperwidth}
+% \addtolength{\trimedge}{-48pt} % 48pt
+% \settypeblocksize{48pc}{32pc}{*} % width: Bringhurst 26-29, kth 33
+%\setlrmarginsandblock{*}{30mm}{0.75} % change to 1.0 when oneside option
+%\setulmarginsandblock{30mm}{*}{1.1} % 
+%
+%\setheaderspaces{25mm}{*}{*}
+% \setmarginnotes{17pt}{51pt}{\onelineskip}
+%\setheadfoot{1.5\onelineskip}{2\onelineskip}
+%
+%\traditionalparskip % For making it zero 
+%\abnormalparskip{11pt} % for fixing it to something, uggly
+%\nonzeroparskip % probably better than the previous one
+%\setlength{\parindent}{0in}

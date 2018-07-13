@@ -1,0 +1,109 @@
+% All tracking results with MOM here
+\begin{table}
+\setlength{\tabcolsep}{1.5\tabcolsep}
+\centering
+\begin{tabular}{@{}LCCCCCCCCC@{}} \toprule
+Dataset && $\fmeas_b$ & $\amlt_{,b}$ & $\infoGain_b$ && $\fmeas_{s}$ && \multicolumn{2}{c}{Tempo} \tabularnewline 
+&& & & Bits && && \gls{CML} & \gls{AML} \tabularnewline \midrule
+\acrshort{CMDs} && 0.838 & 0.840 & 1.96 && 0.671 && 0.958 & 1.00\tabularnewline \addlinespace[2pt]
+\acrshort{HMDs} && 0.886 & 0.864 & 1.66 && 0.783 && 0.837 & 0.942 \tabularnewline \addlinespace[2pt]
+\acrshort{HMDl} && 0.364 & 0.506 & 1.39 && 0.455 && 0.401 & 0.554 \tabularnewline \addlinespace[2pt]
+%\acrshort{HMDl} && 0.230 & 0.506 & 1.39 && 0.155 \tabularnewline \addlinespace[2pt]
+Ballroom && 0.907 & 0.895 & 2.56 && 0.730 && 0.981 & 0.981 \tabularnewline \bottomrule
+\end{tabular}
+\caption[Results of meter tracking with the mixture observation model]{Results of meter tracking with the bar pointer model using a mixture observation model (\momodel\ with \acrshort{pfmix} algorithm) on different datasets. The table shows the tempo estimation performance at \gls{CML} and \gls{AML}, beat and \gls{sama} (downbeat) tracking performance with different measures. The table shows results with $\nrhythmPatts=1$, which is equivalent to \acrshort{pfprior} algorithm.}\label{tab:track:allResAMPFm}
+\end{table}
+% 
+The results of meter tracking with bar pointer model using a mixture observation model (\momodel) is shown in \tabref{tab:track:allResAMPFm}, for $\nrhythmPatts=1$. With $\nrhythmPatts=1$, the \acrshort{pfmix} algorithm is equivalent to \acrshort{pfprior} algorithm. Contrary to expectation, it is also observed that there is no significant improvement for \acrshort{pfmix} from $\nrhythmPatts=1$ to $\nrhythmPatts=2$. Further analysis and comparison of \momodel\ with \acrshort{pfmix} algorithm is presented at the end of this section along with comparisons among all the algorithms. 
+% 
+% %%%%%%%%%% Track-MOM-CMDs-AMPF-mix-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{adi} & 0.369 & 0.449 && 0.707 & 0.787 && 3.37 & 3.61\tabularnewline
+%  & \Gls{rupaka} & 0.748 & 0.752 && 0.863 & 0.863 && 3.60 & 3.74\tabularnewline
+%  & \Gls{mishra chapu} & 0.799 & 0.822 && 0.854 & 0.866 && 3.82 & 3.89\tabularnewline
+%  & \Gls{khanda chapu} & 0.774 & 0.775 && 0.839 & 0.823 && 3.60 & 3.66\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.671 & 0.698 && 0.815 & 0.835 && 3.60 & 3.73\tabularnewline \midrule
+%  & \Gls{adi} & 0.719 & 0.738 && 0.761 & 0.788 && 1.86 & 2.01\tabularnewline
+%  & \Gls{rupaka} & 0.801 & 0.800 && 0.825 & 0.855 && 2.37 & 2.53\tabularnewline
+%  & \Gls{mishra chapu} & 0.912 & 0.910 && 0.882 & 0.881 && 1.77 & 1.77\tabularnewline
+%  & \Gls{khanda chapu} & 0.927 & 0.931 && 0.894 & 0.915 && 1.83 & 1.88\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.838 & 0.843 && 0.840 & 0.859 && 1.96 & 2.05\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfmix} on \acrshort{CMDs} dataset]{Results of tracking with \acrshort{pfmix} on \acrshort{CMDs} dataset}\label{tab:track:CMDsAMPFm}
+% \end{table}
+% 
+% %%%%%%%%%%% Track-MOM-HMDl-AMPF-mix-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.229 & 0.258 && 0.693 & 0.695 && 4.27 & 4.41\tabularnewline
+%  & \Gls{ektal} & 0.048 & 0.041 && 0.266 & 0.219 && 3.50 & 3.41\tabularnewline
+%  & \Gls{jhaptal} & 0.237 & 0.202 && 0.753 & 0.770 && 3.86 & 3.84\tabularnewline
+%  & \Gls{rupak} & 0.398 & 0.374 && 0.816 & 0.738 && 3.81 & 3.86\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.155 & 0.150 && 0.484 & 0.450 && 3.75 & 3.73\tabularnewline \midrule
+%  & \Gls{teental} & 0.334 & 0.345 && 0.749 & 0.773 && 1.96 & 1.98\tabularnewline
+%  & \Gls{ektal} & 0.102 & 0.105 && 0.281 & 0.277 && 0.92 & 0.91\tabularnewline
+%  & \Gls{jhaptal} & 0.435 & 0.399 && 0.743 & 0.730 && 1.85 & 1.76\tabularnewline
+%  & \Gls{rupak} & 0.418 & 0.423 && 0.830 & 0.852 && 1.97 & 2.15\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.230 & 0.231 && 0.506 & 0.510 && 1.39 & 1.40\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfmix} on \acrshort{HMDl} dataset]{Results of tracking with \acrshort{pfmix} on \acrshort{HMDl} dataset}\label{tab:track:HMDlAMPFm}
+% \end{table}
+% 
+% %%%%%%%%%%% Track-MOM-HMDs-AMPF-mix-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.730 & 0.672 && 0.792 & 0.744 && 4.09 & 3.77\tabularnewline
+%  & \Gls{ektal} & 0.921 & 0.926 && 0.955 & 0.954 && 4.68 & 4.66\tabularnewline
+%  & \Gls{jhaptal} & 0.854 & 0.862 && 0.938 & 0.966 && 4.84 & 4.83\tabularnewline
+%  & \Gls{rupak} & 0.590 & 0.593 && 0.750 & 0.748 && 3.35 & 3.39\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.783 & 0.760 && 0.853 & 0.835 && 4.27 & 4.12\tabularnewline \midrule
+%  & \Gls{teental} & 0.892 & 0.865 && 0.851 & 0.782 && 1.52 & 1.35\tabularnewline
+%  & \Gls{ektal} & 0.963 & 0.966 && 0.896 & 0.891 && 1.51 & 1.50\tabularnewline
+%  & \Gls{jhaptal} & 0.856 & 0.841 && 0.914 & 0.909 && 2.31 & 2.28\tabularnewline
+%  & \Gls{rupak} & 0.732 & 0.753 && 0.782 & 0.796 && 1.71 & 1.84\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.886 & 0.876 && 0.864 & 0.832 && 1.66 & 1.59\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfmix} on \acrshort{HMDs} dataset]{Results of tracking with \acrshort{pfmix} on \acrshort{HMDs} dataset}\label{tab:track:HMDsAMPFm}
+% \end{table}
+% 
+% %%%%%%%%%%% Track-MOM-Ballroom-AMPF-mix-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & Cha-Cha-Cha & 0.623 & 0.740 && 0.820 & 0.868 && 4.54 & 4.67\tabularnewline
+%  & Jive & 0.564 & 0.598 && 0.901 & 0.901 && 3.91 & 3.98\tabularnewline
+%  & Quickstep & 0.815 & 0.856 && 0.915 & 0.913 && 3.74 & 3.77\tabularnewline
+%  & Rumba & 0.846 & 0.856 && 0.913 & 0.920 && 4.43 & 4.51\tabularnewline
+%  & Samba & 0.728 & 0.816 && 0.866 & 0.902 && 4.62 & 4.70\tabularnewline
+%  & Tango & 0.563 & 0.597 && 0.866 & 0.875 && 3.95 & 3.97\tabularnewline
+%  & Viennese waltz & 0.941 & 0.940 && 0.937 & 0.936 && 3.45 & 3.48\tabularnewline
+%  & Waltz & 0.767 & 0.772 && 0.825 & 0.830 && 3.47 & 3.54\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-9}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.730 & 0.773 && 0.874 & 0.889 && 4.04 & 4.11\tabularnewline \midrule
+%  & Cha-Cha-Cha & 0.944 & 0.953 && 0.933 & 0.939 && 3.05 & 3.10\tabularnewline
+%  & Jive & 0.967 & 0.969 && 0.941 & 0.943 && 2.64 & 2.65\tabularnewline
+%  & Quickstep & 0.957 & 0.956 && 0.915 & 0.914 && 2.13 & 2.17\tabularnewline
+%  & Rumba & 0.872 & 0.873 && 0.888 & 0.897 && 2.81 & 2.85\tabularnewline
+%  & Samba & 0.929 & 0.934 && 0.911 & 0.911 && 3.18 & 3.23\tabularnewline
+%  & Tango & 0.924 & 0.924 && 0.915 & 0.913 && 2.48 & 2.50\tabularnewline
+%  & Viennese waltz & 0.945 & 0.945 && 0.903 & 0.904 && 1.96 & 1.99\tabularnewline
+%  & Waltz & 0.778 & 0.781 && 0.789 & 0.798 && 2.05 & 2.13\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-9}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.907 & 0.910 && 0.895 & 0.898 && 2.56 & 2.60\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfmix} on Ballroom dataset]{Results of tracking with \acrshort{pfmix} on Ballroom dataset}\label{tab:track:BallroomAMPFm}
+% \end{table}

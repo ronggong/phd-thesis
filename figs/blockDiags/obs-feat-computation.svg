@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="18cm" height="23cm" viewBox="-2 60 343 448" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="100" y="100" width="140" height="35.1667"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="100" y="100" width="140" height="35.1667"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="170" y="122.1">
+      <tspan x="170" y="122.1">STFT</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="80" y="160" width="180" height="35.1667"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="80" y="160" width="180" height="35.1667"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="170" y="182.1">
+      <tspan x="170" y="182.1">Filterbank (82 bands)</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="170" y1="135.167" x2="170" y2="154.764"/>
+    <polygon style="fill: #000000" points="170,157.764 168,153.764 170,154.764 172,153.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="170,157.764 168,153.764 170,154.764 172,153.764 "/>
+  </g>
+  <text font-size="16.9333" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="125" y="75.5">
+    <tspan x="125" y="75.5">Audio Signal</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="170" y1="80" x2="170" y2="94.7639"/>
+    <polygon style="fill: #000000" points="170,97.7639 168,93.7639 170,94.7639 172,93.7639 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="170,97.7639 168,93.7639 170,94.7639 172,93.7639 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="90" y="220" width="160" height="35.1667"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="90" y="220" width="160" height="35.1667"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="170" y="242.1">
+      <tspan x="170" y="242.1">Logarithm</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="170" y1="196.161" x2="170" y2="214.764"/>
+    <polygon style="fill: #000000" points="170,217.764 168,213.764 170,214.764 172,213.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="170,217.764 168,213.764 170,214.764 172,213.764 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="90" y="280" width="160" height="35.1667"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="90" y="280" width="160" height="35.1667"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="170" y="302.1">
+      <tspan x="170" y="302.1">Difference</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="170" y1="255.167" x2="170" y2="274.764"/>
+    <polygon style="fill: #000000" points="170,277.764 168,273.764 170,274.764 172,273.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="170,277.764 168,273.764 170,274.764 172,273.764 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="0" y="340" width="140" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="0" y="340" width="140" height="40"/>
+    <text font-size="14.1111" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="70" y="354.911">
+      <tspan x="70" y="354.911">Sum over frequency </tspan>
+      <tspan x="70" y="372.55">bands (0,250] Hz</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="200" y="340" width="140" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="200" y="340" width="140" height="40"/>
+    <text font-size="14.1111" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="270" y="354.911">
+      <tspan x="270" y="354.911">Sum over frequency </tspan>
+      <tspan x="270" y="372.55">bands (250,22500) Hz</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="130" y1="315.167" x2="108.715" y2="336.31"/>
+    <polygon style="fill: #000000" points="106.586,338.424 108.015,334.186 108.715,336.31 110.834,337.024 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="106.586,338.424 108.015,334.186 108.715,336.31 110.834,337.024 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="210" y1="315.167" x2="231.285" y2="336.31"/>
+    <polygon style="fill: #000000" points="233.414,338.424 229.166,337.024 231.285,336.31 231.985,334.186 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="233.414,338.424 229.166,337.024 231.285,336.31 231.985,334.186 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="90" y="404" width="160" height="48.3333"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="90" y="404" width="160" height="48.3333"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="170" y="422.1">
+      <tspan x="170" y="422.1">Subtract </tspan>
+      <tspan x="170" y="443.267">moving average</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="105" y1="380" x2="126.223" y2="400.374"/>
+    <polygon style="fill: #000000" points="128.387,402.451 124.116,401.124 126.223,400.374 126.886,398.239 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="128.387,402.451 124.116,401.124 126.223,400.374 126.886,398.239 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="235" y1="380" x2="213.777" y2="400.374"/>
+    <polygon style="fill: #000000" points="211.613,402.451 213.114,398.239 213.777,400.374 215.884,401.124 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="211.613,402.451 213.114,398.239 213.777,400.374 215.884,401.124 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="170" y1="452.333" x2="170" y2="484.764"/>
+    <polygon style="fill: #000000" points="170,487.764 168,483.764 170,484.764 172,483.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="170,487.764 168,483.764 170,484.764 172,483.764 "/>
+  </g>
+  <text font-size="16.9333" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="128.485" y="503.029">
+    <tspan x="128.485" y="503.029">Onset feature</tspan>
+  </text>
+</svg>

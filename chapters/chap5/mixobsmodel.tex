@@ -1,0 +1,25 @@
+We propose a simplification to the bar pointer model that uses a diverse mixture observation model incorporating observations from multiple rhythmic patterns. The bar pointer model as described in \secref{sec:bpm:model} uses multiple rhythmic patterns for meter analysis. When the task is only to track the beats and downbeats in meter tracking (assuming the meter type is known \textit{a priori}), tracking pattern transitions is superfluous. However, to capture the diversity of patterns, a diverse mixture observation model can be used to incorporate observations from multiple rhythmic patterns. 
+
+In meter tracking, since all the rhythmic patterns belong to the same type of meter, we can simplify \bpmodel\ to track only the $\mpos$ and $\tempoVar$ variables while using an observation model that computes the likelihood of an observation by marginalizing over all the patterns. The motivation for this simplification is two-fold: the inference is simplified with only two hidden variables, and we can increase the influence of diverse patterns that occur throughout a metrical cycle in the inference. This simplification of the \bpmodel\ that uses a mixture observation model is referred to as \momodel\ and is shown in \figref{fig:dbn:bpmmix}. %(and hence $\npos_\rpattVar = \npos$, $\forall \rpattVar$)
+
+With this simplification in the model structure in \figref{fig:dbn:bpmmix}, the transition model in \eqnref{eqn:bpm:transx} now changes to, 
+\begin{equation}\label{eqn:bpmmix:transx}
+P(\hidVar_{k} \mid \hidVar_{k-1}) = P(\mpostempoVar_{k} \mid \mpostempoVar_{k-1}) = P(\mpos_{k} \mid \mpos_{k-1},\tempoVar_{k-1})P(\tempoVar_{k} \mid \tempoVar_{k-1}) 
+\end{equation}
+% Define, $\hidVar_k = [\mpos_k, \tempoVar_k, r_k] = [\balpha_k, r_k]$, where $\balpha_k = [\mpos_k, \tempoVar_k]$. Here, $\mpos \in [0, M)$, $\tempoVar \in [\tempoVar_\mathrm{min}, \tempoVar_\mathrm{max}]$, and $r \in \{1,2,\ldots,R\}$. 
+Here, $\mpostempoVar = [\mpos,\tempoVar]$ is defined as the subset of the hidden variables tracked using the \momodel. The tempo transition term of the above equation remains identical to the \bpmodel, as in \eqnref{eqn:bpm:transtempo}. The term for $\mpos$ also remains similar to \eqnref{eqn:bpm:transmpos} in the \bpmodel, apart from the removal of the dependence on $r_{k-1}$ as, 
+\begin{equation}\label{eqn:momodel:transmpos}
+P(\mpos_{k} \mid \mpos_{k-1},\tempoVar_{k-1})=\indicator_{\mpos}
+\end{equation}
+where $\indicator_{\mpos}$ is an indicator function that takes a value of one if $\mpos_{k} = (\mpos_{k-1} + \tempoVar_{k-1})\!\!\!\mod\!\!(\npos)$ and zero otherwise, noting that the length of all rhythmic patterns are equal, $\npos_\rpattVar = \npos$, for all values of $\rpattVar$. 
+
+The observation model aims to utilize information from multiple rhythmic patterns. The \momodel\ uses a mixture observation model computed from \eqnref{eqn:bpm:obsmodel} by marginalizing over the patterns, assuming equal priors. 
+\begin{equation}\label{eqn:bpmmix:obsmodel}
+P(\obsVar \mid \hidVar) \propto \overset{\nrhythmPatts}{\underset{j=1}{\sum}}P(\obsVar \mid \mpos,\rpattVar=j)
+\end{equation}
+This observation model makes the \momodel\ simpler, while giving a computational advantage. Since the observation likelihood can be precomputed, inference with \momodel\ requires much lower computational resources, with only a marginal increase in cost during inference with increase in number of patterns. Since \momodel\ assumes that the length of all rhythmic patterns are equal, it cannot be applied for the task of meter inference where many different \glspl{tala} of different lengths are present, but can be applied for the task of meter tracking. 
+% In the present paper, we approach faster inference in a DBN in two ways. Firstly, we propose a change to the model structure as presented in \cite{holzapfel:14:odd,krebs:15:pf} that enables faster inference by simplifying the independence assumptions between the variables of the model. The proposed simplification also addresses one of the main limiting factors in most of the approaches so far: a simplistic observation model that cannot effectively handle diversity in rhythmic patterns. 
+% \subsubsection{Inference in mixture observation model}
+
+\noindent \textbf{Inference in \momodel}: The inference in \momodel\ is similar to that using \bpmodel, by discretizing the state space to lead to an \gls{HMM} and applying Viterbi algorithm, or using particle filters. The inference in \gls{HMM} can be performed with pre-computed likelihood from different rhythmic patterns from the \momodel, denoted to as \acrshort{hmmmix} in this dissertation. Similarly, the \gls{AMPF} with the \momodel\ extension is outlined in \algoref{algo:pf:mix} and is denoted as \acrshort{pfmix} in the rest of the chapter.
+\input{chapters/chap5/pfmixInf}

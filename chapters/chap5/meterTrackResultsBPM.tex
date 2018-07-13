@@ -1,0 +1,225 @@
+% 
+Meter tracking is the most relevant task in the context of Indian art music and hence is the main focus of the experiments presented here. Meter tracking experiments assume that the \gls{tala} is known, and hence meter tracking is done for each \gls{tala} in the datasets separately. The training data also includes pieces from the specific \gls{tala} being tracked. Some of the results presented in this section are published results from previous publications by \citeA{holzapfel:14:odd,ajay:15:pf,ajay:16:spmodel} with minor differences in formulation and experimental parameters. 
+
+Before presenting the results for model and inference extensions, we tabulate the performance of meter tracking with the bar pointer model on the Indian music datasets and Ballroom dataset with both \acrshort{hmmprior} and \acrshort{pfprior} algorithms in \tabref{tab:track:allResHMMoAMPFo}. This provides another baseline performance to compare with meter inference and all the extensions discussed in the thesis. 
+\begin{table}
+\setlength{\tabcolsep}{1.5\tabcolsep}
+\centering
+\begin{tabular}{@{}LLCCCCCCCCC@{}} \toprule
+ & Algo. && $\fmeas_b$ & $\amlt_{,b}$ & $\infoGain_b$ && $\fmeas_{s}$ && \multicolumn{2}{c}{Tempo}\tabularnewline
+ & && & & Bits && && \gls{CML} & \gls{AML} \tabularnewline \midrule
+%
+& \acrshort{hmmprior} && 0.784 & 0.771 & 1.59 && 0.624 && 0.890 & 0.915\tabularnewline
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{\acrshort{CMDs}}} & \acrshort{pfprior} && 0.827 & 0.840 & 1.97 && 0.671 && 0.955 & 0.997\tabularnewline \midrule \addlinespace[2pt]
+% 
+& \acrshort{hmmprior} && 0.835 & 0.796 & 1.39 && 0.733 && 0.663 & 0.830 \tabularnewline 
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{\acrshort{HMDs}}} & \acrshort{pfprior} && 0.884 & 0.858 & 1.64 && 0.772 && 0.844 & 0.964 \tabularnewline \midrule \addlinespace[2pt]
+% \multirow{-2}{*}{\rotatebox[origin=c]{90}{\acrshort{HMDs}}} & \acrshort{pfprior} && 0.916 & 0.876 & 1.82 && 0.817 && 0.844 & 0.964 \tabularnewline \midrule \addlinespace[2pt]
+%
+& \acrshort{hmmprior} && 0.353 & 0.305 & 0.86 && 0.429 && 0.294 & 0.435\tabularnewline
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{\acrshort{HMDl}}} & \acrshort{pfprior} && 0.374 & 0.513 & 1.40 && 0.396 && 0.390 & 0.610 \tabularnewline \midrule \addlinespace[2pt]
+% & \acrshort{hmmprior} && 0.229 & 0.305 & 0.86 && 0.150 \tabularnewline
+% \multirow{-2}{*}{\acrshort{HMDl}} & \acrshort{pfprior} && 0.406 & 0.611 & 2.07 && 0.234  \tabularnewline \midrule \addlinespace[2pt]
+%
+& \acrshort{hmmprior} && 0.929 & 0.921 & 2.78 && 0.821 && 0.987 & 0.989 \tabularnewline 
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{Blrm.}} & \acrshort{pfprior} && 0.909 & 0.895 & 2.56 && 0.735 && 0.98 & 0.98\tabularnewline \bottomrule
+\end{tabular}
+\caption[Results of meter tracking with the bar pointer model]{Results of meter tracking with the bar pointer model (\acrshort{hmmprior} and \acrshort{pfprior}) on different datasets. The first column indicates the dataset, with Blrm. denoting the Ballroom dataset. The table shows the tempo estimation performance at \gls{CML} and \gls{AML}, beat and \gls{sama} (downbeat) tracking performance with different measures.}\label{tab:track:allResHMMoAMPFo}
+\end{table}
+
+At a broad level, \tabref{tab:track:allResHMMoAMPFo} shows an improvement in performance with meter tracking compared to meter inference (\tabref{tab:inf:allResHMMoAMPFo}). In addition, we see a lower difference between beat and downbeat tracking f-measure values, indicating a larger improvement in downbeat estimation when the underlying metrical structure is known i.e. knowing the \gls{tala} improves the \gls{sama} tracking performance. Similar to meter inference, the performance on short duration cycle datasets \acrshort{CMDs}, \acrshort{HMDs}, and Ballroom datasets is better than that on \acrshort{HMDl} dataset. As with meter inference, the poorer performance of \acrshort{hmmprior} compared to \acrshort{pfprior} is largely attributed to the coarse grained discretization of the state space. 
+
+The median tempo estimation performance with meter tracking is better than meter inference since a more narrow and accurate range of tempo is trained due to the presence only one \gls{tala} in the training dataset. The accuracy of tempo estimation is high for Carnatic music, and the difference between \gls{CML} and \gls{AML} performance is significantly lower in Carnatic music, showing that most pieces have been tracked at the correct metrical level. Tempo estimation in Hindustani music datasets is however lower, with poor tempo estimation with \acrshort{HMDl} dataset. There is a siginficant scope for improvement in both \gls{CML} and \gls{AML} accuracy in Hindustani music. With the Ballroom dataset, tempo estimation is accurate for most pieces, with a high accuracy. 
+
+In Carnatic music, with an $\fmeas_s = 0.41$ and $0.39$ for \acrshort{hmmprior} and \acrshort{pfprior}, \gls{adi} \gls{tala} has a significantly lower \gls{sama} tracking performance compared to the other \glspl{tala}, e.g. $\fmeas_s = 0.74$ for \acrshort{hmmprior} in \gls{khanda chapu} \gls{tala}, showing that the variety of rhythmic patterns in \gls{adi} \gls{tala} makes it harder to track. Compared to meter inference, \gls{adi} \gls{tala} shows an improvement in tracking, indicating that knowing the \gls{tala} and the underlying metrical structure helps to track longer cycles better. 
+
+With such a baseline of meter tracking using the bar pointer model, and given that \acrshort{pfprior} shows an equivalent or better performance than \acrshort{hmmprior}, we report the results for all further model and inference extension experiments for particle filter inference only with \gls{AMPF}. The results also show that approximate inference methods such as particle filters can be effectively applied to meter analysis tasks. The results on model extensions \momodel\ and \spmodel\ are presented next. 
+% The results of meter tracking with bar pointer model as a baseline in . The table is self explanatory. The text will explain more on specific \glspl{tala} and comment on performance.
+% The experiments aim to compare the performance of the particle filter and the HMM inference schemes for meter tracking with both model-A and model-B. Further, we wish to see if using a larger number of patterns per rhythm class (\gls{tala}) improves meter tracking performance. Meter tracking is done for each type of meter (\gls{tala}) separately, in a two fold cross validation experiment. 
+% Base results with BPM, for CMDs, HMDs, Ballroom dataset for both HMM and PF. 
+% All tracking results together here
+%
+%
+%%%%%%%%%%% Track-BPM-CMDs-HMM-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{adi} & 0.407 & 0.363 && 0.725 & 0.670 && 3.09 & 2.99\tabularnewline
+%  & \Gls{rupaka} & 0.648 & 0.670 && 0.810 & 0.800 && 3.14 & 3.23\tabularnewline
+%  & \Gls{mishra chapu} & 0.706 & 0.752 && 0.799 & 0.793 && 3.35 & 3.43\tabularnewline
+%  & \Gls{khanda chapu} & 0.743 & 0.722 && 0.779 & 0.789 && 3.18 & 3.11\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.624 & 0.625 && 0.778 & 0.763 && 3.19 & 3.19\tabularnewline \midrule
+%  & \Gls{adi} & 0.680 & 0.650 && 0.666 & 0.670 && 1.58 & 1.50\tabularnewline
+%  & \Gls{rupaka} & 0.716 & 0.714 && 0.763 & 0.787 && 1.96 & 2.04\tabularnewline
+%  & \Gls{mishra chapu} & 0.858 & 0.850 && 0.810 & 0.804 && 1.34 & 1.33\tabularnewline
+%  & \Gls{khanda chapu} & 0.887 & 0.875 && 0.849 & 0.837 && 1.47 & 1.42\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.784 & 0.770 && 0.771 & 0.773 && 1.59 & 1.58\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{hmmprior} on \acrshort{CMDs} dataset]{Results of tracking with \acrshort{hmmprior} on \acrshort{CMDs} dataset}\label{tab:track:CMDsHMMo}
+% \end{table}
+%
+%%%%%%%%%% Track-BPM-CMDs-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{adi} & 0.386 & 0.421 && 0.758 & 0.770 && 3.33 & 3.38\tabularnewline
+%  & \Gls{rupaka} & 0.733 & 0.756 && 0.855 & 0.833 && 3.61 & 3.66\tabularnewline
+%  & \Gls{mishra chapu} & 0.814 & 0.802 && 0.863 & 0.849 && 3.90 & 3.81\tabularnewline
+%  & \Gls{khanda chapu} & 0.756 & 0.738 && 0.811 & 0.804 && 3.52 & 3.43\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.671 & 0.678 && 0.822 & 0.814 && 3.59 & 3.57\tabularnewline \midrule
+%  & \Gls{adi} & 0.690 & 0.685 && 0.736 & 0.739 && 1.82 & 1.82\tabularnewline
+%  & \Gls{rupaka} & 0.782 & 0.811 && 0.842 & 0.829 && 2.44 & 2.45\tabularnewline
+%  & \Gls{mishra chapu} & 0.916 & 0.902 && 0.887 & 0.868 && 1.80 & 1.73\tabularnewline
+%  & \Gls{khanda chapu} & 0.925 & 0.918 && 0.900 & 0.894 && 1.81 & 1.78\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.827 & 0.827 && 0.840 & 0.832 && 1.97 & 1.95\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfprior} on \acrshort{CMDs} dataset]{Results of tracking with \acrshort{pfprior} on \acrshort{CMDs} dataset}\label{tab:track:CMDsAMPFo}
+% \end{table}
+% 
+%%%%%%%%%%% Track-BPM-HMDl-HMM-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.237 & 0.143 && 0.756 & 0.610 && 4.11 & 4.06\tabularnewline
+%  & \Gls{ektal} & 0.050 & 0.046 && 0.064 & 0.090 && 2.86 & 2.87\tabularnewline
+%  & \Gls{jhaptal} & 0.311 & 0.129 && 0.834 & 0.668 && 4.03 & 3.53\tabularnewline
+%  & \Gls{rupak} & 0.285 & 0.217 && 0.516 & 0.462 && 2.55 & 2.28\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.150 & 0.099 && 0.356 & 0.314 && 3.21 & 3.12\tabularnewline \midrule
+%  & \Gls{teental} & 0.305 & 0.285 && 0.512 & 0.510 && 1.17 & 1.13\tabularnewline
+%  & \Gls{ektal} & 0.120 & 0.136 && 0.110 & 0.130 && 0.57 & 0.63\tabularnewline
+%  & \Gls{jhaptal} & 0.427 & 0.432 && 0.710 & 0.661 && 1.57 & 1.39\tabularnewline
+%  & \Gls{rupak} & 0.390 & 0.364 && 0.442 & 0.370 && 1.03 & 0.93\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.229 & 0.230 && 0.305 & 0.301 && 0.86 & 0.86\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{hmmprior} on \acrshort{HMDl} dataset]{Results of tracking with \acrshort{hmmprior} on \acrshort{HMDl} dataset}\label{tab:track:HMDlHMMo}
+% \end{table}
+%
+%%%%%%%%%%%% Track-BPM-HMDl-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.244 & 0.258 && 0.648 & 0.659 && 4.22 & 4.05\tabularnewline
+%  & \Gls{ektal} & 0.038 & 0.027 && 0.210 & 0.180 && 3.44 & 3.24\tabularnewline
+%  & \Gls{jhaptal} & 0.234 & 0.075 && 0.701 & 0.524 && 3.72 & 3.01\tabularnewline
+%  & \Gls{rupak} & 0.327 & 0.288 && 0.773 & 0.687 && 3.62 & 3.44\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.142 & 0.118 && 0.433 & 0.389 && 3.66 & 3.42\tabularnewline \midrule
+%  & \Gls{teental} & 0.360 & 0.358 && 0.789 & 0.718 && 2.02 & 1.82\tabularnewline
+%  & \Gls{ektal} & 0.108 & 0.087 && 0.288 & 0.221 && 0.96 & 0.80\tabularnewline
+%  & \Gls{jhaptal} & 0.404 & 0.345 && 0.697 & 0.607 && 1.72 & 1.35\tabularnewline
+%  & \Gls{rupak} & 0.413 & 0.383 && 0.825 & 0.769 && 1.96 & 1.79\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.235 & 0.213 && 0.513 & 0.444 && 1.40 & 1.21\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfprior} on \acrshort{HMDl} dataset]{Results of tracking with \acrshort{pfprior} on \acrshort{HMDl} dataset}\label{tab:track:HMDlAMPFo}
+% \end{table}
+% 
+%%%%%%%%% Track-BPM-HMDs-HMM-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.738 & 0.740 && 0.783 & 0.794 && 4.15 & 4.09\tabularnewline
+%  & \Gls{ektal} & 0.940 & 0.942 && 0.961 & 0.970 && 4.75 & 4.77\tabularnewline
+%  & \Gls{jhaptal} & 0.771 & 0.658 && 0.811 & 0.690 && 4.24 & 3.62\tabularnewline
+%  & \Gls{rupak} & 0.223 & 0.262 && 0.366 & 0.403 && 1.62 & 1.81\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.733 & 0.723 && 0.783 & 0.778 && 4.00 & 3.92\tabularnewline \midrule
+%  & \Gls{teental} & 0.872 & 0.869 && 0.843 & 0.850 && 1.46 & 1.46\tabularnewline
+%  & \Gls{ektal} & 0.967 & 0.963 && 0.909 & 0.902 && 1.50 & 1.52\tabularnewline
+%  & \Gls{jhaptal} & 0.745 & 0.680 && 0.741 & 0.637 && 1.54 & 1.34\tabularnewline
+%  & \Gls{rupak} & 0.518 & 0.531 && 0.453 & 0.505 && 0.76 & 0.84\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.835 & 0.825 && 0.796 & 0.789 && 1.39 & 1.38\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{hmmprior} on \acrshort{HMDs} dataset]{Results of tracking with \acrshort{hmmprior} on \acrshort{HMDs} dataset}\label{tab:track:HMDsHMMo}
+% \end{table}
+% 
+%%%%%%%% Track-BPM-HMDs-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.724 & 0.745 && 0.782 & 0.800 && 4.04 & 4.08\tabularnewline
+%  & \Gls{ektal} & 0.924 & 0.935 && 0.957 & 0.959 && 4.69 & 4.72\tabularnewline
+%  & \Gls{jhaptal} & 0.823 & 0.753 && 0.892 & 0.858 && 4.69 & 4.29\tabularnewline
+%  & \Gls{rupak} & 0.548 & 0.526 && 0.725 & 0.726 && 3.25 & 3.14\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.772 & 0.771 && 0.839 & 0.844 && 4.22 & 4.17\tabularnewline \midrule
+%  & \Gls{teental} & 0.889 & 0.891 && 0.845 & 0.840 && 1.51 & 1.54\tabularnewline
+%  & \Gls{ektal} & 0.963 & 0.968 && 0.894 & 0.901 && 1.52 & 1.58\tabularnewline
+%  & \Gls{jhaptal} & 0.856 & 0.782 && 0.899 & 0.809 && 2.28 & 1.92\tabularnewline
+%  & \Gls{rupak} & 0.724 & 0.717 && 0.775 & 0.780 && 1.67 & 1.69\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.884 & 0.875 && 0.858 & 0.845 && 1.64 & 1.63\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfprior} on \acrshort{HMDs} dataset]{Results of tracking with \acrshort{pfprior} on \acrshort{HMDs} dataset}\label{tab:track:HMDsAMPFo}
+% \end{table}
+% 
+%%%%%%%%%% Track-BPM-Ballroom-HMM-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & Cha-Cha-Cha & 0.813 & 0.746 && 0.889 & 0.892 && 4.88 & 4.77\tabularnewline
+%  & Jive & 0.715 & 0.660 && 0.908 & 0.891 && 4.26 & 4.25\tabularnewline
+%  & Quickstep & 0.834 & 0.853 && 0.943 & 0.932 && 4.06 & 4.07\tabularnewline
+%  & Rumba & 0.898 & 0.897 && 0.928 & 0.920 && 4.69 & 4.68\tabularnewline
+%  & Samba & 0.832 & 0.850 && 0.915 & 0.907 && 4.83 & 4.86\tabularnewline
+%  & Tango & 0.682 & 0.655 && 0.889 & 0.904 && 4.31 & 4.28\tabularnewline
+%  & Viennese waltz & 0.966 & 0.965 && 0.950 & 0.950 && 3.81 & 3.81\tabularnewline
+%  & Waltz & 0.820 & 0.820 && 0.882 & 0.885 && 3.68 & 3.63\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-9}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.821 & 0.806 && 0.910 & 0.908 && 4.34 & 4.31\tabularnewline \midrule
+%  & Cha-Cha-Cha & 0.961 & 0.960 && 0.943 & 0.943 && 3.19 & 3.19\tabularnewline
+%  & Jive & 0.972 & 0.972 && 0.948 & 0.947 && 2.89 & 2.89\tabularnewline
+%  & Quickstep & 0.966 & 0.966 && 0.932 & 0.933 && 2.49 & 2.47\tabularnewline
+%  & Rumba & 0.896 & 0.899 && 0.911 & 0.914 && 3.00 & 3.01\tabularnewline
+%  & Samba & 0.940 & 0.951 && 0.928 & 0.928 && 3.31 & 3.34\tabularnewline
+%  & Tango & 0.943 & 0.949 && 0.934 & 0.939 && 2.71 & 2.74\tabularnewline
+%  & Viennese waltz & 0.966 & 0.964 && 0.934 & 0.932 && 2.34 & 2.31\tabularnewline
+%  & Waltz & 0.834 & 0.832 && 0.859 & 0.861 && 2.25 & 2.22\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-9}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.929 & 0.931 && 0.921 & 0.922 && 2.78 & 2.78\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{hmmprior} on Ballroom dataset]{Results of tracking with \acrshort{hmmprior} on Ballroom dataset}\label{tab:track:BallroomHMMo}
+% \end{table}
+% 
+%%%%%%%%%%% Track-BPM-Ballroom-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & Cha-Cha-Cha & 0.632 & 0.684 && 0.827 & 0.853 && 4.56 & 4.61\tabularnewline
+%  & Jive & 0.626 & 0.604 && 0.869 & 0.902 && 3.97 & 3.94\tabularnewline
+%  & Quickstep & 0.792 & 0.827 && 0.915 & 0.914 && 3.70 & 3.74\tabularnewline
+%  & Rumba & 0.849 & 0.847 && 0.917 & 0.907 && 4.45 & 4.45\tabularnewline
+%  & Samba & 0.731 & 0.785 && 0.861 & 0.890 && 4.60 & 4.69\tabularnewline
+%  & Tango & 0.573 & 0.603 && 0.877 & 0.859 && 3.98 & 3.98\tabularnewline
+%  & Viennese waltz & 0.940 & 0.938 && 0.936 & 0.935 && 3.47 & 3.51\tabularnewline
+%  & Waltz & 0.760 & 0.759 && 0.820 & 0.824 && 3.46 & 3.45\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-9}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.735 & 0.755 && 0.873 & 0.880 && 4.05 & 4.07\tabularnewline \midrule
+%  & Cha-Cha-Cha & 0.950 & 0.947 && 0.935 & 0.938 && 3.05 & 3.11\tabularnewline
+%  & Jive & 0.968 & 0.966 && 0.941 & 0.939 && 2.64 & 2.64\tabularnewline
+%  & Quickstep & 0.958 & 0.957 && 0.916 & 0.913 && 2.14 & 2.16\tabularnewline
+%  & Rumba & 0.878 & 0.882 && 0.893 & 0.891 && 2.81 & 2.84\tabularnewline
+%  & Samba & 0.934 & 0.936 && 0.912 & 0.907 && 3.20 & 3.25\tabularnewline
+%  & Tango & 0.925 & 0.920 && 0.915 & 0.912 && 2.47 & 2.48\tabularnewline
+%  & Viennese waltz & 0.945 & 0.945 && 0.902 & 0.901 && 1.98 & 1.99\tabularnewline
+%  & Waltz & 0.772 & 0.781 && 0.783 & 0.794 && 2.05 & 2.09\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-9}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.909 & 0.910 && 0.895 & 0.895 && 2.56 & 2.59\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tracking with \acrshort{pfprior} on Ballroom dataset]{Results of tracking with \acrshort{pfprior} on Ballroom dataset}\label{tab:track:BallroomAMPFo}
+% \end{table}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="14cm" height="26cm" viewBox="338 144 273 502" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="431" y="594.232" width="90" height="50"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="431" y="594.232" width="90" height="50"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="476" y="613.165">
+      <tspan x="476" y="613.165">Chapter 7</tspan>
+      <tspan x="476" y="634.332"></tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,557.588 385,575.91 476,575.91 476,588.996 "/>
+    <polygon style="fill: #000000" points="476,591.996 474,587.996 476,588.996 478,587.996 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="476,591.996 474,587.996 476,588.996 478,587.996 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.57,193.898 474.57,210 474.568,210 474.568,235.714 "/>
+    <polygon style="fill: #000000" points="474.568,238.714 472.568,234.714 474.568,235.714 476.568,234.714 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.568,238.714 472.568,234.714 474.568,235.714 476.568,234.714 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="477,210.706 560,210.706 560,298.747 479.667,298.747 "/>
+    <polygon style="fill: #000000" points="476.667,298.747 480.667,296.747 479.667,298.747 480.667,300.747 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="476.667,298.747 480.667,296.747 479.667,298.747 480.667,300.747 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="358.583" y="214.299">
+    <tspan x="358.583" y="214.299">Background needed ? </tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="478.834" y="228">
+    <tspan x="478.834" y="228">Yes</tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="540" y="228">
+    <tspan x="540" y="228">No</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="560" y="298.584">
+    <tspan x="560" y="298.584"></tspan>
+  </text>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="424.57" y="145.232" width="100" height="48.6667"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="424.57" y="145.232" width="100" height="48.6667"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="474.57" y="163.498">
+        <tspan x="474.57" y="163.498">Chapter 1</tspan>
+        <tspan x="474.57" y="184.665"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="442.69" y="182.232">
+      <tspan x="442.69" y="182.232">Introduction</tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="474.568" y="266.242">
+    <tspan x="474.568" y="266.242"></tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="479.838" y="388.19">
+    <tspan x="479.838" y="388.19">No</tspan>
+  </text>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="429.568" y="240.95" width="90" height="50.5833"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="429.568" y="240.95" width="90" height="50.5833"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="474.568" y="260.175">
+        <tspan x="474.568" y="260.175">Chapter 2</tspan>
+        <tspan x="474.568" y="281.342"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="444.7" y="278.912">
+      <tspan x="444.7" y="278.912">Background</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="429.583" y="350.331" width="90" height="50.2165"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="429.583" y="350.331" width="90" height="50.2165"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="474.583" y="369.373">
+        <tspan x="474.583" y="369.373">Chapter 3</tspan>
+        <tspan x="474.583" y="390.539"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="448.335" y="389.015">
+      <tspan x="448.335" y="389.015">Problems</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="429.606" y="432.106" width="90" height="49.6771"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="429.606" y="432.106" width="90" height="49.6771"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="474.606" y="450.877">
+        <tspan x="474.606" y="450.877">Chapter 4</tspan>
+        <tspan x="474.606" y="472.044"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="451.98" y="467.806">
+      <tspan x="451.98" y="467.806">Datasets</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="340" y="507.588" width="90" height="50"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="507.588" width="90" height="50"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="385" y="526.521">
+        <tspan x="385" y="526.521">Chapter 5</tspan>
+        <tspan x="385" y="547.688"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="348.19" y="544.422">
+      <tspan x="348.19" y="544.422">Meter analysis</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="520" y="507.588" width="90" height="50"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="520" y="507.588" width="90" height="50"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="565" y="526.521">
+        <tspan x="565" y="526.521">Chapter 6</tspan>
+        <tspan x="565" y="547.688"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="531.81" y="544.422">
+      <tspan x="531.81" y="544.422">Perc. patterns</tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="444.072" y="631.446">
+    <tspan x="444.072" y="631.446">Conclusions</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.606,481.783 474.606,494.685 385,494.685 385,502.352 "/>
+    <polygon style="fill: #000000" points="385,505.352 383,501.352 385,502.352 387,501.352 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,505.352 383,501.352 385,502.352 387,501.352 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.606,481.783 474.606,494.685 565,494.685 565,502.352 "/>
+    <polygon style="fill: #000000" points="565,505.352 563,501.352 565,502.352 567,501.352 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="565,505.352 563,501.352 565,502.352 567,501.352 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="565,557.588 565,575.91 476,575.91 476,588.996 "/>
+    <polygon style="fill: #000000" points="476,591.996 474,587.996 476,588.996 478,587.996 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="476,591.996 474,587.996 476,588.996 478,587.996 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="474.568" y1="291.533" x2="474.582" y2="345.095"/>
+    <polygon style="fill: #000000" points="474.583,348.095 472.582,344.095 474.582,345.095 476.582,344.094 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.583,348.095 472.582,344.095 474.582,345.095 476.582,344.094 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="477,321.019 560,321.019 560,415.022 480.058,415.022 "/>
+    <polygon style="fill: #000000" points="477.058,415.022 481.058,413.022 480.058,415.022 481.058,417.022 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="477.058,415.022 481.058,413.022 480.058,415.022 481.058,417.022 "/>
+  </g>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="480" y="338.235">
+    <tspan x="480" y="338.235">Yes</tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="540" y="338.235">
+    <tspan x="540" y="338.235">No</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="474.583" y1="400.547" x2="474.603" y2="426.869"/>
+    <polygon style="fill: #000000" points="474.605,429.869 472.602,425.871 474.603,426.869 476.602,425.868 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.605,429.869 472.602,425.871 474.603,426.869 476.602,425.868 "/>
+  </g>
+  <g>
+    <ellipse style="fill: #000000" cx="474.5" cy="210.706" rx="2.5" ry="2.5"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="474.5" cy="210.706" rx="2.5" ry="2.5"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 0.2; stroke: #000000" cx="474.5" cy="210.706" rx="2.5" ry="2.5"/>
+  </g>
+  <g>
+    <ellipse style="fill: #000000" cx="474.5" cy="321.019" rx="2.5" ry="2.5"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="474.5" cy="321.019" rx="2.5" ry="2.5"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 0.2; stroke: #000000" cx="474.5" cy="321.019" rx="2.5" ry="2.5"/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="410" y="310">
+    <tspan x="410" y="310"></tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="414.535" y="315.669">
+    <tspan x="414.535" y="315.669">Exploring new rhythm </tspan>
+    <tspan x="414.535" y="331.669">analysis problems ?</tspan>
+  </text>
+</svg>

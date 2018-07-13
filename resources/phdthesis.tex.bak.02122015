@@ -1,0 +1,175 @@
+﻿% A latex template for thesis
+%%%%%% Book document class modified as needed in UPFthesis
+\documentclass[12pt, b5paper,twoside]{UPFthesis}
+%
+%%%%%% Page style settings
+\usepackage[b5paper]{geometry}
+\usepackage[cam,a4,center,frame]{crop}
+\pagestyle{plain}	% No headings
+%
+%%%%%% Load some basic latex packages
+\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}              %to augment generic LaTeX; needed for \mathbb font
+\usepackage{amsfonts}            %reading in some AMS fonts
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage[font=footnotesize]{subfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{fullpage}
+%\usepackage{microtype}
+%\usepackage[none]{hyphenat}	 % Turns of hyphenation
+%\usepackage[xetex,hidelinks]{hyperref}
+\usepackage[xetex]{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=red}
+\usepackage{url}
+%
+%%%%%% Font and language settings
+\usepackage{fontspec}
+\usepackage[catalan,english]{babel}
+\setmainfont[Mapping=tex-text]{Times New Roman}
+%\setmainfont[Mapping=tex-text]{Ubuntu}
+\newfontfamily\music{MusiSync}
+\newfontfamily\syllable{Cousine}
+\usepackage[indentfirst=false]{xeCJK}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimSun}
+% \selectlanguage{english}
+% \usepackage[utf8]{inputenc}
+% \usepackage{times}  % Suggested font, not used
+% \usepackage{garamond} % Suggested font, not used
+%
+%%%%% Bibliography and index
+\usepackage{apacite}
+\bibliographystyle{apacite}
+%\usepackage{apalike}
+%\bibliographystyle{apalike}
+%\usepackage{cite}
+\usepackage{makeidx}
+\makeindex
+%
+%%%%%% All glossaries related
+\input{glossarySetup}
+%%%%%% Some remnants from template, irrelevant
+% If this document is in Catala
+% \selectlanguage{catalan}
+%EN COMPTES DE INDEX, LA TAULA DE CONTINGUTS ES TITULA SUMARI
+%\addto\captionscatalan
+%{\renewcommand{\contentsname}{\Large \sffamily Sumari}}
+%
+%%%%%% Headers and footers
+%\usepackage{fancyhdr}
+%%\pagestyle{fancy}
+%\pagestyle{plain}
+%\fancyfoot{}
+%\fancyfoot[RO]{\thepage}
+%\fancyfoot[LE]{\thepage}
+%
+%%%%%% Basic Data
+\title{Computational Rhythm Analysis of Indian Art Music}
+\subtitle{A CompMusic perspective}
+\author{Ajay Srinivasamurthy}
+\thyear{2016}
+\department{Information and Communication Technologies}
+\supervisor{Prof. Xavier Serra}
+%%%%%% Define some custom things for the document
+\graphicspath{{./figs/}}
+\input{customCommands}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document begins
+\begin{document}
+%
+\frontmatter
+%
+\maketitle
+\cleardoublepage
+%
+%%%%%% Dedication
+\noindent Dedication
+\cleardoublepage
+%
+%%%%%% Acknowledgments
+\noindent {\Large \sffamily Acknowledgments} \\
+To be added ... 
+\cleardoublepage
+%
+%%%%%% ABSTRACT in two languages
+\section*{\Large \sffamily Abstract}
+This is the abstract of the thesis in English (less than 150 words)
+\selectlanguage{catalan}
+\vspace*{\fill}
+\section*{\Large \sffamily  Resum}
+\normalfont
+Vet aquí el resum de la tesi en catalá (menys de 150 paraules)
+\vspace*{\fill}
+\selectlanguage{english}
+\cleardoublepage
+%
+%%%%%% Optional Preface
+{\bf Preface}
+\cleardoublepage
+
+% Table of Contents
+\tableofcontents
+
+% List of Figures
+\listoffigures
+% Add List of Figures to TOC
+\addcontentsline{toc}{chapter}{List of Figures}
+
+% List of Tables
+\listoftables
+% Add List of Tables to TOC
+\addcontentsline{toc}{chapter}{List of Tables}
+
+%%%%%% Main Matter starts
+\mainmatter
+\input{./chapters/01_introduction.tex}
+\input{./chapters/02_background.tex}
+\input{./chapters/03_probdef.tex}
+\input{./chapters/04_datasets.tex}
+\input{./chapters/05_talatracking.tex}
+\input{./chapters/06_percpatterns.tex}
+\input{./chapters/07_applications.tex}
+\input{./chapters/08_conclusions.tex}
+\input{./chapters/mwexample.tex}
+%
+%%%%%% Appendices, Glossaries
+\appendix
+\input{./chapters/09_appendix.tex}
+%
+\chapter{Glossary}
+\printglossary[type=TechTerms]
+\printglossary[type=CM]
+\printglossary[type=HM]
+\printglossary[type=TM]
+\printglossary[type=BO]
+\printglossary[type=\acronymtype]
+%
+%%%%%% Backmatter: Bibliography, Index 
+\backmatter
+%
+\bibliography{../Papers/commonPool/allRefs}
+%
+\printindex
+\end{document}
+%%%%%%%% EXTRAS
+% Page numbering exterior except the first page of each chapter 
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyfoot{}
+%\fancyfoot[RO]{\thepage}
+%\fancyfoot[LE]{\thepage}
+% IF you want multiple indices
+%En el preambul
+%\usepackage{multind}
+%\makeindex{authors}
+%%Introduccio d'entrades la forma
+%\index{authors}{Einstein}
+%%Situacio de l'index
+%\printindex{authors}{Author index}
+%Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
+%cal exacutar des de la linia de comandes makeindex authors

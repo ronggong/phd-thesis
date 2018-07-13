@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="28cm" height="17cm" viewBox="128 13 544 322" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="279" y="24.6464" width="96.85" height="60"/>
+    <path style="fill: #ffffff" d="M 279,24.6464 A 2,2 0 0 0 277,26.6464 L 279,26.6464 z"/>
+    <path style="fill: #ffffff" d="M 377.85,26.6464 A 2,2 0 0 0 375.85,24.6464 L 375.85,26.6464 z"/>
+    <rect style="fill: #ffffff" x="277" y="26.6464" width="100.85" height="56"/>
+    <path style="fill: #ffffff" d="M 277,82.6464 A 2,2 0 0 0 279,84.6464 L 279,82.6464 z"/>
+    <path style="fill: #ffffff" d="M 375.85,84.6464 A 2,2 0 0 0 377.85,82.6464 L 375.85,82.6464 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="279" y1="24.6464" x2="375.85" y2="24.6464"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="279" y1="84.6464" x2="375.85" y2="84.6464"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 279,24.6464 A 2,2 0 0 0 277,26.6464"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 377.85,26.6464 A 2,2 0 0 0 375.85,24.6464"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="277" y1="26.6464" x2="277" y2="82.6464"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="377.85" y1="26.6464" x2="377.85" y2="82.6464"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 277,82.6464 A 2,2 0 0 0 279,84.6464"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 375.85,84.6464 A 2,2 0 0 0 377.85,82.6464"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="327.425" y="49.7631">
+      <tspan x="327.425" y="49.7631">Music Theory </tspan>
+      <tspan x="327.425" y="66.6964">and Practice</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="412" y="25" width="165.9" height="60"/>
+    <path style="fill: #ffffff" d="M 412,25 A 2,2 0 0 0 410,27 L 412,27 z"/>
+    <path style="fill: #ffffff" d="M 579.9,27 A 2,2 0 0 0 577.9,25 L 577.9,27 z"/>
+    <rect style="fill: #ffffff" x="410" y="27" width="169.9" height="56"/>
+    <path style="fill: #ffffff" d="M 410,83 A 2,2 0 0 0 412,85 L 412,83 z"/>
+    <path style="fill: #ffffff" d="M 577.9,85 A 2,2 0 0 0 579.9,83 L 577.9,83 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="412" y1="25" x2="577.9" y2="25"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="412" y1="85" x2="577.9" y2="85"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 412,25 A 2,2 0 0 0 410,27"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 579.9,27 A 2,2 0 0 0 577.9,25"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="410" y1="27" x2="410" y2="83"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="579.9" y1="27" x2="579.9" y2="83"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 410,83 A 2,2 0 0 0 412,85"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 577.9,85 A 2,2 0 0 0 579.9,83"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="494.95" y="50.1167">
+      <tspan x="494.95" y="50.1167">Ontologies/</tspan>
+      <tspan x="494.95" y="67.05">Knowledge representations</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="465.414" y="274.87" width="120.4" height="60"/>
+    <path style="fill: #ffffff" d="M 465.414,274.87 A 2,2 0 0 0 463.414,276.87 L 465.414,276.87 z"/>
+    <path style="fill: #ffffff" d="M 587.814,276.87 A 2,2 0 0 0 585.814,274.87 L 585.814,276.87 z"/>
+    <rect style="fill: #ffffff" x="463.414" y="276.87" width="124.4" height="56"/>
+    <path style="fill: #ffffff" d="M 463.414,332.87 A 2,2 0 0 0 465.414,334.87 L 465.414,332.87 z"/>
+    <path style="fill: #ffffff" d="M 585.814,334.87 A 2,2 0 0 0 587.814,332.87 L 585.814,332.87 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="465.414" y1="274.87" x2="585.814" y2="274.87"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="465.414" y1="334.87" x2="585.814" y2="334.87"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 465.414,274.87 A 2,2 0 0 0 463.414,276.87"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 587.814,276.87 A 2,2 0 0 0 585.814,274.87"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="463.414" y1="276.87" x2="463.414" y2="332.87"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="587.814" y1="276.87" x2="587.814" y2="332.87"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 463.414,332.87 A 2,2 0 0 0 465.414,334.87"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 585.814,334.87 A 2,2 0 0 0 587.814,332.87"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="525.614" y="299.987">
+      <tspan x="525.614" y="299.987">Rhythm similarity </tspan>
+      <tspan x="525.614" y="316.92">measures</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #e5e5e5" x="323.444" y="140" width="185.9" height="60"/>
+    <path style="fill: #e5e5e5" d="M 323.444,140 A 2,2 0 0 0 321.444,142 L 323.444,142 z"/>
+    <path style="fill: #e5e5e5" d="M 511.344,142 A 2,2 0 0 0 509.344,140 L 509.344,142 z"/>
+    <rect style="fill: #e5e5e5" x="321.444" y="142" width="189.9" height="56"/>
+    <path style="fill: #e5e5e5" d="M 321.444,198 A 2,2 0 0 0 323.444,200 L 323.444,198 z"/>
+    <path style="fill: #e5e5e5" d="M 509.344,200 A 2,2 0 0 0 511.344,198 L 509.344,198 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="323.444" y1="140" x2="509.344" y2="140"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="323.444" y1="200" x2="509.344" y2="200"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 323.444,140 A 2,2 0 0 0 321.444,142"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 511.344,142 A 2,2 0 0 0 509.344,140"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="321.444" y1="142" x2="321.444" y2="198"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="511.344" y1="142" x2="511.344" y2="198"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 321.444,198 A 2,2 0 0 0 323.444,200"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 509.344,200 A 2,2 0 0 0 511.344,198"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="416.394" y="173.583">
+      <tspan x="416.394" y="173.583">Automatic rhythm annotation</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #e5e5e5" x="142" y="140" width="149.5" height="60"/>
+    <path style="fill: #e5e5e5" d="M 142,140 A 2,2 0 0 0 140,142 L 142,142 z"/>
+    <path style="fill: #e5e5e5" d="M 293.5,142 A 2,2 0 0 0 291.5,140 L 291.5,142 z"/>
+    <rect style="fill: #e5e5e5" x="140" y="142" width="153.5" height="56"/>
+    <path style="fill: #e5e5e5" d="M 140,198 A 2,2 0 0 0 142,200 L 142,198 z"/>
+    <path style="fill: #e5e5e5" d="M 291.5,200 A 2,2 0 0 0 293.5,198 L 291.5,198 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="142" y1="140" x2="291.5" y2="140"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="142" y1="200" x2="291.5" y2="200"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 142,140 A 2,2 0 0 0 140,142"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 293.5,142 A 2,2 0 0 0 291.5,140"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="140" y1="142" x2="140" y2="198"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="293.5" y1="142" x2="293.5" y2="198"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 140,198 A 2,2 0 0 0 142,200"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 291.5,200 A 2,2 0 0 0 293.5,198"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="216.75" y="165.117">
+      <tspan x="216.75" y="165.117">Rhythm and percussion </tspan>
+      <tspan x="216.75" y="182.05">pattern analysis</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: #e5e5e5" d="M 157 28.3333 C 174.17,18.3333 182.755,15 199.925,15 C 217.095,15 225.68,18.3333 242.85,28.3333 L 242.85,81.6667 C 225.68,91.6667 217.095,95 199.925,95 C 182.755,95 174.17,91.6667 157,81.6667 L 157,28.3333z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 157 28.3333 C 174.17,18.3333 182.755,15 199.925,15 C 217.095,15 225.68,18.3333 242.85,28.3333 L 242.85,81.6667 C 225.68,91.6667 217.095,95 199.925,95 C 182.755,95 174.17,91.6667 157,81.6667 L 157,28.3333"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 157 28.3333 C 174.17,38.3333 182.755,41.6667 199.925,41.6667 C 217.095,41.6667 225.68,38.3333 242.85,28.3333"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="199.925" y="57.4333">
+      <tspan x="199.925" y="57.4333">Building data </tspan>
+      <tspan x="199.925" y="74.3667">corpora</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #e5e5e5" x="235.293" y="274.577" width="175.75" height="60"/>
+    <path style="fill: #e5e5e5" d="M 235.293,274.577 A 2,2 0 0 0 233.293,276.577 L 235.293,276.577 z"/>
+    <path style="fill: #e5e5e5" d="M 413.043,276.577 A 2,2 0 0 0 411.043,274.577 L 411.043,276.577 z"/>
+    <rect style="fill: #e5e5e5" x="233.293" y="276.577" width="179.75" height="56"/>
+    <path style="fill: #e5e5e5" d="M 233.293,332.577 A 2,2 0 0 0 235.293,334.577 L 235.293,332.577 z"/>
+    <path style="fill: #e5e5e5" d="M 411.043,334.577 A 2,2 0 0 0 413.043,332.577 L 411.043,332.577 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="235.293" y1="274.577" x2="411.043" y2="274.577"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="235.293" y1="334.577" x2="411.043" y2="334.577"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 235.293,274.577 A 2,2 0 0 0 233.293,276.577"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 413.043,276.577 A 2,2 0 0 0 411.043,274.577"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="233.293" y1="276.577" x2="233.293" y2="332.577"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="413.043" y1="276.577" x2="413.043" y2="332.577"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 233.293,332.577 A 2,2 0 0 0 235.293,334.577"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 411.043,334.577 A 2,2 0 0 0 413.043,332.577"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="323.168" y="299.694">
+      <tspan x="323.168" y="299.694">Evaluation and Integration </tspan>
+      <tspan x="323.168" y="316.627">(Dunya - enhanced listening)</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="542.201" y="140" width="127.2" height="60"/>
+    <path style="fill: #ffffff" d="M 542.201,140 A 2,2 0 0 0 540.201,142 L 542.201,142 z"/>
+    <path style="fill: #ffffff" d="M 671.401,142 A 2,2 0 0 0 669.401,140 L 669.401,142 z"/>
+    <rect style="fill: #ffffff" x="540.201" y="142" width="131.2" height="56"/>
+    <path style="fill: #ffffff" d="M 540.201,198 A 2,2 0 0 0 542.201,200 L 542.201,198 z"/>
+    <path style="fill: #ffffff" d="M 669.401,200 A 2,2 0 0 0 671.401,198 L 669.401,198 z"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="542.201" y1="140" x2="669.401" y2="140"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="542.201" y1="200" x2="669.401" y2="200"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 542.201,140 A 2,2 0 0 0 540.201,142"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 671.401,142 A 2,2 0 0 0 669.401,140"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="540.201" y1="142" x2="540.201" y2="198"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="671.401" y1="142" x2="671.401" y2="198"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 540.201,198 A 2,2 0 0 0 542.201,200"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 669.401,200 A 2,2 0 0 0 671.401,198"/>
+    <text font-size="13.5467" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="605.801" y="165.117">
+      <tspan x="605.801" y="165.117">Rhythm based </tspan>
+      <tspan x="605.801" y="182.05">audio segmentation </tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="511.344" y1="170" x2="533.465" y2="170"/>
+    <polygon style="fill: #000000" points="537.965,170 531.965,173 533.465,170 531.965,167 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="537.965,170 531.965,173 533.465,170 531.965,167 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="321.444" y1="170" x2="300.236" y2="170"/>
+    <polygon style="fill: #000000" points="295.736,170 301.736,167 300.236,170 301.736,173 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="295.736,170 301.736,167 300.236,170 301.736,173 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="463.414" y1="304.87" x2="419.779" y2="304.616"/>
+    <polygon style="fill: #000000" points="415.279,304.59 421.296,301.625 419.779,304.616 421.261,307.625 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="415.279,304.59 421.296,301.625 419.779,304.616 421.261,307.625 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10 2 2 2 2 2; stroke: #000000" points="579.9,55 605.801,55 605.801,133.264 "/>
+    <polygon style="fill: #000000" points="605.801,137.764 602.801,131.764 605.801,133.264 608.801,131.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="605.801,137.764 602.801,131.764 605.801,133.264 608.801,131.764 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10 2 2 2 2 2; stroke: #000000" x1="452.475" y1="85" x2="452.497" y2="132.233"/>
+    <polygon style="fill: #000000" points="452.5,136.733 449.497,130.734 452.497,132.233 455.497,130.731 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="452.5,136.733 449.497,130.734 452.497,132.233 455.497,130.731 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="178.375,200 178.375,289.577 226.557,289.577 "/>
+    <polygon style="fill: #000000" points="231.057,289.577 225.057,292.577 226.557,289.577 225.057,286.577 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="231.057,289.577 225.057,292.577 226.557,289.577 225.057,286.577 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="221.388,92.0833 221.388,110.233 368.919,110.233 368.919,133.264 "/>
+    <polygon style="fill: #000000" points="368.919,137.764 365.919,131.764 368.919,133.264 371.919,131.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="368.919,137.764 365.919,131.764 368.919,133.264 371.919,131.764 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="178.463" y1="92.0833" x2="178.387" y2="133.264"/>
+    <polygon style="fill: #000000" points="178.379,137.764 175.39,131.758 178.387,133.264 181.39,131.769 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="178.379,137.764 175.39,131.758 178.387,133.264 181.39,131.769 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="157,65 129.469,65 129.469,319.577 226.557,319.577 "/>
+    <polygon style="fill: #000000" points="231.057,319.577 225.057,322.577 226.557,319.577 225.057,316.577 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="231.057,319.577 225.057,322.577 226.557,319.577 225.057,316.577 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10 2 2 2 2 2; stroke: #000000" x1="525.663" y1="85.9698" x2="525.616" y2="267.78"/>
+    <polygon style="fill: #000000" points="525.615,272.28 522.616,266.28 525.616,267.78 528.616,266.281 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="525.615,272.28 522.616,266.28 525.616,267.78 528.616,266.281 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 10 2 2 2 2 2; stroke: #000000" x1="377.85" y1="54.6464" x2="403.264" y2="54.9259"/>
+    <polygon style="fill: #000000" points="407.764,54.9754 401.731,57.9093 403.264,54.9259 401.797,51.9096 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="407.764,54.9754 401.731,57.9093 403.264,54.9259 401.797,51.9096 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="255.125,200 255.125,254.88 479.167,254.88 479.167,267.087 "/>
+    <polygon style="fill: #000000" points="479.167,271.587 476.167,265.587 479.167,267.087 482.167,265.587 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="479.167,271.587 476.167,265.587 479.167,267.087 482.167,265.587 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="499.854" y1="200.61" x2="499.854" y2="267.766"/>
+    <polygon style="fill: #000000" points="499.854,272.266 496.854,266.266 499.854,267.766 502.854,266.266 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="499.854,272.266 496.854,266.266 499.854,267.766 502.854,266.266 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="620.912,200.564 620.912,220.293 620.736,220.293 620.736,304.87 594.55,304.87 "/>
+    <polygon style="fill: #000000" points="590.05,304.87 596.05,301.87 594.55,304.87 596.05,307.87 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="590.05,304.87 596.05,301.87 594.55,304.87 596.05,307.87 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="340.577" y1="201.011" x2="340.577" y2="267.274"/>
+    <polygon style="fill: #000000" points="340.577,271.774 337.577,265.774 340.577,267.274 343.577,265.774 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="340.577,271.774 337.577,265.774 340.577,267.274 343.577,265.774 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="573.001,200 573.001,237.289 368.105,237.289 368.105,267.841 "/>
+    <polygon style="fill: #000000" points="368.105,272.341 365.105,266.341 368.105,267.841 371.105,266.341 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="368.105,272.341 365.105,266.341 368.105,267.841 371.105,266.341 "/>
+  </g>
+</svg>

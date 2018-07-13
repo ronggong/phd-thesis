@@ -1,0 +1,214 @@
+﻿%%%%%% Memoir document class modified as needed in UPFthesis
+%\def\DRAFTMODE{}   % Comment if generating the final version
+%\def\PRINTVER{}    % Comment if generating the final pdf version (print version has a boundary)
+\documentclass[12pt,a4paper,twoside,showtrims]{memoir}
+% Some information about the thesis
+\renewcommand{\title}{Automatic Assessment of Singing Voice Pronunciation: A Case Study with Jingju Music}
+%\newcommand{\subtitle}{A data-driven Bayesian approach}
+\renewcommand{\author}{Rong Gong}
+\newcommand{\thyear}{2018}
+\newcommand{\departmenta}{Music Technology Group}
+\newcommand{\departmentb}{Dept. of Information and Communication Technologies}
+\newcommand{\supervisor}{Dr. Xavier Serra Casals}
+% Load some basic latex packages
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+%\usepackage[none]{hyphenat}
+\usepackage{calc}
+\usepackage{tocloft}
+\usepackage{moresize}
+\usepackage{amsmath,amssymb,amsfonts,mathalfa,bbm,mathtools} % math fonts and symbols
+\usepackage{nicefrac}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{morewrites} 
+\usepackage[font=small]{subfig}
+\usepackage{colortbl} % For some nice looking tables, assumes xcolor is already loaded
+\usepackage{algorithm,algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage{epigraph}
+\usepackage{etoolbox} 	% Needed to patch some commands
+\usepackage{longtable}
+\usepackage{idxlayout} % Default two columns and adds to TOC
+\usepackage{placeins}
+
+\makeindex
+\usepackage{url}
+\usepackage[xetex,backref=page,hyperfigures,breaklinks,colorlinks,bookmarksopenlevel=0,bookmarksdepth=2]{hyperref} % hypperef should be loaded at the end
+\usepackage[labelfont=bf,font=small]{caption}
+% Some commands based on latex setup
+\newcommand\colorrule[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
+\setlength{\epigraphwidth}{0.586\textwidth}
+\renewcommand{\textflush}{flushleftright}
+% \renewcommand{\textflush}{flushepinormal} % Use this if the previous does not work
+\newlength{\boxlength}
+\newcolumntype{L}{l<{\kern\tabcolsep}@{}} 
+\newcolumntype{C}{c<{\kern\tabcolsep}@{}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\definecolor{tabgray}{gray}{0.8}
+\definecolor{CiteColor}{rgb}{0, 0, 0.3} 
+\definecolor{LinkColor}{rgb}{0, 0, 0.5} 
+% \definecolor{LinkColor}{rgb}{0, 1, 0} 
+% \definecolor{ExtLinkColor}{rgb}{0, 0.4, 0}
+\definecolor{ExtLinkColor}{rgb}{0, 0, 0.6}
+% Some settings for the pdf generated using hyperref
+\hypersetup{pdfauthor = {\author},pdftitle = {\title},pdfkeywords = {Meter tracking, rhythm analysis},pdfcreator = {XeLaTeX+hyperref}}
+\ifdefined\PRINTVER
+\hypersetup{citecolor=black,linkcolor=black,urlcolor=black}
+\else
+\hypersetup{citecolor=CiteColor,linkcolor=LinkColor,urlcolor=ExtLinkColor}
+\fi
+% \renewcommand{\backrefxxx}[3]{(\hyperlink{page.#1}{#1})} % This backref option shows (page. 3)(page. 4)
+\makeatletter  % Patch for backref to show (pg. 1, 5, 45)
+%\patchcmd{\BR@backref}{\newblock}{\newblock(pg.~}{}{}
+%\patchcmd{\BR@backref}{\par}{)\par}{}{}
+\patchcmd{\BR@backref}{\newblock}{\newblock[}{}{}
+\patchcmd{\BR@backref}{\par}{]\par}{}{}
+\makeatother
+% Font and language settings
+\usepackage{fontspec}
+\usepackage[catalan,english]{babel}
+\setmainfont[Mapping=tex-text]{Times New Roman}
+\newfontfamily\music{MusiSync}
+\newfontfamily\syllable{Cousine}
+\newfontfamily\algofont{Cousine}
+\newfontfamily\dataset{Anonymous Pro}
+\newfontfamily\ipafont{Charis SIL}
+\usepackage[indentfirst=false]{xeCJK}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimSun}
+% Bibliography and index
+\usepackage[nodoi]{apacite}
+\bibliographystyle{myapacite}
+%
+% Define custom things for the document
+\graphicspath{{./figs/}}
+\input{customCommands}
+%
+% Glossaries: All glossaries related things are done in this file
+\input{glossarySetup}
+% Finally setup the layout for thesis that overrides all the previous settings
+\input{prelims/setupthesis}
+%%%%%%%%%% Document begins %%%%%%%%%%
+\begin{document} 
+\frontmatter
+\pagestyle{frontmatter}
+\input{prelims/title}
+%\clearpage
+\sloppy  
+% Revoke sloppy with \fussy if it is giving too much space between words
+%\input{prelims/licence}
+%\cleartorecto
+\begingroup
+%\setlength{\parindent}{0in}
+%\nonzeroparskip
+%\input{prelims/tribunal}
+%\cleartorecto
+%\input{prelims/dedication}
+%\cleartorecto
+%\clearpage
+%\input{prelims/preface}
+%\cleartorecto
+%\input{prelims/acknowledgements}
+%\cleartorecto
+\input{prelims/abstract}
+\cleartorecto
+\tableofcontents
+\cleartorecto
+%\input{./chapters/symbolList}
+%\cleartorecto
+%\listoffigures
+%\cleartorecto
+%\listoftables
+%\cleartorecto
+\endgroup
+%%% Main Matter starts %%%
+\mainmatter
+\fussy
+\pagestyle{mainmatter}
+\input{chapters/01_introduction}
+\input{chapters/02_background}
+%\input{chapters/03_probdef}
+%\input{chapters/04_datasets}
+%\input{chapters/05_talatracking}
+%\input{chapters/06_percpatterns}
+% \input{chapters/07_applications}
+%\input{chapters/08_conclusions}
+%\input{chapters/mwexample}
+%
+%%% Appendices, Glossaries
+\appendix
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+\input{chapters/09_appendix}
+%\input{chapters/mypublications}
+%
+%\chapter{Glossary}\label{app:glossary}
+%\printglossary[type=TechTerms]
+%\printglossary[type=CM]
+%\printglossary[type=HM]
+%\printglossary[type=BO]
+% \printglossary[type=TM]
+%\printglossary[type=\acronymtype]
+%
+%%%%%% Backmatter: Bibliography, Index 
+\backmatter
+%
+{\small
+%\bibliography{../Papers/commonPool/allRefs}
+%
+%\printindex}
+% If printing, add four blank notes pages to write some notes and to hide easter eggs!
+\ifdefined\PRINTVER 
+\cleartorecto
+\blanknotepage
+\blanknotepage
+\blanknotepage
+\blanknotepage
+\fi
+\end{document}
+%%%%%%%%%%%%%%%%%%%% EXTRAS%%%%%%%%%%%%
+%\usepackage{fancyhdr}
+%\fancyhf{} % clear all header and footers
+%\renewcommand{\headrulewidth}{0pt} % remove the header rule
+%\fancyfoot[LE,RO]{\thepage} % Left side on Even pages; Right side on Odd pages
+%\pagestyle{fancy}
+%\fancypagestyle{plain}{%
+  %\fancyhf{}%
+  %\renewcommand{\headrulewidth}{0pt}%
+  %\fancyhf[lef,rof]{\thepage}%
+%}
+% Page numbering exterior except the first page of each chapter 
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyfoot{}
+%\fancyfoot[RO]{\thepage}
+%\fancyfoot[LE]{\thepage}
+% IF you want multiple indices
+%En el preambul
+%\usepackage{multind}
+%\makeindex{authors}
+%%Introduccio d'entrades la forma
+%\index{authors}{Einstein}
+%%Situacio de l'index
+%\printindex{authors}{Author index}
+%Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
+%cal exacutar des de la linia de comandes makeindex authors
+%%%%% More extras
+%\usepackage{subcaption}
+%\usepackage{microtype}
+%\usepackage[none]{hyphenat}	 % Turns of hyphenation
+%\usepackage[xetex,hidelinks]{hyperref}
+% \selectlanguage{english}
+% \usepackage[utf8]{inputenc}
+% \usepackage{times}  % Suggested font, not used
+% \usepackage{garamond} % Suggested font, not used
+%
+%\usepackage{apalike}
+%\bibliographystyle{apalike}
+%\usepackage{cite}
+%\algrenewcommand\algorithmicindent{1.5em}
+% 
+%\usepackage{epigraph} % Nice epigraphs
+%\usepackage{booktabs}  % included in memoir
+%\usepackage{makeidx}

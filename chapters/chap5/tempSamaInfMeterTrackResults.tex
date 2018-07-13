@@ -1,0 +1,152 @@
+% The results of tempo-sama informed meter tracking is shown with the bar and section pointer model (\bpmodel\ and \spmodel, with \acrshort{pfprior} and \acrshort{pfsec}, respectively) on Indian art music datasets is shown in \tabref{tab:tempoSamaInfTrack:allResAMPFoAMPFs}. The table is self explanatory. The text will explain more on specific \glspl{tala} and comment on performance.
+% All tracking results with BPM and SPM here
+\begin{table}
+\setlength{\tabcolsep}{1.5\tabcolsep}
+\centering
+\begin{tabular}{@{}CLCCCCCCC@{}} \toprule
+Dataset & Algo. && $\fmeas_b$ & $\amlt_{,b}$ & $\infoGain_b$ && $\fmeas_{s}$ \tabularnewline \midrule
+%
+& \acrshort{pfprior} && 0.880 & 0.943 & 2.37 && 0.834 \tabularnewline
+\multirow{-2}{*}{\acrshort{CMDs}} & \acrshort{pfsec} && 0.917 & 0.946 & 2.40 && 0.901\tabularnewline \midrule \addlinespace[2pt]
+%
+ & \acrshort{pfprior} && 0.959 & 0.920 & 2.02 && 0.911 \tabularnewline 
+\multirow{-2}{*}{\acrshort{HMDs}} & \acrshort{pfsec} && 0.958 & 0.915 & 2.01 && 0.933 \tabularnewline \bottomrule
+%
+& \acrshort{pfprior} && 0.530 & 0.978 & 2.84 && 0.99  \tabularnewline
+\multirow{-2}{*}{\acrshort{HMDl}} & \acrshort{pfsec} && 0.542 & 0.98 & 2.83 && 0.99 \tabularnewline \midrule \addlinespace[2pt]
+% & \acrshort{pfprior} && 0.348 & 0.978 & 2.84 && 0.616 \tabularnewline
+% \multirow{-2}{*}{\acrshort{HMDl}} & \acrshort{pfsec} && 0.356 & 0.980 & 2.83 && 0.589 \tabularnewline \midrule \addlinespace[2pt]
+% 
+\end{tabular}
+\caption[Tempo-sama-informed meter tracking results on Indian music datasets]{Results of tempo-sama-informed meter tracking with \acrshort{pfprior} and \acrshort{pfsec} on Indian music datasets. The table shows beat and \gls{sama} tracking performance with different measures.}\label{tab:tempoSamaInfTrack:allResAMPFoAMPFs}
+\end{table}
+
+We see from these tables that a high f-measure for both \gls{sama} and beat tracking is achieved in informed meter tracking. We also see that the beat tracking performance in the two informed tracking cases is similar, while \gls{sama} tracking performance improves in tempo-sama-informed tracking. A high beat and downbeat tracking performance is achieved in \acrshort{CMDs} and \acrshort{HMDs} datasets. With significant allowance on tempo variation allowed in Hindustani music \gls{vilambit} pieces, the beat tracking performance with informed tracking is poorer since we use the median tempo and tighter bounds for tracking. However, \gls{sam} tracking with \gls{vilambit} pieces is good showing that the algorithm is capable of recovering from these local tempo changes and track the \gls{sam} accurately. The limited number of \gls{sam} examples in the \acrshort{HMDl} dataset is also another possible reason for higher performance in tempo-sama-informed meter tracking.
+
+Though tested with a limited number of pieces within the context of Indian art music, it is encouraging to observe that easily obtainable additional prior information can be used to improve meter tracking performance, and that the Bayesian models and inference algorithms allow for incorporating such prior information seamlessly for tracking.
+% 
+%%%%%%%%%% tempoSamaInfTrack-BPM-CMDs-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{adi} & 0.733 & 0.720 && 0.952 & 0.956 && 4.71 & 4.70\tabularnewline
+%  & \Gls{rupaka} & 0.843 & 0.835 && 0.985 & 0.974 && 4.15 & 4.09\tabularnewline
+%  & \Gls{mishra chapu} & 0.864 & 0.896 && 0.949 & 0.964 && 4.36 & 4.42\tabularnewline
+%  & \Gls{khanda chapu} & 0.901 & 0.889 && 0.939 & 0.935 && 3.98 & 3.98\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.834 & 0.834 && 0.956 & 0.958 && 4.30 & 4.30\tabularnewline \midrule
+%  & \Gls{adi} & 0.760 & 0.770 && 0.919 & 0.910 && 2.49 & 2.47\tabularnewline
+%  & \Gls{rupaka} & 0.846 & 0.865 && 0.959 & 0.949 && 2.86 & 2.81\tabularnewline
+%  & \Gls{mishra chapu} & 0.948 & 0.951 && 0.941 & 0.945 && 2.06 & 2.04\tabularnewline
+%  & \Gls{khanda chapu} & 0.972 & 0.973 && 0.953 & 0.954 && 2.06 & 2.05\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.880 & 0.888 && 0.943 & 0.939 && 2.37 & 2.35\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-sama-informed tracking with \acrshort{pfprior} on \acrshort{CMDs} dataset]{Results of tempo-sama-informed tracking with \acrshort{pfprior} on \acrshort{CMDs} dataset}\label{tab:tempoSamaInfTrack:CMDsAMPFo}
+% \end{table}
+% 
+%%%%%%%%%%%%%% tempoSamaInfTrack-BPM-HMDl-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.663 & 0.696 && 1.000 & 1.000 && 5.30 & 5.27\tabularnewline
+%  & \Gls{ektal} & 0.562 & 0.531 && 0.990 & 0.990 && 5.26 & 5.20\tabularnewline
+%  & \Gls{jhaptal} & 0.789 & 0.687 && 0.994 & 0.994 && 5.30 & 5.00\tabularnewline
+%  & \Gls{rupak} & 0.622 & 0.693 && 1.000 & 1.000 && 4.85 & 4.84\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.616 & 0.605 && 0.994 & 0.994 && 5.22 & 5.15\tabularnewline \midrule
+%  & \Gls{teental} & 0.494 & 0.493 && 0.994 & 0.987 && 2.86 & 2.74\tabularnewline
+%  & \Gls{ektal} & 0.197 & 0.198 && 0.978 & 0.924 && 2.91 & 2.72\tabularnewline
+%  & \Gls{jhaptal} & 0.670 & 0.609 && 0.997 & 0.922 && 2.72 & 2.37\tabularnewline
+%  & \Gls{rupak} & 0.475 & 0.510 && 0.941 & 0.937 && 2.60 & 2.58\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.348 & 0.347 && 0.978 & 0.940 && 2.84 & 2.67\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-sama-informed tracking with \acrshort{pfprior} on \acrshort{HMDl} dataset]{Results of tempo-sama-informed tracking with \acrshort{pfprior} on \acrshort{HMDl} dataset}\label{tab:tempoSamaInfTrack:HMDlAMPFo}
+% \end{table}
+% 
+%%%%%%%%% tempoSamaInfTrack-BPM-HMDs-AMPF-prior-allHop-bar
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.900 & 0.900 && 0.955 & 0.955 && 4.90 & 4.89\tabularnewline
+%  & \Gls{ektal} & 0.950 & 0.949 && 0.981 & 0.982 && 4.57 & 4.58\tabularnewline
+%  & \Gls{jhaptal} & 0.906 & 0.936 && 0.985 & 0.987 && 5.05 & 5.05\tabularnewline
+%  & \Gls{rupak} & 0.874 & 0.834 && 0.943 & 0.941 && 4.66 & 4.56\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.911 & 0.910 && 0.965 & 0.965 && 4.79 & 4.78\tabularnewline \midrule
+%  & \Gls{teental} & 0.974 & 0.974 && 0.933 & 0.933 && 1.98 & 1.99\tabularnewline
+%  & \Gls{ektal} & 0.966 & 0.968 && 0.863 & 0.862 && 1.61 & 1.63\tabularnewline
+%  & \Gls{jhaptal} & 0.944 & 0.920 && 0.965 & 0.949 && 2.56 & 2.46\tabularnewline
+%  & \Gls{rupak} & 0.908 & 0.913 && 0.949 & 0.949 && 2.42 & 2.48\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.959 & 0.957 && 0.920 & 0.917 && 2.02 & 2.02\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-sama-informed tracking with \acrshort{pfprior} on \acrshort{HMDs} dataset]{Results of tempo-sama-informed tracking with \acrshort{pfprior} on \acrshort{HMDs} dataset}\label{tab:tempoSamaInfTrack:HMDsAMPFo}
+% \end{table}
+% 
+%%%%%%%%%% tempoSamaInfTrack-BPM-CMDs-AMPF-prior-allHop-section
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{adi} & 0.829 & 0.802 && 0.971 & 0.955 && 4.77 & 4.70\tabularnewline
+%  & \Gls{rupaka} & 0.907 & 0.872 && 0.980 & 0.970 && 4.15 & 4.07\tabularnewline
+%  & \Gls{mishra chapu} & 0.948 & 0.946 && 1.000 & 1.000 && 4.55 & 4.51\tabularnewline
+%  & \Gls{khanda chapu} & 0.924 & 0.908 && 0.951 & 0.947 && 4.05 & 4.02\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.901 & 0.881 && 0.976 & 0.968 && 4.39 & 4.33\tabularnewline \midrule
+%  & \Gls{adi} & 0.832 & 0.856 && 0.918 & 0.914 && 2.52 & 2.48\tabularnewline
+%  & \Gls{rupaka} & 0.913 & 0.886 && 0.961 & 0.942 && 2.88 & 2.82\tabularnewline
+%  & \Gls{mishra chapu} & 0.956 & 0.957 && 0.951 & 0.950 && 2.12 & 2.10\tabularnewline
+%  & \Gls{khanda chapu} & 0.972 & 0.973 && 0.953 & 0.953 && 2.07 & 2.07\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.917 & 0.917 && 0.946 & 0.939 && 2.40 & 2.37\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-sama-informed tracking with \acrshort{pfsec} on \acrshort{CMDs} dataset]{Results of tempo-sama-informed tracking with \acrshort{pfsec} on \acrshort{CMDs} dataset}\label{tab:tempoSamaInfTrack:CMDsAMPFs}
+% \end{table}
+% 
+%%%%%%%%%%%% tempoSamaInfTrack-BPM-HMDl-AMPF-prior-allHop-section
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.642 & 0.673 && 1.000 & 1.000 && 5.32 & 5.28\tabularnewline
+%  & \Gls{ektal} & 0.517 & 0.588 && 0.990 & 0.804 && 5.29 & 5.27\tabularnewline
+%  & \Gls{jhaptal} & 0.802 & 0.743 && 0.989 & 0.994 && 5.32 & 5.18\tabularnewline
+%  & \Gls{rupak} & 0.632 & 0.591 && 1.000 & 1.000 && 4.72 & 4.90\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.589 & 0.623 && 0.993 & 0.893 && 5.22 & 5.21\tabularnewline \midrule
+%  & \Gls{teental} & 0.497 & 0.499 && 0.996 & 0.989 && 2.86 & 2.76\tabularnewline
+%  & \Gls{ektal} & 0.197 & 0.231 && 0.975 & 0.944 && 2.89 & 2.69\tabularnewline
+%  & \Gls{jhaptal} & 0.681 & 0.665 && 0.997 & 0.989 && 2.74 & 2.64\tabularnewline
+%  & \Gls{rupak} & 0.520 & 0.523 && 0.961 & 0.952 && 2.61 & 2.61\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.356 & 0.374 && 0.980 & 0.960 && 2.83 & 2.69\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-sama-informed tracking with \acrshort{pfsec} on \acrshort{HMDl} dataset]{Results of tempo-sama-informed tracking with \acrshort{pfsec} on \acrshort{HMDl} dataset}\label{tab:tempoSamaInfTrack:HMDlAMPFs}
+% \end{table}
+% 
+%%%%%%%%%% tempoSamaInfTrack-BPM-HMDs-AMPF-prior-allHop-section
+% \begin{table}
+% \setlength{\tabcolsep}{1.5\tabcolsep}
+% \centering
+% \begin{tabular}{@{}LLCCCCCCCC@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+%  & \Gls{teental} & 0.933 & 0.935 && 0.962 & 0.964 && 4.96 & 4.95\tabularnewline
+%  & \Gls{ektal} & 0.956 & 0.955 && 0.980 & 0.980 && 4.57 & 4.58\tabularnewline
+%  & \Gls{jhaptal} & 0.952 & 0.948 && 0.985 & 0.985 && 5.11 & 5.14\tabularnewline
+%  & \Gls{rupak} & 0.858 & 0.895 && 0.951 & 0.986 && 4.59 & 4.71\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \textbf{Mean} & 0.933 & 0.937 && 0.969 & 0.974 && 4.82 & 4.84\tabularnewline \midrule
+%  & \Gls{teental} & 0.975 & 0.975 && 0.930 & 0.930 && 1.99 & 1.97\tabularnewline
+%  & \Gls{ektal} & 0.967 & 0.967 && 0.857 & 0.859 && 1.62 & 1.58\tabularnewline
+%  & \Gls{jhaptal} & 0.942 & 0.942 && 0.963 & 0.969 && 2.55 & 2.54\tabularnewline
+%  & \Gls{rupak} & 0.897 & 0.911 && 0.936 & 0.945 && 2.38 & 2.46\tabularnewline \addlinespace[2pt]
+%  \rowcolor{tabgray}[0.1pt][0.1pt] \multirow{-5}{*}{\rotatebox[origin=c]{90}{Beat}} & \textbf{Mean} & 0.958 & 0.960 && 0.915 & 0.918 && 2.01 & 2.00\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-sama-informed tracking with \acrshort{pfsec} on \acrshort{HMDs} dataset]{Results of tempo-sama-informed tracking with \acrshort{pfsec} on \acrshort{HMDs} dataset}\label{tab:tempoSamaInfTrack:HMDsAMPFs}
+% \end{table}

@@ -1,0 +1,57 @@
+Music Information Research
+Music Information Retrieval
+Signal Processing
+Machine Learning
+Indian art music
+Automatic rhythm analysis
+Pattern Discovery
+Additive meter
+Bar pointer model
+Bayesian model
+Beat tracking
+Beijing opera
+Carnatic music
+Hindustani music
+CompMusic
+Downbeat tracking
+Eurogenetic music
+Graphical model
+Hidden Markov model
+Isochronicity
+Language model
+Mridangam
+Meter
+Meter analysis
+Onomatopoeia
+Onset
+Onset detection
+Onset patterns
+Ontology
+Rhythm
+Rhythm patterns
+Percussion patterns
+Particle filter
+Sequential Monte Carlo
+Data corpora
+Rhythm similarity
+Segmentation
+Spectral flux
+Speech recognition
+Syllabic percussion
+Tempo tracking
+Tabla
+Tonic note
+Tala recognition
+Vocal percussion
+Recuperació de la informació musical
+Música clàssica de l'Índia
+Òpera de Pequín
+Processament de senyal 
+Aprenentatge automàtic
+Anàlisi automàtic del ritme
+Recuperación de la información musical
+Ópera de Pekín
+Música clásica de la India
+Procesamiento de señales 
+Aprendizaje automático
+Análisis automático del ritmo

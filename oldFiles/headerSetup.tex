@@ -1,0 +1,23 @@
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{15pt}
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername \ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\fancyhf{} % clear all header and footers
+\fancypagestyle{frontmatter}{%
+  \fancyhf{}%
+  \fancyhead[le,ro]{\thepage}%
+}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[lef,rof]{\thepage}%
+}
+\fancypagestyle{mainmatter}{%
+  \fancyhf{}%
+	\pagestyle{fancy}
+	\fancyhead[le,ro]{\thepage} % Left side on Even pages; Right side on Odd pages
+	\fancyhead[co]{\rightmark}
+  \fancyhead[ce]{\leftmark}
+}

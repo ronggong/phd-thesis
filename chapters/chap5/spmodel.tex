@@ -1,0 +1,113 @@
+To the best of our knowledge, the methods for meter tracking and inference so far, including the bar pointer model, have been applied and evaluated on metrical cycles of short durations. E.g., the typical duration of a 4/4 measure in popular Eurogenetic music would last from a bit less than 2s to little more than 4s. Longer metrical cycles were reported to cause problems in existing approaches~\cite{holzapfel:14:odd}. Interestingly, this upper duration coincides with the limit of a perceptual phenomenon referred to as perceptual present\index{Perceptual present}~\cite{clarke:99:percpresent}, and it has been argued that longer metrical cycles might not be perceived as a single rhythmic entity~\cite{clayton:00:time}. In tracking such long metrical cycles, listeners often track shorter, but musically meaningful sections of the cycle. This motivates the use of sub-bar or sub-cycle length rhythmic patterns in meter analysis tasks. Compared to the longer cycle length patterns, shorter patterns have lower variability and hence might provide better cues for meter tracking.
+
+A similar idea was applied by \citeA{bock:14:multimodel}, where rhythmic patterns of beat length are learned in order to perform beat tracking. However, the paper assumes that the beats form a regular isochronous sequence - an assumption that does not hold for many musics of the world, such as Indian, Turkish, Balkan, or Korean musics. Furthermore, the paper does not attempt to infer higher level metrical information, e.g. downbeat positions. By proposing a generalization to the bar pointer model, we address for the first time, the two basic limitations of the existing meter tracking approaches including the \bpmodel: the restrictions to short cycles and isochronous beat sequences~\cite{ajay:16:spmodel}. The generalization of the \bpmodel, called the section pointer model (\spmodel)\index{Section pointer model}, uses musically meaningful and possibly unequal section length rhythmic patterns in the task of meter tracking. With the new model, it is further possible to evaluate if using shorter section length rhythmic patterns can improve meter tracking compared to bar (cycle) length rhythmic patterns, in the presence of long metrical cycles. 
+
+The idea behind the \spmodel\ is to track sections instead of the whole bar (cycle). The rhythmic patterns are now one section in length, and hence possibly unequal in length. A pointer tracks the progression through each section, and a over-arching section identifier handles the progression through the sections of a cycle. The structure of the \spmodel\ is shown in \figref{fig:dbn:spm}, and is a generalization to the \bpmodel, with the \bpmodel\ being a special case of the \spmodel. Hence the \spmodel\ can be applied to arbitrary music styles in a straight forward way, just like the \bpmodel.
+
+Meter tracking in Indian art music is a suitable case for testing the \spmodel. Both Carnatic and Hindustani music have sections within the \gls{tala} (\gls{anga} and \gls{vibhaag}, respectively), which are musically well defined and hence the use of section length rhythmic patterns in the task of meter analysis can be explored with musically meaningful cycle divisions. 
+
+Hindustani music has \gls{taal} cycles that last over a minute \cite{clayton:00:time}, which is a good test case for the \spmodel. The large tempo range and the filler strokes in Hindustani music (especially \gls{vilambit} pieces) can provide a denser surface rhythm than what is expected from the underlying metrical structure. This surface rhythm can confuse the meter trackers and bias it towards the higher values of tempo, something that can be mitigated by tracking shorter section length patterns. Further, tracking large \gls{matra} periods in \gls{vilambit} pieces causes an unstable local tempo estimate that leads to a drifting of the tracking algorithms, which also is expected to be mitigated by tracking shorter length patterns.
+
+In the \spmodel\ shown in \figref{fig:dbn:spm}, a hypothetical pointer traverses each section of a metrical cycle. Hence, in addition to the variables \mpos, \tempoVar, \rpattVar\ of the bar pointer model, we now additionally introduce a section indicator variable. In reference to the \spmodel, at each audio frame, we redefine and denote the hidden (latent) variable vector as $\hidVar_k = [\mpos_k, \tempoVar_k, \rpattVar_k, \secVar_k]$, where: 
+\begin{itemize}[leftmargin=*]
+\item \textit{Section indicator}: The section indicator variable $\secVar \in \lbrace 1, \ldots, \nSections \rbrace$ is an indicator variable that identifies the section (\gls{vibhaag} in Hindustani music or \gls{anga} in Carnatic music) of a bar (\gls{taal}/a), and selects one of the $\nSections$ observation models corresponding to each section length rhythmic pattern learned from data. A rhythm class (\gls{taal}/a) might have many sections of different lengths. We denote the number of \glspl{matra}/beats in a section $\secVar$ by $\nbeats_\secVar$. 
+%
+\item \textit{Rhythmic pattern indicator}: For each section $\secVar$, there are one or more associated rhythm patterns denoted by $\rpattVar$. The rhythm pattern indicator $\rpattVar$, along with the section indicator $\secVar$ select the appropriate observation model to be used. For convenience and without loss of generality, we assume each section to be modeled by an equal number of patterns, with a total of $\nrhythmPatts$ distributed across all the sections equally. Hence, the number of rhythmic patterns per section is given as, $\nrhythmPatts/\nSections$ patterns, with the assumption that $\nrhythmPatts$ is an integer multiple of $\nSections$. 
+%
+\item \textit{Position in section}: The position variable $\mpos$ in the \spmodel\ tracks the position within a section as $\phi \in [0, \npos_\secVar)$, where $\npos_\secVar$ is the length of section $\secVar$. $\phi$ increases from $0$ to $\npos_\secVar$ and then resets to $0$ to start tracking the next section. We set the length of the longest section as $\npos$, and then scale the lengths of other sections accordingly. 
+%
+\item \textit{Instantaneous tempo}: Instantaneous tempo variable $\tempoVar$ (measured in positions per time frame) is similar to the instantaneous tempo variable of the \bpmodel\ and denotes the rate at which the position variable $\mpos$ progresses through a section at each time frame. The allowed range of the variable $\tempoVar_k \in [\tempoVar_{\min}, \tempoVar_{\max}]$ depends on the frame hop size ($\framehop = $ 0.02 second used here as before), and can be preset or learned from data. In a given section $\secVar$, a value of $\tempoVar_{k}$ corresponds to a section duration of ($\framehop \cdot \npos_\secVar / \tempoVar_{k}$) seconds and ($60 \cdot \nicefrac{\nbeats_\secVar\cdot\dot\mpos_k}{(\npos_\secVar \cdot\framehop)})$ \glspl{matra}/beats per minute. 
+\end{itemize}
+% Here, $\tempoVar\in[\tempoVar_{\mathrm{min}},\tempoVar_{\mathrm{max}}]$, $v = \{1,2,\ldots,V\}$, $\phi\in[0,M_v)$, and $r\in\{1,2,\ldots,R\}$. 
+
+\noindent Given the conditional dependence relations in \figref{fig:dbn:spm}, the transition probability in \spmodel\ factorizes as, 
+%
+\begin{multline}
+P(\hidVar_{k} \mid \hidVar_{k-1}) = P(\mpos_k \mid \mpos_{k-1},\tempoVar_{k-1},\secVar_{k-1})\,P(\tempoVar_{k} \mid \tempoVar_{k-1},\secVar_{k-1}) \\ P(\secVar_{k} \mid \secVar_{k-1},\mpos_{k},\mpos_{k-1})\,P(\rpattVar_{k} \mid \rpattVar_{k-1},\secVar_{k},\secVar_{k-1}) \label{eqn:spm:transx}
+\end{multline}
+%
+Each of the terms in \eqnref{eqn:spm:transx} can be expanded as, 
+\begin{equation}\label{eqn:spm:transmpos}
+P(\mpos_{k} \mid \mpos_{k-1},\tempoVar_{k-1},\secVar_{k-1}) = \indicator_{\mpos}
+\end{equation}
+%
+where $\indicator_{\mpos}$ is an indicator function that takes a value of one if $\mpos_{k} = (\mpos_{k-1} + \tempoVar_{k-1})\!\!\!\mod\!\!(\npos_{\secVar_{k-1}})$ and zero otherwise. The tempo transition is given by,
+\begin{equation}\label{eqn:spm:transtempo}
+P(\tempoVar_{k} \mid \tempoVar_{k-1},\secVar_{k-1})\propto\normDist(\tempoVar_{k-1},\sigma_{\tempoVar_k}^{2})\times \indicator_{\tempoVar}
+\end{equation}
+where $\indicator_{\tempoVar}$ is an indicator function that equals one if $\tempoVar_{k} \in [\tempoVar_{\min}, \tempoVar_{\max}]$ and zero otherwise, restricting the tempo to be between a predefined range. $\mathcal{N}(\mu,\sigma^2)$ denotes a normal distribution with mean $\mu$ and variance $\sigma^{2}$. As before with the \bpmodel, the value of $\sigma_{\tempoVar_k}$ depends on the value of tempo, to allow for larger tempo variations at higher tempi. In addition, $\sigma_{\tempoVar_k}$ also depends on the length of the section, providing higher flexibility of tempo in longer sections. We set $\sigma_{\tempoVar_k} = \sigma_n \cdot \tempoVar_{k-1} \cdot (\nicefrac{\npos_{\secVar_{k-1}}}{\npos})$, where $\sigma_n$ is a user parameter that controls the amount of local tempo variations we allow in the music piece. 
+
+The section transition probability is given by, 
+\begin{equation}\label{eqn:spm:transsec}
+P(\secVar_{k} \mid \secVar_{k-1},\mpos_{k},\mpos_{k-1}) = 
+\begin{cases}
+ \tmSec(\secVar_{k-1},\secVar_{k}) & \text{if} \,\,\, \mpos_{k} < \mpos_{k-1}\\
+\indicator_{\secVar} & \text{else}
+\end{cases}
+\end{equation}
+%
+where, $\tmSec$ is the $\nSections \times \nSections$ time-homogeneous section transition matrix with $\tmSec(i, j)$ being the transition probability from $\secVar_i$ to $\secVar_j$, and $\indicator_{r}$ is an indicator function that equals one when $\secVar_k = \secVar_{k-1}$ and zero otherwise. The pattern transitions are governed by, 
+%
+\begin{equation}\label{eqn:spm:transpatt}
+P(\rpattVar_{k} \mid \rpattVar_{k-1},\mpos_{k},\mpos_{k-1}) = 
+\begin{cases}
+ \tmPatt(\rpattVar_{k-1},\rpattVar_{k}) & \text{if} \,\,\, \mpos_{k} < \mpos_{k-1}\\
+\indicator_{\rpattVar} & \text{else}
+\end{cases}
+\end{equation}
+where, $\tmPatt$ is the $\nrhythmPatts \times \nrhythmPatts$ time-homogeneous pattern transition matrix with $\tmPatt(i, j)$ being the transition probability from $\rpattVar_i$ to $\rpattVar_j$, and $\indicator_{r}$ is an indicator function that equals one when $\rpattVar_k = \rpattVar_{k-1}$ and zero otherwise. 
+
+Section changes are permitted only at the end of the section. Since the rhythmic patterns are also one section in length, pattern transitions are also allowed only at the end of a section. The matrix $\tmSec$ is used to determine the order of the sections as defined in the \gls{taal}/a by allowing only those defined transitions. Further, $\tmSec$ can be set to do meter tracking by including only the section transitions of a specific \gls{taal}/a. A larger $\tmSec$ including all the sections from all the rhythm classes can be used for meter inference as well. The matrix $\tmPatt$ closely follows $\tmSec$ and has non-zero probabilities only for allowed pattern transitions. For illustration, consider tracking \gls{rupak} (which has three \glspl{vibhaag} $\nSections = 3$) with the \spmodel\ and two rhythmic patterns per section (hence, $R = 6$). The canonical forms of the section transition matrices $\tmSec$ and $\tmPatt$ can then be illustrated as in \figref{fig:spm:transmat}. 
+\begin{figure}
+    \parbox{0.28\textwidth}{
+      $\tmSec=\left[\begin{array}{ccc}
+      0 & 1 & 0 \\
+      0 & 0 & 1\\
+      1 & 0 & 0 
+    \end{array}\right]$}
+    \begin{minipage}{0.6\textwidth}{
+		\small
+      $\tmPatt=\left[\begin{array}{cccccc}
+      0 & 0 & p_{1} & 1-p_{1} & 0 & 0\\
+      0 & 0 & p_{2} & 1-p_{2} & 0 & 0\\
+      0 & 0 & 0 & 0 & p_{3} & 1-p_{3}\\
+      0 & 0 & 0 & 0 & p_{4} & 1-p_{4}\\
+      p_{5} & 1-p_{5} & 0 & 0 & 0 & 0\\
+      p_{6} & 1-p_{6} & 0 & 0 & 0 & 0
+      \end{array}\right]$}
+		\normalsize	
+    \end{minipage}
+\caption[An illustration of the section pointer model transition matrices]{An illustration of the form of section (\tmSec) and rhythmic pattern (\tmPatt) transition matrices for tracking \gls{rupak} with the \spmodel. The patterns with index $\{1,2\}$, $\{3,4\}$, $\{5,6\}$ correspond to sections 1, 2, and 3, respectively. The values $p_1$ to $p_6$ are learnt from training data.}\label{fig:spm:transmat}
+\end{figure}
+
+The observation model with the \spmodel\ is similar to that of the \bpmodel, with an assumption that the audio features depend on the position in section, the rhythmic pattern, and the section indicator variables. The annotated data has \glspl{matra}/beats numbered with their position in the cycle and hence they can used to extract section length rhythmic patterns from audio recordings. Section length patterns from each section are then clustered into $\nicefrac{\nrhythmPatts}{\nSections}$ pattern clusters using a k-means algorithm. Each section is further discretized into 64$^{\mathrm{th}}$ note cells, all features within the cell are accumulated and a two component \gls{GMM} is fit to each cell. The observation likelihood with the \spmodel\ can hence be computed as, 
+\begin{equation}\label{eqn:spm:obsmodel}
+P(\obsVar \mid \hidVar) = P(\obsVar \mid \mpos,\rpattVar,\secVar) = \overset{2}{\underset{i=1}{\sum}}\pi_{\mpos,\rpattVar,\secVar,i}\,\normDist(\obsVar;\boldsymbol{\mu}_{\mpos,\rpattVar,\secVar,i},\boldsymbol{\Sigma}_{\mpos,\rpattVar,\secVar, i}) 
+\end{equation}
+where, $\normDist(\obsVar;\boldsymbol{\mu},\boldsymbol{\Sigma})$ denotes a normal distribution and for the mixture component $i$, $\pi_{\mpos,\rpattVar,\secVar,i}, \boldsymbol{\mu}_{\mpos,\rpattVar,\secVar,i}$ and $\boldsymbol{\Sigma}_{\mpos,\rpattVar,\secVar,i}$ are the component weight, mean (2-dimensional) and the covariance matrix ($2\times2$), respectively. Hence, there is an observation \gls{GMM} for each section, rhythmic pattern, and tied section position states. 
+\input{chapters/chap5/pfsecInf}
+
+It is straightforward to see that the \bpmodel\ is a special case of the \spmodel, when the rhythmic patterns span the whole bar (cycle). By pooling in all the section length patterns from different \glspl{tala} together, \spmodel\ can also be applied for meter inference task. Further, a special case of the \spmodel\ is when the number of sections equals the number of rhythmic patterns, $\nSections = \nrhythmPatts$, with each section being modeled with just one rhythmic pattern. In such a case, the matrices $\tmPatt = \tmSec$ rendering the additional $r$ variable superfluous. In such a case, the \spmodel\ can be simplified, as proposed and applied by \citeA{ajay:16:spmodel}, to the form shown in \figref{fig:dbn:spmOnePatt}.
+
+%\sloppy
+\noindent \textbf{Inference in \spmodel}: Both exact and approximate inference schemes can be used for inference in \spmodel, similar to those for \bpmodel. The Viterbi algorithm inference on a discretized \spmodel\ state space is denoted as \acrshort{hmmsec}. The \gls{AMPF} inference in \spmodel\ will be referred to in the rest of the chapter as \acrshort{pfsec} and the algorithm is outlined in \algoref{algo:pf:sec}. 
+%\fussy
+% \update{Start of section recycled text}
+% All methods presented so far in the context of meter tracking, to the best of our knowledge, have been evaluated on metrical cycles of short durations. In specific, the typical duration of a 4/4 measure in popular Eurogenetic music would last from a bit less than 2s to little more than 4s. Longer metrical cycles were reported to cause problems in existing approaches \cite{holzapfel:14:odd}. Interestingly, this upper duration coincides with the limit of a perceptual phenomenon referred to as \textit{perceptual present}~\cite{clarke:99:percpresent}, and it has been argued that longer metrical cycles might not be perceived as a single rhythmic entity \cite{clayton:00:time}. In tracking such long metrical cycles, listeners often track shorter, but musically meaningful sections of the cycle. Compared to longer cycle length patterns, shorter pattern have lower variability and hence might provide better cues for meter tracking.
+% 
+% A similar idea was applied by \citeA{bock:14:multimodel}, where rhythmic patterns of beat length are learned in order to perform beat tracking. However, the authors assume beats to form an isochronous sequence - an assumption that does not hold for many musics of the world, such as Indian, Turkish, Balkan, or Korean musics. Furthermore, they do not attempt to infer higher metrical levels, i.e. downbeat positions. In this paper, we address for the first time two basic limitations of the existing meter tracking approaches, which are the restrictions to short cycles and isochronous (equally spaced in time) beat sequences. We propose a generalization of our previous models that uses musically meaningful and possibly unequal section length rhythmic patterns in the task of meter tracking, and apply it to Hindustani music. With the new model, we evaluate if using shorter section length rhythmic patterns can improve meter tracking compared to bar (cycle) length rhythmic patterns, in the presence of long metrical cycles. 
+% 
+% With a wide range of tempo, cycles as long as a minute, and non-isochronous subdivisions of the cycle, Hindustani music is a suitable case for extending the horizon of the state of the art in meter tracking \cite{ajay:14:rhythmJNMR}. There has been some previous work in rhythmic analysis of Hindustani music in meter estimation \cite{sankalp:12:meter} and \gls{taal} recognition \cite{miron:11:thesis}, but to the best of our knowledge, this is the first work to propose meter tracking for Hindustani music. However, since the proposed model is a generalization of a state of the art model, it can be applied to arbitrary music styles in a straight forward way. 
+% 
+% We summarize some of the problems with the slow low tempo pieces of Hindustani music, for which we then propose a new model for meter inference/tracking. 
+% 
+% \begin{itemize}
+%  \item Bar position discretization for state tying in observation model, needs to be done a finer grid. 
+%  \item The large tempo range and the fillers in between make it difficult to track the right metrical level, tempo estimates tend to be biased towards higher values of tempo. 
+%  \item The long matra period causes an unstable local tempo estimate since the allowed variance in tempo accumulates over the long matra period. 
+% \end{itemize}
+% 
+% A model for tracking/inference in long cycles. The goal is to overcome the problems of the bar pointer model in tracking long cycles. All of these problems can be addressed using a section pointer model - we track sections instead of the whole bar (cycle). The rhythmic patterns, instead of lasting the whole bar (cycle), now last only a section, and a over-arching section pointer handles the progression through the sections of a cycle. The \spmodel\ is shown in \figref{fig:dbn:spm}. 
+% 
+% The proposed section pointer model is a generalization to the bar pointer model, with the bar pointer model being a special sub-case. Hence the \spmodel\ can be applied to arbitrary music styles in a straight forward way, just like the bar pointer model. 
+% \update{...till here}

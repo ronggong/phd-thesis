@@ -1,0 +1,141 @@
+% The list of symbols is a chapter, but without a number
+\chapter*{List of Symbols} 
+\addcontentsline{toc}{chapter}{List of Symbols}
+The following is a list of different symbols used in the dissertation along with a short description of each symbol. 
+% Define symbol definitions
+\newcommand\listSymbol[3]{\protected\gdef#1{#2}#2 & #3 \tabularnewline \addlinespace[2pt]} % Defined and listed
+\newcommand\nolistSymbol[3]{\protected\gdef#1{#2}} % Defined, but not listed
+%
+%% A few symbols won't go identically into the list, so we define them as nolistSymbols here. And some essential ones
+\nolistSymbol{\obsVar}{\ensuremath{\mathbf{y}}}{Feature vector at frame $k$}
+\nolistSymbol{\hidVar}{\ensuremath{\mathbf{x}}}{A vector of latent variables at frame $k$}
+\nolistSymbol{\qInd}{\ensuremath{q}}{Query pattern indexing}
+% The table starts here
+\begin{longtable}{P{15mm}>{\raggedright}p{85mm}}
+\toprule
+\textbf{Symbol} & \textbf{Description} \tabularnewline \midrule
+\endhead % all the lines above this will be repeated on every page
+& \tabularnewline \addlinespace[-2pt]
+%Format: \listSymbol{\<symbolVariable>}{\ensuremath{<symbol>}}{<symbol description>}
+ & \textbf{Audio Signal and Music} \tabularnewline \addlinespace[10pt] 
+\listSymbol{\timeVar}{\ensuremath{t}}{Time variable (in seconds)}
+$k$ & Time frame index \tabularnewline \addlinespace[2pt] 
+\listSymbol{\signal}{\ensuremath{f[n]}}{Discrete audio signal}
+\listSymbol{\percsignal}{\ensuremath{f_p[n]}}{Percussion enhanced audio music signal}
+\listSymbol{\songlen}{\ensuremath{T_f}}{Time duration of an audio recording}
+\listSymbol{\framehop}{\ensuremath{h}}{Hop size used for audio analysis}
+\listSymbol{\nframes}{\ensuremath{K}}{Number of analysis frames in an audio recording}
+\listSymbol{\songVar}{\ensuremath{z}}{Audio music recording index}
+\listSymbol{\beatSet}{\ensuremath{\mathcal{B}_\songVar}}{Set of all beats in an audio music recording \songVar}
+\listSymbol{\samaSet}{\ensuremath{\mathcal{S}_\songVar}}{Set of all \glspl{sama}/downbeats in an audio music recording \songVar}
+\listSymbol{\aksSet}{\ensuremath{\mathcal{O}_\songVar}}{Set of all \glspl{akshara}/tatum pulses in an audio music recording \songVar}
+\listSymbol{\isi}{\ensuremath{{\tau_{s}}}}{Inter-\gls{sama} interval}
+\listSymbol{\ibi}{\ensuremath{{\tau_{b}}}}{Inter-beat/\gls{matra} interval}
+\listSymbol{\iai}{\ensuremath{{\tau_{o}}}}{Inter-\gls{akshara} interval or
+\gls{akshara} pulse period}
+\listSymbol{\fzero}{\ensuremath{{F_0}}}{Fundamental frequency}
+\listSymbol{\bpm}{BPM}{Beats per minute}
+\listSymbol{\mpm}{MPM}{\Glspl{matra} per minute}
+\listSymbol{\nbeats}{\ensuremath{B}}{Number of beats in a bar or a \gls{tala} cycle} \addlinespace[8pt]
+ & \textbf{Meter Analysis} \tabularnewline \addlinespace[10pt] 
+$\mathbf{y}_k$ & Audio feature vector at frame $k$ \tabularnewline \addlinespace[2pt] % Already defined
+$\mathbf{x}_k$ & A vector of latent variables at frame $k$ \tabularnewline \addlinespace[2pt] 
+\listSymbol{\tgMat}{\ensuremath{\mathbf{G}}}{The tempogram matrix}
+\listSymbol{\npos}{\ensuremath{M}}{Total metrical position states}
+\listSymbol{\mpos}{\ensuremath{\phi}}{Position in bar/section/metrical cycle}
+\listSymbol{\mposDisc}{\ensuremath{m}}{Position in bar/section/metrical cycle (discretized)}
+\listSymbol{\ntempo}{\ensuremath{N}}{Total tempo states}
+\listSymbol{\tempoVar}{\ensuremath{\dot{\phi}}}{Rate of change of position in bar/section/metrical cycle}
+\listSymbol{\tempoVarDisc}{\ensuremath{n}}{Rate of change of position in bar/section/metrical cycle (discretized)}
+\listSymbol{\nrhythmPatts}{\ensuremath{R}}{Number of rhythm patterns}
+\listSymbol{\rpattVar}{\ensuremath{r}}{Rhythm pattern indicator variable}
+\listSymbol{\nSections}{\ensuremath{V}}{Number of metrical sections}
+\listSymbol{\secVar}{\ensuremath{v}}{Section (\gls{vibhaag}/\gls{anga}) indicator variable}
+\listSymbol{\tmPatt}{\ensuremath{\mathbb{A}}}{Rhythmic pattern transition matrix}
+\listSymbol{\tmSec}{\ensuremath{\mathbb{B}}}{Section transition matrix}
+\listSymbol{\indicator}{\ensuremath{\mathbbm{1}}}{Indicator function}
+\listSymbol{\nparticles}{\ensuremath{{N_p}}}{Number of particles in the particle filter} 
+\listSymbol{\weight}{\ensuremath{w}}{The weight of a particle}
+\listSymbol{\weightVec}{\ensuremath{\mathbf{w}}}{A vector of particle weights}
+\listSymbol{\clust}{\ensuremath{c}}{Cluster assignment variable in mixture particle filters}
+\listSymbol{\sampInterval}{\ensuremath{T_s}}{Resampling interval for systematic resampling}
+\listSymbol{\normDistFull}{\ensuremath{\mathcal{N}\left(\boldsymbol{\mu}, \boldsymbol{\Sigma}\right)}}{Normal distribution with mean $\boldsymbol{\mu}$ and covariance matrix $\boldsymbol{\Sigma}$} \addlinespace[8pt] 
+ & \textbf{Percussion Pattern Analysis} \tabularnewline \addlinespace[10pt] 
+\listSymbol{\sylSet}{\ensuremath{\mathcal{A}}}{The set of all percussion syllables}
+\listSymbol{\nSyllables}{\ensuremath{{N_s}}}{The total number of percussion syllables}
+\listSymbol{\sylSetVar}{\ensuremath{A}}{A percussion syllable in the set \sylSet} 
+\listSymbol{\sylVar}{\ensuremath{a}}{An instance of a percussion syllable}
+\listSymbol{\percPattSeq}{\ensuremath{\mathbf{A}}}{A syllabic percussion pattern}
+\listSymbol{\pattLen}{\ensuremath{L}}{Length of a percussion pattern (in syllables)}
+\listSymbol{\pattSet}{\ensuremath{\mathcal{P}}}{The set of all syllabic percussion patterns}
+\listSymbol{\nPercPatterns}{\ensuremath{{N_a}}}{The total number of percussion patterns}
+%\listSymbol{\hmmParams}{\ensuremath{\boldsymbol{\lambda}}}{The set of HMM parameters}
+\listSymbol{\hmmSym}{\ensuremath{\Lambda}}{The set of all HMM parameters}
+\listSymbol{\warMat}{\ensuremath{\mathbb{R}}}{\acrshort{RLCS} \acrfull{WAR} matrix}
+\listSymbol{\waqMat}{\ensuremath{\mathbb{Q}}}{\acrshort{RLCS} \acrfull{WAQ} matrix}
+\listSymbol{\rlcsLen}{\ensuremath{\mathbb{H}}}{\acrshort{RLCS} length of match matrix}
+\listSymbol{\rlcsWt}{\ensuremath{\boldsymbol{\sigma}}}{\acrshort{RLCS} weight matrix} 
+\listSymbol{\warpfn}{\ensuremath{\mathcal{W}}}{\acrshort{RLCS} warping function}
+\listSymbol{\warpParam}{\ensuremath{\kappa}}{\acrshort{RLCS} warping parameter}
+\listSymbol{\minFracThres}{\ensuremath{\rho}}{\acrshort{RLCS} minimum fraction of match threshold}
+\listSymbol{\rlcsScoreThres}{\ensuremath{\xi}}{\acrshort{RLCS} score threshold}
+\listSymbol{\sylDistThres}{\ensuremath{\delta}}{\acrshort{RLCS} syllable distance threshold} 
+\listSymbol{\rlcsMixParam}{\ensuremath{\eta}}{\acrshort{RLCS} mixing parameter} 
+\addlinespace[8pt]
+ & \textbf{Evaluation measures} \tabularnewline \addlinespace[10pt]
+\listSymbol{\bigO}{\ensuremath{O}}{The big O notation (Order of the function)}
+\listSymbol{\ovlp}{\ensuremath{\Theta}}{The \textit{overlap} measure for data corpora}
+\listSymbol{\precision}{\ensuremath{\mathfrak{p}}}{Precision}
+\listSymbol{\recall}{\ensuremath{\mathfrak{r}}}{Recall}
+\listSymbol{\fmeas}{\ensuremath{\mathfrak{f}}}{f-measure}
+\listSymbol{\infoGain}{\ensuremath{\mathfrak{I}}}{Information Gain}
+\listSymbol{\cmlt}{\ensuremath{\mathrm{CML_t}}}{Correct Metrical Level (No continuity) measure}
+%\listSymbol{\cmlc}{\ensuremath{\mathrm{CML_c}}}{Correct Metrical Level (Continuity required) measure}
+\listSymbol{\amlt}{\ensuremath{\mathrm{AML_t}}}{All Metrical Levels (No continuity) measure}
+%\listSymbol{\amlc}{\ensuremath{\mathrm{AML_c}}}{All Metrical Level (Continuity required) measure}
+\listSymbol{\corrMeas}{\ensuremath{\mathfrak{C}}}{Correctness measure for automatic transcription}
+\listSymbol{\accuMeas}{\ensuremath{\mathfrak{A}}}{Accuracy measure for automatic transcription}
+\listSymbol{\strInsErr}{\ensuremath{\mathtt{I}}}{String insertion error}
+\listSymbol{\strDelErr}{\ensuremath{\mathtt{D}}}{String deletion error}
+\listSymbol{\strSubErr}{\ensuremath{\mathtt{S}}}{String substitution error}
+\listSymbol{\strTrnErr}{\ensuremath{\mathtt{T}}}{String transposition error}
+%\listSymbol{\aksSetb}{\ensuremath{\{\mathbb{A}_q\}}}{bold}
+%\listSymbol{\aksSeta}{\ensuremath{\{\mathfrak{A}_q\}}}{frak}
+%\listSymbol{\}{\ensuremath{}}{}
+% If something is already defined, they can be used here as well again, such as,
+\end{longtable}
+\nolistSymbol{\deltatempo}{\ensuremath{{\Delta_{\tempoVar}}}}{Delta tempo used in discretizing the tempo grid}
+\nolistSymbol{\mfccoda}{MFCC\_0\_D\_A}{MFCC features with energy, delta and double-delta coefficients}
+\nolistSymbol{\mfccda}{MFCC\_D\_A}{MFCC features without energy, but with delta and double-delta coefficients}
+%$\mathcal{P},,,\mathbf{P},,,P$
+\nolistSymbol{\normDist}{\ensuremath{\mathcal{N}}}{No defn needed}
+% Now the symbols that should be listed down
+\nolistSymbol{\odfsplow}{\ensuremath{y_l[k]}}{Onset detection function, low frequency band}
+\nolistSymbol{\odfspfull}{\ensuremath{y_f[k]}}{Onset detection function, whole frequency band}
+\nolistSymbol{\sdfsp}{\ensuremath{y_s[k]}}{Sama detection function}
+\nolistSymbol{\Osym}{\ensuremath{\mathfrak{O}}}{The O symbol}
+\nolistSymbol{\mpostempoVar}{\ensuremath{\bbeta}}{The subset of mpos and tempo variables}
+\nolistSymbol{\mpostemposecVar}{\ensuremath{\balpha}}{The subset of mpos+tempo+section variables}
+\nolistSymbol{\distMeas}{\ensuremath{d}}{distance measure}
+\nolistSymbol{\obsHigh}{\ensuremath{y_h}}{High frequency band feature}
+\nolistSymbol{\obsLow}{\ensuremath{y_l}}{Low frequency band feature}
+\nolistSymbol{\weightSum}{\ensuremath{\Omega}}{Sum of all particle weights across patterns}
+\nolistSymbol{\barstartVar}{\ensuremath{\psi}}{Bar starts here}
+\nolistSymbol{\nTGframes}{\ensuremath{K_G}}{Number of tempogram sampling points}
+%\nolistSymbol{\zetaVar}{\ensuremath{\zeta}}{No definition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\acrshort{pfprior} \acrshort{pfnotrans} \acrshort{pffull}
+%
+% Now you can use them wherever needed!
+% Min working example
+%\tempoVar, \mpos, \nparticles, \gpos
+%\begin{equation}
+%\tempoVar + \mpos + \nparticles = \tempoVar + \gpos
+%\label{eq:aass}
+%\end{equation}
+%
+% Define a mysymbol
+% \newcommand\listSymbol[3]{%
+% \protected\gdef#1{#2}%
+% \item[#2]: #3}
+%\begin{longtable}{>{\raggedright}m{15mm}>{\raggedright}p{85mm}}

@@ -1,0 +1,27 @@
+% Moved to chap 2: The methods described in this section were developed for the identification of downbeats within sequences of beats. 
+So far mainly music with a $4/4$ time signature was focused upon in evaluations, usually in the form of collections of Eurogenetic popular and/or classical music. Hence, we will address the questions if such approaches can cope with the lengths of cycles present in our data and if Indian art music poses challenges of unequal difficulty. The approaches evaluated are: 
+\begin{description}[leftmargin=*]
+\item[\acrshort{DAV} algorithm:]The algorithm proposed by \citeA{davies:06:downbeat} that assumes that percussive events and harmonic changes tend to be correlated with the downbeat.
+\item[\acrshort{HOC} algorithm:]The algorithm proposed by \citeA{hockman:12:downbeat} for downbeat tracking in hardcore, jungle, and drum and bass genres of music.
+\end{description}
+It is apparent that both systems are conceptualized for styles of music with notable differences to Indian art music. The system by \citeA{davies:06:downbeat} is mainly sensitive to harmonic changes, whereas Indian art music does not incorporate a notion of harmony similar to the Eurogenetic concept of functional harmony. On the other hand, the system by \citeA{hockman:12:downbeat} is customized to detect the bass kick on a downbeat, which will not occur in the music we investigate here. As the latter system contains this low-frequency feature as a separate module, we will examine the influence of the low-frequency onsets and the regression separately our experiments.
+
+\subsubsection{Evaluation results}
+The evaluation metrics we use are the same as the continuity-based approach applied by \citeA{hockman:12:downbeat}. This measure applies a tolerance window of 6.25\% of the inter-annotation-interval to the annotations. Then it accepts a detected downbeat as correct, if 
+\begin{enumerate}[nolistsep]
+ \item The detection falls into a tolerance window.
+ \item The precedent detection falls into the tolerance window of the precedent annotation.
+ \item The inter-beat-interval is equal to the inter-annotation-interval (accepting a deviation of the size of the tolerance window).
+\end{enumerate}
+%
+\begin{table}
+\centering
+\begin{tabular}{@{}lrr@{}} \toprule
+Method & \gls{adi} (8) & \gls{rupaka} (3) \tabularnewline \midrule
+\acrshort{DAV} & 21.7 & 41.2    \tabularnewline
+\acrshort{HOC-SVM} & 22.9 & 42.1 \tabularnewline
+\acrshort{HOC} & 49.9 & 64.4 \tabularnewline \bottomrule
+\end{tabular}
+\caption[Accuracy of downbeat tracking in Carnatic low-level-annotated dataset]{Accuracy of downbeat tracking on Carnatic low-level-annotated dataset. The cycle lengths are indicated in parentheses next to the \gls{tala}. All values are in percentage.}\label{tab:jnmreval:dbres} 
+\end{table}
+In \tabref{tab:jnmreval:dbres}, we depict the downbeat recognition accuracies (in percentage) for the two systems. The results are given separately for each of the two \glspl{tala} in the Carnatic low-level-annotated dataset. The \acrshort{HOC} algorithm was applied with and without emphasizing the low-frequency onsets, denoted as \acrshort{HOC} and \acrshort{HOC-SVM}, respectively. The \acrshort{DAV} algorithm has the lowest accuracies for all presented \glspl{tala}. This is caused by the focus of the method on changes in harmony that is related to chord changes - concepts not present in Indian art music. However, the results obtained from \acrshort{HOC} are more accurate and allows for an interesting conclusions that taking onsets in the low-frequency region into account improves recognition for all contained rhythms. However, Carnatic music with its wide rhythmic variations and its flexible rhythmical style seems to represent a more difficult challenge for downbeat recognition, with the range of accuracy smaller than that reported for electronic dance music \cite{hockman:12:downbeat}. Pieces without such phenomenal cues are very likely to present both automatic systems and human listeners with a more difficult challenge when looking for the downbeat. Furthermore, the accuracies depicted in \tabref{tab:jnmreval:dbres} can only be achieved with known cycle length, and correctly annotated beats, tasks that are already complex and cannot be achieved with a high accuracy. 

@@ -1,0 +1,143 @@
+
+[1;31m!!! Encountered } without corresponding {. !!![0m
+
+[1;31m!!! Encountered } without corresponding {. !!![0m
+
+[1;31m!!! Reached end of file while waiting for }. !!![0m
+
+[1;31m!!! Encountered } without corresponding {. !!![0m
+
+[1;31m!!! Encountered \end without corresponding \begin !!![0m
+
+[1;31m!!! Encountered \end without corresponding \begin !!![0m
+
+[1;31m!!! Reached end of file while waiting for $. !!![0m
+
+[1;31m!!! Reached end of file while waiting for }. !!![0m
+
+[1;31m!!! Reached end of file while waiting for \end. !!![0m
+
+[1;31m!!! Environment ended while waiting for nd{algorithmic}. !!![0m
+
+[1;31m!!! Reached end of file while waiting for \end. !!![0m
+
+[1;31m!!! Environment ended while waiting for nd{algorithm}. !!![0m
+
+[1;31m!!! Reached end of file while waiting for }. !!![0m
+File: phdthesis.tex
+Encoding: utf8
+Words in text: 70344
+Words in headers: 500
+Words outside text (captions, etc.): 4071
+Number of headers: 161
+Number of floats/tables/figures: 108
+Number of math inlines: 851
+Number of math displayed: 34
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  285+0+0 (1/1/0/0) _top_
+  17+1+0 (1/0/0/0) Chapter: Acknowledgments
+  2+1+0 (1/0/0/0) Chapter: Abstract
+  2+1+0 (1/0/0/0) Chapter: Resumen
+  22+1+0 (1/0/0/0) Chapter: Preface
+  483+3+0 (1/0/7/0) Chapter: List of Symbols
+  508+1+0 (1/0/0/0) Chapter: Introduction}\label{chap:intro
+  940+3+91 (1/0/0/0) Section: Context and relevance
+  1027+1+0 (1/0/0/0) Section: Motivation
+  1365+3+26 (1/1/0/0) Section: Scope and objectives
+  1022+4+10 (1/1/0/0) Section: Organization of the dissertation
+  172+1+0 (1/0/0/0) Chapter: Background}\label{chap:bkgnd
+  699+2+0 (1/0/0/0) Section: Rhythm: terminology
+  68+2+0 (1/0/0/0) Section: Music Background}\label{sec:musicbkgnd
+  665+3+0 (1/0/0/0) Subsection: Indian art music
+  1471+6+146 (1/4/3/0) Subsection: Rhythm and Percussion in Carnatic music}\label{sec:bkgnd:carRhythmIntro
+  1193+6+189 (1/5/5/0) Subsection: Rhythm and Percussion in Hindustani music
+  651+6+0 (1/0/0/0) Subsection: Carnatic and Hindustani music: A comparison
+  1131+4+124 (1/3/1/0) Subsection: Percussion in Beijing Opera}\label{sec:bkgnd:bopercussion
+  199+4+13 (1/1/0/0) Section: Automatic rhythm analysis: review
+  567+2+0 (1/0/0/0) Subsection: Onset detection}\label{sec:bkgnd:onsetdetect
+  14+2+0 (1/0/0/0) Subsection: Instrument identification
+  289+2+0 (1/0/0/0) Subsection: Tempo estimation}\label{sec:bkgnd:tempoest
+  747+2+0 (1/0/0/0) Subsection: Beat tracking}\label{sec:bkgnd:beattrack
+  177+3+0 (1/0/0/0) Subsection: Time signature estimation
+  345+2+0 (1/0/1/0) Subsection: Downbeat tracking
+  95+4+0 (1/0/0/0) Subsection: Meter tracking and inference}\label{sec:bkgnd:mt
+  590+2+21 (1/0/13/0) Subsection: Evaluation measures}\label{sec:bkgnd:evalmeas
+  594+3+0 (1/0/0/0) Subsection: Rhythm similarity measures}\label{sec:bkgnd:rhythmsim
+  219+2+0 (1/0/0/0) Subsection: Domain-specific approaches
+  516+5+0 (1/0/0/0) Subsection: Percussion pattern transcription and discovery}\label{sec:bkgnd:sotapercpatt
+  25+3+0 (1/0/0/0) Section: Relevant Technical Concepts
+  13+2+0 (1/0/0/0) Subsection: Bayesian Models
+  42+10+0 (2/0/0/0) Subsection: Inference in Bayesian models
+  29+8+0 (2/0/0/0) Subsection: Speech Recognition Technologies and Tools
+  334+8+0 (1/0/0/0) Chapter: Automatic rhythm analysis problems in Indian art music}\label{chap:probdef
+  41+3+0 (1/0/0/0) Section: Challenges and Opportunities
+  1426+1+0 (1/0/0/0) Subsection: Challenges}\label{sec:probdef:challenges
+  609+1+0 (1/0/0/0) Subsection: Opportunities}\label{sec:probdef:opportunities
+  175+5+0 (1/0/0/0) Subsection: Characteristics of Indian Art Music}\label{sec:probdef:signalcharacter
+  385+4+46 (1/1/0/0) Section: Relevant rhythm analysis problems
+  118+3+0 (1/0/0/0) Subsection: Building data corpora
+  2926+17+0 (5/0/0/0) Subsection: Automatic rhythm annotation}\label{sec:probdef:autoannot
+  1322+16+0 (4/0/0/0) Subsection: Rhythm and percussion pattern analysis
+  555+4+0 (1/0/0/0) Subsection: Rhythm based audio segmentation
+  277+4+0 (1/0/0/0) Subsection: Ontologies for rhythm concepts
+  539+3+0 (1/0/0/0) Subsection: Rhythm similarity measures
+  298+3+0 (1/0/0/0) Subsection: Symbolic music analysis
+  360+3+0 (1/0/0/0) Subsection: Evaluation and Integration
+  217+5+0 (1/0/0/0) Subsection: Extensions to other music cultures
+  119+2+0 (1/0/0/0) Section: Problem Formulation
+  796+4+0 (1/0/13/0) Subsection: Meter Inference and Tracking}\label{sec:probdef:thesismeter
+  837+5+0 (1/0/21/0) Subsection: Percussion Pattern transcription and discovery}\label{sec:probdef:thesispattern
+  289+3+0 (1/0/0/0) Subsection: Datasets for research}\label{sec:probdef:thesisdatasets
+  350+6+0 (1/0/0/0) Subsection: A note on terminology and style
+  828+10+0 (2/0/0/0) Section: In search of automatic rhythm analysis methods
+  2655+9+80 (4/5/29/1) Subsection: Cycle length estimation
+  492+4+18 (2/1/1/0) Subsection: Downbeat tracking
+  748+1+0 (1/0/0/0) Subsection: Discussion
+  817+4+3 (1/0/0/0) Chapter: Data corpora for research}\label{chap:datasets
+  202+3+0 (1/0/0/0) Section: CompMusic research corpora}\label{sec:cmcorpora
+  395+6+0 (1/0/0/0) Subsection: Criteria for creation of research corpora
+  2157+6+101 (3/4/8/1) Subsection: Carnatic music research corpus}\label{sec:cmcmcorpora
+  1023+6+46 (3/2/0/0) Subsection: Hindustani music research corpus}\label{sec:cmhmcorpora
+  380+4+3 (1/0/0/0) Subsection: Creative Commons music collections}\label{sec:cmccdataset
+  56+2+0 (1/0/0/0) Section: Test datasets
+  2257+15+532 (3/17/42/0) Subsection: Carnatic music rhythm dataset}\label{sec:cmrdataset
+  3602+15+717 (3/22/61/0) Subsection: Hindustani music rhythm dataset}\label{sec:hmrdataset
+  335+3+33 (1/1/0/0) Subsection: Tabla solo dataset}\label{sec:tsdataset
+  540+8+62 (3/2/0/0) Subsection: Mridangam datasets}\label{sec:mridangamdatasets
+  388+4+20 (1/1/0/0) Subsection: Jingju percussion instrument dataset
+  428+4+19 (1/1/2/0) Subsection: Jingju percussion pattern dataset}\label{sec:dataset:bopp
+  394+11+0 (4/0/4/0) Subsection: Other evaluation datasets
+  305+4+0 (1/0/0/0) Chapter: Meter inference and tracking}\label{chap:meterInfTrack
+  1268+11+0 (4/0/4/0) Section: The meter analysis tasks
+  124+2+0 (1/0/0/0) Section: Preliminary experiments}\label{sec:mt:earlyexpts
+  2219+17+260 (6/5/75/2) Subsection: Meter tracking using dynamic programming}\label{sec:metertrack:dp
+  476+5+0 (1/0/0/0) Section: Bayesian models for meter analysis}\label{sec:mt:bayesmodels
+  3191+23+79 (8/2/144/11) Subsection: The bar pointer model}\label{sec:bpm:model
+  2053+17+64 (5/1/131/8) Subsection: Model extensions}\label{sec:bpm:modext
+  1112+7+87 (3/1/50/4) Subsection: Inference extensions}\label{sec:bpm:infext
+  152+3+0 (1/0/0/0) Section: Experiments and results
+  1272+2+0 (1/0/29/0) Subsection: Experiment parameters
+  540+2+66 (1/1/7/0) Subsection: Meter inference}\label{sec:res:meterInf
+  1062+10+179 (4/4/14/0) Subsection: Meter tracking}\label{sec:res:meterTrack
+  483+3+50 (1/2/3/0) Subsection: Informed meter tracking
+  1423+3+323 (1/4/21/0) Subsection: Discussion and Summary
+  219+5+0 (1/0/0/0) Chapter: Percussion pattern transcription and discovery}\label{chap:percpatt
+  745+11+0 (3/0/0/0) Section: Approaches
+  956+6+167 (1/2/0/0) Section: The case of Beijing Opera (\Gls{jingju})
+  1048+3+8 (1/1/37/1) Subsection: Percussion pattern classification
+  642+6+104 (2/2/12/1) Subsection: Results and discussion}\label{sec:boperc:results
+  315+6+22 (1/1/0/0) Section: The case of Indian art music
+  541+3+38 (1/2/9/0) Subsection: Pattern library generation
+  660+2+52 (1/2/14/0) Subsection: Automatic transcription
+  1160+6+0 (2/0/62/5) Subsection: Approximate pattern search
+  1799+13+272 (3/5/28/0) Subsection: Results and discussion
+  75+3+0 (1/0/0/0) Chapter: Conclusions and Summary}\label{chap:conclusions
+  368+1+0 (1/0/0/0) Section: Applications
+  0+1+0 (1/0/0/0) Section: Conclusions
+  222+1+0 (1/0/0/0) Section: Contributions
+  0+2+0 (1/0/0/0) Section: Future directions
+  60+1+0 (1/0/0/0) Chapter: Resources}\label{app:resources
+  0+1+0 (1/0/0/0) Chapter: Glossary}\label{app:glossary
+
+(errors:13)

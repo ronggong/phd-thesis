@@ -1,0 +1,218 @@
+﻿%%%%%% Book document class modified as needed in UPFthesis
+\def\DRAFTMODE{}   % Comment if generating the final version
+%\def\PRINTVER{}    % Comment if generating the final pdf version (print version has a boundary)
+\documentclass[12pt,b5paper,twoside]{UPFthesis}
+% Page style settings
+\ifdefined\PRINTVER
+  \usepackage[cam,a4,center,frame]{crop}
+	\usepackage[b5paper,inner=3.4cm,outer=3cm,top=2.5cm,bottom=2.5cm,marginparwidth=2.75cm]{geometry}
+\else
+  \usepackage[b5paper,inner=3.2cm,outer=3.2cm,top=2.5cm,bottom=2.5cm,asymmetric]{geometry}
+\fi
+% Load some basic latex packages
+%\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}             % to augment generic LaTeX; needed for \mathbb font
+\usepackage{amsfonts}            % reading in some AMS fonts
+\usepackage{mathalfa}            % additional math fonts
+\usepackage{bbm}
+\usepackage{mathtools}
+\usepackage{nicefrac}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage[font=small]{subfig}
+\usepackage{booktabs,colortbl} % For some nice looking tables, assumes xcolor is already loaded in class file
+\newcolumntype{L}{l<{\kern\tabcolsep}@{}} 
+\newcolumntype{C}{c<{\kern\tabcolsep}@{}}
+\definecolor{tabgray}{gray}{0.8}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage[xetex]{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=red}
+\usepackage{url}
+% Font and language settings
+\usepackage{fontspec}
+\usepackage[catalan,english]{babel}
+\setmainfont[Mapping=tex-text]{Times New Roman}
+\newfontfamily\music{MusiSync}
+\newfontfamily\syllable{Cousine}
+\newfontfamily\algofont{Cousine}
+\newfontfamily\dataset{Anonymous Pro}
+\usepackage[indentfirst=false]{xeCJK}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimSun}
+% A simple commenting system with colored and highlighted text
+\usepackage{soul}
+%\newcommand\crule[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
+\sethlcolor{yellow}
+\def\update#1{{\color{red} #1}}
+\ifdefined\DRAFTMODE
+	\def\AH#1{{\textbf{\color{green} AH: #1}}}
+	\def\AS#1{{\textbf{\color{orange} AS: #1}}}
+	\def\comment#1{{\textbf{\color{violet} #1}}}
+	\def\note#1{{\textbf{\color{red} #1}}}
+	\def\dtext#1{{\textbf{\color{gray} #1}}}
+	\def\hlt#1{{\hl{\textbf{#1}}}}
+\else
+	\def\AH#1{}
+	\def\AS#1{}
+	\def\comment#1{}
+	\def\dtext#1{}
+	\def\note#1{}
+	\def\hlt#1{}
+\fi
+% Bibliography and index
+\usepackage[nodoi]{apacite}
+\bibliographystyle{apacite}
+\usepackage{makeidx}
+%\usepackage{bibentry}
+%\nobibliography*
+\makeindex
+%
+% Define custom things for the document
+\graphicspath{{./figs/}}
+\input{customCommands}
+%
+% Glossaries: All glossaries related things are done in this file
+\input{glossarySetup}
+%% Headers and footers: All header and footer related commands in the below file
+\input{headerSetup} 
+% Basic Info
+\title{Automatic Rhythm Analysis of Indian Art Music}
+\subtitle{A Bayesian approach}
+\author{Ajay Srinivasamurthy}
+\thyear{2016}
+\department{Information and Communication Technologies}
+\supervisor{Prof. Xavier Serra}
+%
+% Setting up figures and floats
+\renewcommand{\textfraction}{0.01}
+\renewcommand{\topfraction}{0.99} 
+\renewcommand{\bottomfraction}{0.99}
+\renewcommand{\floatpagefraction}{0.95} % floatpagefraction must always be less than the topfraction.
+\renewcommand{\abovecaptionskip}{5pt}
+%%%%%%%%%% Document begins %%%%%%%%%%
+\begin{document}
+\pagestyle{frontmatter}
+\frontmatter
+\maketitle
+\cleardoublepage
+%
+% Dedication
+\noindent Dedication
+\cleardoublepage
+%
+% Acknowledgments
+\noindent {\Large \sffamily Acknowledgments} \\
+To be added ... 
+\cleardoublepage
+%
+% ABSTRACT in two languages
+\section*{\Large \sffamily Abstract}
+This is the abstract of the thesis in English (less than 150 words)
+\selectlanguage{catalan}
+\vspace*{\fill}
+\section*{\Large \sffamily  Resum}
+\normalfont
+Vet aquí el resum de la tesi en catalá (menys de 150 paraules)
+\vspace*{\fill}
+\selectlanguage{english}
+\cleardoublepage
+%
+% Optional Preface
+{\bf Preface}
+\cleardoublepage
+%
+% Table of Contents
+\tableofcontents
+\cleardoublepage
+%
+% List of Symbols and add it to TOC
+\addcontentsline{toc}{chapter}{\listsymbolname}
+\input{./chapters/symbolList}
+%
+% List of Figures and add it to TOC
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+%
+% List of Tables and add it to TOC
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+% 
+%%% Main Matter starts %%%
+\mainmatter
+\pagestyle{mainmatter}
+\input{chapters/01_introduction}
+\input{chapters/02_background}
+\input{chapters/03_probdef}
+\input{chapters/04_datasets}
+\input{chapters/05_talatracking}
+\input{chapters/06_percpatterns}
+\input{chapters/07_applications}
+\input{chapters/08_conclusions}
+%\input{chapters/mwexample}
+%
+%%% Appendices, Glossaries
+\appendix
+\input{chapters/09_appendix}
+%\input{chapters/mypublications}
+%
+\chapter{Glossary}
+%\printglossary[type=TechTerms]
+\printglossary[type=CM]
+\printglossary[type=HM]
+% \printglossary[type=TM]
+%\printglossary[type=BO]
+\printglossary[type=\acronymtype]
+%
+%%%%%% Backmatter: Bibliography, Index 
+\backmatter
+%
+\bibliography{../Papers/commonPool/allRefs}
+%
+\printindex
+\end{document}
+%%%%%%%% EXTRAS
+%\usepackage{fancyhdr}
+%\fancyhf{} % clear all header and footers
+%\renewcommand{\headrulewidth}{0pt} % remove the header rule
+%\fancyfoot[LE,RO]{\thepage} % Left side on Even pages; Right side on Odd pages
+%\pagestyle{fancy}
+%\fancypagestyle{plain}{%
+  %\fancyhf{}%
+  %\renewcommand{\headrulewidth}{0pt}%
+  %\fancyhf[lef,rof]{\thepage}%
+%}
+% Page numbering exterior except the first page of each chapter 
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyfoot{}
+%\fancyfoot[RO]{\thepage}
+%\fancyfoot[LE]{\thepage}
+% IF you want multiple indices
+%En el preambul
+%\usepackage{multind}
+%\makeindex{authors}
+%%Introduccio d'entrades la forma
+%\index{authors}{Einstein}
+%%Situacio de l'index
+%\printindex{authors}{Author index}
+%Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
+%cal exacutar des de la linia de comandes makeindex authors
+%%%%% More extras
+%\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{microtype}
+%\usepackage[none]{hyphenat}	 % Turns of hyphenation
+%\usepackage[xetex,hidelinks]{hyperref}
+% \selectlanguage{english}
+% \usepackage[utf8]{inputenc}
+% \usepackage{times}  % Suggested font, not used
+% \usepackage{garamond} % Suggested font, not used
+%
+%\usepackage{apalike}
+%\bibliographystyle{apalike}
+%\usepackage{cite}
+%\algrenewcommand\algorithmicindent{1.5em}

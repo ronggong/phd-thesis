@@ -1,0 +1,95 @@
+\selectlanguage{english}
+\chapter{Abstract}
+\vspace*{-1cm}
+Online learning has altered music education remarkable in the last decade. Large and increasing amount of music performing learners participate in online music learning courses due to the easy-accessibility and boundless of time-space constraints. However, online music learning cannot be extended to a large-scale unless there is an automatic system to provide assessment feedback for the student music performances.
+
+Singing is the simplest form of music performing. The critical role of singing played in music education cannot be overemphasized. Automatic singing voice assessment, as an important task in Music Information Retrieval (MIR), aims to extract musically meaningful information and measure the quality of learners' singing voice.
+
+Singing correctness and quality is culture-specific and its assessment requires culture-aware methodologies. Jingju (also known Beijing opera) music is one of the representative music traditions in China and has spread to many places in the world where there are Chinese communities. The Chinese tonal languages and the strict conventions in oral transmission adopted by jingju singing training pose unique challenges that have not been addressed by the current MIR research, which motivates us to select it as the major music tradition for this dissertation. Our goal is to tackle unexplored automatic singing voice assessment problems in jingju music, to make the current eurogeneric assessment approaches more culture-aware, and in return, to develop new assessment approaches which can be generalized to other music traditions.
+
+This dissertation aims to develop data-driven audio signal processing and machine learning (deep learning) models for automatic singing voice assessment in audio collections of jingju music. We identify challenges and opportunities, and present several research tasks relevant to automatic singing voice assessment of jingju music. Data-driven computational approaches require well-organized data for model training and testing, and we report the process of curating the data collections (audio, editorial metadata, lyrics and scores) in detail. We then focus on the research topics of automatic syllable and phoneme segmentation, automatic special pronunciation correctness assessment and automatic pronunciation similarity measurement in jingju music.
+
+It is extremely demanding in jingju singing training that students have to pronounce each singing syllable correctly and to reproduce the teacher's reference pronunciation quality. Automatic syllable and phoneme segmentation, as a preliminary step for the assessment, aims to divide the singing audio stream into finer granularities -- syllable and phoneme. The proposed method adopts deep learning models to calculate syllable and phoneme onset probabilities, and achieves a state of the art segmentation accuracy by incorporating side information -- syllable and phoneme durations estimated from musical scores, into the algorithm.
+
+Jingju singing uses a unique pronunciation system which is a mixture of several Chinese language dialects. This pronunciation system contains various special pronounced syllables which are not included in standard Mandarin. A crucial step in jingju singing training is to pronounce these special syllables correctly. We approach the problem of automatic special pronunciation correctness assessment using a deep learning-based classification method by which the student's interpretation of a special pronounced syllable segment is assessed. The proposed method outperforms the existing speech recognition-based approach, indicates its effectiveness of pronunciation correctness assessment.
+
+The strict oral transmission convention in jingju singing teaching requires that students accurately reproduce the teacher's reference pronunciation at phoneme level. Hence, the proposed assessment method needs to be able to measure the pronunciation similarity between teacher's and student's corresponding phonemes. Acoustic phoneme embeddings learned by deep learning models can capture the pronunciation nuance and convert variable-length phoneme segment into the fixed-length vector, and consequently to facilitate the pronunciation similarity measurement.
+
+The technologies developed from the work of this dissertation are a part of the comprehensive toolset within the CompMusic project, aimed at enriching the online learning experience for jingju music singing. The data and methodologies should also be contributed to computational musicology research and other MIR or speech tasks related to automatic voice assessment.
+\selectlanguage{catalan}
+\chapter{Resum}
+\vspace*{-1cm}
+%%%%%% v2: Pre-final, 25/06/2016
+
+
+\vfill
+
+{\small \noindent (\emph{Translated from English by})}
+%%%%%%% v1: 24/06/2016 
+%Les co\lgem eccions de música són cada vegada més grans i variades, fet que fa necessari buscar noves fórmules per a organitzar automàticament aquestes co\lgem eccions. El ritme és una de les dimensions bàsiques de la música, i el seu anàlisi automàtic és una de les principals àrees d'investigació en la disciplina de l'extracció de la informació musical (MIR, acrònim de la traducció a l'anglès).
+%
+%El ritme, com la majoria de les dimensions musicals, és específic per a cada cultura i per tant, la seva anàlisi requereix de mètodes que incloguin el context cultural. La complexitat rítmica de la música clàssica de l'Índia, una de les tradicions musicals més grans al món, no ha estat encara treballada en el camp d'investigació de MIR - motiu pel qual l'escollim com a principal material d'estudi. La nostra intenció és abordar les problemàtiques que presenta ll'anàlisi rítmic de la música clàssica de l'Índia, encara no tractades en MIR, amb la finalitat de contribuir a la disciplina amb nous models sensibles al context cultural i generalitzables a altres tradicions musicals.
+%
+%L'objectiu de la tesi consisteix en desenvolupar tècniques de processament de senyal i d'aprenentatge automàtic per a l'anàlisi, descripció i descobriment automàtic d'estructures i patrons rítmics en co\lgem eccions de música clàssica de l'Índia. Després d'identificar els reptes i les oportunitats, així com les diverses tasques d'investigació rellevants per a aquest objectiu, detallem el procés d'elaboració del corpus de dades, fonamentals per als mètodes basats en dades. A continuació, ens centrem en les tasques d'anàlisis mètric i descobriment de patrons de percussió.
+%
+%L'anàlisi mètric consisteix en alinear els diversos esdeveniments mètrics -a diferents nivells- que es produeixen en una gravació d'àudio. En aquesta tesi formulem les tasques de deducció, seguiment i seguiment informat de la mètrica. D'acord amb la tradició musical estudiada, s'avaluen diferents models bayesians que poden incorporar explícitament estructures mètriques d'alt nivell i es proposen noves extensions per al mètode. Els mètodes proposats superen les limitacions dels mètodes ja existents i el seu rendiment indica l'efectivitat dels mètodes informats d'anàlisis mètric.
+%
+%La percussió en la música clàssica de l'Índia utilitza onomatopeies per a la transmissió del repertori i de la tècnica, fet que construeix un llenguatge per a la percussió. Utilitzem aquestes sí\lgem abes percussives per a definir, representar i descobrir patrons en els enregistraments de solos de percussió. Enfoquem el problema del descobriment de patrons percussius amb un model de transcripció automàtica basat en models ocults de Markov, seguida d'una recerca aproximada de "cadena de caràcters" utilitzant una llibreria de patrons de percussions derivada de dades. Experiments preliminars amb patrons de percussió d'òpera de Pequín, i amb gravacions de solos de tabla i mridangam, demostren la utilitat de les sí\lgem abes percussives. Identificant, així, nous horitzons per al desenvolupament de sistemes pràctics de descobriment.
+%
+%Les tecnologies resultants d'aquesta recerca són part de les eines desenvolupades dins el projecte de CompMusic, que té com a objectiu millorar l'experiència d'escoltar i descobrir música per a la millor comprensió i organització de la música clàssica de l'Índia, entre d'altres. Aquestes dades i eines poden ser rellevants per a estudis musicològics basats en dades i, també, altres tasques MIR poden beneficiar-se de l'anàlisi automàtic del ritme.
+%
+\chapter{Resumen}
+\vspace*{-1cm}
+%%%%% v2: 23/06/2016: short version (almost final)
+
+
+\vfill
+
+{\small \noindent (\emph{Translated from })}
+%
+%
+%
+%
+%%%%%%% v2 23/06/2016: Long version
+%Las colecciones de música disponibles bajo demanda son cada vez mayores y más variadas, haciendo necesarias nuevas fórmulas para su organización automática de acuerdo con diferentes dimensiones musicales. El análisis automático del ritmo, una de las dimensiones musicales básicas, tiene como fin la extracción de información rítmica musicalmente relevante y es una de las principales áreas de investigación en la disciplina de extracción de información musical (MIR por sus siglas en inglés).
+%
+%El ritmo, como la mayoría de las dimensiones musicales, es específico a una cultura y por tanto su análisis requiere métodos que incluyan el contexto cultural. Si bien la música clásica de la India es una de las mayores tradiciones musicales del mundo, sus complejidades rítmicas no han sido tratadas hasta la fecha en MIR, lo que nos ha impulsado a elegir esta tradición como nuestro principal objeto de estudio. Nuestra intención es abordar cuestiones de análisis rítmico aún no tratadas en MIR con el fin de contribuir a la disciplina con nuevos métodos que incluyan el contexto cultural y sean generalizables a otras tradiciones musicales.
+%
+%El objetivo de la tesis es el desarrollo de técnicas de procesamiento de señales y aprendizaje automático dirigidas por datos para el análisis, descripción y descubrimiento automáticos de estructuras y patrones rítmicos en colecciones de audio de música clásica de la India. Tras identificar los retos y las oportunidades, presentamos varias tareas de investigación relevantes para el análisis automático de ritmo en esta tradición. La meticulosa elaboración de corpus de estudio y conjuntos de datos, detallados a continuación, es fundamental para métodos dirigidos por datos. El contenido principal de la tesis son las tareas de análisis métrico y descubrimiento de patrones de percusión.
+%
+%El análisis métrico tiene como fin la alineación de eventos métricos a diferentes niveles con una grabación de audio. Las tareas de análisis métrico tales como deducción del metro, seguimiento de metro y seguimiento informado de metro se formulan de acuerdo a la música clásica de la India. Se evalúan diferentes modelos bayesianos capaces de incorporar explícitamente información de estructuras métricas de niveles superiores para estas tareas y se proponen nuevas extensiones. Los métodos propuestos superan las limitaciones de las propuestas existentes y los resultados indican la efectividad del análisis informado de metro.
+%
+%La percusión en la música clásica de la India utiliza sílabas orales onomatopéyicas como recurso nemotécnico para la transmisión del repertorio y la técnica, proveyendo un lenguaje para la percusión. Utilizamos estas sílabas de percusión para definir, representar y descubrir patrones de percusión en grabaciones de solos de percusión. Abordamos la cuestión del descubrimiento de patrones de percusión usando una transcripción automática basada en un modelo oculto de Márkov, seguida de una búsqueda aproximada de subcadenas usando una biblioteca de patrones de percusión derivada de datos. Experimentos preliminares en patrones de percusión de ópera de Pekín, y en grabaciones de solos de tabla y mridangam en música clásica de la India, demuestran la utilidad de las sílabas de percusión, identificando nuevos retos para la construcción de sistemas prácticos de descubrimiento.
+%
+%Las tecnologías resultantes de la investigación descrita en la tesis son parte de un conjunto de herramientas desarrollado en el proyecto CompMusic para el mejor entendimiento y organización de la música clásica de la India, con el objetivo de proveer una experiencia mejorada de escucha y descubrimiento de música. Estos datos y herramientas pueden ser también relevantes para estudios musicológicos dirigidos por datos y otras tareas de MIR que puedan beneficiarse de análisis automáticos de ritmo.
+%
+%
+%%%%% v1: 20/06/2016
+%Actualmente extensas y crecientes colecciones de una amplia variedad de música están disponibles bajo demanda para los oyentes, lo que precisa de nuevas fórmulas para la estructuración automática de estas colecciones a partir de diferentes dimensiones musicales. El ritmo es una de las dimensiones musicales básicas y su análisis automático, cuyo fin es la extracción de información musicalmente relevante relacionada con el ritmo de la música, es una tarea esencial para la disciplina de recuperación de información musical (MIR, por sus siglas en inglés).
+%\vspace{-0.2em}
+%
+%El ritmo musical, como la mayoría de las dimensiones musicales, es específico a una cultura y por tanto su análisis requiere enfoques con atención a la cultura. La música clásica de la India es una de las mayores tradiciones musicales del mundo y sus complejidades rítmicas no han sido tratadas hasta la fecha en MIR. Esto nos a motivado a elegir esta tradición musical como la principal para nuestro estudio. Nuestra intención es abordar problemas de análisis rítmico aún no explorados con el objetivo de avanzar en los enfoques actuales de MIR haciéndolos sensibles a la cultura y generalizables a otras tradiciones musicales.
+%\vspace{-0.2em}
+%
+%El objetivo de la tesis es construir enfoques de procesamiento de señales y aprendizaje automático dirigidos por datos para el análisis, descripción y descubrimiento automáticos de estructuras y patrones rítmicos en colecciones de audio musical de música clásica de la India. Tras identificar los retos y las oportunidades, presentamos varias tareas de investigación relevantes que abren el campo de análisis automático de ritmo de la música clásica de la India. Enfoques dirigidos por datos requieren corpus de datos para investigación bien seleccionados y los esfuerzos para la creación de tales corpus y conjuntos de datos están documentados al detalle. A continuación nos concentramos en los temas de análisis métrico y descubrimiento de patrones de percusión en la música clásica de la India.
+%\vspace{-0.2em}
+%
+%El análisis métrico tiene como fin la alineación de varios eventos métricos jerárquicos con una grabación de audio. Las tareas de análisis métrico tales como deducción del metro, seguimiento de metro y seguimiento informado de metro se formulan de acuerdo a la música clásica de la India. Se evalúan diferentes modeles bayesianos capaces de incorporar explícitamente información de estructuras métricas de niveles superiores para estas tareas y nuevas extensiones son propuestas. Los métodos propuestos superan las limitaciones de los enfoques existentes y su funcionamiento indica la efectividad del análisis informado de metro.
+%\vspace{-0.2em}
+
+%La percusión en la música clásica de la India utiliza sílabas orales onomatopéyicas con fines nemotécnicos para la transmisión del repertorio y la técnica, proveyendo un lenguaje para la percusión. Utilizamos estas sílabas de percusión para definir, representar y descubrir patrones de percusión en grabaciones de audio de solos de percusión. Abordamos la cuestión del descubrimiento de patrones de percusión usando una transcripción automática basada en un modelo oculto de Márkov, seguida de una búsqueda aproximada de subcadenas usando una biblioteca de patrones de percusión derivados de datos. Experimentos preliminares en patrones de percusión de ópera de Pekín, y en grabaciones de solos de tabla y mridangam en música clásica de la India, demuestran la utilidad de las sílabas de percusión, identificando nuevos retos para la construcción de sistemas prácticos de descubrimiento.
+%\vspace{-0.2em}
+
+%Las tecnologías resultantes de la investigación descrita en la tesis es parte de un conjunto completo de herramientas desarrollado en el proyecto CompMusic para el mejor entendimiento y organización de la música clásica de la India, con el objetivo de proveer una experiencia mejorada de escucha y descubrimiento de música. Los datos y las herramientas pueden ser también relevantes para estudios musicológicos dirigidos por datos y otras tareas de MIR que pueden beneficiarse de análisis automáticos de ritmo.
+%
+%150 palabras.
+%
+% Reenabling. Assume \openright. See memoir.cls
+%\gdef\clearforchapter{\cleartorecto}
+\selectlanguage{english}
+%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End: 
+%

@@ -1,0 +1,29 @@
+\begin{algorithm}
+  \caption{Outline of the \acrshort{pfmix} algorithm (\gls{AMPF} for inference in \momodel)}\label{algo:pf:mix}
+  \begin{algorithmic}[1]
+      \For{i = 1 to \nparticles}
+         \State Sample $\mpostempoVar^{(i)}_0 \sim P(\mpos_0)P(\tempoVar_0)$, $\weight_0^{(i)} = \nicefrac{1}{\nparticles}$ \Comment{$\mpostempoVar_k = [\mpos_k, \tempoVar_k$]}
+      \EndFor
+      \State Cluster $\{\mpostempoVar^{(i)}_0 | i = 1, 2, \cdots, \nparticles\}$, get cluster assignments $\{\clust^{(i)}_0\}$
+      % Main iteration
+      \For{k = 1 to \nframes}
+         \For{i = 1 to \nparticles} \Comment{\mpos: Proposal and weights}
+            \State Sample $\mpos^{(i)}_{k} \sim P(\mpos^{(i)}_{k} \mid \mpostempoVar^{(i)}_{k-1})$, Set $c^{(i)}_k = c^{(i)}_{k-1}$ 
+            \State $\tilde{\weight}_{k}^{(i)} = w_{k}^{(i)} \times \overset{R}{\underset{j=1}{\sum}}P(\obsVar_{k} \mid \mpos_{k}^{(i)},\rpattVar = j)$
+         \EndFor
+         % Normalize weights
+         \For{i = 1 to \nparticles} \Comment{Normalize weights}
+            \State $\weight_{k}^{(i)}=\frac{\tilde{\weight}_{k}^{(i)}}{\sum^{\nparticles}_{i=1}\tilde{\weight}_{k}^{(i)}}$
+         \EndFor
+         \If{$\mod(k,\sampInterval) = 0$}	\Comment{Cluster, resample, reassign}
+            \State Cluster and resample $\{\mpostempoVar_k^{(i)}, \weight_{k}^{(i)}, \clust_k^{(i)} | i = 1, 2, \cdots, \nparticles\}$ \par
+            \hskip\algorithmicindent \!\!to obtain $\{\hat\mpostempoVar_k^{(i)}, \hat{\weight}_{k}^{(i)}\!=\!\nicefrac{1}{N_p},\hat{\clust}^{(i)}_{k}\}$
+            \For{i = $1$ to $N_p$} 
+               \State $\mpostempoVar_k^{(i)} =  \hat{\mpostempoVar}_k^{(i)}$, $\weight_k^{(i)} =  \hat{\weight}_k^{(i)}$, $\clust_k^{(i)} =  \hat{\clust}_k^{(i)}$
+            \EndFor
+         \EndIf
+         \State Sample $\tempoVar^{(i)}_{k} \sim P(\tempoVar^{(i)}_{k} \mid \tempoVar^{(i)}_{k-1})$ 
+      \EndFor
+      \State Compute $\mpostempoVar^{\optstar}_{1:K} = \mpostempoVar^{(i^{\optstar})}_{1:K} \mid i^{\optstar} = \argmax\limits_{i} {\weight^{(i)}_K}$ \Comment{\gls{MAP} sequence}% \argmax\limits_{i} will make i come below argmax
+  \end{algorithmic}
+\end{algorithm}

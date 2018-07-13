@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="14cm" height="23cm" viewBox="338 128 273 450" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="431" y="527.693" width="90" height="50"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="431" y="527.693" width="90" height="50"/>
+    <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="476" y="546.627">
+      <tspan x="476" y="546.627">Chapter 7</tspan>
+      <tspan x="476" y="567.793"></tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,491.051 385,509.372 476,509.372 476,522.457 "/>
+    <polygon style="fill: #000000" points="476,525.457 474,521.457 476,522.457 478,521.457 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="476,525.457 474,521.457 476,522.457 478,521.457 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="564.5,340.216 564.5,384.795 525.273,384.795 "/>
+    <polygon style="fill: #000000" points="522.273,384.795 526.273,382.795 525.273,384.795 526.273,386.795 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="522.273,384.795 526.273,382.795 525.273,384.795 526.273,386.795 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.569,178.667 474.569,210 385,210 385,235.713 "/>
+    <polygon style="fill: #000000" points="385,238.713 383,234.713 385,235.713 387,234.713 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,238.713 383,234.713 385,235.713 387,234.713 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="474.569,178.667 474.569,210 564.5,210 564.5,284.764 "/>
+    <polygon style="fill: #000000" points="564.5,287.764 562.5,283.764 564.5,284.764 566.5,283.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="564.5,287.764 562.5,283.764 564.5,284.764 566.5,283.764 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="479.044" y="199.025">
+    <tspan x="479.044" y="199.025">Background needed ? </tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="390.453" y="221.854">
+    <tspan x="390.453" y="221.854">Yes</tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="546.474" y="222.591">
+    <tspan x="546.474" y="222.591">No</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="560" y="298.583">
+    <tspan x="560" y="298.583"></tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="338.93" y="325.785">
+    <tspan x="338.93" y="325.785">Exploring new rhythm </tspan>
+    <tspan x="338.93" y="339.896">analysis problems ?</tspan>
+  </text>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="424.569" y="130" width="100" height="48.6667"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="424.569" y="130" width="100" height="48.6667"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="474.569" y="148.267">
+        <tspan x="474.569" y="148.267">Chapter 1</tspan>
+        <tspan x="474.569" y="169.433"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="442.691" y="167">
+      <tspan x="442.691" y="167">Introduction</tspan>
+    </text>
+  </g>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="491.613" y="311.527">
+    <tspan x="491.613" y="311.527">Yes</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="474.638" y="248.716">
+    <tspan x="474.638" y="248.716"></tspan>
+  </text>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="478.636" y="349.71">
+    <tspan x="478.636" y="349.71">No</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,291.532 385,315.108 514.264,315.108 "/>
+    <polygon style="fill: #000000" points="517.264,315.108 513.264,317.108 514.264,315.108 513.264,313.108 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="517.264,315.108 513.264,317.108 514.264,315.108 513.264,313.108 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,291.532 385,315.121 475.036,315.121 475.036,354.72 "/>
+    <polygon style="fill: #000000" points="475.036,357.72 473.036,353.72 475.036,354.72 477.036,353.72 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="475.036,357.72 473.036,353.72 475.036,354.72 477.036,353.72 "/>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="340" y="240.949" width="90" height="50.5833"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="240.949" width="90" height="50.5833"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="385" y="260.174">
+        <tspan x="385" y="260.174">Chapter 2</tspan>
+        <tspan x="385" y="281.341"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="355.132" y="278.912">
+      <tspan x="355.132" y="278.912">Background</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="519.5" y="290" width="90" height="50.2165"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="519.5" y="290" width="90" height="50.2165"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="564.5" y="309.042">
+        <tspan x="564.5" y="309.042">Chapter 3</tspan>
+        <tspan x="564.5" y="330.208"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="538.252" y="328.685">
+      <tspan x="538.252" y="328.685">Problems</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="430.036" y="359.956" width="90" height="49.6771"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="430.036" y="359.956" width="90" height="49.6771"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="475.036" y="378.728">
+        <tspan x="475.036" y="378.728">Chapter 4</tspan>
+        <tspan x="475.036" y="399.895"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="452.409" y="395.656">
+      <tspan x="452.409" y="395.656">Datasets</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="340" y="441.051" width="90" height="50"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="441.051" width="90" height="50"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="385" y="459.984">
+        <tspan x="385" y="459.984">Chapter 5</tspan>
+        <tspan x="385" y="481.151"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="348.19" y="477.883">
+      <tspan x="348.19" y="477.883">Meter analysis</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="520" y="441.051" width="90" height="50"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="520" y="441.051" width="90" height="50"/>
+      <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:Times New Roman;font-style:normal;font-weight:normal" x="565" y="459.984">
+        <tspan x="565" y="459.984">Chapter 6</tspan>
+        <tspan x="565" y="481.151"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="531.81" y="477.883">
+      <tspan x="531.81" y="477.883">Perc. patterns</tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:Times New Roman;font-style:normal;font-weight:normal" x="444.073" y="564.908">
+    <tspan x="444.073" y="564.908">Conclusions</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="475.036,409.633 475.036,425.342 385,425.342 385,435.815 "/>
+    <polygon style="fill: #000000" points="385,438.815 383,434.815 385,435.815 387,434.815 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="385,438.815 383,434.815 385,435.815 387,434.815 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="475.036,409.633 475.036,425.342 565,425.342 565,435.815 "/>
+    <polygon style="fill: #000000" points="565,438.815 563,434.815 565,435.815 567,434.815 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="565,438.815 563,434.815 565,435.815 567,434.815 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="565,491.051 565,509.372 476,509.372 476,522.457 "/>
+    <polygon style="fill: #000000" points="476,525.457 474,521.457 476,522.457 478,521.457 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="476,525.457 474,521.457 476,522.457 478,521.457 "/>
+  </g>
+</svg>

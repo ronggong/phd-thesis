@@ -1,0 +1,155 @@
+%% CMDF table of dataset
+The \acrfull{CMDf}\footnote{\url{http://compmusic.upf.edu/carnatic-rhythm-dataset}}\index{Carnatic music} is a rhythm annotated test corpus for many automatic rhythm analysis tasks in Carnatic Music~\cite{ajay:14:talaTrack}. The dataset consists of audio excerpts from the Carnatic research corpus, manually annotated time-aligned markers indicating the progression through the \gls{tala} cycle, and the associated \gls{tala} related metadata. 
+\begin{table}[t]
+\begin{center}
+\tabcolsep=0.12cm
+\begin{tabular}{@{}lrccrr@{}}
+\toprule 
+\Gls{tala} & \#Pieces & Total Duration & $\overline{\songlen}$ & \#Ann. & \#Sama\tabularnewline
+ &  & hours (min) &  &  & \tabularnewline
+\midrule 
+\Gls{adi} & 50 & 4.21 (252.78) & 4m51s & 22793 & 2882\tabularnewline
+\Gls{rupaka} & 50 & 4.45 (267.45) & 4m37s & 22668 & 7582\tabularnewline
+\Gls{mishra chapu} & 48 & 5.70 (342.13) & 6m35s & 54309 & 7795\tabularnewline
+\Gls{khanda chapu} & 28 & 2.24 (134.62) & 4m25s & 21382 & 4387\tabularnewline
+\midrule 
+Total & 176 & 16.61 (996.98) & 5m4s & 121602 & 22646\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\acrshort{CMDf} dataset description]{\acrshort{CMDf} dataset showing the total duration and number of annotations. \#Sama shows the number of \gls{sama} annotations and \#Ann. shows the number of beat annotations (including \glspl{sama}). $\protect\overline{\protect\songlen}$ indicates the median piece length in the dataset (m and s indicate minutes and seconds, respectively)}
+\label{tab:dataset:cmdf}
+\end{table}
+%% CMDF table of datastats
+\begin{table}[t]
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule 
+\Gls{tala} & $\overline{\isi} \pm \sigma_s$ & $\overline{\iai} \pm \sigma_o$ & $[{\isi}_{,\min} \, , \,  {\isi}_{,\max} ]$ \tabularnewline
+\midrule 
+\Gls{adi}  & 5.34 $\pm$ 0.723 & 0.167 $\pm$ 0.023 & $[$2.88, 7.07$]$\tabularnewline
+\Gls{rupaka} & 2.13 $\pm$ 0.239 & 0.178 $\pm$ 0.020 & $[$1.21, 3.10$]$\tabularnewline
+\Gls{mishra chapu} & 2.67 $\pm$ 0.358 & 0.191 $\pm$ 0.026 & $[$1.63, 3.65$]$\tabularnewline
+\Gls{khanda chapu} & 1.85 $\pm$ 0.284 & 0.185 $\pm$ 0.028 & $[$0.91, 2.87$]$\tabularnewline
+\bottomrule 
+\end{tabular}
+\protect\caption[\Gls{tala} cycle length indicators for \acrshort{CMDf} dataset]{\Gls{tala} cycle length indicators for \acrshort{CMDf} dataset. $\overline{\isi}$ and $\sigma_s$ indicate the mean and standard deviation of the median inter-\gls{sama} interval of the pieces, respectively. $\overline{\iai}$ and $\sigma_o$ indicate the mean and standard deviation of the median inter-\gls{akshara} interval of the pieces, respectively. $[{\isi}_{,\min} \, , \,  {\isi}_{,\max} ]$ indicate the minimum and maximum value of $\isi$ and hence the range of $\isi$ in the dataset. All values in the table are in seconds.}
+\label{tab:datastat:cmdf}
+\end{table}
+
+\acrshort{CMDf} dataset is described in \tabref{tab:dataset:cmdf}, showing the four \glspl{tala} and the number of pieces for each \gls{tala}. The dataset has pieces in four popular \glspl{tala} that encompass a majority of current day Carnatic music performance. The pieces include a mix of vocal and instrumental recordings, recent and old recordings, and span a wide variety of forms. All pieces have a percussion accompaniment, predominantly mridangam. There are also several different pieces by the same artist (or release group), and multiple instances of the same composition rendered by different artists. Each piece is uniquely identified using the \gls{MBID} of the recording. The pieces are mp3 stereo recordings, and sampled at 44.1 kHz. The audio is also available as downmixed mono WAV files for experiments. The audio files are full length pieces or clips extracted from full length pieces. Of the 176 audio files, 120 contain full length pieces. 
+
+There are several annotations that accompany each excerpt in the dataset. The primary annotations are audio synchronized time-stamps indicating the different metrical positions in the \gls{tala} cycle - the \gls{sama} (downbeat) and other beats shown with numerals in \figref{fig:taala:carnatic}. The annotations were created using Sonic Visualizer~\cite{cannam:10:sv} by tapping to music and manually correcting the taps. The annotations have been verified by a professional Carnatic musician. Each annotation has a time-stamp and an associated numeric label that indicates the position of the beat marker in the \gls{tala} cycle. In addition, for each excerpt, the \gls{tala} of the piece and \gls{edupu} (offset of the start of the piece, relative to the sama) are recorded. The possibly time varying tempo of a piece can be obtained using the beat and \gls{sama} annotations. 
+%% CMD table of dataset
+\begin{table}[t]
+\centering
+\begin{tabular}{@{}lrcrr@{}}
+\toprule 
+\Gls{tala} & \# Pieces & Total Duration & \# Ann. & \# Sama\tabularnewline
+ &  & hours (min) &  & \tabularnewline
+\midrule 
+\Gls{adi} & 30 & 0.98 (58.87) & 5452 & 696\tabularnewline
+\Gls{rupaka} & 30 & 1.00 (60.00) & 5148 & 1725\tabularnewline
+\Gls{mishra chapu} & 30 & 1.00 (60.00) & 8992 & 1299\tabularnewline
+\Gls{khanda chapu} & 28 & 0.93 (55.93) & 9133 & 1840\tabularnewline
+\midrule 
+Total & 118 & 3.91 (234.80) & 28725 & 5560\tabularnewline
+\bottomrule 
+\end{tabular}
+\protect\caption[\acrshort{CMDs} dataset description]{\acrshort{CMDs} dataset showing the total duration and number of annotations. \#Sama shows the number of \gls{sama} annotations and \#Ann. shows the number of beat annotations (including \glspl{sama}).}
+\label{tab:dataset:cmd}
+\end{table}
+%
+%% CMD table of datastats
+\begin{table}[t]
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule 
+\Gls{tala} & $\overline{\isi} \pm \sigma_s$ & $\overline{\iai} \pm \sigma_o$ & $[{\isi}_{,\min} \, , \,  {\isi}_{,\max} ]$ \tabularnewline
+\midrule 
+\Gls{adi} & 5.32 $\pm$ 0.868 & 0.17 $\pm$ 0.027 & {[}2.88, 7.07{]}\tabularnewline
+\Gls{rupaka} & 2.12 $\pm$ 0.225 & 0.18 $\pm$ 0.019 & {[}1.40, 3.10{]}\tabularnewline
+\Gls{mishra chapu} & 2.81 $\pm$ 0.272  & 0.20 $\pm$ 0.019  & {[}2.03, 3.65{]}\tabularnewline
+\Gls{khanda chapu} & 1.87 $\pm$ 0.290 & 0.19 $\pm$ 0.029 & {[}1.00, 2.84{]}\tabularnewline
+\bottomrule 
+\end{tabular}
+\protect\caption[\Gls{tala} cycle length indicators for \acrshort{CMDs} dataset]{\Gls{tala} cycle length indicators for \acrshort{CMDs} dataset. $\overline{\isi}$ and $\sigma_s$ indicate the mean and standard deviation of the median inter-\gls{sama} interval of the pieces, respectively. $\overline{\iai}$ and $\sigma_o$ indicate the mean and standard deviation of the median inter-\gls{akshara} interval of the pieces, respectively. $[{\isi}_{,\min} \, , \,  {\isi}_{,\max}]$ indicate the minimum and maximum value of $\isi$ and hence the range of $\isi$ in the dataset. All values in the table are in seconds.}
+\label{tab:datastat:cmd}
+\end{table}
+
+The total duration of audio in the dataset is over 16.6 hours, with 121062 time-aligned beat annotations. The median length of a piece is about 5 minutes in the dataset. \tabref{tab:datastat:cmdf} shows a basic statistical analysis of the \gls{tala} cycle length indicators in the dataset, which is useful to understand the tempo characteristics and the range of the metrical cycle lengths in the dataset. \Gls{adi} \gls{tala} is the longest \gls{tala} in the dataset and hence has the highest $\overline{\isi}$ among all the \glspl{tala}. Despite no notated tempo, we can see from the values of the median inter-\gls{akshara} interval, $\overline{\iai}$ and its standard deviation that the tempo in Carnatic music does not vary much across the \glspl{tala}. The range of $\overline{\isi}$ values show that a wide range of cycle durations that are present in Carnatic music pieces. The shortest cycle in the dataset is less than second long, while the longest cycle is over 7 seconds long. % spanning three tempo octaves. (, which means that we need more robust methods to handle tempo octave errors in tempo estimation.)The range of $\overline{\isi}$ values show that a wide range of tempi are present in Carnatic music pieces, often over two tempo octaves.
+% Dataset stats: CMDf-ISI
+\begin{figure}[t]
+\centering
+\subfloat[\Gls{adi}]{\label{fig:dstats:CMDf:ISI:adi}\includegraphics[scale=0.9]{dstats/CMDf-adi-ISI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupaka}]{\label{fig:dstats:CMDf:ISI:rupaka}\includegraphics[scale=0.9]{dstats/CMDf-rupaka-ISI.pdf}} \\ 
+\subfloat[\Gls{mishra chapu}]{\label{fig:dstats:CMDf:ISI:mishraChapu}\includegraphics[scale=0.9]{dstats/CMDf-mishraChapu-ISI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{khanda chapu}]{\label{fig:dstats:CMDf:ISI:khandaChapu}\includegraphics[scale=0.9]{dstats/CMDf-khandaChapu-ISI.pdf}} \\ 
+\caption[Histogram of $\protect\isi$ in the \acrshort{CMDf} dataset]{A histogram of the inter-\gls{sama} interval $\protect\isi$ in the \acrshort{CMDf} dataset for each \gls{tala}. The ordinate is the fraction of the total count corresponding to the $\isi$ value shown in abscissa. The median $\isi$ for each \gls{tala} is shown as a red dotted line.}\label{fig:dstats:CMDf:ISI}
+\end{figure}
+% Dataset stats: CMDf-IAI
+\begin{figure}[t]
+\centering
+\subfloat[\Gls{adi}]{\label{fig:dstats:CMDf:IAI:adi}\includegraphics[scale=0.9]{dstats/CMDf-adi-IAI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupaka}]{\label{fig:dstats:CMDf:IAI:rupaka}\includegraphics[scale=0.9]{dstats/CMDf-rupaka-IAI.pdf}} \\ 
+\subfloat[\Gls{mishra chapu}]{\label{fig:dstats:CMDf:IAI:mishraChapu}\includegraphics[scale=0.9]{dstats/CMDf-mishraChapu-IAI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{khanda chapu}]{\label{fig:dstats:CMDf:IAI:khandaChapu}\includegraphics[scale=0.9]{dstats/CMDf-khandaChapu-IAI.pdf}} \\ 
+\caption[Histogram of $\protect\ibi$ in the \acrshort{CMDf} dataset]{A histogram of the inter-beat interval $\protect\ibi$ in the \acrshort{CMDf} dataset for each \gls{tala}. The ordinate is the fraction of the total count corresponding to the $\ibi$ value shown in abscissa. The median $\ibi$ for each \gls{tala} is shown as a red dotted line.}\label{fig:dstats:CMDf:IAI}
+\end{figure}
+%
+% Dataset stats: CMDf-ISInorm
+\begin{figure}
+%\captionsetup[subfigure]{labelformat=empty}
+\begin{center}
+\subfloat[\Gls{adi}]{\label{fig:dstats:CMDf:ISInorm:adi}\includegraphics[scale=0.9]{dstats/CMDf-adi-ISInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupaka}]{\label{fig:dstats:CMDf:ISInorm:rupaka}\includegraphics[scale=0.9]{dstats/CMDf-rupaka-ISInorm.pdf}} \\ 
+\subfloat[\Gls{mishra chapu}]{\label{fig:dstats:CMDf:ISInorm:mishraChapu}\includegraphics[scale=0.9]{dstats/CMDf-mishraChapu-ISInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{khanda chapu}]{\label{fig:dstats:CMDf:ISInorm:khandaChapu}\includegraphics[scale=0.9]{dstats/CMDf-khandaChapu-ISInorm.pdf}} \\ 
+\caption[Histogram of median normalized $\protect\isi$ in the \acrshort{CMDf} dataset]{A histogram of the median normalized inter-\gls{sama} interval $\protect\isi$ in the \acrshort{CMDf} dataset for each \gls{tala}. The ordinate is the fraction of the total count corresponding to the normalized $\isi$ value shown in abscissa.}\label{fig:dstats:CMDf:ISInorm}
+\end{center}
+\end{figure}
+%
+% Dataset stats: CMDf-IAInorm
+\begin{figure}
+%\captionsetup[subfigure]{labelformat=empty}
+\begin{center}
+\subfloat[\Gls{adi}]{\label{fig:dstats:CMDf:IAInorm:adi}\includegraphics[scale=0.9]{dstats/CMDf-adi-IAInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupaka}]{\label{fig:dstats:CMDf:IAInorm:rupaka}\includegraphics[scale=0.9]{dstats/CMDf-rupaka-IAInorm.pdf}} \\ 
+\subfloat[\Gls{mishra chapu}]{\label{fig:dstats:CMDf:IAInorm:mishraChapu}\includegraphics[scale=0.9]{dstats/CMDf-mishraChapu-IAInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{khanda chapu}]{\label{fig:dstats:CMDf:IAInorm:khandaChapu}\includegraphics[scale=0.9]{dstats/CMDf-khandaChapu-IAInorm.pdf}} \\ 
+\caption[Histogram of median normalized $\protect\ibi$ in the \acrshort{CMDf} dataset]{A histogram of the median normalized inter-beat interval $\protect\ibi$ in the \acrshort{CMDf} dataset for each \gls{tala}. The ordinate is the fraction of the total count corresponding to the normalized $\ibi$ value shown in abscissa.}\label{fig:dstats:CMDf:IAInorm}
+\end{center}
+\end{figure}
+
+A representative subset of the \acrshort{CMDf} dataset is also compiled as the \acrshort{CMDs} dataset, with two minute excerpts of pieces in \acrshort{CMDf} (or the full piece if the piece is shorter than 2 minutes). These short excerpts additionally contain all the annotations of the full dataset, including time aligned \gls{sama} and beat annotations. The smaller \acrshort{CMDs} dataset will be useful for faster testing of approaches and algorithms. 
+
+The \acrshort{CMDs} dataset is described in \tabref{tab:dataset:cmd}, showing the four \glspl{tala} and the number of pieces for each \gls{tala}. The total duration of audio in the dataset is about 4 hours, with 28725 time-aligned beat annotations. \tabref{tab:datastat:cmd} shows a basic statistical analysis of the \gls{tala} cycle length indicators in the \acrshort{CMDs} dataset, which are similar to the indicators of \acrshort{CMDf} dataset shown in \tabref{tab:datastat:cmdf}, showing that \acrshort{CMDs} dataset is a representative subset of \acrshort{CMDf} dataset. 
+
+The tempo values are not notated in Carnatic music, and the pieces are not played to a metronome. Hence, in addition to the median values tabulated in \tabref{tab:datastat:cmdf} we present further analysis of the inter-\gls{sama} interval (\isi) and inter-beat interval (\ibi) for each \gls{tala} over the whole \acrshort{CMDf} dataset. A histogram of $\isi$ and $\ibi$ for each \gls{tala} is shown in \figref{fig:dstats:CMDf:ISI} and \figref{fig:dstats:CMDf:IAI} respectively. This shows the distribution of cycle lengths in the dataset over the whole range of $\isi$ for each \gls{tala}, around the median value. Despite the large range of $\isi$ values, the distribution in \figref{fig:dstats:CMDf:ISI} and \figref{fig:dstats:CMDf:IAI} show that the tempo often is limited to a small range of values. Though the musicians are free to choose any tempo, we empirically observe that they tend to choose a narrow range of tempo. 
+
+To illustrate and measure the time varying tempo of music pieces in Carnatic music, we normalize all the $\isi$ and $\ibi$ values in a piece by the median value of the piece to obtain median normalized $\isi$ and $\ibi$ values, a histogram of which is shown for \acrshort{CMDf} dataset in \figref{fig:dstats:CMDf:ISInorm} and \figref{fig:dstats:CMDf:IAInorm}, respectively. These histograms are centered around 1 since they are normalized by the median, and the spread of these histograms around the value of 1 is a measure of deviation of tempo from the median value. From the figures, it is clear that the tempo is time varying but with less than about 20\% maximum deviation from the median tempo of the piece for all \glspl{tala}. 
+% 
+\subsubsection{Rhythm patterns in \acrshort{CMDf} and \acrshort{CMDs} datasets}
+With a sizeable annotated corpus of Carnatic music, we can do corpora level analysis of patterns in rhythm\index{Rhythm pattern} and percussion. The idea is to showcase these patterns as a potential application of corpus level analysis, while showing their utility for meter tracking in \gls{MIR}, and for performance analysis and comparative analysis in musicology. 
+
+The aim here is not to seek all musicological insights from data, but to illustrate the possibilities of a corpus level analysis data, and how such analysis tools can help aid and advance musicology. The \gls{MIR} applications of such datasets is the primary goal of the thesis and discussed in subsequent chapters. Hence, an example of corpus level musicological analysis is presented in this chapter, which amounts to a performance analysis of music in current practice from audio recordings. 
+
+These analyses can corroborate several musicological inferences, and can provide additional insights into the differences between musicology, music theory and music practice. At the outset, it is necessary to note that the insights we discuss and conclusions we draw are limited by the available annotated dataset, and hence need further validation. It is however useful to focus on the methodology, which can aid musicologists and engineers to build systems that use these patterns for different analyses. 
+\begin{figure}
+\centering	
+\includegraphics[scale=0.4]{blockDiags/obs-feat-computation.pdf}
+	\caption[Computation of the spectral flux feature]{Computation of the spectral flux onset feature in two frequency bands, from \citeA{holzapfel:14:odd}.}
+	\label{fig:obs:featcomp}
+\end{figure}
+
+\input{chapters/chap4/figs_talaPatterns_CM}
+\subsubsection{Applications of the Carnatic rhythm dataset}
+The \acrshort{CMDf} dataset and its subset \acrshort{CMDs} dataset are intended to be test corpora for several automatic rhythm analysis tasks in Carnatic music. Possible tasks include \gls{sama} and beat tracking, tempo estimation and tracking, \gls{tala} recognition, rhythm based segmentation of musical audio, structural segmentation, audio to score/lyrics alignment, and rhythmic pattern analysis. In this thesis, these two datasets are primarily used for rhythmic pattern analysis and meter inference/tracking. Most of the research results are presented for \acrshort{CMDs} with some experiments extended to the full \acrshort{CMDf} dataset to verify their applicability to larger datasets.%\cite{ajay:14:rhythmJNMR, ajay:14:talaTrack} 
+%
+%
+% Present stats about the dataset, then about distribution of ISI and IAI. Statistical analysis of patterns in the dataset and what musicological inferences it can give out. 
+%
+%\input{chapters/chap4/figs_datastats_cmds}
+%\clearpage
+%\input{chapters/chap4/figs_datastats_cmdf}
+%%%%%%%%%%%%%%%%%

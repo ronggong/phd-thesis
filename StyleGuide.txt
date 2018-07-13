@@ -1,0 +1,41 @@
+A basic style guide for the document to maintain consistency
+
+* Document sizes
+Paper size (B5): 250x176 mm
+Text size: 189x125 mm
+
+* Fonts
+Text font size: 12 pt, 
+Text font: Times New Roman (default)
+Algorithms font: TeleType (\texttt)
+Dataset font: Times New Roman
+Syllable names: cousine
+
+* Figures
+Size: **x125 mm
+Font size for labels and axis labels: 12 pt, Times New Roman default
+Labels - \label{fig:<figName>}
+
+* Equations
+Labels - \label{eqn:<eqnName>}
+
+* Tables
+As minimal lines as possible
+Labels - \label{tab:<tabName>}
+
+* Chapters
+Labels - \label{chap:<chapterName>}
+
+* Sections
+Labels - \label{sec:<secName>}
+
+* Sub-sections
+Labels - \label{subsec:<subsecName>}
+
+* References
+apacite
+Labels - \label{name:year<a/b>:stub}
+
+* Writing style
+ - Indian, Turkish and Chinese terms - Italicize once, transliterate to Roman from next occurrence onwards. 
+ 

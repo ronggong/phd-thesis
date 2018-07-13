@@ -1,0 +1,107 @@
+
+[1;31m!!! Encountered } without corresponding {. !!![0m
+
+[1;31m!!! Encountered } without corresponding {. !!![0m
+
+[1;31m!!! Reached end of file while waiting for }. !!![0m
+
+[1;31m!!! Reached end of file while waiting for }. !!![0m
+File: phdthesis.tex
+Encoding: utf8
+Words in text: 26775
+Words in headers: 398
+Words outside text (captions, etc.): 3111
+Number of headers: 123
+Number of floats/tables/figures: 77
+Number of math inlines: 514
+Number of math displayed: 26
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  283+0+0 (1/1/0/0) _top_
+  2+1+0 (1/0/0/0) Chapter: Acknowledgments
+  2+1+0 (1/0/0/0) Chapter: Abstract
+  2+1+0 (1/0/0/0) Chapter: Resumen
+  21+1+0 (1/0/0/0) Chapter: Preface
+  381+3+0 (1/0/7/0) Chapter: List of Symbols
+  119+1+0 (1/0/0/0) Chapter: Introduction
+  47+4+0 (1/0/0/0) Section: Introduction to the thesis
+  25+1+0 (1/0/0/0) Section: Motivation
+  37+2+0 (1/0/0/0) Section: Rhythm analysis
+  54+6+0 (1/0/0/0) Section: Context and relevance of the thesis
+  204+8+0 (1/0/0/0) Section: Scope, aim, and primary contributions of the thesis
+  69+2+0 (1/0/0/0) Section: Thesis organization
+  112+1+0 (1/0/0/0) Chapter: Background
+  84+2+0 (1/0/0/0) Section: Rhythm: terminology
+  41+2+0 (1/0/0/0) Section: Music Background
+  223+5+10 (1/0/0/0) Subsection: Introduction to Indian art music
+  272+6+42 (1/2/1/0) Subsection: Rhythm and Percussion in Carnatic music
+  273+6+35 (1/2/1/0) Subsection: Rhythm and Percussion in Hindustani music
+  68+5+0 (1/0/0/0) Subsection: Comparing Carnatic and Hindustani music
+  25+4+0 (1/0/0/0) Subsection: Rhythm in Turkish music
+  85+4+86 (1/4/2/0) Subsection: Percussion in Beijing Opera}\label{sec:bkgnd:bopercussion
+  65+7+0 (1/0/0/0) Section: State of the art in rhythm analysis
+  21+2+0 (1/0/0/0) Subsection: Rhythm description
+  42+2+0 (1/0/0/0) Subsection: Onset Detection
+  14+2+0 (1/0/0/0) Subsection: Instrument Identification
+  23+2+0 (1/0/0/0) Subsection: Tempo estimation}\label{sec:bkgnd:tempoest
+  30+2+0 (1/0/0/0) Subsection: Beat Tracking
+  15+2+0 (1/0/0/0) Subsection: Downbeat Tracking
+  35+4+0 (1/0/0/0) Subsection: Meter Tracking and Inference
+  9+6+0 (1/0/0/0) Subsection: Evaluation measures in rhythmic event tracking
+  13+5+0 (1/0/0/0) Subsection: Percussion Pattern Transcription and Discovery
+  25+3+0 (1/0/0/0) Section: Relevant Technical Concepts
+  13+2+0 (1/0/0/0) Subsection: Bayesian Models
+  40+10+0 (2/0/0/0) Subsection: Inference in Bayesian models
+  29+8+0 (2/0/0/0) Subsection: Speech Recognition Technologies and Tools
+  165+7+0 (1/0/0/0) Chapter: Rhythm analysis problems in Indian Art Music
+  21+6+0 (1/0/0/0) Section: Challenges and Opportunities for Rhythm Analysis
+  12+1+0 (1/0/0/0) Subsection: Challenges
+  9+1+0 (1/0/0/0) Subsection: Opportunities
+  11+5+0 (1/0/0/0) Subsection: characteristics of Indian Art Music
+  38+2+0 (1/0/0/0) Section: ``Interesting problems"
+  14+2+0 (1/0/0/0) Section: ``Thesis problems"
+  0+4+0 (1/0/0/0) Section: Tala Tracking and Inference
+  0+3+0 (1/0/0/0) Section: Percussion Pattern transcription
+  53+8+0 (1/0/0/0) Section: An evaluation of the state of the art
+  29+4+0 (1/0/0/0) Subsection: A note on Terminology
+  807+4+3 (1/0/0/0) Chapter: Data corpora for research}\label{chap:datasets
+  202+3+0 (1/0/0/0) Section: CompMusic research corpora}\label{sec:cmcorpora
+  395+6+0 (1/0/0/0) Subsection: Criteria for creation of research corpora
+  2155+6+101 (3/4/8/1) Subsection: Carnatic music research corpus}\label{sec:cmcmcorpora
+  1023+6+46 (3/2/0/0) Subsection: Hindustani music research corpus}\label{sec:cmhmcorpora
+  379+4+3 (1/0/0/0) Subsection: Creative Commons music collections}\label{sec:cmccdataset
+  89+2+0 (1/0/0/0) Section: Test datasets
+  2197+15+973 (3/17/47/0) Subsection: Carnatic music rhythm dataset}\label{sec:cmrdataset
+  3399+15+1160 (3/22/64/0) Subsection: Hindustani music rhythm dataset}\label{sec:hmrdataset
+  441+3+23 (1/1/0/0) Subsection: Tabla solo dataset}\label{sec:tsdataset
+  538+8+37 (3/2/0/0) Subsection: Mridangam datasets
+  388+4+20 (1/1/0/0) Subsection: Jingju percussion instrument dataset
+  324+4+18 (1/1/0/0) Subsection: Jingju percussion pattern dataset
+  382+13+0 (4/0/4/0) Subsection: Other evaluation datasets
+  303+4+0 (1/0/0/0) Chapter: Meter inference and tracking
+  1228+11+0 (4/0/4/0) Section: The meter analysis tasks
+  124+2+0 (1/0/0/0) Section: Preliminary experiments}\label{sec:mt:earlyexpts
+  2164+17+260 (6/5/74/2) Subsection: Meter tracking using dynamic programming}\label{sec:metertrack:dp
+  408+5+0 (1/0/0/0) Section: Bayesian models for meter analysis}\label{sec:mt:bayesmodels
+  3155+23+79 (8/2/138/11) Subsection: The bar pointer model}\label{sec:bpm:model
+  2049+17+64 (5/1/131/8) Subsection: Model extensions}\label{sec:bpm:modext
+  610+13+7 (4/0/33/4) Subsection: Inference extensions}\label{sec:bpm:infext
+  17+3+0 (1/0/0/0) Section: Experiments and results
+  5+2+0 (1/0/0/0) Subsection: Meter inference
+  249+2+0 (1/0/0/0) Subsection: Meter tracking
+  0+4+0 (1/0/0/0) Subsection: Tempo informed meter tracking
+  0+4+0 (1/0/0/0) Subsection: Tempo-sama informed meter tracking
+  190+1+74 (1/8/0/0) Subsection: Discussion
+  79+5+0 (1/0/0/0) Chapter: Percussion pattern transcription and discovery
+  29+7+0 (1/0/0/0) Section: The problem of pattern transcription and discovery
+  108+6+58 (1/1/0/0) Section: Percussion pattern discovery in Beijing Opera
+  55+5+12 (1/1/0/0) Section: Percussion pattern transcription and discovery
+  43+1+0 (1/0/0/0) Chapter: Applications
+  53+1+0 (1/0/0/0) Chapter: Conclusions
+  0+1+0 (1/0/0/0) Section: Conclusions
+  0+1+0 (1/0/0/0) Section: Contributions
+  0+2+0 (1/0/0/0) Section: Future directions
+  32+1+0 (1/0/0/0) Chapter: Resources
+  0+1+0 (1/0/0/0) Chapter: Glossary
+
+(errors:4)

@@ -1,0 +1,56 @@
+\usepackage{acronym}
+\usepackage[section,numberedsection=autolabel,nomain,acronym,nonumberlist,nogroupskip=true]{glossaries}
+%\renewcommand*{\glspostdescription}{}
+%\renewcommand*{\bflabel}[1]{{\textbf{\textsf{#1}:}\hfill}}
+%\renewcommand*{\glossarysubentryfield}[6]{\glossaryentryfield{##2}{##3}{##4}{##5}{##6}}
+\newglossary[lgc]{CM}{gic}{goc}{Carnatic music}  
+\newglossary[lgh]{HM}{gih}{goh}{Hindustani music} 
+\newglossary[lgt]{TM}{git}{got}{Turkish Makam Music} 
+\newglossary[lgb]{BO}{gib}{gob}{Beijing opera (Jingju)}
+\newglossary[lgx]{TechTerms}{gix}{gox}{Technical Terms and Datasets} % Unused...
+\newignoredglossary{NoShow}
+\input{../Papers/commonPool/BOGlossary.tex}
+\input{../Papers/commonPool/CarnaticGlossary.tex}
+\input{../Papers/commonPool/HindustaniGlossary.tex}
+\input{../Papers/commonPool/TurkishGlossary.tex}
+\input{../Papers/commonPool/TechGlossary.tex}
+%
+% Put glsmoveentry to NoShow if you dont want it listed in Glossaries
+% \glsmoveentry{tala}{NoShow}
+% Set style and make glossaries
+\setglossarystyle{index}
+% \makeglossaries
+% Defining a new style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New glossary style if needed
+\newglossarystyle{myIndex}{%
+\setglossarystyle{index}% base this style on the list style
+\renewcommand{\glsgroupskip}{}% make nothing happen between groups
+\renewcommand*{\glspostdescription}{}
+\renewcommand*{\glossentry}[2]{%
+\item % bullet point
+\glstarget{##1}{\textbf{\glossentryname{##1}}}% the entry name
+%\space (\glossentrysymbol{##1})% the symbol in brackets
+\space\space\glossentrydesc{##1}% the description
+% \space [##2]% the number list in square brackets
+}
+\renewcommand*{\subglossentry}[3]{%
+\item % bullet point
+\hspace{4ex} \glstarget{##2}{\textbf{\glossentryname{##2}}}% the entry name
+%\space (\glossentrysymbol{##1})% the symbol in brackets
+\space\space\glossentrydesc{##2}% the description
+% \space [##2]% the number list in square brackets
+}
+}% End of myIndex
+%\makeindex
+%\glossarystyle{index}
+\setglossarystyle{myIndex}
+\renewcommand{\glsglossarymark}[1]{%
+\markright{#1}
+% \ifglsucmark
+% \markright{\MakeTextUppercase{#1}}%
+% \else
+% \markright{#1}%
+% \fi
+}
+\makeglossaries

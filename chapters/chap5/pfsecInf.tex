@@ -1,0 +1,36 @@
+\begin{algorithm}
+\caption{Outline of the \acrshort{pfsec} algorithm (\gls{AMPF} for inference in \spmodel)}\label{algo:pf:sec}
+  \begin{algorithmic}[1]
+      \For{i = 1 to \nparticles} 
+         \State Sample $\hidVar^{(i)}_0 \sim P(\hidVar_0)$  \Comment{$\hidVar_k = [\mpos_k,\tempoVar_k,\rpattVar_k, \secVar_k]$}
+         \State Set $\weight_{0}^{(i)} = \nicefrac{1}{\nparticles}$ \Comment{$\mpostemposecVar_k = [\mpos_k,\tempoVar_k,\secVar_k]$}
+      \EndFor
+      \State Cluster $\{\hidVar^{(i)}_0 | i = 1, 2, \cdots, \nparticles\}$, get cluster assignments $\{\clust^{(i)}_0\}$
+      % Main iteration
+      \For{k = 1 to \nframes}
+         \For{i = 1 to \nparticles} \Comment{\mpos, \rpattVar, \secVar: Proposal and weights}
+            \State Sample $\mpos^{(i)}_{k} \sim P(\mpos^{(i)}_{k} \mid \mpostemposecVar^{(i)}_{k-1})$, Set $\clust^{(i)}_k = \clust^{(i)}_{k-1}$
+            \If{$\mpos^{(i)}_{k} < \mpos^{(i)}_{k-1}$}    \Comment{Section crossed}
+               \State $\rpattVar_k^{(i)} \sim P(\rpattVar_k^{(i)} \mid \rpattVar_{k-1}^{(i)})$ \Comment{Sample from \tmPatt}
+               \State $\secVar_k^{(i)} \sim P(\secVar_k^{(i)} \mid \secVar_{k-1}^{(i)})$ \Comment{Sample from \tmSec}
+            \Else
+               \State $\rpattVar_k^{(i)} = \rpattVar_{k-1}^{(i)}$, $\secVar_k^{(i)} = \secVar_{k-1}^{(i)}$ 
+            \EndIf
+            \State $\tilde{\weight}_{k}^{(i)} = \weight_{k}^{(i)} \cdot P(\obsVar_{k} \mid \mpos_{k}^{(i)},\secVar_{k}^{(i)},\rpattVar_{k}^{(i)})$
+         \EndFor
+         % Normalize weights
+         \For{i = 1 to \nparticles} \Comment{Normalize weights}
+            \State $\weight_{k}^{(i)}=\frac{\tilde{\weight}_{k}^{(i)}}{\overset{\nparticles}{\underset{i=1}{\sum}}\tilde{\weight}_{k}^{(i)}}$
+         \EndFor
+         \If{$\mod(k,\sampInterval) = 0$}	\Comment{Cluster, resample, reassign}
+            \State Cluster and resample $\{\hidVar_k^{(i)}, \weight_{k}^{(i)},\clust_k^{(i)} | i = 1,2,\cdots, \nparticles\}$ \par
+            \hskip\algorithmicindent \!\!to obtain $\{\hat\hidVar_k^{(i)}, \hat{\weight}_{k}^{(i)}\!=\!\nicefrac{1}{N_p},\hat{\clust}^{(i)}_{k}\}$
+            \For{i = $1$ to $N_p$} 
+               \State $\hidVar_k^{(i)} =  \hat{\hidVar}_k^{(i)}$, $\weight_k^{(i)} =  \hat{\weight}_k^{(i)}$, $\clust_k^{(i)} =  \hat{\clust}_k^{(i)}$
+            \EndFor
+         \EndIf
+         \State Sample $\tempoVar^{(i)}_{k} \sim P(\tempoVar^{(i)}_{k} \mid \tempoVar^{(i)}_{k-1},\secVar_{k-1})$ \Comment{Sample tempo}
+      \EndFor
+      \State Compute $\hidVar^{\optstar}_{1:K} = \hidVar^{(i^{\optstar})}_{1:K} \mid i^{\optstar} = \argmax\limits_{i} {\weight^{(i)}_K}$ \Comment{\gls{MAP} sequence}% \argmax\limits_{i} will make i come below argmax
+  \end{algorithmic}
+\end{algorithm}

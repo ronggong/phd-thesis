@@ -1,0 +1,234 @@
+\acrfull{HMDf}\footnote{\url{http://compmusic.upf.edu/hindustani-rhythm-dataset}}\index{Hindustani music} is a rhythm annotated test corpus for automatic rhythm analysis tasks in Hindustani Music~\cite{ajay:16:spmodel}. The collection consists of audio excerpts from the CompMusic Hindustani research corpus, manually annotated time aligned markers indicating the progression through the \gls{taal} cycle, and the associated \gls{taal} related metadata. The dataset has pieces from four popular \glspl{taal} of Hindustani music (\tabref{tab:dataset:hmdf}), which encompasses a majority of Hindustani \gls{khayal} music. 
+
+The audio recordings are chosen from the CompMusic Hindustani music research corpus. The pieces include a mix of vocal and instrumental recordings, new and old recordings, and span three \gls{lay} classes. For each taal, there are pieces in \gls{dhrut} (fast), \gls{madhyam} (medium) and \gls{vilambit} \gls{lay}. All pieces have \gls{tabla} as the percussion accompaniment. All the audio recordings in the dataset are 2 minute excerpts of full length pieces. Each piece is uniquely identified using the \gls{MBID} of the recording. The pieces are stereo, 160 kbps, mp3 files sampled at 44.1 kHz. The audio is also available as downmixed mono WAV files for experiments. 
+%% HMDf table of dataset
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{@{}lrcrr@{}}
+\toprule 
+\Gls{taal} & \# Pieces & Total Duration & \# Ann. & \# Sam\tabularnewline
+ &  & hours (min) &  & \tabularnewline
+\midrule 
+\Gls{teental} & 54 & 1.80 (108) & 17142 & 1081\tabularnewline
+\Gls{ektal} & 58 & 1.93 (116) & 12999 & 1087\tabularnewline
+\Gls{jhaptal} & 19 & 0.63 (38) & 3029 & 302\tabularnewline
+\Gls{rupak} & 20 & 0.67 (40) & 2841 & 406\tabularnewline
+\midrule 
+Total & 151 & 5.03 (302) & 36011 & 2876\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\acrshort{HMDf} dataset description]{\acrshort{HMDf} dataset showing the total duration and number of annotations. \#Sam shows the number of \gls{sam} annotations and \#Ann. shows the number of \gls{matra} annotations (including \glspl{sam}).}
+\label{tab:dataset:hmdf}
+\end{table}
+%% HMDf table of datastats
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule 
+\Gls{taal} & $\overline{\isi} \pm \sigma_s$ & $\overline{\ibi} \pm \sigma_b$  & $[{\isi}_{,\min} \, , \,  {\isi}_{,\max} ]$ \tabularnewline
+\midrule 
+\Gls{teental} & 10.36 $\pm$ 9.875 & 0.65 $\pm$ 0.617 & {[}2.32, 44.14{]}\tabularnewline
+\Gls{ektal} & 30.20 $\pm$ 26.258 & 2.52 $\pm$ 2.188 & {[}2.23, 69.73{]}\tabularnewline
+\Gls{jhaptal} & 8.51 $\pm$ 3.149 & 0.85 $\pm$ 0.315 & {[}4.06, 16.23{]}\tabularnewline
+\Gls{rupak} & 7.11 $\pm$ 3.360 & 1.02 $\pm$ 0.480 & {[}2.82, 16.09{]}\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\Gls{taal} cycle length indicators for \acrshort{HMDf} dataset]{\Gls{taal} cycle length indicators for \acrshort{HMDf} dataset. $\overline{\isi}$ and $\sigma_s$ indicate the mean and standard deviation of the median inter-\gls{sam} interval of the pieces, respectively. $\overline{\ibi}$ and $\sigma_b$ indicate the mean and standard deviation of the median inter-\gls{matra} interval of the pieces, respectively. $[{\isi}_{,\min} \, , \,  {\isi}_{,\max}]$ indicate the minimum and maximum value of $\isi$ and hence the range of $\isi$ in the dataset. All values in the table are in seconds.}
+\label{tab:datastat:hmdf}
+\end{table}
+%% HMDl table of dataset
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{@{}lrcrr@{}}
+\toprule 
+\Gls{taal} & \# Pieces & Total Duration & \# Ann. & \# Sam\tabularnewline
+ &  & hours (min) &  & \tabularnewline
+\midrule 
+\Gls{teental} & 13 & 0.43 (26) & 1020 & 65\tabularnewline
+\Gls{ektal} & 32 & 1.07 (64) & 967 & 79\tabularnewline
+\Gls{jhaptal} & 6 & 0.2 (12) & 592 & 59\tabularnewline
+\Gls{rupak} & 8 & 0.27 (16) & 701 & 101\tabularnewline
+\midrule 
+Total & 59 & 1.97 (118) & 3280 & 304\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\acrshort{HMDl} dataset description]{\acrshort{HMDl} dataset showing the total duration and number of annotations. \#Sam shows the number of \gls{sam} annotations and \#Ann. shows the number of \gls{matra} annotations (including \glspl{sam}).}
+\label{tab:dataset:hmdl}
+\end{table}
+%% HMDl table of datastats
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule 
+\Gls{taal} & $\overline{\isi} \pm \sigma_s$ & $\overline{\ibi} \pm \sigma_b$  & $[{\isi}_{,\min} \, , \,  {\isi}_{,\max} ]$ \tabularnewline
+\midrule 
+\Gls{teental} & 26.16 $\pm$ 7.963  & 1.63 $\pm$ 0.498 & {[}18.57, 44.14{]}\tabularnewline
+\Gls{ektal} & 52.16 $\pm$ 12.531 & 4.35 $\pm$ 1.044 & {[}14.43, 69.73{]}\tabularnewline
+\Gls{jhaptal} & 12.30 $\pm$ 1.935 & 1.23 $\pm$ 0.194 & {[}10.20, 16.23{]}\tabularnewline
+\Gls{rupak} & 10.28 $\pm$ 3.050 & 1.47 $\pm$ 0.436 & {[}6.95, 16.09{]}\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\Gls{taal} cycle length indicators for \acrshort{HMDl} dataset]{\Gls{taal} cycle length indicators for \acrshort{HMDl} dataset. $\overline{\isi}$ and $\sigma_s$ indicate the mean and standard deviation of the median inter-\gls{sam} interval of the pieces, respectively. $\overline{\ibi}$ and $\sigma_b$ indicate the mean and standard deviation of the median inter-\gls{matra} interval of the pieces, respectively. $[{\isi}_{,\min} \, , \,  {\isi}_{,\max}]$ indicate the minimum and maximum value of $\isi$ and hence the range of $\isi$ in the dataset. All values in the table are in seconds.}
+\label{tab:datastat:hmdl}
+\end{table}
+%% HMDs table of dataset
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{@{}lrcrr@{}}
+\toprule 
+\Gls{taal} & \# Pieces & Total Duration & \# Ann. & \# Sam\tabularnewline
+ &  & hours (min) &  & \tabularnewline
+\midrule 
+\Gls{teental} & 41 & 1.37 (82) & 16122 & 1016\tabularnewline
+\Gls{ektal} & 26 & 0.87 (52) & 12032 & 1008\tabularnewline
+\Gls{jhaptal} & 13 & 0.43 (26) & 2437 & 243\tabularnewline
+\Gls{rupak} & 12 & 0.40 (24) & 2140 & 305\tabularnewline
+\midrule 
+Total & 92 & 3.07 (184) & 32731 & 2572\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\acrshort{HMDs} dataset description]{\acrshort{HMDs} dataset showing the total duration and number of annotations. \#Sam shows the number of \gls{sam} annotations and \#Ann. shows the number of \gls{matra} annotations (including \glspl{sam}).}
+\label{tab:dataset:hmds}
+\end{table}
+%% HMDs table of datastats
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule 
+\Gls{taal} & $\overline{\isi} \pm \sigma_s$ & $\overline{\ibi} \pm \sigma_b$  & $[{\isi}_{,\min} \, , \,  {\isi}_{,\max} ]$ \tabularnewline
+\midrule 
+\Gls{teental} & 5.35 $\pm$ 1.823 & 0.33 $\pm$ 0.114 & {[}2.32, 9.89{]}\tabularnewline
+\Gls{ektal} & 3.17 $\pm$ 0.471 & 0.26 $\pm$ 0.039 & {[}2.23, 4.11{]}\tabularnewline
+\Gls{jhaptal} & 6.77 $\pm$ 1.688 & 0.68 $\pm$ 0.169 & {[}4.06, 9.97{]}\tabularnewline
+\Gls{rupak} & 5.00 $\pm$ 1.191 & 0.71 $\pm$ 0.170 & {[}2.82, 6.68{]}\tabularnewline
+\bottomrule 
+\end{tabular}
+\end{center}
+\protect\caption[\Gls{taal} cycle length indicators for \acrshort{HMDs} dataset]{\Gls{taal} cycle length indicators for \acrshort{HMDs} dataset. $\overline{\isi}$ and $\sigma_s$ indicate the mean and standard deviation of the median inter-\gls{sam} interval of the pieces, respectively. $\overline{\ibi}$ and $\sigma_b$ indicate the mean and standard deviation of the median inter-\gls{matra} interval of the pieces, respectively. $[{\isi}_{,\min} \, , \,  {\isi}_{,\max}]$ indicate the minimum and maximum value of $\isi$ and hence the range of $\isi$ in the dataset. All values in the table are in seconds.}
+\label{tab:datastat:hmds}
+\end{table}
+% Dataset stats: HMDl-ISI
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDl:ISI:teen}\includegraphics[scale=0.9]{dstats/HMDl-teen-ISI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDl:ISI:ek}\includegraphics[scale=0.9]{dstats/HMDl-ek-ISI.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDl:ISI:jhap}\includegraphics[scale=0.9]{dstats/HMDl-jhap-ISI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDl:ISI:rupak}\includegraphics[scale=0.9]{dstats/HMDl-rupak-ISI.pdf}} \\ 
+\caption[Histogram of $\protect\isi$ in the \acrshort{HMDl} dataset]{A histogram of the inter-\gls{sam} interval $\protect\isi$ in the \acrshort{HMDl} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the $\ibi$ value shown in abscissa. The median $\isi$ for each \gls{taal} is shown as a red dotted line.}\label{fig:dstats:HMDl:ISI}
+\end{figure}
+%
+% Dataset stats: HMDl-IAI
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDl:IAI:teen}\includegraphics[scale=0.9]{dstats/HMDl-teen-IAI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDl:IAI:ek}\includegraphics[scale=0.9]{dstats/HMDl-ek-IAI.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDl:IAI:jhap}\includegraphics[scale=0.9]{dstats/HMDl-jhap-IAI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDl:IAI:rupak}\includegraphics[scale=0.9]{dstats/HMDl-rupak-IAI.pdf}} \\ 
+\caption[Histogram of $\protect\ibi$ in the \acrshort{HMDl} dataset]{A histogram of the inter-\gls{matra} interval $\protect\ibi$ in the \acrshort{HMDl} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the $\ibi$ value shown in abscissa. The median $\ibi$ for each \gls{taal} is shown as a red dotted line.}\label{fig:dstats:HMDl:IAI}
+\end{figure}
+%
+% Dataset stats: HMDs-ISI
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDs:ISI:teen}\includegraphics[scale=0.9]{dstats/HMDs-teen-ISI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDs:ISI:ek}\includegraphics[scale=0.9]{dstats/HMDs-ek-ISI.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDs:ISI:jhap}\includegraphics[scale=0.9]{dstats/HMDs-jhap-ISI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDs:ISI:rupak}\includegraphics[scale=0.9]{dstats/HMDs-rupak-ISI.pdf}} \\ 
+\caption[Histogram of $\protect\isi$ in the \acrshort{HMDs} dataset]{A histogram of the inter-\gls{sam} interval $\protect\isi$ in the \acrshort{HMDs} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the $\ibi$ value shown in abscissa. The median $\isi$ for each \gls{taal} is shown as a red dotted line.}\label{fig:dstats:HMDs:ISI}
+\end{figure}
+%
+% Dataset stats: HMDs-IAI
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDs:IAI:teen}\includegraphics[scale=0.9]{dstats/HMDs-teen-IAI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDs:IAI:ek}\includegraphics[scale=0.9]{dstats/HMDs-ek-IAI.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDs:IAI:jhap}\includegraphics[scale=0.9]{dstats/HMDs-jhap-IAI.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDs:IAI:rupak}\includegraphics[scale=0.9]{dstats/HMDs-rupak-IAI.pdf}} \\ 
+\caption[Histogram of $\protect\ibi$ in the \acrshort{HMDs} dataset]{A histogram of the inter-\gls{matra} interval $\protect\ibi$ in the \acrshort{HMDs} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the $\ibi$ value shown in abscissa. The median $\ibi$ for each \gls{taal} is shown as a red dotted line.}\label{fig:dstats:HMDs:IAI}
+\end{figure}
+%
+% Dataset stats: HMDl-ISInorm
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDl:ISInorm:teen}\includegraphics[scale=0.9]{dstats/HMDl-teen-ISInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDl:ISInorm:ek}\includegraphics[scale=0.9]{dstats/HMDl-ek-ISInorm.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDl:ISInorm:jhap}\includegraphics[scale=0.9]{dstats/HMDl-jhap-ISInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDl:ISInorm:rupak}\includegraphics[scale=0.9]{dstats/HMDl-rupak-ISInorm.pdf}} \\ 
+\caption[Histogram of median normalized $\protect\isi$ in the \acrshort{HMDl} dataset]{A histogram of the median normalized inter-\gls{sam} interval $\protect\isi$ in the \acrshort{HMDl} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the normalized $\isi$ value shown in abscissa.}\label{fig:dstats:HMDl:ISInorm}
+\end{figure}
+%
+% Dataset stats: HMDl-IAInorm
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDl:IAInorm:teen}\includegraphics[scale=0.9]{dstats/HMDl-teen-IAInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDl:IAInorm:ek}\includegraphics[scale=0.9]{dstats/HMDl-ek-IAInorm.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDl:IAInorm:jhap}\includegraphics[scale=0.9]{dstats/HMDl-jhap-IAInorm.pdf}} \hspace{0.4cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDl:IAInorm:rupak}\includegraphics[scale=0.9]{dstats/HMDl-rupak-IAInorm.pdf}} \\ 
+\caption[Histogram of median normalized $\protect\ibi$ in the \acrshort{HMDl} dataset]{A histogram of the median normalized inter-\gls{matra} interval $\protect\ibi$ in the \acrshort{HMDl} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the normalized $\ibi$ value shown in abscissa.}\label{fig:dstats:HMDl:IAInorm}
+\centering
+\end{figure}
+%
+
+There are several annotations that accompany each audio file in the dataset. The primary annotations are audio synchronized time-stamps indicating the different metrical positions in the \gls{taal} cycle. The \gls{sam} and \glspl{matra} of the cycle are annotated. The annotations were created using Sonic Visualizer by tapping to music and manually correcting the taps. Each annotation has a time-stamp and an associated numeric label that indicates the \gls{matra} position in the \gls{taal} cycle illustrated in \figref{fig:taal:hindustani}. The \glspl{sam} are indicated using the numeral 1. The time varying tempo of the piece can be obtained from the \gls{matra} and \gls{sam} annotations. 
+
+For each excerpt, the \gls{taal} and the \gls{lay} of the piece are recorded. Each excerpt can be uniquely identified and located with the \gls{MBID} of the recording, and the relative start and end times of the excerpt within the whole recording. The artist, release, the lead instrument, and the \gls{raag} of the piece are additional editorial metadata obtained from the release. There are optional comments on audio quality and annotation specifics. The annotations and the associated metadata have been verified for correctness and completeness by a professional Hindustani musician and musicologist. 
+
+The \acrshort{HMDf} dataset is described in \tabref{tab:dataset:hmdf}, showing the four \glspl{taal} and the number of pieces for each \gls{taal}, totaling to 151 pieces. The total duration of audio in the dataset is about 5 hours, with 36011 time-aligned \gls{matra} annotations of which 2876 are \gls{sam} annotations. \tabref{tab:datastat:hmdf} shows a basic statistical analysis of the \gls{taal} cycle length indicators in the dataset to understand the tempo characteristics and the range of the metrical cycle lengths in the dataset. The large range of tempi seen in Hindustani music is reflected in the dataset, with the values of median inter-\gls{sam} interval $\overline{\isi}$, \gls{ektal} cycle lengths ranging from 2.2 seconds to 69.7 seconds, which is about 5 tempo octaves. This also shows that the \gls{matra} period can vary from less than 150 ms to over 6 seconds. This huge range of cycle lengths and \gls{matra} periods is a significant challenge in automatic meter analysis of Hindustani music. Across different \glspl{taal}, we see that \gls{teental} and \gls{ektal} have the largest range of $\overline{\isi}$, since they are performed in all the \gls{lay} classes, \gls{vilambit} to \gls{dhrut}. \Gls{jhaptal} and \gls{rupak} have smaller $\overline{\isi}$ ranges. 
+
+The dataset consists of excerpts with a wide tempo range from 10 \mpm\ (\glspl{matra} per minute) to 370 \mpm. As discussed in \chapref{chap:bkgnd}, Hindustani music divides tempo into three main tempo classes (\gls{lay}). Since no exact tempo ranges are defined for these classes, we determined suitable values, measured in \glspl{matra} per minute (\mpm), in correspondence with a professional Hindustani musician as 10-60 \mpm, 60-150 \mpm, and $>$150 \mpm\ for the slow (\gls{vilambit}), medium (\gls{madhyam}), and fast (\gls{dhrut}) tempi, respectively. 
+
+The \gls{lay} of a piece has a significant effect on meter tracking and rhythm analysis due to this wide range of possible tempo. To study any effects of the tempo class, the full \acrshort{HMDf} dataset is divided into two other subsets - the long cycle duration subset called the \acrshort{HMDl} dataset (shown in \tabref{tab:dataset:hmdl}) consisting of \gls{vilambit} pieces with a median tempo between 10-60 \mpm, and the short cycle duration subset \acrshort{HMDs} dataset (shown in \tabref{tab:dataset:hmds}) with \gls{madhyam} \gls{lay} (60-150 \mpm) and the \gls{dhrut} \gls{lay} (150+ \mpm) pieces. 
+
+\acrshort{HMDl} dataset shown in \tabref{tab:dataset:hmdl} consists of 59 pieces in \gls{vilambit} \gls{lay}, with over 3200 \gls{matra} and \gls{sam} annotations. A majority of pieces are in \gls{ektal} and \gls{teental}. Since its very uncommon for a piece to be performed in \gls{vilambit} \gls{lay} \gls{jhaptal} and \gls{rupak}, there are only 6 and 8 pieces for those \glspl{taal}, respectively. As described with \acrshort{HMDf}, a basic statistical analysis of the \gls{taal} cycle length indicators in \tabref{tab:datastat:hmdl} shows that the median inter-\gls{sam} interval and its range for \gls{jhaptal} and \gls{rupak} are less than that for \gls{teental} and \gls{ektal}.
+
+\acrshort{HMDs} dataset in \tabref{tab:dataset:hmds} consists on 92 pieces in \gls{madhyam} and \gls{dhrut} \gls{lay}, with over 3 hours of audio and over 32700 \gls{matra} and \gls{sam} annotations. A basic statistical analysis of the \gls{taal} cycle length indicators in \tabref{tab:datastat:hmds} shows that the pieces of \gls{teental} and \gls{ektal} have higher tempi in the dataset. Comparing the median \gls{matra} period for \gls{ektal} between \tabref{tab:datastat:hmdl} (4.35 second) and \tabref{tab:datastat:hmds} (0.26 second) shows that \gls{ektal} is performed either in \gls{vilambit} or \gls{dhrut} and its rare for a piece to be performed in \gls{madhyam} \gls{lay} \gls{ektal}.
+
+The pieces is Hindustani music have a tempo class indicated but not a specific tempo value, nor are they performed to a metronome. The tempo varies over a piece in time - often the tempo increases with time. Hence, in addition to the median values tabulated in \tabref{tab:datastat:hmdf} we present further analysis of the inter-\gls{sam} interval (\isi) and inter-\gls{matra} interval (\ibi) for each \gls{taal}. For better comparison, we present this analysis for each data subset \acrshort{HMDl} and \acrshort{HMDs} separately. 
+
+A histogram of $\isi$ and $\ibi$ for each \gls{taal} for \acrshort{HMDl} dataset is shown in \figref{fig:dstats:HMDl:ISI} and \figref{fig:dstats:HMDl:IAI}, respectively, and those for \acrshort{HMDs} dataset is shown in \figref{fig:dstats:HMDs:ISI} and \figref{fig:dstats:HMDs:IAI}, respectively. These figures show the distribution of cycle lengths in the dataset over the whole range of $\isi$ for each \gls{taal}, around the median value. The large range of $\isi$ and $\ibi$ values and an irregular distribution spanning the whole range is seen with both datasets, unlike the Carnatic music \acrshort{CMDf} dataset with a smaller tightly defined range of tempo. 
+
+In addition, similar to what was presented for Carnatic music, to illustrate and measure the time varying tempo of music pieces in Hindustani music, we normalize all the $\isi$ and $\ibi$ values in a piece by the median in the piece to obtain median normalized $\isi$ and $\ibi$ values, a histogram of which is shown in \figref{fig:dstats:HMDl:ISInorm} and \figref{fig:dstats:HMDl:IAInorm}, respectively for \acrshort{HMDl} dataset and \figref{fig:dstats:HMDs:ISInorm} and \figref{fig:dstats:HMDs:IAInorm}, respectively for \acrshort{HMDs} dataset. These histograms are centered around 1 and normalized by the median. 
+
+From the figures, it is clear that the tempo is time varying but with less than about 10\% maximum deviation from the median tempo of the piece for all \glspl{taal}. This is in contrast to Carnatic music where the median normalized tempo had a higher maximum deviation ($\sim$ 20 \%). One possible reason for this lower tempo deviation in Hindustani music compared to Carnatic music is because of less rhythmic improvisation, with the tabla acting as an accurate timekeeper. However, this could also be possibly due to the fact that the Hindustani pieces in the dataset are two minute short excerpts, compared to full length Carnatic pieces in the \acrshort{CMDf} dataset, and hence have lower tempo variability. 
+%\input{chapters/chap4/figs_datastats_hmdl}
+%\clearpage
+%\input{chapters/chap4/figs_datastats_hmds}
+\subsubsection{Rhythm patterns in Hindustani rhythm datasets}
+% Dataset stats: HMDs-ISInorm
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDs:ISInorm:teen}\includegraphics[scale=0.9]{dstats/HMDs-teen-ISInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDs:ISInorm:ek}\includegraphics[scale=0.9]{dstats/HMDs-ek-ISInorm.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDs:ISInorm:jhap}\includegraphics[scale=0.9]{dstats/HMDs-jhap-ISInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDs:ISInorm:rupak}\includegraphics[scale=0.9]{dstats/HMDs-rupak-ISInorm.pdf}} \\ 
+\caption[Histogram of median normalized $\protect\isi$ in the \acrshort{HMDs} dataset]{A histogram of the median normalized inter-\gls{sam} interval $\protect\isi$ in the \acrshort{HMDs} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the normalized $\isi$ value shown in abscissa.}\label{fig:dstats:HMDs:ISInorm}
+\end{figure}
+%
+% Dataset stats: HMDs-IAInorm
+\begin{figure}[t]
+%\captionsetup[subfigure]{labelformat=empty}
+\centering
+\subfloat[\Gls{teental}]{\label{fig:dstats:HMDs:IAInorm:teen}\includegraphics[scale=0.9]{dstats/HMDs-teen-IAInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{ektal}]{\label{fig:dstats:HMDs:IAInorm:ek}\includegraphics[scale=0.9]{dstats/HMDs-ek-IAInorm.pdf}} \\ 
+\subfloat[\Gls{jhaptal}]{\label{fig:dstats:HMDs:IAInorm:jhap}\includegraphics[scale=0.9]{dstats/HMDs-jhap-IAInorm.pdf}} \hspace{0.5cm} 
+\subfloat[\Gls{rupak}]{\label{fig:dstats:HMDs:IAInorm:rupak}\includegraphics[scale=0.9]{dstats/HMDs-rupak-IAInorm.pdf}} \\ 
+\caption[Histogram of median normalized $\protect\ibi$ in the \acrshort{HMDs} dataset]{A histogram of the median normalized inter-\gls{matra} interval $\protect\ibi$ in the \acrshort{HMDs} dataset for each \gls{taal}. The ordinate is the fraction of the total count corresponding to the normalized $\ibi$ value shown in abscissa.}\label{fig:dstats:HMDs:IAInorm}
+\end{figure}
+
+\input{chapters/chap4/figs_talaPatterns_HM}
+% \clearpage  
+% \input{chapters/figs_datastats_hmdf}
+\subsubsection{Applications of the \acrshort{HMDf} dataset}
+The \acrshort{HMDf} dataset and its subsets \acrshort{HMDl} and \acrshort{HMDs} datasets are intended to be test datasets for several automatic rhythm analysis tasks in Hindustani music. Possible tasks where the datasets can be used include \gls{sam} and \gls{matra} tracking, tempo estimation and tracking, \gls{taal} recognition, rhythm based segmentation of musical audio, audio to score/lyrics alignment, and rhythmic pattern discovery. In this thesis, these datasets are primarily used for rhythmic pattern analysis and meter inference/tracking. Most of the research results are presented on the two subsets separately, to contrast performance of algorithms across different \gls{lay}. 

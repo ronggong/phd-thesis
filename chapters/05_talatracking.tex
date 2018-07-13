@@ -1,0 +1,428 @@
+\chapter{Meter inference and tracking}\label{chap:meterInfTrack}
+\begin{epigraphs}
+  \qitem{...the first beat (sam) is highly significant structurally, as it frequently marks the coming together of the rhythmic streams of soloist and accompanist, and the resolution point for rhythmic tension.}{\citeA[p. 81]{clayton:00:time}}
+\end{epigraphs}
+\noindent Meter analysis \index{Meter analysis} of audio music recordings is an important \gls{MIR} task. It provides useful musically relevant metadata not only for enriched listening, but also for pre-processing of music for several higher level tasks such as section segmentation, structural analysis and defining rhythm similarity measures. 
+
+To recapitulate, meter analysis aims to time-align a piece of audio music recording with several defined metrical levels such as tatum, tactus, measure (bar). In addition, it also tags the recording with additional meter and rhythm related metadata such as time signature, median tempo and salient rhythms in the recording. Within the context of Indian music, meter analysis aims to time-align and tag a music recording with \gls{tala} related events and metadata. 
+
+This chapter aims to address some of these important tasks related to meter analysis within the context of Indian art music, presenting several approaches and a comprehensive evaluation of those approaches. The main aims of the chapter are: 
+\begin{enumerate}[leftmargin=*]
+ \item To address meter analysis tasks for the music cultures under study - Carnatic and Hindustani music. The tasks of meter inference, meter tracking and informed meter tracking are addressed in detail to formulate these tasks and propose several approaches to address the tasks. 
+ \item To present a detailed description of the state of the art and the proposed Bayesian models and inference schemes for meter analysis. 
+ \item To present an evaluation of the state of the art meter tracking approaches based on Bayesian models and explore extensions to those approaches, for the rhythm annotated datasets of Carnatic and Hindustani music. A comprehensive performance analysis is presented for these approaches, identifying their strengths and limitations for the tasks under study. 
+\end{enumerate}
+%
+\section{The meter analysis tasks}
+We describe the meter analysis tasks addressed in this dissertation, from the least informed to the most informed. This order of tasks also emphasizes different practical scenarios for such tasks, and hence the results can indicate the type of task and the additional information to be provided to achieve the level of performance required for an application. We will also describe how the set of tools and approaches described in the chapter can be adapted and used in each of these tasks, making the task of meter analysis flexible to the available audio data and the related additional metadata. We continue and elaborate building on the formulation presented in \secref{sec:probdef:thesismeter}. 
+\subsubsection{Meter inference}
+Given an audio music recording, meter inference\index{Meter inference} aims to estimate the rhythm class (or meter type or \gls{tala}), possibly time-varying tempo, beats and downbeats. In the context of Carnatic music, the task of meter inference aims to recognize the \gls{tala}, estimate the time varying tempo ($\iai$ or $\ibi$), the beat locations and the \gls{sama} (downbeat) locations. Since some of the beats correspond to the \gls{anga} boundaries, with the \gls{sama} and numbered beat locations (beat number in the cycle), the \gls{anga} (section) boundaries can be indirectly inferred, e.g. the beats 1 (\gls{sama}), 5, 7 mark the start of the three sections of the \gls{adi} \gls{tala}. Similarly, for Hindustani music, meter inference task aims to recognize the \gls{taal}, estimate the time varying tempo ($\ibi$), the \gls{matra} and the \gls{sam} locations. With the numbered \gls{matra} and \gls{sam} locations, the \gls{vibhaag} boundaries can be indirectly inferred, e.g. the \glspl{matra} 1 (\gls{sam}), 3, 6, 8 indicate the start of the four sections in \gls{jhaptal}. For Carnatic music, in addition to the beats, we can also estimate the subdivision \glspl{akshara}, which can be grouped into beats. 
+
+Without any prior information on metrical structure, meter inference is a difficult task owing to the large range of tempi and different \glspl{tala}. The problem is further made harder due to several \glspl{tala} having similar structure. In Carnatic music, it is quite possible that the same composition can be performed in two different \glspl{tala}, which further can lead to confusion, e.g. the compositions in \gls{rupaka} \gls{tala} (12 \glspl{akshara} in a cycle) can be performed in \gls{tishra} \gls{nade} \gls{adi} \gls{tala} (24 \glspl{akshara} in a cycle, see \figref{fig:taala:aditishra}). A common example is the composition Himadri Suthe\footnote{\url{https://musicbrainz.org/work/6155262b-601a-41ba-8dcf-6f5b15b744f6}} in \gls{raga} Kalyāṇi. 
+
+From a practical application point of view, most of commercially released music in both Carnatic and Hindustani music has the name of the \gls{tala} as a part of the editorial metadata, and hence \gls{tala} recognition is a redundant task. Even within a live concert, the musician announces the \gls{tala} of the piece, or shows it with hand gestures in Carnatic music. Meter inference is used as a baseline task to understand the complexity of uninformed meter analysis. 
+\subsubsection{Meter tracking}
+Given that the \gls{tala} of an audio music piece is often available as editorial metadata, the most relevant meter analysis task for Indian art music is meter tracking\index{Meter tracking}. Given an audio music recording and the rhythm class (or meter type or \gls{tala}) of the music piece, meter tracking aims to estimate the time varying tempo, the beat and the downbeat locations. In the context of Carnatic music, meter tracking aims to track the time varying tempo, beats and the \gls{sama} from an audio music recording, given the \gls{tala}. For Hindustani music, given the \gls{taal}, the task aims to track the time varying tempo ($\ibi$), the \gls{matra} and \gls{sam}. The section boundaries of the \gls{tala} can be indirectly inferred as explained earlier. 
+
+Assuming that the \gls{tala}, and hence the metrical structure is known in advance is a fair and practical assumption to make, we explore if providing this information helps to track the metrical structure better. Meter tracking is the main problem and the most comprehensively addressed task in this thesis. We explore different approaches and evaluate them on the rhythm annotated datasets of Carnatic and Hindustani music. The proposed novel extensions and enhancements are also evaluated for the task of meter tracking. 
+\subsubsection{Informed meter tracking}
+Informed meter tracking is a sub-task of meter tracking in which some additional information apart from the meter type is provided along with the audio recording. The additional information could be in the form of a tempo range, a few instances of beats and downbeats annotated, or even partially tracked metrical cycles. These additional metadata could come from manual annotation or as an output of other automatic algorithms, e.g. the median tempo of a piece can be obtained from a standalone tempo estimation algorithm, or some melodic analysis algorithms might output (with a high probability) some beats/downbeats as a byproduct. 
+
+From a practical standpoint, it is useful to explore informed meter tracking. While it is prohibitively resource intensive to manually annotate all the beats and downbeats of a large music collection, it might be possible to seed the meter tracking algorithms with the first few beats and downbeats, which could improve meter tracking performance. For a musician or even an expert listener, it would be very easy to tap some instances of the beat and \gls{sama}, which could then be used automatically track meter, which is a useful application. 
+
+We aim to explore these questions, to see whether providing additional higher level information improves meter tracking performance. In specific, we explore two variants of informed meter tracking: 
+\begin{enumerate}[leftmargin=*]
+    \item Tempo-informed meter tracking in which the median tempo of the piece is provided as an additional input to the meter tracking algorithm. Providing the median tempo is hypothesized to help reduce tempo octave errors - tracking the metrical cycles at the correct metrical level instead of tracking half and double cycles. The median tempo can be obtained through simpler state of the art tempo estimation algorithms outlined in \secref{sec:bkgnd:tempoest} (one such algorithm for Carnatic music is also described later in this chapter in \secref{sec:metertrack:dp}). Since the tempo of a piece can vary over time, a narrow range of tempo for the piece can also be provided in addition or in lieu of the median tempo. 
+    \item Tempo-sama-informed meter tracking in which the median tempo and the first downbeat location in the excerpt are provided as additional inputs to the meter tracking algorithm. The practical scenario for such a case is a semi-automatic meter tracking system, where a human listener can tap along to the first one (or few) downbeats of the piece and an automatic meter tracker would then track the rest of the piece. In this thesis, we only explore the use of first downbeat of the piece in informed meter tracking.
+\end{enumerate}
+% 
+There are other meter analysis tasks that have been addressed in \gls{MIR}, such as beat tracking, and downbeat tracking from the set of known beats. The task of beat tracking as defined in the state of art is ill defined in Indian art music, due to possibly non-isochronous pulsation. We can adapt the task and track a uniform pulsation as the beat. However, since the tasks of meter inference and meter tracking aim to track all the relevant events of the metrical cycle, the task of beat tracking is subsumed in those tasks. We do not address the task of beat tracking in Indian music directly, but as a sub-task of the meter tracking/inference tasks. Estimating the downbeats and the start of measure from a set of beats, as done by \citeA{davies:06:downbeat} and \citeA{hockman:12:downbeat} is also handled as a sub-task within the joint estimation of tempo, beats and the downbeats. 
+
+We now describe the approaches to these tasks, starting with some preliminary approaches followed by Bayesian models. With Bayesian models, several different extensions are proposed over the state of the art models. 
+%
+\section{Preliminary experiments}\label{sec:mt:earlyexpts}
+\input{chapters/chap5/earlyExpts}
+%
+\section{Bayesian models for meter analysis}\label{sec:mt:bayesmodels}
+Recently, Bayesian models\index{Bayesian model} have been applied successfully to meter analysis tasks \cite{krebs:13:bpm,bock:14:multimodel,krebs:15:pf}. The effectiveness of such models stem from their ability to accurately model metrical structures and their adaptability to different metrical structures, music styles and variations. These advantages are supplemented by the huge literature on Bayesian models and efficient exact and approximate inference algorithms. Since metrical structures are mostly mental constructs, the use of such generative graphical probabilistic models can even perhaps be hypothesized that they closely (better than other approaches to meter analysis) emulate the mechanisms of progression through metrical cycles used by listeners and musicians. 
+
+As discussed earlier in \secref{sec:bkgnd:pgm}, a \acrfull{DBN} \cite{murphy:02:thesis} is well suited for meter analysis, since it relates variables over time through conditional (in)dependence relations. The bar pointer model is one such \gls{DBN} that has been successfully applied to meter analysis. Proposed by \citeA{whiteley:06:ismir}, it has been improved since then and applied to various meter analysis tasks over different music styles \cite{whiteley:07:seqInf,krebs:13:bpm,krebs:15:pf,bock:14:multimodel,holzapfel:14:odd,krebs:15:ismir,ajay:15:pf,ajay:16:spmodel}. 
+
+In this chapter, we start with the bar pointer model and present several extensions and explore different inference schemes for those extensions, all in the context of Indian art music. The performance of such models and inference schemes are evaluated on the Carnatic and Hindustani music test datasets presented in \chapref{chap:datasets}, with additional evaluations on the Ballroom dataset to test for generalization and to baseline performance. An extensive evaluation of the algorithms in the thesis is on the most relevant task of meter tracking, while meter inference and informed meter tracking tasks are addressed to a limited extent. 
+
+The remainder of the chapter is organized as follows. The bar pointer model is first described, explaining its model structure and inference schemes (\secref{sec:bpm:model}). The following extensions and enhancements to the model structure are then proposed and described in \secref{sec:bpm:modext}: 
+\begin{enumerate}[leftmargin=*,noitemsep]
+	\item A simplified bar pointer model with a mixture observation model, that aims to complement observation likelihood from many rhythmic patterns~\cite{ajay:15:pf}.  
+	\item The section pointer model that aims to use patterns that are shorter than bar for meter tracking, and hence might be useful to track long metrical structures~\cite{ajay:16:spmodel}.
+\end{enumerate}
+Extensions and enhancements to inference schemes on the bar pointer model extensions are proposed and described in \secref{sec:bpm:infext}:
+\begin{enumerate}[leftmargin=*,noitemsep]
+\item End of bar rhythm pattern sampling, which proposes to defer pattern sampling to the end of the bar. 
+\item Hop inference for fast meter tracking, which aims to do faster inference by performing inference only when there is a significant rhythmic event in audio (such an an onset). 
+\end{enumerate}
+Finally, an evaluation of these algorithms is presented in \secref{sec:mtrack:expts}, followed by a discussion and summary of the experiments and results. 
+% 
+\subsection{The bar pointer model}\label{sec:bpm:model}
+\begin{figure}
+\centering
+    \subfloat[Bar pointer model (\bpmodel)]{\label{fig:dbn:bpm}
+      \includegraphics[scale=0.27]{models/model_bpm.pdf}
+    } \hspace{1cm}
+    \subfloat[Bar pointer model using a mixture observation model (\momodel)]{\label{fig:dbn:bpmmix}
+      \includegraphics[scale=0.27]{models/model_mix.pdf}
+    }\\
+		\subfloat[Section pointer model (\spmodel)]{\label{fig:dbn:spm}
+      \includegraphics[scale=0.21]{models/model_spm_new.pdf}
+    } \hspace{0.5cm}
+    \subfloat[Simplified section pointer model]{\label{fig:dbn:spmOnePatt}
+      \includegraphics[scale=0.27]{models/model_spm_icassp16.pdf}
+    } 
+\caption[The meter analysis models used in the dissertation]{The meter analysis models used in the dissertation. In each of these \glspl{DBN}, circles and squares denote continuous and discrete variables, respectively. Grey nodes and white nodes represent observed and latent variables, respectively.}\label{fig:dbn:all}
+\end{figure}
+%
+\input{chapters/chap5/bpmodel}
+Several extensions and enhancements to the bar pointer model can be proposed. For better organization, these extensions are grouped into two categories: model extensions that propose changes to the model structure of the \bpmodel, either by adding additional hidden variables or using different conditional independence relationships, and inference extensions that aim to improve inference in \bpmodel, for better and faster inference. 
+\subsection{Model extensions}\label{sec:bpm:modext}
+The model extensions proposed to the bar pointer model improve upon the model structure. Two different model extensions are proposed in the dissertation: a mixture observation model, and the section pointer model. 
+%
+\subsubsection{Bar pointer model with a mixture observation model (\momodel)}\label{sec:mom:model}
+\input{chapters/chap5/mixobsmodel}
+%
+\subsubsection{Section pointer model}\label{sec:spm:model}
+%
+\input{chapters/chap5/spmodel}
+%
+\subsection{Inference extensions}\label{sec:bpm:infext}
+The proposed inference extensions aim for better approximate inference in the \bpmodel, either by making it faster, or by improving approximate inference.
+\input{chapters/chap5/infExtensions}
+%
+\begin{table}[t]
+\centering
+\tabcolsep=3pt
+% \rowcolors{3}{tabgray}{}
+\begin{tabular}{llp{3.4cm}cc}\toprule
+Acronym & \multicolumn{1}{c}{Model} & Inference algorithm & \multicolumn{2}{c}{Meter Analysis} \tabularnewline 
+ & & & Inference & Tracking \tabularnewline \midrule
+$^{\S}$\acrshort{hmmprior} & \bpmodel $^{\dagger}$ & Viterbi algorithm & $\checkmark$ & $\checkmark$ \tabularnewline 
+$^{\S}$\acrshort{pfprior} & \bpmodel & \gls{AMPF} & $\checkmark$ & $\checkmark$ \tabularnewline \addlinespace[10pt]
+$^{\star}$\acrshort{hmmmix} & \momodel $^{\dagger}$ & Viterbi algorithm & $\times$ & $\checkmark$ \tabularnewline
+$^{\star}$\acrshort{pfmix} & \momodel & \gls{AMPF} & $\times$ & $\checkmark$ \tabularnewline \addlinespace[10pt]
+$^{\star}$\acrshort{hmmsec} & \spmodel $^{\dagger}$ & Viterbi algorithm & $\checkmark$ & $\checkmark$ \tabularnewline
+$^{\star}$\acrshort{pfsec} & \spmodel & \gls{AMPF} & $\checkmark$ & $\checkmark$ \tabularnewline \addlinespace[10pt]
+$^{\star}$\acrshort{pfacc} & \bpmodel & \gls{AMPF} with end-of-bar pattern sampling & $\times$ & $\checkmark$ \tabularnewline \addlinespace[3pt]
+$^{\star}$\acrshort{pfpkhop} & \bpmodel & Peak hop inference in \gls{AMPF} & $\checkmark$ & $\checkmark$ \tabularnewline \addlinespace[3pt]
+$^{\star}$\acrshort{pfobshop} & \bpmodel & Onset gated weight update in \gls{AMPF} & $\checkmark$ & $\checkmark$ \tabularnewline \bottomrule
+\end{tabular}
+\caption[Summary of the meter analysis models and inference algorithms]{A summary of the meter analysis models and inference algorithms presented in this section. The symbol $^{\S}$ indicates an existing state of the art algorithm while the symbol $^{\star}$ is used to denote an algorithm proposed in this thesis. The symbol $^\dagger$ indicates that a discretized counterpart of the model is used. The last two columns show the applicability of the algorithm in the meter analysis tasks of meter inference and meter tracking: $\checkmark$ indicates applicable, $\times$ indicates not applicable.}\label{tab:dbn:summary}
+\end{table}
+
+The different meter tracking models that were presented in this section are listed and summarized in \tabref{tab:dbn:summary}. The table also shows the acronyms for the algorithms we use in the dissertation, along with the meter analysis tasks to which they can be applied. We now present the experiments and results of evaluation of these models and extensions on the annotated datasets.  
+\section{Experiments and results}\label{sec:mtrack:expts}
+This section comprehensively presents the experiments and results of meter analysis for different tasks and datasets with the models and algorithms described in the chapter. The goals of the experiments presented in the section are: 
+%\comment{A table with all the experimental results that are included. From least informed to most informed case.}
+% \update{Klapuri results to be added}
+\begin{itemize}[leftmargin=*]
+  \item To evaluate different meter analysis tasks: Meter inference, meter tracking and informed meter tracking on both Carnatic and Hindustani music datasets. The main focus is on evaluation of meter tracking with different algorithms discussed for the task. 
+	\item To compare performance across different approaches to meter analysis. To compare and discuss the performance of different models and inference algorithms - the \bpmodel\ with Viterbi and particle filter inference, model extensions (\momodel, \spmodel) and the inference extensions (end-of-bar pattern sampling, peak hop, onset gated weight update).
+	\item To compare performance of these approaches across different Indian art music datasets (both Carnatic and Hindustani), with a baseline comparison with the ballroom dataset. %To present an analysis over different \glspl{tala}, to idet
+	\item To further identify challenges to meter analysis in Indian art music and identify the limitations of these approaches to suggest further improvements.
+\end{itemize}
+\subsection{Experimental setup}
+The goal of the experiments is to use as much prior information on the metrical structures being tracked. All experiments are done on the dataset from each music culture separately, to capture the specificities of each music culture. This implicitly assumes that the music culture is known \textit{a priori} in all experiments. Unless otherwise specified, the following global settings for the experiments is used. 
+
+The results on the Carnatic music dataset (\acrshort{CMDs}) and Hindustani music data subsets \acrshort{HMDs} and \acrshort{HMDl} are focused on. From the experiments, we see that the datasets \acrshort{CMDs} and \acrshort{CMDf} have equivalent content and show equivalent results. Hence only the results on the \acrshort{CMDs} dataset are reported in the dissertation. As discussed earlier in \secref{sec:hmrdataset}, Hindustani music divides tempo into three main tempo classes (\gls{lay}): slow (\gls{vilambit}, 10-60 \mpm), medium (\gls{madhyam}, 60-150 \mpm), and fast (\gls{dhrut}, $>150$ \mpm). In our experiments, we will examine how the tempo class affects the tracking accuracy. Hence for Hindustani music, results are presented for \acrshort{HMDl} (\gls{vilambit} pieces) and \acrshort{HMDs} (\gls{madhyam} and \gls{dhrut} pieces) datasets separately to assess performance individually on pieces with long and short cycle duration. The results are presented for each dataset as an average over the pieces in all the \glspl{tala} (or meters), while specific comments on the performance on each \gls{tala} is discussed when needed. Performance on ballroom dataset is reported for meter inference and tracking tasks for comparison. 
+
+All results are reported as the mean performance over three runs in a two fold cross validation experiment. The train and the test data folds have equal number of pieces (with a maximum difference of one piece when there are odd number of pieces in a dataset). In meter inference experiments, the total set of \glspl{tala} being tracked is known, along with their structure. The training data contains pieces pooled from all the \glspl{tala} contained in the whole dataset. In meter tracking experiments, the specific \gls{tala} being tracked and its structure is known, and the training data contains pieces from the specific \gls{tala} only. In all the meter tracking experiments on Hindustani music, experiments are done separately on the two subsets \acrshort{HMDs} and \acrshort{HMDl}. Hence the meter tracking experiments on Hindustani music are not only just \gls{taal} informed, but also \gls{lay} (tempo class) informed, i.e. the algorithm implicitly knows if it is tracking long cycles or short cycles. For informed tracking, as discussed earlier, additional information is provided to the tracking algorithms on tempo and the first instance of downbeat in tempo-informed meter tracking and tempo-sama-informed meter tracking, respectively. 
+
+The performance of algorithms is presented for both beat and \gls{sama} (downbeat) tracking. For beat tracking, we use the evaluation measures f-measure ($\fmeas_b$), \amlt\ ($\amlt_{,b}$) and information gain ($\infoGain_b$). The subscript $b$ indicates that the measure refers to beat tracking. \Gls{sama} tracking is measured using f-measure ($\fmeas_s$).  For evaluation in this dissertation, we used the evaluation toolkit developed by Matthew Davies\footnote{We use the code available at \url{http://code.soundsoftware.ac.uk/projects/beat-evaluation/}}. To compute the f-measure in \acrshort{CMDs}, \acrshort{HMDs}, and Ballroom datasets, an error tolerance window of 70 ms is used between the annotation and the estimated beat/\gls{sama}. For other evaluation measures, we use default parameters in the evaluation toolbox. 
+
+The computation of f-measure with \acrshort{HMDl} dataset is an exception, where a bigger margin window is allowed. Since cycles are of long duration in \acrshort{HMDl} dataset and current evaluation approaches were not designed with such long cycles in mind, an error tolerance window of 70 ms is very tight. To account for the length of the cycle in the error margin, a 6.25\% median inter annotation interval is used as the tolerance window, as used in many other beat tracking evaluations (e.g. by \citeA{hockman:12:downbeat}). This choice of a larger allowance window also corroborates well with the observation that in \gls{vilambit} pieces of the \acrshort{HMDl} dataset, there can be significant freedom in pulsation and that larger errors go unnoticed since the pieces are not rhythmically dense. Arguably, the pulsation in \gls{vilambit} pieces is also beyond the duration of what is called the perceptual present \cite{clarke:99:percpresent}.  However, it is to be noted that this approach is a compromise and better evaluation measures that can handle these complexities are to be developed. The problem of evaluating the accuracy of meter tracking in \gls{vilambit} pieces of Hindustani music (and other musics with long duration cycles) is itself a research problem that needs to be studied systematically, including musicians and listeners into the study. 
+
+For meter inference and tracking, we additionally report the results of median tempo estimation as computed from the output beats. For evaluating median tempo estimation, we compare the median estimated tempo and the median annotated ground truth tempo with a 5\% error margin. In addition, to understand a metrical ambiguities in tempo estimation, we compute both \gls{CML} and \gls{AML} tempo estimation accuracy. In addition to the correct metrical level, \gls{AML} assumes that a tempo scaling by factors of 0.25, 0.5, 1 (correct metrical level), 2, 4 to be correct. For meter inference, the algorithms also detect the rhythm class (or meter) and hence the accuracy of \gls{tala} recognition\index{Tāḷa recognition} is also reported for the task. 
+
+Most experiments are conducted for rhythmic patterns $\nrhythmPatts=1$ and $\nrhythmPatts=2$ (per rhythm class), but the results are presented only for $\nrhythmPatts=1$ pattern per \gls{tala}. Experiments with $\nrhythmPatts=2$ do not show any significant improvement/change. Hence they are not presented with all models but when necessary, performance with $\nrhythmPatts=2$ is indicated and discussed. It is to be noted that with $\nrhythmPatts=1$, model extension \momodel\ (with \acrshort{pfmix}) and inference extension \acrshort{pfacc} are equivalent to the baseline \acrshort{pfprior}. 
+
+The tempo ranges are learned from training data of each fold, with 20\%  margin allowed on learned ranges for unseen data. However, a minimum and maximum tempo is set for each music culture independently, and if the learned tempo ranges lie outside that range, they are set to the these preset min and max values. The minimum and maximum tempo range for Carnatic music is set as [140, 520] \glspl{akshara} per minute (equivalent to [35, 130] beats per minute in \gls{adi} \gls{tala}), that for Hindustani music is set as [10, 370] \glspl{matra} per minute, and for ballroom dataset as [60, 230] beats per minute. For meter tracking, the tempo range for each \gls{tala} is independently learnt. Further, with \spmodel, the tempo ranges learned for a particular \gls{tala} are applied to track all the section length patterns of the \gls{tala}, assuming that the tempo ranges are properties of a \gls{tala} and not of its sections.
+
+We use the number of bar positions, $\npos_\rpattVar=1600$ for the longest rhythmic pattern we encounter in the dataset and scale all other pattern lengths accordingly. As indicated in \secref{sec:bpm:model}, for meter tracking experiments, $\npos_\rpattVar = \npos = 1600$ is set for the longest pattern being tracked. The maximum $M=1600$ corresponds to \gls{adi} \gls{tala} in Carnatic music (8 beats and 32 \glspl{akshara}) and \gls{teental} (16 \glspl{matra}) in Hindustani music. If a different \gls{tala} is being tracked, we set the value of $\npos$ accordingly, e.g. $M=600$ for tracking the three beat \gls{rupaka} \gls{tala} (3 beats and 12 \glspl{akshara}) in Carnatic music. For Ballroom dataset, we used $M=1600$ and $M=1200$ for tracking time signatures 4/4 and 3/4, respectively. 
+
+The number of beats $\nbeats$ and the number of sections are set accordingly, depending on the dataset and the \gls{tala}/s being tracked from \tabref{tab:cm:talastruct} and \tabref{tab:hm:taalstruct}. When $\nrhythmPatts > 1$, the transition probabilities of patterns are also learned from training data from the clustered bar/section length patterns. 
+
+For meter inference and tracking, we use uniform priors on all hidden variables within the allowed range of values. For informed tracking, priors on tempo and the position variables are set according to the prior information we have available on the tempo and the \gls{sama} instances. The observation model uses a two dimensional spectral flux feature computed at a hop size $\framehop = 0.02$ seconds, as described in \figref{fig:obs:featcomp}. The bar is discretized into 64\tsup{th} note cells within which the observation probability is assumed to be constant. 
+
+For the \gls{HMM} based Viterbi algorithm inference, the tempo state transition probability in \eqnref{eqn:bpm:hmmntrans} is set to $n_p=0.02$, as used by \citeA{krebs:13:bpm}, allowing a small probability of change of tempo. For the \gls{AMPF}, the number of particles is set as $\nparticles = 1500 \times \nrhythmPatts$. We set the user parameter that controls tempo variance in \eqnref{eqn:bpm:transtempo} and \eqnref{eqn:spm:transtempo} to $\sigma_n = 0.02$ and the maximum number of clusters in the \gls{MPF} to $200$. The resampling interval is set to $\sampInterval = 30$ frames, which corresponds to a resampling step every $0.6$ seconds of audio. The other \gls{AMPF} parameters are identical to the values used by \citeA{krebs:15:pf}. 
+
+There are several combinations of datasets (and their subsets), algorithms, evaluation measures and parameter settings for which the results can be reported. While the experimentation was comprehensive, only a selected set of relevant results are presented in the dissertation for brevity and conciseness. We first present results of meter inference with the bar pointer model as a baseline, followed by meter tracking for different model and inference extensions. Informed meter tracking is then discussed. A final summary of results over all the Indian art music datasets is also presented for a comparison of the performance of different approaches. 
+\subsection{Meter inference}\label{sec:res:meterInf}
+\input{chapters/chap5/meterInfResults}
+%
+\subsection{Meter tracking}\label{sec:res:meterTrack}
+\input{chapters/chap5/meterTrackResultsBPM}
+% 
+\subsubsection{Mixture observation model (\momodel)}
+\input{chapters/chap5/meterTrackResultsMOM}
+% 
+\subsubsection{Section pointer model}
+\input{chapters/chap5/meterTrackResultsSPM}
+% 
+% The results on inference extensions are now presented: 
+\subsubsection{Inference extensions}
+\input{chapters/chap5/meterTrackResultsInfExt}
+% 
+\subsection{Informed meter tracking}
+\input{chapters/chap5/tempInfMeterTrackResults}
+\input{chapters/chap5/tempSamaInfMeterTrackResults}
+% 
+\subsection{Summary of results}
+A summary of the results to compare the performance of different algorithms is presented here. To compare results across algorithms, we pool the results from all the relevant Indian music datasets together and present the mean performance for the algorithm. It is to be noted that though a mean over all datasets is presented, the training and testing are separate for each dataset (for meter inference) and for each \gls{tala} within a dataset (for meter tracking).
+\begin{table}[t]
+\setlength{\tabcolsep}{1.4\tabcolsep}
+\centering
+\begin{tabular}{@{}LLrCCCCCCCC@{}} \toprule
+ & Algo. &ID& $\fmeas_b$ & $\amlt_{,b}$ & $\infoGain_b$ && $\fmeas_{s}$ && \multicolumn{2}{c}{Tempo} \tabularnewline 
+& && & & Bits && && \gls{CML} & \gls{AML} \tabularnewline \midrule 
+& \acrshort{hmmprior} &1& 0.648 & 0.605 & 1.21 && 0.443 && 0.51 & 0.72 \tabularnewline 
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{Inf.}} & \acrshort{pfprior} &2& 0.730 & 0.776 & 1.77 && 0.505 && 0.67 & 0.92 \tabularnewline \midrule 
+ & \acrshort{hmmprior} &3& 0.707 & 0.677 & 1.36 && 0.618 && 0.67 & 0.77 \tabularnewline 
+ & \acrshort{pfprior} &4& 0.747 & 0.774 & 1.73 && 0.645 && 0.79 & 0.89 \tabularnewline \addlinespace[2pt]
+ & \acrshort{pfmix} &5& 0.750 & 0.775 & 1.73 && 0.662 && 0.79 & 0.88 \tabularnewline 
+\multirow{-4}{*}{\rotatebox[origin=c]{90}{Track}} & \acrshort{pfsec} &6& 0.779 & 0.817 & 1.92 && 0.704 && 0.81 & 0.91 \tabularnewline \midrule
+& \acrshort{pfprior} &7& 0.809 & 0.950 & 2.32 && 0.822 && 0.99 & 0.99 \tabularnewline 
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{t-Tr.}} & \acrshort{pfsec} &8& 0.813 & 0.954 & 2.35 && 0.857 && 1.00 & 1.00 \tabularnewline \midrule
+& \acrshort{pfprior} &9& 0.830 & 0.943 & 2.35 && 0.896 && 1.00 & 1.00 \tabularnewline 
+\multirow{-2}{*}{\rotatebox[origin=c]{90}{ts-Tr.}} & \acrshort{pfsec} &10& 0.849 & 0.943 & 2.36 && 0.931 && 1.00 & 1.00 \tabularnewline \bottomrule
+\end{tabular}
+\caption[Summary of meter analysis performance on Indian art music datasets]{Summary of meter analysis results on Indian music datasets. The meter analysis tasks are shown in the first column - with Inf., Track, t-Tr., and ts-Tr. referring to meter inference, meter tracking, tempo-informed meter tracking, and tempo-sama-informed meter tracking, respectively. The second column shows the different models and algorithms. The table shows the tempo estimation performance at \gls{CML} and \gls{AML}, beat and \gls{sama} (downbeat) tracking performance with different measures. The column ID on third column corresponds to the labels used in \protect\figref{fig:statTest:all}, which shows the results of statistical significance tests on these algorithms.}\label{tab:resSummaryAll:IAM}
+\end{table}
+% 
+\begin{figure}[t]
+\centering
+    \subfloat[Beat f-measure ($\fmeas_b$)]{\label{fig:statTest:bfmeas}
+      \includegraphics[scale=1]{meterTrack/bFmeas-statTest.png}
+    } \hspace{0.1cm}
+    \subfloat[\Gls{sama} f-measure ($\fmeas_s$)]{\label{fig:statTest:sfmeas}
+      \includegraphics[scale=1]{meterTrack/sFmeas-statTest.png}
+    }\\
+    \subfloat[Beat $\amlt$ ($\amlt_{,b}$)]{\label{fig:statTest:bamlt}
+      \includegraphics[scale=1]{meterTrack/bAMLt-statTest.png}
+    } \hspace{0.1cm}
+    \subfloat[Beat information Gain ($\infoGain_b$)]{\label{fig:statTest:binfogain}
+      \includegraphics[scale=1]{meterTrack/bInfoGain-statTest.png}
+    }
+\caption[Results of statistical significance testing of meter analysis results on Indian art music datasets]{Results of statistical significance testing of meter analysis results on Indian art music datasets. The figure shows the results for the four different performance measures: Beat f-measure ($\fmeas_b$), \Gls{sama} f-measure ($\fmeas_s$), Beat $\amlt$ ($\amlt_{,b}$) and Beat information gain ($\infoGain_b$) in panels (a), (b), (c), and (d), respectively. For each measure, the figure shows the results of a pairwise statistical test between methods (algorithms) numbered 1-10 as a matrix. A gray box with numeral 1 indicates a statistically significant difference (at $p=0.05$) while a white box with numeral 0 indicates a difference that is not statistically significant. The methods 1-10 map to the ID shown in column-3 of \tabref{tab:resSummaryAll:IAM}.}\label{fig:statTest:all} %: 1 - Meter inference with \acrshort{hmmprior}, 2 - Meter inference with \acrshort{pfprior}, 3 - Meter tracking with \acrshort{hmmprior}, 4 - Meter tracking with \acrshort{pfprior}, 5 - Meter tracking with \acrshort{pfmix}, 6 - Meter tracking with \acrshort{pfsec}, 7 - Tempo-informed meter tracking with \acrshort{pfprior}, 8 - Tempo-informed meter tracking with \acrshort{pfsec}, 9 - Tempo-sama-informed meter tracking with \acrshort{pfprior}, 10 - Tempo-sama informed meter tracking with \acrshort{pfsec}.
+\end{figure}  
+
+
+A paired sample t-test with $p=0.05$ is used to assess statistically significant differences between the performances of algorithms. Statistical significance tests are done for the meter inference, meter tracking (including model extensions \momodel\ and \spmodel), and informed meter tracking methods by pooling the results over all Indian music datasets (\acrshort{CMDs}, \acrshort{HMDs}, \acrshort{HMDl} datasets - 269 pieces in total). Statistical significance tests are done for \bpmodel\ inference extensions (\acrshort{pfacc}, \acrshort{pfpkhop}, \acrshort{pfobshop}) by pooling the results over \acrshort{CMDs} and \acrshort{HMDs} (210 pieces in total) to compare with \acrshort{pfprior}.
+
+We pool the results of meter inference, meter tracking (model extensions), tempo-informed tracking, and tempo-sama-informed tracking on all the Indian music datasets and present it in \tabref{tab:resSummaryAll:IAM}. The results of statistical significance tests between these approaches is presented in \figref{fig:statTest:all}. \tabref{tab:resSummaryAll:IAM} and \figref{fig:statTest:all} are to be analyzed in conjunction. In both the table and the figure, since $\nrhythmPatts=1$, note that \acrshort{pfmix} is equivalent to \acrshort{pfprior}. 
+
+From \tabref{tab:resSummaryAll:IAM}, we see a consistent increase over the rows of the table across different meter analysis experiments (inference, tracking and informed tracking) indicating that incorporating additional prior information leads to improved meter analysis. Informed meter tracking has the best performance, while we see that meter tracking performance is mid-way between inference and informed meter tracking. 
+
+The \figref{fig:statTest:all} shows that \acrshort{pfprior} and \acrshort{pfmix} are equivalent and produces results that are not statistically significantly different for all performance measures. The panel (a) in the figure for beat f-measure ($\fmeas_b$) shows that \acrshort{pfprior} algorithm in inference and tracking have statistically insignificant differences. In addition, \acrshort{pfprior} and \acrshort{pfsec} in tempo-informed tracking have insignificant differences with \acrshort{pfprior} in tempo-\gls{sama}-informed tracking. \Gls{sama} f-measure ($\fmeas_s$) shown in panel (b) indicates statistically insignificant differences between \acrshort{hmmprior} and \acrshort{pfprior}. 
+
+The \spmodel\ shows statistically significant improvement over the methods that use \bpmodel\ indicating the use of section length shorter patterns for tracking downbeats. The significance results of beat $\amlt_{,b}$ measure in panel (c) is comparable to that for beat f-measure. Informed tracking methods have several statistically insignificant differences among themselves with the beat $\amlt_{,b}$ measure since the correct metrical level is already provided to the informed tracking algorithm, and hence leads to similar performance. An acceptable beat information gain ($\infoGain_b$ > 1.5 bits) is obtained in most cases, with several statistically insignificant differences in informed tracking. 
+
+To summarize the results from \tabref{tab:resSummaryAll:IAM} and \figref{fig:statTest:all}, we see that informed tracking and algorithms using \spmodel\ improve \gls{sama} tracking performance significantly, while beat tracking performance also improves, but to a lesser extent. 
+
+For an analysis and comparsion of inference extensions, we pool the results on Indian music datasets \acrshort{CMDs} and \acrshort{HMDs} and present it in \tabref{tab:resSummaryInfExt:IAM}. We compare the extensions \acrshort{pfacc}, \acrshort{pfpkhop} and \acrshort{pfobshop} with the baseline meter tracker \acrshort{pfprior}. In the table, since $\nrhythmPatts=1$, note that \acrshort{pfacc} is equivalent to \acrshort{pfprior}. Statistical tests indicate that for all measures, \acrshort{pfprior} and \acrshort{pfacc} are equivalent and show no statistically significant difference in performance. In addition, for all measures, \acrshort{pfpkhop} and \acrshort{pfobshop} both give significantly lower performance compared to \acrshort{pfprior}. The hop inference extensions need further improvement and do not match up to the performance of doing a full inference at every frame. % The results of statistical significance tests between these approaches is presented in \figref{fig:statTestInfExt:all}. \tabref{tab:resSummaryInfExt:IAM} and \figref{fig:statTestInfExt:all} are to be analyzed in conjunction.
+%% The small table of inference extensions
+\begin{table}
+\setlength{\tabcolsep}{1.5\tabcolsep}
+\centering
+ \begin{tabular}{@{}LCCCCCCCCC@{}} \toprule
+Algo. &ID& $\fmeas_b$ & $\amlt_{,b}$ & $\infoGain_b$ && $\fmeas_{s}$ && \multicolumn{2}{c}{Tempo} \tabularnewline 
+&& & & Bits && && \gls{CML} & \gls{AML} \tabularnewline \midrule 
+\acrshort{pfprior} &1& 0.852 & 0.848 & 1.83 && 0.715 && 0.90 & 0.97 \tabularnewline \addlinespace[3pt]
+\acrshort{pfacc} &2& 0.850 & 0.849 & 1.82 && 0.716 && 0.90 & 0.97 \tabularnewline 
+\acrshort{pfpkhop} &3& 0.579 & 0.566 & 0.63 && 0.240 && 0.85 & 0.93 \tabularnewline 
+\acrshort{pfobshop} &4& 0.784 & 0.761 & 1.40 && 0.612 && 0.85 & 0.94 \tabularnewline \bottomrule
+\end{tabular}
+\caption[Summary of meter tracking performance of inference extensions]{Summary of meter tracking performance of inference extensions on \acrshort{CMDs} and \acrshort{HMDs} datasets. The second column shows the different algorithms. The table shows the tempo estimation performance at \gls{CML} and \gls{AML}, beat and \gls{sama} (downbeat) tracking performance with different measures.}\label{tab:resSummaryInfExt:IAM} % The column ID on second column corresponds to the labels used in \protect\figref{fig:statTestInfExt:all}, which shows the results of statistical significance tests on these results.
+\end{table}
+%% The small table of R=2
+\begin{table}[t]
+\setlength{\tabcolsep}{1.5\tabcolsep}
+\centering
+ \begin{tabular}{@{}LCCCCCCCCC@{}} \toprule
+Algo. && $\fmeas_b$ & $\amlt_{,b}$ & $\infoGain_b$ && $\fmeas_{s}$ && \multicolumn{2}{c}{Tempo} \tabularnewline 
+&& & & Bits && && \gls{CML} & \gls{AML} \tabularnewline \midrule 
+\acrshort{pfprior} && 0.735 & 0.751 & 1.68 && 0.641 && 0.77 & 0.88 \tabularnewline \addlinespace[3pt]
+\acrshort{pfmix} && \textbf{0.749} & \textbf{0.773} & \textbf{1.75} && 0.660 && 0.78 & 0.89 \tabularnewline \bottomrule
+\end{tabular}
+\caption[Comparing the meter tracking performance of \acrshort{pfprior} and \acrshort{pfmix} algorithms]{Comparing the meter tracking performance of \acrshort{pfprior} and \acrshort{pfmix} algorithms on Indian art music datasets for $\nrhythmPatts=2$ patterns. Numbers in bold for the beat and \gls{sama} tracking measures indicate a statistically significant improvement.}\label{tab:trackRtwo:AMPFoAMPFm}
+\end{table}
+
+With that summary of results, we now focus on some more analysis with $\nrhythmPatts = 2$ comparing meter tracking performance of \acrshort{pfprior} with \acrshort{pfmix} and \acrshort{pfacc}.  \tabref{tab:trackRtwo:AMPFoAMPFm} shows a summary of results over all the Indian music datasets for meter tracking with \acrshort{pfprior} and \acrshort{pfmix} and $\nrhythmPatts = 2$. An analysis showed that there is no statistically significant difference in results between $\nrhythmPatts = 1$ and $\nrhythmPatts = 2$ for either \acrshort{pfprior} or \acrshort{pfmix} (for all measures). However, for $\nrhythmPatts = 2$, the beat tracking measures show an improvement for \acrshort{pfmix} over \acrshort{pfprior}. For the case of \acrshort{pfacc} compared with \acrshort{pfprior} however, there was no statistically significant improvement with more patterns, showing the need for further exploration of the end-of-bar sampling \gls{AMPF} algorithm to improve its performance. 
+% \comment{Place to do final set of inferences from experiments, and conclusions}
+\section{Conclusions}
+We defined different meter analysis tasks within the context of Indian art music, pointing out the distinctions between meter inference, meter tracking and informed meter tracking. After a set of preliminary experiments on Carnatic music, we explored Bayesian models for jointly tracking several aspects of meter. The state of the art bar pointer model was presented, and several model and inference extensions were proposed to improve meter analysis. 
+
+An extensive evaluation of different meter analysis models and algorithms was discussed for different Indian art music datasets, with Ballroom dataset results reported for comparison. Indian art music, with complex metrical structures is an ideal case to study the performance of novel methods for meter analysis and hence such an evaluation is valuable to improve state of the art in meter tracking in \gls{MIR}. %To the best of our knowledge, the work in this chapter is the first collective and comprehensive work on meter analysis in Carnatic and Hindustani music. 
+
+The Bayesian models explicitly considered musically relevant information for meter analysis, leading to culture-aware algorithms. However, the algorithms and models are flexible and can easily adapt to cyclical metrical structures in other music cultures such as Turkish makam music (\textit{usul}) and to Arab-andalusian music (\textit{mîzân}). Such Bayesian machine learning models require a small amount of beat and downbeat annotated training data from which we can learn these models and build specific algorithms. Exploring such extensions to different music cultures is one of the goals of future work in the area. 
+
+The \spmodel\ shows significant promise in automatic meter analysis. It is a flexible model that can track any cyclical metrical structure by tracking smaller meaningful sub-patterns of the cycle. It provides a significant improvement with Indian music, and it would be fruitful to explore it further in other music cultures. It additionally goes on to show that tracking shorter length patterns is useful for tracking long duration metrical structures, an intuitive conclusion considering that several additive meters are tracked that way. 
+
+The results were mostly reported on the \acrshort{CMDs}, \acrshort{HMDs}, and \acrshort{HMDl} datasets that consist of two minute long pieces. However, as reported by \citeA{ajay:15:pf} and as seen from additional experiments, these algorithms extend to full length pieces in Carnatic music, showing an equivalent performance. While computational complexity is one factor for meter analysis in full length pieces, there can be several ways in which it can be reduced and the approaches described in the chapter can be applied. A future evaluation on a larger dataset with full length pieces, such as the rhythm annotated pieces in \acrshort{HMDo} and \acrshort{CMDo} collections will further boost such a claim. 
+
+One main limitation of the algorithms presented in the chapter was the assumption of a single \gls{tala} for the whole audio recording presented to the algorithm. While this is a fair and realistic assumption for Carnatic music, which is distributed as segmented recordings containing a single piece, Hindustani music recordings can have two or more pieces in different \gls{taal} and \gls{lay}. A rhythm based segmentation might be necessary there before applying the meter analysis algorithms. Such segmentation could be performed using, e.g. Bayesian change point detection \cite{barber:11:bayesian}, a problem that needs further exploration.
+
+The approaches in the chapter utilized bar/section length rhythm patterns for meter tracking. Indian art music is replete with several rhythmic patterns and hence should benefit algorithms that use multiple patterns to model a cycle. However, the experiments did not show such an improvement. There was no statistically significant improvement observed with additional rhythmic patterns ($\nrhythmPatts > 1$). This can be primarily attributed the simplistic \gls{GMM} based observation model and the spectral flux based feature that fail to capture nuances from multiple patterns and model them effectively. Better features that can capture nuances and a better observation model need to explored to utilize the variability in patterns we encounter in Indian art music and use them for meter analysis. 
+
+\Gls{vilambit} (slow tempo) pieces in Hindustani music pose a significant challenge for meter tracking. They are further a challenge for evaluating a meter tracker output. During the rendering of metrical cycles as long as a minute, the \glspl{matra} within the cycle are quite flexibly rendered with expressive timing. In addition, given the large inter-\gls{matra} interval, larger errors in tracking are acceptable for listeners. However, the \gls{matra} at the beginning and end of the cycle are more important to keep the time and hence have to be more accurate. An evaluation measure that treats all the beats of an output as the same is not the best evaluation measure for such a case. The standard evaluation measures considered in the thesis, including the continuity measures $\cmlt$ and $\amlt$, cannot handle such cases where there needs to different weights on errors depending on metrical position and tempo. In the evaluation of \acrshort{HMDl} pieces in this chapter, we used 6.25\% of the median inter-\gls{matra} interval as the error window for all \gls{matra} of the piece. Though it allows for more flexibility in evaluation of long duration metrical cycles, better measures that can consider the metrical position might be more meaningful. Such measures are to be further developed and tested to reflect a more accurate measure of performance of the meter tracking algorithms from a listener's perspective. 
+
+A comparison across different \glspl{tala} showed that longer \glspl{tala} that have a higher diversity of patterns played in them are more difficult to track, e.g. \gls{adi} \gls{tala} in Carnatic music. \Gls{vilambit} \gls{ektal} in Hindustani music is also difficult to track owing to its long duration cycles and equal length \glspl{vibhaag}. The section length rhythmic patterns in \gls{ektal} are equal in length and similar, which is confusing to a tracker that uses only spectral energy based features. In summary, longer \glspl{tala} that have wider scope for improvisation are difficult to track, with longer duration cycles adding further to tracking complexity. 
+
+Apart from the percussion patterns played on mridangam and \gls{tabla} that are indicative of the position in metrical cycle, in many cases, melodic patterns also indicate the position in cycle. This is further true in compositional forms of both Hindustani and Carnatic music, which are composed in a specific \gls{tala}. Melody also can be used to track the progression through a \gls{tala} with several melodic and lyrical markers indicating the \gls{sama}. Incorporating melody and lyrics based features into the observation model is hence hypothesized to additionally help to improve meter analysis performance. 
+
+The presented Bayesian models can be further improved to incorporate other structures and priors that can be utilized for improving meter tracking - such as tighter bounds on tempo, tighter restriction on continuity, and allowance for errors such a skipping a beat. This is in addition to the ideas explored already: such as hop inference that aims to track meter only at specific event cues. Such models need to be further explored, with suitable and efficient inference algorithms. The computationally efficient mixture observation model and the inference extensions presented in the chapter show some promise, but need further improvement. They can be better utilized with more rhythmic patterns modeling a \gls{tala}, which needs more diverse features. The use of better features and faster inference with better models can be a focus in future research on the topic. Recent approaches that use deep learning to build observation models have also seen some success~\cite{bock:11:nnbeat}, motivating us to explore them further. 
+
+The meter analysis algorithms discussed in the chapter were developed within the context of CompMusic project and hence are aligned with its goals to lead towards defining relevant rhythm similarity measures. Meter analysis is the first step towards that goal. Automatic meter analysis provides valuable content based metadata for a piece of music with several useful applications: a few of them are detailed in \chapref{chap:conclusions}. 
+% 
+% 
+% \begin{figure}
+% \centering
+%     \subfloat[Beat f-measure ($\fmeas_b$)]{\label{fig:statTestInfExt:bfmeas}
+%       \includegraphics[scale=1]{meterTrack/bFmeas-statTest-infExt.png}
+%     } \hspace{0.1cm}
+%     \subfloat[\Gls{sama} f-measure ($\fmeas_s$)]{\label{fig:statTestInfExt:sfmeas}
+%       \includegraphics[scale=1]{meterTrack/sFmeas-statTest-infExt.png}
+%     }\\
+%     \subfloat[Beat $\amlt$ ($\amlt_{,b}$)]{\label{fig:statTestInfExt:bfmeas}
+%       \includegraphics[scale=1]{meterTrack/bAMLt-statTest-infExt.png}
+%     } \hspace{0.1cm}
+%     \subfloat[Beat information Gain ($\infoGain_b$)]{\label{fig:statTestInfExt:sfmeas}
+%       \includegraphics[scale=1]{meterTrack/bInfoGain-statTest-infExt.png}
+%     }
+% \caption[Results of statistical significance testing of meter tracking results for inference extensions]{Results of statistical significance testing of meter tracking results for inference extensions. The figure shows the results for the four different performance measures: Beat f-measure ($\fmeas_b$) in panel (a), \Gls{sama} f-measure ($\fmeas_s$) in panel (b), Beat $\amlt$ ($\amlt_{,b}$) in panel (c), and Beat information Gain ($\infoGain_b$) in panel (d). For each measure, the figure shows the results of a pairwise statistical test between methods (algorithms) numbered 1-4 as a matrix. A gray box with numeral 1 indicates a statistically significant difference ($p=0.05$) while a box with numeral 0 indicates a difference that is not statistically significant. The meter tracking methods 1-4 map to the ID shown in \tabref{tab:resSummaryInfExt:IAM}: 1 - \acrshort{pfprior}, 2 - \acrshort{pfacc}, 3 - \acrshort{pfpkhop}, 4 - \acrshort{pfobshop}.}\label{fig:statTestInfExt:all}
+% \end{figure}
+%
+% 
+%
+% With a wide range of tempo, cycles as long as a minute, and non-isochronous subdivisions of the cycle, Hindustani music is a suitable case to experiment with for extending the horizon of the state of the art in meter tracking \cite{ajay:14:rhythmJNMR}. There has been some previous work in rhythmic analysis of Hindustani music in meter estimation \cite{sankalp:12:meter} and \gls{taal} recognition \cite{miron:11:thesis}, but to the best of our knowledge, this is the first work to propose meter tracking for Hindustani music.
+% 
+%
+%\note{Problem description and different levels, recap}
+%\begin{enumerate}
+%\item Meter Inference: Estimate meter type, tempo, beats, sections, and downbeats, all together...
+%\item Meter Tracking: Given meter type, estimate tempo, beats, sections, and downbeats, all together... (most relevant)
+%\item Tempo informed meter tracking: Given the meter type and a ``tight" tempo range, estimate tempo, beats, sections, and downbeats. Mainly to see the effects of tempo on tracking performance.  
+%\item Tempo + \gls{sama} informed tracking: Given the meter type, a ``tight" tempo range and the first instance of the downbeat, estimate tempo, beats, sections, and downbeats.
+%\item Downbeat tracking: Given all the beat positions (and indirectly the tempo, and the meter type), estimate the downbeat. Not a relevant problem. 
+%\item Beat Tracking: Relevant, but ill defined. 
+%\end{enumerate}
+%
+%\note{Explain which of these problems are addressed in the thesis: Mainly Meter tracking, but also some expts on tempo informed meter tracking and meter inference. Methods: Preliminary experiments based on DP and features, followed by Bayesian Models. Evaluations are provided on CMD (all), CMDf(some), HMDf (some), HMDs (some), HMDl (some).}
+
+%\note{Model structure: The bar pointer model (classic), the simplified bar pointer model (ISMIR 2015), the section pointer model (ICASSP 2016, submitted). Explain how they can be used for meter inference, what do the different variants signify, and what assumptions they make.}
+%\note{Priors: How tempo informed tracking works exactly}
+%\note{Transition Model: No trans, prior trans, fixed trans for patterns, Tempo transitions: The way it depends on ranges now}
+%\note{Observation model: Regular, mixture observation model, and gated observation model}
+%\note{All presented in a sequence, have to organize this better once all the results are compiled and present.}
+%\comment{HMM results (ISMIR 2014): CMD, TMD, Cretan, Ballroom refer to Florian's work}
+%\comment{AMPF\_obs results on Carnatic music (ISMIR 2015): CMDx, Ballroom dataset}
+%\comment{SPM extensions on Carnatic and Hindustani music (ICASSP 2016): HMDx, CMDx (to be run)}
+%\comment{Additional expts: Tempo informed tracking, comparison of performance}
+%\dtext{Journal paper material here: Gated observation model, full section pointer model, evaluations on Indian music, Cretan music, Turkish music.}
+%\comment{Mainly DBNs, that track different aspects of meter. Bayesian models: Formulation and inference in detail, HMM and PF variants.}
+%%% Canonical forms of results tables
+% \begin{table}
+% \centering
+% \begin{tabular}{@{}llcccccccc@{}}
+% \toprule 
+% & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline 
+% & \nrhythmPatts & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline
+% \midrule 
+% \multirow{5}{*}{\rotatebox[origin=c]{90}{Sama}} & \Gls{adi} & 0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% & \Gls{rupaka} &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% & \Gls{mishra chapu} &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% & \Gls{khanda chapu} &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline \addlinespace[2pt]
+% & \textbf{Mean} &  \textbf{0.893} & \textbf{0.893} && \textbf{0.893} & \textbf{0.893} && \textbf{2.89} & \textbf{2.89}\tabularnewline
+% \midrule 
+% \multirow{5}{*}{\rotatebox[origin=c]{90}{Beat}} & \Gls{adi} & 0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% & \Gls{rupaka} &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% & \Gls{mishra chapu} &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% & \Gls{khanda chapu} &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline \addlinespace[2pt]
+% & \textbf{Mean} &  \textbf{0.893} & \textbf{0.893} && \textbf{0.893} & \textbf{0.893} && \textbf{2.89} & \textbf{2.89}\tabularnewline
+% \bottomrule
+% \end{tabular}
+% \protect\caption{test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4.  test 1 test 2 test 3 test 4. }\label{tab:canon:result1}
+% \end{table}
+% 
+% \begin{table}
+% \centering
+% \begin{tabular}{@{}llcccccccc@{}} \toprule
+%  & Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+%  & $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+% \multirow{5}{*}{\rotatebox[origin=c]{90}{\Gls{sama}}} & \Gls{adi} & 1.634 & 2.634 && 1.922 & 2.922 && 5.58 & 6.58\tabularnewline
+%  & \Gls{rupaka} & 1.804 & 2.804 && 1.967 & 2.967 && 5.21 & 6.21\tabularnewline
+%  & \Gls{mishra chapu} & 1.930 & 2.930 && 1.984 & 2.984 && 5.46 & 6.46\tabularnewline
+%  & \Gls{khanda chapu} & 1.868 & 2.868 && 1.958 & 2.958 && 5.03 & 6.03\tabularnewline \addlinespace[2pt]
+%  & \textbf{Mean} & \textbf{1.808} & \textbf{2.808} && \textbf{1.958} & \textbf{2.958} && \textbf{5.32} & \textbf{6.32}\tabularnewline \midrule
+% \multirow{5}{*}{\rotatebox[origin=c]{90}{Beat}} & \Gls{adi} & 1.808 & 2.808 && 1.958 & 2.958 && 5.32 & 6.32\tabularnewline
+%  & \Gls{rupaka} & 1.796 & 2.796 && 1.933 & 2.933 && 3.46 & 4.46\tabularnewline
+%  & \Gls{mishra chapu} & 1.864 & 2.864 && 1.973 & 2.973 && 3.85 & 4.85\tabularnewline
+%  & \Gls{khanda chapu} & 1.943 & 2.943 && 1.936 & 2.936 && 2.97 & 3.97\tabularnewline \addlinespace[2pt]
+%  & \textbf{Mean} & \textbf{1.892} & \textbf{2.892} && \textbf{1.950} & \textbf{2.950} && \textbf{3.33} & \textbf{4.33}\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-informed tracking with AMPF-prior-allHop-bar on \acrshort{CMDs} dataset]{Results of tempo-informed tracking with AMPF-prior-allHop-bar on \acrshort{CMDs} dataset}
+% \end{table}
+% 
+% \begin{table}
+% \centering
+% \begin{tabular}{@{}lcccccccc@{}}
+% \toprule 
+% Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+% $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline
+% \midrule 
+% Sama Tracking &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline \addlinespace[3pt]
+% Beat Tracking &  0.893 & 0.893 && 0.893 & 0.893 && 2.89 & 2.89\tabularnewline
+% \bottomrule
+% \end{tabular}
+% \protect\caption{test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4. test 1 test 2 test 3 test 4.  test 1 test 2 test 3 test 4. }\label{tab:canon:allresults}
+% \end{table}
+% 
+% \begin{table}
+% \centering
+% \begin{tabular}{@{}lcccccccc@{}} \toprule
+% Measure & \multicolumn{2}{c}{\fmeas} && \multicolumn{2}{c}{\amlt} && \multicolumn{2}{c}{\infoGain}\tabularnewline \addlinespace[2pt]
+% $\nrhythmPatts$ & 1 & 2 && 1 & 2 && 1 & 2\tabularnewline \midrule
+% \Gls{sama} Tracking & 1.808 & 2.808 && 1.958 & 2.958 && 5.32 & 6.32\tabularnewline \addlinespace[3pt] 
+%  Beat Tracking & 1.892 & 2.892 && 1.950 & 2.950 && 3.33 & 4.33\tabularnewline \bottomrule
+% \end{tabular}
+% \caption[tempo-informed tracking with AMPF-prior-allHop-bar on \acrshort{CMDs} dataset]{Results of tempo-informed tracking with AMPF-prior-allHop-bar on \acrshort{CMDs} dataset}
+% \end{table}
+%
+%Global settings for experiments
+%\begin{itemize}
+	%\item Two fold cross validation, mean over three runs
+	%\item All tempo ranges are learned from training data, with 20\% margin allowed on learned ranges.  % Move to expts section: In this thesis, we assume uniform priors on all variables, within the allowed ranges of tempo. In the dissertation, for the meter inference and tracking tasks, we learn the tempo ranges directly from training data. 
+	%\item HMM parameter values list
+	%\item PF parameter values list 
+	%\item %Results reported as mean over all rhythm classes for each dataset. A final summary of results over all datasets is also presented. 
+	%\item %Meter Inference results are presented first. Followed by meter tracking: model and inference extensions. Tempo informed tracking and Tempo-sama informed tracking results follow next. 
+	%\item %Evaluation: b-Fmeas ($\fmeas_b$), b-AMLt ($\amlt_{,b}$), b-infoGain ($\infoGain_b$), s-Fmeas ($\fmeas_s$) are used. Fmeas computed using 70 ms window for \acrshort{CMDs}, \acrshort{HMDs}, and Ballroom datasets - smaller cycles. But for \acrshort{HMDl}, a bigger margin window is allowed since cycles are very long and current BT evaluation approaches were not designed with such long cycles in mind, 70ms is very tight. To account for the length of the cycle in the margin, a 6.25\% median inter annotation interval is used as margin, as used in many beat tracking evaluations. This corroborates well with vilambit pieces since there can be significant freedom in pulsation, and also that larger errors also are unnoticed since the pieces are not rhythmically dense. The pulsation is also beyond the duration of perceptual present. 
+	%\item %For evaluating median tempo estimation performance, we compare the median estimated tempo and the median annotated ground truth tempo with a 5\% margin. We compute both CML and AML accuracy. AML assumes a tempo scaling by 0.25, 0.5, 1, 2, 4 to be correct. Tala recognition accuracy is also reported for meter inference. 
+%\end{itemize}
+% The tempo ranges $[\dot{\phi}_{\textrm{min}}, \dot{\phi}_{\textrm{max}}]$ are learned from the training data of each fold, with an additional 20\% margin for unseen data. For the SPM, the length of longest section, $M=1600$, is set for the four \gls{matra} long sections in \gls{teental} and other section lengths are scaled accordingly. The number of particles is set equal to $N_p=1500\cdot V$. For the BPM hence, since $V=1$, $M=1600$ corresponds to the whole of the longest cycle(\gls{teental}) and $N_p=1500$. For the AMPF, we set $\sigma_n = 0.02$ and the maximum number clusters to 200. The other AMPF parameters are identical to the values used in \cite{Krebs2014:pf}.
+% 
+% The tempo ranges were manually set for Carnatic music as $\dot{\phi} \in [4,15]$ (cycle lengths between 1.33\,s and 8\,s) and $\dot{\phi} \in [6,32]$ (bar lengths between 0.75\,s to 5.3\,s) for the Ballroom dataset. With $M_{\mathrm{max}} = 1600$ (corresponds to \gls{adi} \gls{tala} with 8 beats/cycle), the length of cycle $M$ and the number of beats $B$ for each \gls{tala} is shown in~\tabref{tab:dataset}. For Ballroom dataset, we used $M=1600$ and $M=1200$ for tracking time signatures 4/4 and 3/4, respectively. For the HMM, we use $p_n=0.02$ as in~\cite{krebs:13:bpm}, and for the AMPF, we use $\sigma_{\dot\phi}=10^{-4}\cdot M$. We explore the performance with $R = \{1,2,4\}$, with the number of particles set to $N_p=1500 \cdot R$. The other AMPF parameters are identical to the values used in \cite{Krebs2014:pf}.
+%
+% \begin{itemize}
+% 	% \item Results presented only for $R=1$. $R=2$ does not show much improvement. When necessary, performance with $R=2$ is indicated. With $R=1$, model extension \acrshort{pfmix} and inference extension \acrshort{pfacc} are equivalent to the baseline \acrshort{pfprior}. 
+% 	% \item Results specific to each tala/rhythm class are discussed when needed in text. 
+% 	% \item Also, all the meter tracking experiments on Hindustani music are not just tala informed, but also lay (tempo class) informed, i.e. the algorithm knows if it is tracking long cycles or short cycles. 
+% 	%\item Performance on ballroom dataset is shown for meter inference and tracking tasks. 
+% 	\item Inference extensions are only evaluated on \acrshort{CMDs} and \acrshort{HMDs} datasets (Ballroom dataset shown for reference) and compared with \acrshort{pfprior}. Statistical significance tests are done for inference extensions (\acrshort{pfacc}, \acrshort{pfpkhop}, \acrshort{pfobshop}) by pooling the results over \acrshort{CMDs} and \acrshort{HMDs} (210 pieces in total) to compare with \acrshort{pfprior}. 
+% 	\item Statistical significance tests are done for all the inference, tracking (model extensions), and informed tracking methods by pooling the results over all Indian music datasets (\acrshort{CMDs}, \acrshort{HMDs}, \acrshort{HMDl} - 269 pieces in total).
+% 	\item A paired sample t-test with p=0.05 is used to assess statistically significant differences. 
+% \end{itemize} 
+%
+%
+%
+%
+% \note{\textit{Chapter in brief: The main chapter of the thesis discussing meter inference and tracking, first with traditional signal processing approaches and later on with Bayesian models using HMM and PF inference schemes. Present and discuss several models applied to both Carnatic and Hindustani music datasets, with additional evaluation on ballroom dataset and Turkish datasets. The chapter is comprehensive and needs to discuss several results coherently. It will include some future work in the form of gated observation model and the grand unified journal paper results. The material for the chapter are from ISMIR 2014, ICASSP 2014, ISMIR 2015, ICASSP’16, and the journal paper under preparation.}}
+%
+%The \gls{taal} cycle is the largest regularly repeating time unit;
+  %\qitem{... when a mridangam player accompanies a musician (vocalist or instrumentalist) in India, he [/she] does not merely beat the sarva laghu [standard rhythm patterns], but provides a cross-rhythmical accompaniment based on style, movement and rhythmical construction of the pieces rendered.}{\citeA[Book II, p. 18]{samba:98:southMusic} \\ \emph{Text in brackets by the author.}}
