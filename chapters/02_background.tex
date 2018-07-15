@@ -210,6 +210,63 @@ Authors              & Goal                                          & Methods  
 
 \subsection{Musical onset detection}
 
-\subsection{Lyrics-to-audio alignment and lyrics recognition}
+Most of the musical onset detection (MOD) methods follow this pipeline -- (1) calculating audio input representation, (2) onset detection function (ODF) computation, (3) onset selection. In \tabref{tab:ch2_musical_onset}, we list the method used in each MOD work.
+
+Various audio input representations are used for the first step of the pipeline, such as filtered logarithmic magnitude and phase spectrum \shortcite{Bello2005b,Bocka}. The former can be subdivided by the filterbank type -- Bark scale bands \shortcite{Bock2012b}, Mel scale bands \shortcite{Eybena,Schluter2014} or constant-Q bands \shortcite{Lacoste2007b,Bock2012c}.
+
+Depending on the techniques used, we classify ODF computation methods into three categories:
+
+\noindent\textbf{Unsupervised methods}: Methods in this category estimate ODF in an unsupervised way. Earlier methods in this category are based on calculating temporal, spectral, phase, time-frequency or complex domain features, such as energy envelope, high-frequency content, spectral difference, phase deviation and negative log-likelihoods. Bello et al. \shortcite{Bello2005b} and Dixon \shortcite{Dixon2006} both review these methods thoroughly. The state-of-the-art methods in this category are based on spectral flux feature \shortcite{Bock2012c}. Some variants such as \textit{SuperFlux} \shortcite{Bocka}, local group delay weighting \shortcite{Bock2013} are proposed to suppress the negative effect of vibrato, primarily for pitched non-percussive instruments. The advantage of these methods is that no data is needed for training the ODF, and they are computationally efficient and can often operate in online real-time scenarios.
+
+\noindent\textbf{Non-deep learning-based supervised methods}: Some methods in this category are probabilistic model-based, such as using Gaussian autoregressive models to detect the onset change point \shortcite{Bello2005b}. Toh et al. \shortcite{ChuanTohBingjunZhangYeWang2008} propose a method using two Gaussian Mixture Models to classify audio features of onset frames and non-onset frames. Chen \shortcite{Chen2016} detect the onset candidates from two ODFs, extracted features around these candidates, then used support vector machine technique to classify them.
+
+\noindent\textbf{Deep learning-based supervised methods}: The state-of-the-art performance in the MIREX Audio Onset Detection is defined by deep learning-based methods. Lacoste et al. \shortcite{Lacoste2007a,Lacoste2007b} are the earliest researchers who apply feed-forward or convolutional neural networks (CNNs) to esimtate the ODF. Eyben et al. \shortcite{Eybena} propose using recurrent neural networks (RNNs) with LSTM units to predict the input frames binarily as onset or non-onset. Schlüter and Böck \shortcite{Schluter2014} use the similar idea but replace RNNs by CNNs and adopt several novel deep learning techniques, which achieve the best performance in the MIREX Audio Onset Detection task. Huh et al. \shortcite{Huh2018} estimate time-to-event (TTE) or time-since-event (TSE) distributions from Mel-spectrograms by a CNN, then use them as a onset density predictor.
+
+The last step of the pipeline -- onset selection can be done by peak-picking \shortcite{Bock2012c} algorithm.
+
+\begin{landscape}
+\begin{table}[ht!]
+\centering
+\begin{tabular}{lc}
+\toprule
+Authors                                                        & Methods                                                                                           \\
+\midrule
+\shortcite{Bello2005b}   	& \makecell{A tutorial paper, introducing spectral feature-based,\\probability model-based and negative likelihood onset detection methods.}         \\\hline
+\shortcite{Dixon2006}      	& \makecell{Another review paper, proposing a weighted phase deviation function\\and a half-wave rectified complex difference for onset detection.}  \\\hline
+\shortcite{Lacoste2007a}    & \makecell{Feed-forward neural networks for onset detection.}                \\\hline
+\shortcite{Lacoste2007b}    & \makecell{Convolutional neural networks for onset detecion.}  		      \\\hline
+\shortcite{ChuanTohBingjunZhangYeWang2008}   & \makecell{Using GMMs model, fusion-level and\\decision-level fusion for singing onset detection.}        \\\hline
+\shortcite{Eybena}   		& \makecell{Two frame size logarithmic Mel bands input,\\Bidirectional LSTMs for binary onset classification.}         		\\\hline
+\shortcite{Bock2012c}      	& \makecell{Using logarithmic Constant-Q bands as input,\\and half wave rectified spectral difference as onset detection function.}      \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the previous studies on musical onset detection.}
+\label{tab:ch2_musical_onset}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[ht!]
+\ContinuedFloat
+\centering
+\begin{tabular}{lc}
+\toprule
+Authors                                                        & Methods                                                                                           \\
+\midrule
+\shortcite{Bock2012b}       & \makecell{3 channels logarithmic Bark bands input,\\using single direction RNN for online onset detection.}  							\\\hline
+\shortcite{Bock2013}    	& \makecell{Using local group delay (LGD) weighting of Superflux\\to suppress the false postive onsets caused by vibrato and tremolo.}   \\\hline
+\shortcite{Bocka}   		& \makecell{Introducing SuperFlux, using Maximum filter\\to suppress the vibrato ripple in the spectral flux.}        	  \\\hline
+\shortcite{Schluter2014}   	& \makecell{3 channels logarithmic Mel bands input,\\using convolutional neural networks as detection funcition.}         \\\hline
+\shortcite{Chen2016}      	& \makecell{Multiple onset detection functions, SVM onset classification.}      										  \\\hline
+\shortcite{Huh2018}      	& \makecell{Using time-to-event (TTE) or time-since-event (TSE)\\prediction for onset detection.}      \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the previous studies on musical onset detection. (continued)}
+\end{table}
+\end{landscape}
+
+\subsection{Forced alignment, lyrics-to-audio alignment and lyrics recognition}
+
+
 
 \subsection{Neural acoustic embeddings}
