@@ -267,7 +267,7 @@ Authors                                                        & Methods        
 
 \subsection{Text-to-speech alignment}
 
-Text-to-speech alignment is a process that the orthographic transcription is aligned in temporal axis with the speech audio at word, syllable or phone-level. Most of the non-commercial alignment tools are built on HTK \shortcite{Young2006HTK} or Kaldi \shortcite{Povey2011ASRU} frameworks, such as Montreal forced aligner \shortcite{McAuliffe2017} and Penn Forced Aligner \shortcite{PennForced}. These tools implement an intermediate step of automatic speech recognition (ASR) pipeline, train the HMM acoustic models iteratively using Baum-Welch or Viterbi algorithm and align audio features (e.g. MFCCs) to the HMM monophone or triphone model. Brognaux and Drugman \shortcite{brognaux2016hmm} explore the forced alignment in a small-dataset case using supplementary acoustic features and initializing the HMM silence model by voice activity detection (VAD) algorithm. To predict the confidence measure of the aligned word boundaries and to fine-tune their time positions, Serri\'{e}re et al. \shortcite{serriere2016weakly} explore an alignment post-processing method using a deep neural network (DNN). Usually, no manually boundary labeled dataset is needed for the HMM acoustic model training which is initialized by flat-start training method \shortcite{Young2006HTK}. \shortcite{pakoci2016phonetic} experiment to train HMM acoustic model by making use of a manually boundary labeled dataset in a small-dataset scenario.
+Text-to-speech alignment is a process that the orthographic transcription is aligned in temporal axis with the speech audio at word, syllable or phone-level. In \tabref{tab:ch2_speech_forced}, we list the method used in each text-to-speech alignment work. Most of the non-commercial alignment tools are built on HTK \shortcite{Young2006HTK} or Kaldi \shortcite{Povey2011ASRU} frameworks, such as Montreal forced aligner \shortcite{McAuliffe2017} and Penn Forced Aligner \shortcite{PennForced}. These tools implement an intermediate step of automatic speech recognition (ASR) pipeline, train the HMM acoustic models iteratively using Baum-Welch or Viterbi algorithm and align audio features (e.g. MFCCs) to the HMM monophone or triphone model. Brognaux and Drugman \shortcite{brognaux2016hmm} explore the forced alignment in a small-dataset case using supplementary acoustic features and initializing the HMM silence model by voice activity detection (VAD) algorithm. To predict the confidence measure of the aligned word boundaries and to fine-tune their time positions, Serri\'{e}re et al. \shortcite{serriere2016weakly} explore an alignment post-processing method using a deep neural network (DNN). Usually, no manually boundary labeled dataset is needed for the HMM acoustic model training which is initialized by flat-start training method \shortcite{Young2006HTK}. \shortcite{pakoci2016phonetic} experiment to train HMM acoustic model by making use of a manually boundary labeled dataset in a small-dataset scenario.
 
 The forced alignment is a language-dependent method, in which the acoustic models should be trained by using a corpus of certain language. Another category of text-to-speech methods is language-independent, which relies on detecting the phoneme boundary change in the temporal-spectral domain \shortcite{esposito2005text,almpanidis2009Robust}. The drawback of these methods is that the segmentation accuracies are usually poorer than the language-dependent counterparts. 
 
@@ -287,14 +287,41 @@ Authors                                                        & Methods        
 \shortcite{pakoci2016phonetic}      & \makecell{Forced alignment making use of dataset\\which has the manually labeled phone boundaries.}      \\
 \bottomrule   
 \end{tabular}
-\caption{Summary table of the previous studies on speech forced alignment.}
+\caption{Summary table of the previous studies on text-to-speech alignment.}
 \label{tab:ch2_speech_forced}
 \end{table}
 \end{landscape}
 
 \subsection{Lyrics-to-audio alignment}
 
-The second topic related to our research is the singing voice lyrics-to-audio alignment. Most of these works \cite{mesaros2008automatic, loscos1999Low, fujihara2011lyricsynchronizer, mauch2012integrating, iskandar2006syllabic,gong2015real, kruspe2015keyword, dzhambazov2015modeling} used the forced alignment method accompanied by music-related techniques. Loscos et al. \cite{loscos1999Low} used MFCCs with additional features and also explored specific HMM topologies. Fujihara et al. \cite{fujihara2011lyricsynchronizer} used voice/accompaniment separation to deal with mixed recording, and vocal detection, fricative detection to increase the alignment performance. Additional musical side information extracted from the musical score is used in many works. Mauch et al. \cite{mauch2012integrating} used chord information such that each HMM state contains both chord and phoneme labels. Iskandar et al. \cite{iskandar2006syllabic} constrained the alignment by using musical note length distribution. Gong et al. \cite{gong2015real}, Kruspe \cite{kruspe2015keyword}, Dzhambazov and Serra \cite{dzhambazov2015modeling} all used syllable/phoneme duration extracted from the musical score and decoded the alignment path by duration-explicit HMM models. Chien et al. \cite{Chien2016Alignment} introduced an approach based on vowel likelihood models. Chang and Lee \cite{Chang2017Lyrics} used canonical time warping and repetitive vowel patterns to find the alignment for vowel sequence. Some other works achieved the alignment at music structure-level \cite{muller2007lyrics} or line-level \cite{wang2004lyrically}.
+To goal of lyrics-to-audio alignment is similar to text-to-speech alignment -- aligning the lyrics with the singing voice audio at word, syllable or phone-level. In \tabref{tab:ch2_lyrics_audio}, we list the method used in each lyrics-to-audio alignment work. Most of these works \shortcite{mesaros2008automatic, loscos1999Low, fujihara2011lyricsynchronizer, mauch2012integrating, iskandar2006syllabic,gong2015real, kruspe2015keyword, dzhambazov2015modeling} use the speech forced alignment method accompanied with music-related techniques. Loscos et al. \cite{loscos1999Low} use MFCCs with additional features and also explore specific HMM topologies to take into account of singing aspiration, silence and different pronunciation possibilities. To deal with mixed recordings, Fujihara et al. \shortcite{fujihara2011lyricsynchronizer} use voice/accompaniment separation to extract clean singing voice. They also adopt vocal activity detection, fricative detection techniques to recover the consonant information lost in the separation process. 
+
+Additional musical side information extracted from the musical score is used in many works. Mauch et al. \shortcite{mauch2012integrating} use chord information such that each HMM state contains both chord and phoneme labels. Iskandar et al. \shortcite{iskandar2006syllabic} constrain the alignment by using musical note length distribution. Gong et al. \shortcite{gong2015real}, Kruspe \shortcite{kruspe2015keyword}, Dzhambazov and Serra \shortcite{dzhambazov2015modeling} all use syllable/phoneme duration extracted from the musical score as side information, and decode the alignment path by duration-explicit HMM models. Chien et al. \shortcite{Chien2016Alignment} introduce an approach based on vowel likelihood models. Chang and Lee \shortcite{Chang2017Lyrics} use canonical time warping and repetitive vowel patterns to find the alignment for vowel sequence. Some other works achieve the alignment at music structure-level \shortcite{muller2007lyrics} or line-level \shortcite{wang2004lyrically}.
+
+\begin{landscape}
+\begin{table}[ht!]
+\centering
+\begin{tabular}{lc}
+\toprule
+Authors                                                        & Methods                                                                                           \\
+\midrule
+\shortcite{loscos1999Low}   				& \makecell{Forced alignment with addtional features and special HMM topologies.}         \\\hline
+\shortcite{iskandar2006syllabic}      		& \makecell{Forced alignment using musical note length distribution.}  \\\hline
+\shortcite{fujihara2011lyricsynchronizer}   & \makecell{Treating mixed recordings with voice/accompaniment separation,\\forced alignment with phone filler topologies.}                \\\hline
+\shortcite{mauch2012integrating}    		& \makecell{Forced alignment using chord side information.}  		      \\\hline
+\shortcite{gong2015real}   					& \makecell{Forced alignment with HSMM model using vowel duration information.}        \\\hline
+\shortcite{kruspe2015keyword}   			& \makecell{Forced alignment with duration-explicit HMM model.}         		\\\hline
+\shortcite{dzhambazov2015modeling}      	& \makecell{Forced alignment with duration-explicit HMM model.}      \\\hline
+\shortcite{Chien2016Alignment}      		& \makecell{A method based on vowel likelihood model.}      \\\hline
+\shortcite{Chang2017Lyrics}      			& \makecell{A method based on canonical time wraping and repetitive vowel patterns.}      \\\hline
+\shortcite{muller2007lyrics}      			& \makecell{Structure-level DTW alignment.}      \\\hline
+\shortcite{wang2004lyrically}      			& \makecell{Line-level alignment making use of rhythm, chrous and singing voice detection.}      \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the previous studies on lyrics-to-audio alignment.}
+\label{tab:ch2_lyrics_audio}
+\end{table}
+\end{landscape}
 
 \subsection{Lyrics recognition}
 
