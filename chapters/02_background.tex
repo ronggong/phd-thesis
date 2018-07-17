@@ -323,6 +323,73 @@ Authors                                                        & Methods        
 \end{table}
 \end{landscape}
 
-\subsection{Lyrics recognition}
-
 \subsection{Neural acoustic embeddings}
+
+Neural acoustic embeddings is a technique to convert variable-length acoustic sequence into fixed-length vector using neural networks. It is a common technique that is adopted in speech field, and applied to various tasks such as Query-by-Sample search and speech recognition. In those tasks that involve measuring the similarity between speech segments, acoustic embeddings generated from neural networks allows a more efficient and accurate computation because the alignment between variable-length speech segments can be avoided. In \tabref{tab:ch2_neural_acoustic}, we list the method used in each speech neural acoustic embedding work.
+
+To embed variable-length representation of acoustic word segment such as MFCCs into fixed-length vector. \shortcite{Kampera} experiment two neural network architectures -- classification CNN and Siamese CNN. Softmax units are used in the output layer of the classification CNN, which allows it to classify input word segment into word categories in a fully-suprvised fashion. The vector output from the last CNN layer is taken as the word embedding. The hinge cosine triplet loss is used by the Siamese CNN of which the network training is done in a semi-supervised way. The penultimate layer of the Siamese CNN is taken as the word embedding such that the dimension is adjustable. RNN is a natural choice for the sequential data modelling. In the work of Settle et al. \shortcite{Settle2016a}, the CNN is replaced by RNN in both classification and Siamese architectures. A weighted random sampling method is also devised to accelerate the Siamese RNN training. The acoustic word embeddings learned from the Siamese RNN is then used in a Query-by-Example search task with a small training dataset \shortcite{Settlea}.
+
+Apart from exploring different neural network architectures to obtain an efficient word embedding, we can also take advantage of multiple information sources. Zeghidour et al. \shortcite{Zeghidour2016a} jointly learn phoneme and speaker embeddings by a single Siamese network which minimize simutanously two objectives. In the work of He et al. \shortcite{Hea}, acoustic word segment and text word segment are embeded by two different RNNs. The embeddings of the two different sources are projected into a common space and used in the objective function in a mixed way. 
+
+Neural acoustic embeddings can also be learned in an unsupervised way. Chung et al. \shortcite{Chungb} adopt sequence-to-sequence model commonly used in natural language processing tasks to learn the word embeddings. They experiment skipgrams and continous bag-of-words training methods and show a superior performance than simply reconstructing the input representation \shortcite{Chungc} 
+
+\begin{landscape}
+\begin{table}[ht!]
+\centering
+\begin{tabular}{lc}
+\toprule
+Authors                                                        & Methods  \\
+\midrule
+\shortcite{Kampera}   		& \makecell{Generating acoustic word embeddings using CNN and Siamese network.}    \\\hline
+\shortcite{Settle2016a}     & \makecell{Similar to \shortcite{Kampera}, but using RNN rather than CNN.}  \\\hline
+\shortcite{Settlea}   		& \makecell{Using Siamese network word embeddings\\for Query-by-Example search task.}     \\\hline
+\shortcite{Zeghidour2016a}  & \makecell{Using Siamese network to jointly\\learn phoneme and speaker embeddings.}   \\\hline
+\shortcite{Hea}   			& \makecell{Embedding acoustic words and character sequences\\simutanously by multi-objectives.}      \\\hline
+\shortcite{Chungb}    		& \makecell{Learning acoustic word embeddings\\in an unsupervised way using sequence-to-sequence model.}  		      \\\hline
+\shortcite{Chungc}      	& \makecell{Similar to \shortcite{Chungb}, but using skipgrams\\and continuous bag-of-words trainings rather than reconstruct the input.}      \\
+\bottomrule   
+\end{tabular}
+\caption{Summary table of the previous studies on neural acoustic embeddings.}
+\label{tab:ch2_neural_acoustic}
+\end{table}
+\end{landscape}
+
+\subsection{Evaluation metrics}
+
+A simple evaluation metric for onset detection is adopted in many state of the art works \shortcite{Eybena,Bock2012c,Bock2012b,Bock2013,Bocka,Schluter2014}. We use the same metric for our evaluation. To define a correctly detected onset, a tolerance threshold of $\tau=25$ms is chosen. If the detected onset $o_d$ lies within the tolerance of its ground truth counterpart $o_g$: $|o_d-o_g|<\tau$, we consider that it's correctly detected. A more strict metric can be defined by requiring that the label of the detected onset and that of the ground truth are identical. The F-measure is a number between 0 and 1 calculated as the harmonic mean of the precision and recall. Precision is the ratio between the number of correctly detected onsets and all detected onsets, and recall is the ratio between the number of correctly detected onsets and the total annotated onsets.  
+
+\begin{equation}
+\textrm{Precision} = \frac{\textrm{number of correctly detected onsets}}{\textrm{number of all detected onsets}}
+\end{equation}
+
+\begin{equation}
+\textrm{Recall} = \frac{\textrm{number of correctly detected onsets}}{\textrm{number of total annotated onsets}}
+\end{equation}
+
+\begin{equation}
+\textrm{F-measure} = 2 \cdot \frac{\textrm{Precison} \cdot \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}
+\end{equation}
+
+The metric presented above can also be used to evaluate alignment algorithm. However, we apply another metric for the alignment evaluation -- percentage of correct segments, which is defined as the ratio between the duration of correctly aligned segments and the total duration of the music piece. This metric has been suggested by Fujihara et al. \shortcite{fujihara2011lyricsynchronizer} in their lyrics alignment work.
+
+\begin{equation}
+\begin{split}
+\textrm{Percentage of correct segments} =\\\frac{\textrm{duration of correctly aligned segments}}{\textrm{total duration of the music piece}}
+\end{split}
+\end{equation}
+
+In this dissertation, the acoustic embedding will be always used as a representation for the similairy (distance) computation. Thus the evaluation of acoustic embedding needs to be done with the help of a simlarity (distance) measure. The ground truth label is set to 1 if two singing segments belong to the same class (phoneme, special pronunciation, etc.), 0 vice versa. We report the average precision (AP) between the pairwise similarities of the segments and the ground truth as the evaluation metric. The AP is used previously to evaluate speech word acoustic embedding \cite{Kampera,Settle2016a}. It is also suggested as the metric for imbalanced test set \cite{Davis2006}, which is the case of the pronunciation aspect evaluation.
+
+AP is defined as the area under the precision-recall curve. In pratice, it is calculated by a finite sum \shortcite{Su2015}:
+\begin{equation}
+\textrm{Average precision} = \sum_{i=1}^{n} p(i)\Delta r(i)
+\end{equation} 
+where $p(i)$ is the precision in index $i$, and  $\Delta r(i)$ is the change in recall from $i-1$ to $i$.
+
+In \figref{fig:ch2_average_precision}, we illustrate an example of calculating AP for the pairwise similarities of three segments, e.g. segment 1 and 2 belong to the class A, and their ground truth similarity and calculated similarity are respectively 1.0, 0.8.
+
+\begin{figure}[ht!]
+\includegraphics[width=\textwidth]{figs/blockDiags_rong/ch2_average_precision.png}
+\caption{An example of calculating average precision for the pairwise similarities of three segments.}
+\label{fig:ch2_average_precision}
+\end{figure}
