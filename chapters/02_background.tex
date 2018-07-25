@@ -29,7 +29,7 @@ The main instrument of wenchang is 京胡 (pinyin: jinghu). Having loud volume, 
 
 The other instruments in wenchang are 月琴 (pinyin: yueqin), 三弦 (pinyin: sanxian), 京二胡 (pinyin: jingerhu), 阮 (pinyin: ruan), 中阮 (pinyin: zhongruan) and 大阮 (pinyin: daruan). They all play the same melody as the jinghu line in the same or different octave, and in a heterophonic structure. The performer, sigu and qinshi take turns in coordinating the jingju performing tempo.
 
-\subsection{Lyrics structure}
+\subsection{Lyrics structure}\label{sec:ch2:lyrics_structure}
 
 The primary function of the lyrics in jingju is telling stories. Music structure in jingju is closely related to lyrics structure. The tune sequences in jingju are inherited from the creation principle in poetry of Tang dynasty (618 - 907 AC), that the melody and poetic structure are taken from the preexisting poems or songs, and new lyrics are arranged to fit in that schema \cite{Repetto2018}. The new lyrics are labelled with the name of the original poem or song, so that the performer knows how to sing the tune. The label of the original poem or song is called 曲牌 (pinyin: qu pai, literally translated as tune label). Different qupai have different forms which represent not only different melodies but also a different number of melodic lines and a different number of characters in each line. This kind of lyrics structure is called 长短句 (pinyin: chang duan ju, literally translated as long and short lines). A jingju chang duan consists of a sequence of these chang duan ju.
 
@@ -114,7 +114,7 @@ The precise, clear pronunciation is critical to jingju listening comprehension, 
 
 Mandarin is a tonal language and there are in general 4 lexical tones and 1 neutral tone in it. Every character of spoken Mandarin language is pronounced as mono-syllable \cite{lin_new_1993}. When the differences in tones are disregarded, the total number of different pronounced syllables is 408. The jingju singing is the most precisely articulated rendition of the spoken Mandarin language. Basic pronunciation of a jingju syllable is categorized as precisely shaping the throat and mouth to articulate (1) four vowel types -- 四呼 (pinyin: sihu) and (2) five consonants types 五音 (pinyin: wuyin). As been briefly discussed in \secref{sec:linguistic_tones}, in jingju singing pronunciation, certain sounds are spotted as either jianzi (pointed) or tuanzi (rounded). The jiantuanzi is an extremely important jingju pronunciation aspect, such that the precision and exaggeration of its sound qualities is one of the remarkable attribute of all jingju vocalization. Due to the adoption of certain regional dialects, and the ease or variety in pronunciation and projection of sound, certain special pronunciations in jingju theatrical language differ from their normal Mandarin pronunciations. However, the mono-syllabic pronouncing structure of the standard Mandarin doesn't change \cite{Wichmann1991a}. 
 
-\subsection{Jingju singing syllable}
+\subsection{Jingju singing syllable}\label{sec:ch2:jingju_syllable}
 
 Definitions for the syllable in speech have been provided from a variety of perspectives; phonetically, Roach \cite{roach_english_2000} describes a syllable as “consisting of a center which has little or no obstruction to airflow and which sounds comparatively loud; before and after that center (...) there will be greater obstruction to airflow and/or less loud sound.” This definition allows for a conceivable way for detecting syllables in speech.
 
@@ -132,7 +132,7 @@ For example, Mandarin syllable 现 (pinyin: xian) is composed of the initial `x'
 
 The speech syllable only contains one prominent sonority maximum due to its short duration (average $<$ 250 ms and standard deviation $<$ 50 ms for Mandarin \cite{wang_syllable_1994}). In contrast, a singing voice syllable may consists of numerous local sonority maxima, of which the reason is either intentional vocal dynamic control for the needs of conveying a better musical expression or unintentional vocal intensity variation as a by-product of the F0 change \cite{titze_vocal_1992} or vocal ornaments such as vibrato \cite{horii_note_1988}.
 
-\subsection{Sihu and wuyin -- basic jingju pronunciation units}
+\subsection{Sihu and wuyin -- basic jingju pronunciation units}\label{sec:ch2:sihu_wuyin}
 
 Sihu means four basic shapes for the throat and mouth when pronouncing the semi-vowel and central vowel parts of a syllable, whereas wuyin indicates five portions of the mouth deemed to the articulation of initial consonants. In jingju circles, it is believed that the throat and mouth must be shaped and the correct portion of the mouth needs to be used for producing the desired vowel and consonant sound. The detailed throat and mouth shapes for producing sihu and portions of mouths for articulating wuyin are described in Wichmann's book \cite{Wichmann1991a}. In this section, we list the vowels and consonants which are related to each category of sihu and wuyin.
 
@@ -212,6 +212,7 @@ As we have mentioned above, most of the works are template-based and build regre
 In the works mentioned above, the model are built to assess the singing performance in the entire musical excerpt granularity. However, several works explore the assessment of detailed musical events, such as note, expression segment and syllable. \shortcite{Mayor2006b} proposed a probablistic and rule-based method for note alignment and expression segmentation. They use HMM framework with Viterbi algorithm for the note alignment. The cost probablity is calculated by a set of heurstic rules which are defined on timing, pitch, energy, vibrato and timbre. The similar idea is adopted for expression segmentation. They define several rules for the expressions such as attack, sustain, vibrato, release and transition. The HMM topology of the expression is constrained by the note segmentation. \shortcite{Schramm2015b} construct a Bayesian classifier to assess the performing correctness of solfège note. They first transcribe the pitch track and notes for the target singing performance, and devise a special DTW algorithm to align the reference score the transcribed notes. For each assessment dimension -- note-level pitch, onset and offset, they construct Gamma probability density functions for both correct and incorrect classes. Finally, they identify the fuzzy boundary between two classes using a Bayesian classifier. In \shortcite{Guptac}'s work, they first generalize the mispronounciation rules for the singing voice of Southeast Asian English dialects. Then they use Automatic Speech Recognition system with an adapted dictionary to detect the mispronunciation.
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \ContinuedFloat
 \centering
@@ -232,9 +233,11 @@ Authors              & Goal                                          & Methods  
 \caption{Summary table of the previous studies on automatic assessment of singing voice.}
 \label{tab:ch2_automatic_assessment_singing}
 \end{table}
+\vfill
 \end{landscape}
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \ContinuedFloat
 \centering
@@ -250,6 +253,7 @@ Authors              & Goal                                          & Methods  
 \end{tabular}
 \caption{Summary table of the previous studies on automatic assessment of singing voice. (continued)}
 \end{table}
+\vfill
 \end{landscape}
 
 \subsubsection{Automatic assessment of intrumental music performance}
@@ -259,6 +263,7 @@ In \tabref{tab:ch2_automatic_assessment_instrumental}, we list the goal and meth
 In other works, the asessment is done at musical note-level. \shortcite{Robinea} assess the note quality of saxophone performance. They extract pitch and amplitude related features for stable, crescendo/decrescendo and vibrato notes. Then, the feature values are mapped to the expert ratings. \shortcite{Knighta} develop models to assess the trumpet performance at note-level. They use a SVM classifier to predict the expert ratings with 56 dimensional features of which are mostly spectral features. \shortcite{Luoa} build a bag-of-features plus classifciation model to detect violin performing mistake. Their note and expression segmentation are achieved using a photo resistor and four rings of surfacemounted light-emitting diodes (SMD LEDs). \shortcite{Hana} detect three types of flute performing errors -- assembeling error, fluctuated sound and mis-fingering by using handcrafted features and Random Forest classifier.
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \centering
 \begin{tabular}{lcc}
@@ -277,6 +282,7 @@ Authors              & Goal                                          & Methods  
 \caption{Summary table of the previous studies on automatic assessment of instrumental musical performance.}
 \label{tab:ch2_automatic_assessment_instrumental}
 \end{table}
+\vfill
 \end{landscape}
 
 
@@ -297,6 +303,7 @@ Depending on the techniques used, we classify ODF computation methods into three
 The last step of the pipeline -- onset selection can be done by peak-picking \shortcite{Bock2012c} algorithm.
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \centering
 \begin{tabular}{lc}
@@ -315,9 +322,11 @@ Authors                                                        & Methods        
 \caption{Summary table of the previous studies on musical onset detection.}
 \label{tab:ch2_musical_onset}
 \end{table}
+\vfill
 \end{landscape}
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \ContinuedFloat
 \centering
@@ -335,6 +344,7 @@ Authors                                                        & Methods        
 \end{tabular}
 \caption{Summary table of the previous studies on musical onset detection. (continued)}
 \end{table}
+\vfill
 \end{landscape}
 
 \subsection{Text-to-speech alignment}
@@ -344,6 +354,7 @@ Text-to-speech alignment is a process that the orthographic transcription is ali
 The forced alignment is a language-dependent method, in which the acoustic models should be trained by using a corpus of certain language. Another category of text-to-speech methods is language-independent, which relies on detecting the phoneme boundary change in the temporal-spectral domain \shortcite{esposito2005text,almpanidis2009Robust}. The drawback of these methods is that the segmentation accuracies are usually poorer than the language-dependent counterparts. 
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \centering
 \begin{tabular}{lc}
@@ -362,6 +373,7 @@ Authors                                                        & Methods        
 \caption{Summary table of the previous studies on text-to-speech alignment.}
 \label{tab:ch2_speech_forced}
 \end{table}
+\vfill
 \end{landscape}
 
 \subsection{Lyrics-to-audio alignment}
@@ -371,6 +383,7 @@ To goal of lyrics-to-audio alignment is similar to text-to-speech alignment -- a
 Additional musical side information extracted from the musical score is used in many works. Mauch et al. \shortcite{mauch2012integrating} use chord information such that each HMM state contains both chord and phoneme labels. Iskandar et al. \shortcite{iskandar2006syllabic} constrain the alignment by using musical note length distribution. Gong et al. \shortcite{gong2015real}, Kruspe \shortcite{kruspe2015keyword}, Dzhambazov and Serra \shortcite{dzhambazov2015modeling} all use syllable/phoneme duration extracted from the musical score as side information, and decode the alignment path by duration-explicit HMM models. Chien et al. \shortcite{Chien2016Alignment} introduce an approach based on vowel likelihood models. Chang and Lee \shortcite{Chang2017Lyrics} use canonical time warping and repetitive vowel patterns to find the alignment for vowel sequence. Some other works achieve the alignment at music structure-level \shortcite{muller2007lyrics} or line-level \shortcite{wang2004lyrically}.
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \centering
 \begin{tabular}{lc}
@@ -393,6 +406,7 @@ Authors                                                        & Methods        
 \caption{Summary table of the previous studies on lyrics-to-audio alignment.}
 \label{tab:ch2_lyrics_audio}
 \end{table}
+\vfill
 \end{landscape}
 
 \subsection{Neural acoustic embeddings}
@@ -406,6 +420,7 @@ Apart from exploring different neural network architectures to obtain an efficie
 Neural acoustic embeddings can also be learned in an unsupervised way. Chung et al. \shortcite{Chungb} adopt sequence-to-sequence model commonly used in natural language processing tasks to learn the word embeddings. They experiment skipgrams and continous bag-of-words training methods and show a superior performance than simply reconstructing the input representation \shortcite{Chungc} 
 
 \begin{landscape}
+\mbox{}\vfill
 \begin{table}[ht!]
 \centering
 \begin{tabular}{lc}
@@ -424,6 +439,7 @@ Authors                                                        & Methods  \\
 \caption{Summary table of the previous studies on neural acoustic embeddings.}
 \label{tab:ch2_neural_acoustic}
 \end{table}
+\vfill
 \end{landscape}
 
 \subsection{Evaluation metrics}
