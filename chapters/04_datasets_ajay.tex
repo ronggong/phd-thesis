@@ -1,0 +1,447 @@
+\chapter{Data corpora for research}\label{chap:datasets}
+\begin{epigraphs}
+  \qitem{Data is a precious thing and will last longer than the systems themselves.}{Tim Berners-Lee}% , inventor of the World Wide Web
+\end{epigraphs}
+% Use \noindent for the first paragraph after this
+%\dtext{The work we do is data-driven and hence datasets play an important role in research. A significant part of the efforts in the CompMusic project and the thesis are to collaborate and develop datasets for use in research. The chapter discusses the datasets developed within the context of CompMusic, by us and other collaborators. The idea is also to discuss how to measure the goodness of a corpus, what data driven research can be done with datasets and what can we learn directly from datasets.}
+%
+%\dtext{Abstract: Research corpora are representative collections of data and are essential to develop data-driven approaches in Music Information Research (MIR). We address the problem of building research corpora for MIR in Indian art music traditions of Hindustani and Carnatic music, considering several relevant criteria for building such corpora. We also discuss a methodology to assess the corpora based on these criteria and present an evaluation of the corpora in their coverage and completeness. In addition to the corpora, we briefly describe the test datasets that we have built for use in many research tasks. In specific, we describe the tonic dataset, the Carnatic rhythm dataset, the Carnatic \gls{varnam} dataset, and the Mridangam stroke dataset.}
+\noindent Computational data-driven approaches in \gls{MIR} need data for developing algorithms and for testing approaches. A carefully designed data collection is critical for the success of these approaches. To develop such \gls{MIR} approaches and advance knowledge, there is a need for research corpora that can be considered authentic and representative of the real world. 
+
+A research corpus\index{Research corpus} is an evolving collection of data that is representative of the domain under study and can be used for relevant research problems. A good data corpus includes data from multiple sources and can even be community driven. In the context of \gls{MIR}, since it is practically infeasible to work with the whole universe of music, a research corpus acts as a representative subset for research. Hence, algorithms and approaches developed and technologies demonstrated on the research corpus can be assumed to generalize to real world scenarios.
+
+A test corpus or a test dataset\index{Test dataset} is often a subset of the research corpus, possibly with additional metadata for use in a specific research task. In experiments, test datasets are used to develop tools, and to evaluate and improve their performance. Computational approaches are developed using these datasets and then extended to the research corpus. Hence test datasets can even consist of synthetic data that can be used for testing. Unlike a research corpus, a test corpus is fixed for use in a specific experiment. A test corpus can evolve, but each version of the dataset used in a specific experiment is retained for better reproducibility of research results.
+
+Building a research corpus itself is a research problem and has been studied in many fields such as linguistics, speech and biomedical signal processing~\cite{wynne:05:corpora,pan:02:speechcorpus,cohen:05:biocorpus}. There are also many central repositories of corpora such as the Linguistic Data Consortium\footnote{\url{https://www.ldc.upenn.edu/}} (LDC) by \citeA{libermann:98:ldc} for language resources and PhysioBank\footnote{\url{http://www.physionet.org/physiobank/}} for physiological signals. Other open repositories of data such as MusicBrainz\footnote{\url{http://musicbrainz.org/}}\index{MusicBrainz} or Wikipedia\footnote{\url{http://www.wikipedia.org/}} themselves can be used as research corpora for different \gls{MIR} related tasks. 
+
+There have been efforts to compile large collections of music related data, e.g. the Million Song Dataset\footnote{\url{http://labrosa.ee.columbia.edu/millionsong/}}~\cite{bertin:11:MSD} and AcousticBrainz\footnote{\url{https://acousticbrainz.org/}}~\cite{porter:15:acbrainz} which are good research corpora for several \gls{MIR} tasks on contemporary popular music. However, despite the importance of a good research corpus in \gls{MIR}, the problem of building it has received little attention by the research community. There have been no studies on a systematic way to compile and curate a research corpus. Recently, \citeA{peeters:12:corpus} presented a unified way to describe annotated \gls{MIR} test datasets. \citeA{serra:14:corpus} elucidated a set of design principles to build and compile a research corpus, based on a set of primary considerations such as \textbf{Purpose}, \textbf{Coverage}, \textbf{Completeness}, \textbf{Quality} and \textbf{Reusability}. We use these primary considerations to develop a corpus for \gls{MIR} in Indian art music.
+
+In this chapter, we address some of these concerns and focus on a systematic compilation and analysis of data for research. The criteria and the evaluation methodology discussed here can be used to systematically build representative and comprehensive research corpora and test datasets. Our primary focus in the chapter would be on Indian art music, while other test datasets that are relevant to the thesis are also presented and discussed. The main aims of the chapter are: 
+\begin{enumerate}[leftmargin=*]
+ \item To describe and discuss the research corpora and the test datasets (built for automatic rhythm analysis) that have been built as a part of CompMusic, relevant for this thesis - emphasizing on the research problems and tasks in which these datasets can be used. In addition, other state of the art datasets that are used in the thesis are also presented in brief for completeness. 
+ \item To present a systematic framework and elucidate a set of design principles to curate and compile a research corpus, and then use those principles to illustrate a methodology to measure the goodness of the Carnatic and Hindustani research corpora. 
+ \item To present corpus level statistical analyses of relevant rhythm annotated datasets, to see if we can draw musically meaningful inferences from those analyses. 
+\end{enumerate}
+
+As we described earlier, the research corpora are growing entities through continued efforts. Hence, the numbers and quantities presented for the research corpora in this dissertation are only indicative and are of secondary importance. We primarily emphasize on presenting a scientific approach to develop a corpus and evaluate its suitability for a particular set of research tasks. We emphasize on methodologies that can be used to evaluate a corpus on the aspects of coverage and completeness. Apart from the description of the corpora, a methodology for evaluation of the corpus is an important contribution of this chapter. We further note that in addition to the sources described in this article, there are several other sources that can be used for computational research in Indian art music, and eventually could be a part of the corpus. Finally, whenever possible, in the spirit of open research and data, the research corpora and the test datasets will be made accessible and available for further work on these music cultures. 
+\section{CompMusic research corpora}\label{sec:cmcorpora}
+Musics of the world might share some basic concepts such as melody and rhythm, but some salient aspects can be described completely only by considering the specificities of that music culture. For such studies, in the context of the CompMusic project, \citeA{serra:11:compmusic} emphasized the need for culture specific research corpora\index{Research corpus} to develop approaches that utilize the important aspects of the music culture. 
+
+Working with five music traditions of the world, the data-driven methodologies in CompMusic primarily involve signal processing, machine learning and semantic web technologies. Hence, there has been a significant effort towards the design and compilation of research corpora for relevant problems in the music cultures being studied. This effort complements the primary aim of CompMusic, which is to build culture-aware computational methodologies for better exploration of music collections through meaningful music concepts and automatically extracted melody, rhythm and semantic descriptors. 
+
+In this chapter, we focus mainly on Indian art music. The Turkish makam music research corpus has been presented in detail by \citeA{atli:14:corpus}, while \citeA{caro:14:jingjudata} have described the Beijing opera (\gls{jingju}) research corpus comprehensively. We first discuss the criteria for creating research corpora, and then describe the Carnatic and Hindustani music research corpora. Most of the content in this section is from papers by \citeA{serra:14:corpus} and \citeA{ajay:14:smc}, and describe the collective efforts of the CompMusic team in creating CompMusic research corpora. Due to continued efforts in building corpora, the research corpora grows continually. The numbers and analysis presented for the Indian art music research corpora are correct as of June 2014. 
+\subsection{Criteria for creation of research corpora}
+\citeA{serra:14:corpus} listed the primary criteria for creating research corpora, which are described in brief here.
+\begin{description}
+ \item[Purpose] A research corpus is built for a specific purpose and it is necessary to define the research problem(s) and the approaches that will be used. In CompMusic, we wish to develop methodologies to extract musically meaningful features from audio recordings, mainly related to melody and rhythm. The research corpus has to be aligned to this purpose. 
+ \item[Coverage] The coverage of a corpus is a measure of representativeness of the corpus with respect to several relevant concepts that we wish to study. For our quantitative approaches, we need sufficient samples of each instance for the data to be statistically representative and significant. For rhythm analysis, we need to have audio recordings, plus appropriate accompanying metadata covering different rhythms and metrical structures present in the music culture. 
+ \item[Completeness] Completeness refers to the completeness of the accompanying metadata for each audio recording. Since the research corpus contains data from many different sources, ensuring completeness of audio and metadata is important for its use in different research tasks. 
+ \item[Quality] The data in the corpus needs to be good quality: the audio needs to be well recorded and the accompanying metadata must be accurate, obtained from reliable sources and validated by experts. The manual and automatic annotations on audio files must be carefully done and verified independently. 
+ \item[Reusability] The reusability of research corpora and datasets and reproducibility of research results is necessary for continued and sustainable research using these datasets, leading to better research corpora and research results. Reusability can be addressed by emphasizing the use of open sources of information, and providing a platform for easy access to data for research. %For editorial metadata, we use MusicBrainz. %The corpora and the datasets are accessible to the research community from a central online repository.
+\end{description}
+All the music cultures under study can be described in terms of musical concepts, music content and the music community. The elements of the corpora can be associated with one or more of these categories and hence useful for computational tasks in these three aspects. Central to each corpus is an audio music recording with its metadata. We first present the Carnatic music research corpus followed by the Hindustani music corpus. All audio in both the corpora are stereo recordings sampled at 44.1 kHz and stored as 160 kbps mp3 files for ease of transmission and storage. 
+%
+\subsection{Carnatic music research corpus}\label{sec:cmcmcorpora}
+The Carnatic music\index{Carnatic music} research corpus mainly comprises audio recordings, associated editorial metadata, lyrics, scores, contextual information on music concepts, and community (social) information from online music forums and other sources. Audio recordings, editorial metadata, scores, and lyrics are the content used by signal processing and machine learning approaches. Contextual information and the forum discussions form the music concepts and community information used for semantic analysis. 
+
+%<<Considerations>>
+There are several considerations in collecting a corpus of Carnatic music. Given that a \gls{kutcheri} (concert) is the natural unit of Carnatic music and the main unit of music distribution, most commercial releases are concerts, comprising of several pieces that are improvised renderings of compositions. Vocal music is predominant and even in instrumental music, the lead artist aims to mimic vocal singing. The \gls{raga} and \gls{tala} are the most important metadata associated with a composition and hence a recording of the composition. 
+
+Based on these considerations, we consulted expert musicians and musicologists, such as T M Krishna\footnote{\url{http://www.tmkrishna.com/}} to arrive at a representative collection of Carnatic music audio. The main institutional reference for Carnatic music is the \gls{MMA}\footnote{\url{http://musicacademymadras.in/}}, which is a premier institution dedicated to Carnatic music and organizes the annual music conference in Chennai, India. The annual Carnatic music festival is one of the largest music festivals in the world, with a significant part of the Carnatic music community taking part in it. The \gls{MMA} has been driving scholarly research and opinion in Carnatic music. The \gls{MMA} has a panel of experts that formulates the procedure and standards for the selection of artists for the music festival. The \gls{MMA} has been recording concerts and its archive can be considered a standard repository of Carnatic music. However, the archive is not openly available online. We thus followed the criteria followed by the \gls{MMA} and procured the audio from commercially available releases. Though Carnatic music is spread across South India, the choice of \gls{MMA} as an institutional reference has an influence on the research corpus introducing a bias towards the music scene in Chennai, India.
+
+We wished to compile concerts over several generations of musicians. We started with the artists that have been performing at the \gls{MMA} in the last five years, and then expanded the collections to include their teachers, and popular musicians of their era. The record label \textit{Charsur}\footnote{\url{http://www.charsur.com/}} specializes in Carnatic music and the core of our audio collection is from their catalog of music concerts. Hence, the corpus consists of audio from commercially available releases from Charsur and other music labels. 
+
+The corpus presently consists of 248 releases (concerts) with 1650 audio recordings (346 hours) spanning 1068 compositions. The number of other relevant music entities in the corpus is described in \tabref{tab:coverage:Carnatic} (column 2). Though we focus on concerts with vocalist leads, we also have instrumental music releases (mainly with \gls{veena}, violin, flute, saxophone, and mridangam as lead instruments). The whole audio collection is commercial and hence easily accessible, but is not open and distributable. % However, efforts are underway to compile a freely available open collection of Carnatic music. 
+
+The editorial metadata associated with each release has been stored and organized in MusicBrainz. The primary metadata associated with each concert is the name of the release, the lead and the accompanying artists, and the musical instruments in the concert. For each audio recording contained in the release, the relevant metadata are the artists performed on the track, the name of the composition/s and the composer, \gls{raga}/s, \gls{tala}/s, musical form/s. MusicBrainz assigns a unique \gls{MBID} for each entity in MusicBrainz, such as the artist, composer, instrument, recording, work, and a release. This helps to organize the metadata in an effective way. All the editorial metadata was entered using Latin alphabet and a Latin transliteration~\cite{iso:01:15919trans} was used when the language of the release was not English. The \gls{raga} and \gls{tala} information have been added as work attributes. 
+
+Since Carnatic music is predominantly a vocal music tradition, lyrics play an important role. A significant part of the rendition of a composition is improvised and hence the scores associated with a composition are of limited use, nonetheless important. The lyrics and scores, even though not time aligned to audio recordings, are useful for computational analysis and hence we compiled them. The primary languages in which Carnatic music is composed are Telugu, Tamil, Kannada, Sanskrit, and Malayalam. There are several published compilations of lyrics and scores for most of the currently performed compositions, such as the ones of the three most popular composers in Carnatic music: \Gls{tyagaraja}, \Gls{shyama shastri}, and \Gls{muttuswami dikshitar}, in published compilations by \citeA{tkg:09:tyagaraja}, \citeA{tkg:03:syama} and \citeA{tkg:03:dikshitar}, respectively. However, these compilations are not machine readable and hence not amenable to computational analysis. 
+
+There are several good online open repositories for lyrics, such as sahityam.net\footnote{\url{http://www.sahityam.net}}, which is a wiki of lyrics of Carnatic compositions. Sahityam.net is our primary source for machine readable lyrics. It uses a uniform scheme for transliteration to Latin script and hence has minimal ambiguity. In some cases, it provides additional commentary, references and example renditions. It currently hosts lyrics for about 1820 compositions of Carnatic music. Machine readable scores are more difficult to access, with no comprehensive machine readable score compilations available. A set of machine readable (HTML, Word) scores compiled by Dr. Shivkumar Kalyanaraman\footnote{\url{http://www.shivkumar.org}} is the main source of machine readable music scores.
+\begin{table}[t]
+\begin{centering}
+\begin{tabular}{@{}lrrll@{}}
+\toprule 
+ & \textbf{Corpus} & \textbf{Raaga.com} & \textbf{Kutcheris} & \textbf{Charsur}\tabularnewline
+\midrule
+\Glspl{raga} & 246 & 489 (42\%) \ \ & N/A & 301 (68\%)\tabularnewline
+\Glspl{tala} & 18 & 16 (100\%) & N/A & \ \ 21 (85\%)\tabularnewline
+Composers & 131 & 598 (17\%) \ \ & N/A & 256 (42\%)\tabularnewline
+Artists & 233 & 501 \ \ \ \ \ \ \ \ \ \ \ \ \  & 2978 & 264 (48\%)\tabularnewline
+\bottomrule
+\end{tabular}
+\par\end{centering}
+\caption[Coverage of the Carnatic music research corpus]{Coverage of the Carnatic music research corpus. The number in parentheses is the \textit{overlap} measure in percentage. N/A indicates data not available.}\label{tab:coverage:Carnatic}
+\end{table}
+
+%<<Community Information>>
+The music community and music concepts related information in the corpus form the primary source of information for semantic analysis, and come from various reliable sources on the Internet. Kutcheris.com\footnote{\url{http://www.kutcheris.com}} is an up-to-date directory of artist biographies, music venues, concerts and events. The category of Carnatic music on Wikipedia\footnote{{\scriptsize \url{http://en.wikipedia.org/wiki/Category:Carnatic\_music}}} is a source of contextual information including music concepts. We have added a lot of information and contributed to Wikipedia with the help of experts. While Wikipedia acts as an encyclopedia of music concepts providing linked information, online music forums with discussions provide opinions from which some of these links can be inferred. The rasikas.org\footnote{\url{http://www.rasikas.org/}} Carnatic music forum is an active forum of Carnatic music listener community with useful discussions about Carnatic music concepts, concerts, and performances. It is an important source of data useful for community profiling.
+\subsubsection{Coverage}
+A research corpus needs to be representative of the real world in the concepts that are primary to the music culture. The aim of a coverage analysis is to estimate the comprehensiveness of the corpus with respect to another representative reference source. For Carnatic music, a coverage analysis is presented for artists, \glspl{raga}, \glspl{tala}, and composers. For artist coverage, we chose to use Kutcheris.com as the primary reference since it is up-to-date with current artists and their performances. We use the last five years of their concert listings. Many of the artists and the concerts listed on Kutcheris.com are from Chennai. Charsur's release catalog provides information about \glspl{raga}, \glspl{tala}, composers and artists. Raaga.com\footnote{\url{http://www.raaga.com}} is an Indian music streaming service and its Carnatic channel is another reference for \glspl{raga}, \glspl{tala}, composers and artists. However, Raaga.com has many light music forms included in its Carnatic channel, some of which we have consciously excluded from our corpus. Hence it is to be noted that numbers and the analysis with Raaga.com will have an adverse influence from these other included music forms. The data from each of these reference sources was crawled from their online catalogues. The data from Raaga.com was crawled in March, 2012 and from the others in March, 2014. We observed that nearly every source had duplicate entities mostly arising due to spelling variations (e.g. Tyagaraja, Tyaagaraaja). We merged the duplicates by matching the longest common subsequence in the strings and by using Damerau-Levenshtein distance~\cite{damerau:64:dist}.
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{./figs/dstats/performances-vs-artists.pdf}
+\caption{The number of artists by the number of their performances in the Carnatic music research corpus}
+\label{fig:corpora:perfArtistDistr}
+\end{figure}
+%
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.6]{./figs/dstats/artist-coverage-vs-performances.pdf}
+\caption[Coverage of the Carnatic artists]{Coverage of Carnatic artists. The ordinate is the \textit{overlap} value of the set of artists in corpus, compared against a set of artists in Kutcheris.com who have performed in at least as many concerts as the abscissa.}
+\label{fig:corpora:artistCoverage}
+\end{figure}
+
+\tabref{tab:coverage:Carnatic} shows the coverage of the Carnatic corpus in comparison to the references. For each music entity $i$, we define a coverage measure called the \textit{overlap} (\ovlp) as,
+\begin{equation}
+\label{eqn:overlap}
+\ovlp_i^j = \frac{\left| \varsigma_i^c \cap \varsigma_i^j\right|}{\left|\varsigma_i^j\right|}
+\end{equation}
+where $\ovlp_i^j$ is the \textit{overlap} measure of the entity $i$ with reference $j$, $\varsigma_i^c$ is the set of entities in the corpus, $\varsigma_i^j$ is the set of entities in the reference, and $\left| \varsigma \right|$ denotes the cardinality of a set $\varsigma$. An \textit{overlap} of 100\% is achieved if all the elements in the reference set are present in the corpus. \tabref{tab:coverage:Carnatic} shows the \textit{overlap} measure for \glspl{raga}, \glspl{tala} and composers for both Raaga.com and Charsur. We can see that there is a good coverage of \glspl{tala} and a satisfactory coverage of \glspl{raga} in the corpus. A good coverage of \glspl{tala} is necessary for rhythm analysis. The composer coverage with respect to Raaga.com is poor since it includes the light music composers in its set of composers. 
+
+Among the 233 artists who have at least one recording in the corpus, 74 are lead artists (lead vocal or lead instrumental). Further, we have 28 violin accompanying artists and 48 unique percussion artists in the corpus. The concerts listed by Kutcheris.com span the whole year and all through the day. However, the evening concerts are more recognized, and we took it to be a measure of popularity of the artists. Moreover, the evening concerts during the music season lasting from November to January are ticketed. For a coverage analysis, we thus consider three categories of artists: Artists-Set-1 (all the artists), Artists-Set-2 (artists who have performed in the evening concerts, through the year) and Artists-Set-3 (artists who have performed in evening concerts between November and January). Of the 2978 total artists present in Set-1 on Kutcheris.com concert listings, there are 1814 artists in Set-2 and 1472 artists in Set-3.
+
+The number of concerts performed by each artist is also an indicator of popularity. Though there are a large number of artists in Kutcheris, we see that the distribution of the number of concerts they have performed is exponential (\figref{fig:corpora:perfArtistDistr}), e.g. there are only about 200 artists who have over 50 concerts. Hence to capture this fact, we used the set of artists in the corpus and computed the \textit{overlap} as defined in \eqnref{eqn:overlap} through different subsets of artists in Kutcheris.com, sweeping over the number of concerts (at least) they have performed. 
+
+\figref{fig:corpora:artistCoverage} shows the \textit{overlap}, using a set of artists that have performed at least as many concerts as the number shown on the abscissa. The \textit{overlap} is also shown for the three categories of artists we discussed before. We can see that the \textit{overlap} increases as we consider more frequently performing artists and becomes almost constant. The artists who have performed the most concerts are often the accompanying artists, and are few in number, which explains why the \textit{overlap} becomes a constant, when we discount the \textit{overlap} for more than 150 concerts. When we consider a large number of concerts, the \textit{overlap} values are unreliable since the number of artists is less. In general, we can see that the \textit{overlap} is better for Artists-Set-2 than Artists-Set-1 and Artists-Set-3, showing that the corpus has more representation of artists from evening concerts round the year. 
+% 
+\subsubsection{Completeness}
+\begin{table}
+\begin{centering}
+\begin{tabular}{@{}lcr@{}}
+\toprule 
+\textbf{Accompanying metadata} & \textbf{\#Recordings} & \textbf{\% of total}\tabularnewline
+\midrule 
+Lead artist & 1650 & 100.0 \tabularnewline
+Accompanying artists& 1221 & 74.0\tabularnewline
+\Gls{raga} & 959 & 58.1\tabularnewline
+\Gls{tala} & 917 & 55.6\tabularnewline
+Work (Composition) & 989 & 59.9\tabularnewline
+\bottomrule 
+\end{tabular}
+\par\end{centering}
+\caption[Completeness of the Carnatic music research corpus]{Completeness of the Carnatic music research corpus, showing the number of recordings in which the corresponding metadata is available.}\label{tab:completeness:Carnatic}
+\end{table}
+In the context of this thesis, completeness of the corpus refers mainly to the completeness of the associated metadata for each recording, primarily from MusicBrainz. Even though carefully built, the editorial metadata associated with a release and its recordings can be incomplete. There are three possible reasons for incomplete metadata. Many releases do not provide all the required metadata on the CD. In many releases, only the lead artist is listed, without the accompanying artists. It is seen very often that the composition information is also absent on the CD cover. The second reason is that the editorial metadata was not completely entered into MusicBrainz. This is sometimes seen with release and recording relationships that were left incomplete by the person who added the metadata. Further, since all the metadata, including the \gls{raga}/\gls{tala} tags, are imported and linked automatically, there can be import errors due to variations in transliterations and spelling. Multiplicity of languages used in Carnatic music further adds to these inconsistencies. These import errors are the third reason for incomplete metadata. 
+
+Missing metadata in MusicBrainz can only be completed by manually adding the missing fields to MusicBrainz. However, we are also exploring automatic metadata completion based on other relations on the release or the recording, using semantic web approaches. The missing data due to transliteration errors have been addressed to an extent by making curated lists of entities such as \glspl{raga} and \glspl{tala}, and using robust algorithms for matching and linking metadata. Despite significant efforts, there are many recordings and releases that have incomplete metadata. 
+
+\tabref{tab:completeness:Carnatic} shows the completeness of the recordings in the corpus (as of June 2014), including all the three factors that result in incomplete metadata. All the recordings have a lead artist, but about a quarter of the recordings (429/1650) do not have accompanying artist information. \Gls{raga}, \gls{tala} and work (composition) are listed for about half the recordings. It is to be noted that these numbers reflect only the recordings for which we were completely sure of the editorial metadata. There are several recordings that have the required metadata but deemed incomplete since we could not accurately match it to a related entity in the curated lists. 
+%
+\subsection{Hindustani music research corpus}\label{sec:cmhmcorpora}
+%* Provide statistics and discuss: Purpose, Coverage, Completeness, Quality, Reusability
+%* Contents: Audio, MB metadata, lyrics, reference books
+%<<Intro and contents>>
+%<<Considerations>>
+Similar to Carnatic music, \gls{raag} and \gls{taal} are the fundamental music concepts in Hindustani music\index{Hindustani music} and hence the main theme around which the corpus has been built. Hindustani music tradition is much more diverse and heterogeneous and thus presents a significant challenge to compile a good research corpus. Though vocal music is predominant, instrumental music in Hindustani music is also popular. The main focus in Hindustani music is on improvisation and compositions are short. For Hindustani music corpus we focus on two important vocal music styles - \gls{dhrupad} and \gls{khayal}. 
+
+There are many public and private institutions that have compiled large audio archives of Hindustani music. The primary of them are the ITC Sangeet Research Academy (ITC-SRA), Sangeet Natak Academy, and the All India Radio (AIR). Each of these institutions own thousands of hours of expert curated music recordings that represent the real world performance practice. 
+
+ITC-SRA is a premier music academy of Hindustani music and has taken up major efforts in the archival of music. Sangeet Natak Academy is India's national academy for music, drama and dance. AIR is the largest public broadcaster in India and has a huge archive of Hindustani music curated over many decades. AIR awards grades to musicians and its archives can be considered as a reference. None of these archives are publicly available and we compiled the audio in our corpus using these collections as a reference. We consulted expert musicians and musicologists, such as Dr. Suvarnalata Rao at the National Centre for the Performing Arts (NCPA), Mumbai, India to curate the audio collection in the corpus. 
+
+The audio collection in the corpus comprises commercially available music releases from several music labels. It mainly consists of \gls{khayal} and \gls{dhrupad} vocal music releases, though a significant number of instrumental music releases are present. The corpus presently has 233 releases with a total of 1096 recordings (300 hours). As with Carnatic music, the editorial metadata associated with each release is stored in MusicBrainz. 
+
+The metadata associated with each release is the name of the release, the lead and the accompanying artists, and the musical instruments in the concert. For each audio recording in the release, the relevant metadata are the artists performed on the track, the name of the composition/s (\gls{bandish}) and the composer/s (if composed), \gls{raag}/s, \gls{taal}/s, \gls{lay}/s (tempo class), form/s, and section/s. All the editorial metadata was entered using Latin alphabet, following a uniform transliteration scheme to maintain consistency. 
+
+%<<Lyrics and Score>>
+Hindustani music is mainly improvised and hence lyrics and scores are not very relevant for computational analysis. \citeA{bhatkhande:90:book} and \citeA{jha:01:book} compiled lyrics and scores of \glspl{bandish} using a standardized notation for Hindustani music. However, they are not available in a machine readable form, though a small collection of scores from these books are available in machine readable Humdrum format~\cite{ajay:12:humdrum}. Swarganga Music Foundation\footnote{\url{http://www.swarganga.org/}} has a good archive of \glspl{raag}, \glspl{taal} and \glspl{bandish}. The category of Hindustani music on Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/Category:Hindustani_music}} is a source of contextual information including music concepts of Hindustani music. 
+%<<Coverage analysis>>
+\begin{table}[t]
+\begin{centering}
+\begin{tabular}{@{}lrll@{}}
+\toprule 
+ & \textbf{Corpus} & \textbf{ITC-SRA} & \textbf{Swarganga}\tabularnewline
+\midrule 
+Artists & 360 & 240 (19\%) & 629 (14\%)\tabularnewline
+\Glspl{raag} & 176 & 185 (48\%) & 534 (13\%)\tabularnewline
+\Glspl{taal} & 32 & N/A & \ \ 59 (37\%)\tabularnewline
+Works (\Gls{bandish}) & 685 & N/A & 1957\tabularnewline
+\bottomrule 
+\end{tabular}
+\par\end{centering}
+\caption[Coverage of the Hindustani music research corpus]{Coverage of the Hindustani music research corpus. The number in parentheses is the \textit{overlap} measure in percentage. N/A indicates data not available.}\label{tab:coverage:Hindustani}
+\end{table}
+\begin{table}[t]
+\begin{centering}
+\begin{tabular}{@{}lcr@{}}
+\toprule
+\textbf{Accompanying metadata} & \textbf{\# Recordings} & \textbf{\% of total}\tabularnewline
+\midrule
+Lead Artist & 1096 & 100.0\tabularnewline
+Accompanying artist  & 658 & 60.0\tabularnewline
+\Gls{raag} & 960 & 87.6\tabularnewline
+\Gls{taal} & 627 & 57.2\tabularnewline
+Work (\Gls{bandish}) & 576 & 52.5\tabularnewline
+\bottomrule 
+\end{tabular}
+\par\end{centering}
+\caption[Completeness of the Hindustani music research corpus]{Completeness of the Hindustani music research corpus showing the number of recordings in which the corresponding metadata is available.}\label{tab:completeness:Hindustani}
+\end{table}
+\subsubsection{Coverage}
+The methodology followed for the coverage analysis of Hindustani music is the same as followed for Carnatic music. We present the coverage analysis for artists, \glspl{raag}, \glspl{taal} and compositions. The coverage analysis for Hindustani music is more complex than Carnatic music. This can be attributed to the heterogenous nature of the music repertoire, and to the lack of dedicated recording labels like Charsur in the case of Carnatic music. For each of these entities we choose two main references, ITC-SRA and Swarganga. 
+
+Unlike Carnatic music, the unit of music distribution in Hindustani music is not often a concert. Further, it is geographically spread over the Indian subcontinent and hence there is no single repository of Hindustani music performances, such as Kutcheris.com for Carnatic music. Therefore, it is challenging to do a comprehensive artist coverage analysis like the one presented for Carnatic music. 
+
+\tabref{tab:coverage:Hindustani} shows the coverage of the Hindustani corpus. We see that the corpus and the chosen references have comparable number of entities, but the \textit{overlap} is less. This is primarily because we mainly focused on recordings made in last 20-30 years to ensure good recording quality and to reflect current performance practices. On the other hand both the references focus primarily on archiving Hindustani music and hence consist of several generations of artists, infrequent \glspl{raag} and \glspl{taal}, and a more comprehensive list of compositions. Further, the Hindustani corpus is mainly composed of vocal music recordings with a focus on only two styles, \gls{khayal} and \gls{dhrupad}. The reference archives additionally include instrumental music and several other styles of Hindustani music. 
+\subsubsection{Completeness}
+The completeness of the editorial metadata for Hindustani music (as of June 2014) is shown in \tabref{tab:completeness:Hindustani}. We see that the editorial metadata for all the recordings at least includes the lead artist, and for more than half of the collection, the accompanying artists (658/1096). Roughly 90\% of the corpora is annotated with the \gls{raag} label and more than half with the \gls{taal} label. Work or compositions (\gls{bandish}) labels are present for nearly half of the collection (576/1096). \Gls{alap} performances in Hindustani music are not compositional works, and hence should be discounted while assessing the completeness of work metadata. But due to the unavailability of such an information (\gls{alap} labels), \gls{alap} performances are also included in assessment and hence work completeness is an underestimate. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\comment{Since we have addressed coverage and completeness later on, here is reproducibility} 
+An important concern in research is the reproducibility of the experiments, which necessitates a corpus accessible to the research community. When possible, we emphasize the use of open repositories of information such as MusicBrainz and Wikipedia. The releases in the Carnatic\footnote{Carnatic collection: \url{http://musicbrainz.org/collection/f96e7215-b2bd-4962-b8c9-2b40c17a1ec6}} and Hindustani\footnote{Hindustani collection: \url{http://musicbrainz.org/collection/213347a9-e786-4297-8551-d61788c85c80}} corpora have been organized into collections in MusicBrainz. For audio, we use easily accessible commercial recordings. Further, the test datasets and the derived information such as annotations and extracted features are openly available\footnote{CompMUsic corpora: \url{http://compmusic.upf.edu/corpora}}. In CompMusic, have developed a tool for navigating through music collections called \textit{Dunya}~\cite{porter:13:dunya}, which also acts as the central permanent online repository to store the metadata, audio, annotations and research results. Dunya is open source and provides an API for accessing these data. 
+%
+%\comment{Dunya collection and possible work with it: All the applications of the corpus, list, explain, and cite}
+\subsection{Creative Commons music collections}\label{sec:cmccdataset}
+The audio in the Carnatic and Hindustani research corpora are commercial releases. Though easily accessible, they cannot be distributed openly. Since there are no open repositories of quality audio, one effort of CompMusic is to create and open audio collection released under Creative Commons licenses (CC BY-NC 4.0). In addition to the audio, the collection has carefully curated editorial metadata, and semi-automatically extracted melody and rhythm related annotations. Due permissions from artists have been secured for redistribution. The audio will be hosted on Internet Archive\footnote{\url{www.archive.org}}, with both the audio and associated metadata and annotations available through the Dunya API. The open music collections are growing collections with new releases being added, and hence the numbers in this section (correct as of June 2016) are approximate and indicative.
+
+The \acrfull{CMDo}\footnote{Carnatic CC collection: \url{https://musicbrainz.org/collection/a163c8f2-b75f-4655-86be-1504ea2944c2}} is a collection of 20 vocal Carnatic concerts (with more releases being added) with 197 tracks and over 41 hours of music by professional Carnatic musicians. The audio in the \acrshort{CMDo} collection was professionally recorded in multi-track at 44.1kHz sampling rate at Arkay Convention Center, Chennai, India, and mastered professionally. The pieces from the concerts were split into individual recordings and released together as an album. Each recording has the following accompanying metadata: \gls{raga}, \gls{tala}, artists, composer, composition, and form. It has manually annotated time aligned characteristic melodic phrases and sections. In addition, it has semi-automatically extracted tonic, vocal pitch track, tempo, and time aligned \gls{sama} annotations. The collection has about 16880 \gls{sama} annotations that can be used for meter analysis.
+
+The \acrfull{HMDo}\footnote{Hindustani CC collection: \url{https://musicbrainz.org/collection/6adc54c6-6605-4e57-8230-b85f1de5be2b}} is a collection of 36 vocal Hindustani music albums (with more releases being added) with 108 tracks and over 43 hours of music by professional Hindustani musicians, sourced from personal collections of musicians. The audio in the \acrshort{HMDo} collection are stereo mp3 tracks sampled at 44.1 kHz. The tracks procured from personal collections have been grouped into musically meaningful short compilations and then released as albums. Each recording in the collection has the following accompanying metadata: \gls{raag}, \gls{taal}, \gls{lay}/s, artists, form, and if applicable, the \gls{bandish} and the composer. It has manually annotated time aligned characteristic melodic phrases and \gls{lay} based sections. In addition, it has semi-automatically extracted tonic, vocal pitch track, tempo, and time aligned \gls{sam} annotations. The collection has about 11260 \gls{sam} annotations that can be used for meter analysis. 
+
+The Creative Commons collections are useful for several \gls{MIR} tasks. From a rhythm analysis perspective, the collection is useful for meter inference and tracking, rhythmic and percussion pattern analysis, and rhythm based structural segmentation. To the best of our knowledge, this collection is the largest \gls{tala} and \gls{sama} annotated music collection of Indian art music. 
+\section{Test datasets}
+%\comment{For each dataset below, present a basic statistical analysis, links to download. Mention which tasks they are the most useful for. The limitations of the dataset and what can be improved as well.}
+The test corpora (or test datasets)\index{Test dataset} are designed for specific tasks and contain additional information such as annotations and derived data. They are useful for various melody and rhythm analysis tasks. There are several test datasets for different music cultures built within CompMusic\footnote{\url{http://compmusic.upf.edu/datasets}}, while we describe only those test datasets that are useful in rhythm analysis tasks. We describe each dataset briefly emphasizing the primary research task they can be used for. 
+\subsection{Carnatic music rhythm dataset}\label{sec:cmrdataset}
+\input{./chapters/chap4/cmdataset}
+%
+\subsection{Hindustani music rhythm dataset}\label{sec:hmrdataset}
+\input{./chapters/chap4/hmdataset}
+%
+\subsection{Tabla solo dataset}\label{sec:tsdataset}
+\begin{table}
+\centering
+\begin{tabular}{@{}llrc|llr@{}}\toprule
+ID & Syllable & \#Inst. & & ID & Syllable & \#Inst.\tabularnewline \midrule
+1 & \syl{DA} & 132 & & 10 & \syl{KI} & 1482\tabularnewline
+2 & \syl{DHA} & 582 & & 11 & \syl{NA} & 1308\tabularnewline
+3 & \syl{DHE} & 277 & & 12 & \syl{RE} & 294\tabularnewline
+4 & \syl{DHET} & 67 & & 13 & \syl{TA} & 2375\tabularnewline
+5 & \syl{DHI} & 156 & & 14 & \syl{TE} & 18\tabularnewline
+6 & \syl{DHIN} & 149 & & 15 & \syl{TII} & 64\tabularnewline
+7 & \syl{DIN} & 117 & & 16 & \syl{TIN} & 61\tabularnewline
+8 & \syl{GE} & 961 & & 17 & \syl{TIT} & 43\tabularnewline
+9 & \syl{KDA} & 95 & & 18 & \syl{TRA} & 64\tabularnewline \bottomrule
+\end{tabular}
+\caption[The tabla solo dataset]{The \acrfull{TSD} with 8245 syllables, showing the number of instances of each syllable in the dataset. The syllable group names correspond to that presented in \protect\tabref{tab:tabla:bolmap}.}\label{tab:dataset:tsd}
+\end{table}
+The \acrfull{TSD} is a parallel corpus of \gls{tabla} solo compositions with time-aligned scores and audio recordings. We built a dataset comprising audio recordings, scores and time aligned syllabic transcriptions of 38 \gls{tabla} solo compositions of different forms in \gls{teental}. The compositions were obtained from the instructional video DVD \textit{Shades Of Tabla} by Pandit Arvind Mulgaonkar\footnote{\url{http://musicbrainz.org/release/220c5efc-2350-43dd-95c6-4870dc6851f5}}. Out of the 120 compositions in the DVD, we chose 38 representative compositions spanning all the \glspl{gharana} of \gls{tabla} (Ajrada, Benaras, Dilli, Lucknow, Punjab, Farukhabad).
+
+The booklet accompanying the DVD provides a syllabic transcription for each composition. We used Tesseract~\cite{smith:07:tesseract}, an open source \gls{OCR} engine to convert printed scores into a machine readable format. The scores obtained from \gls{OCR} were manually verified and corrected for errors, while adding the \glspl{vibhaag} (sections) of the \gls{taal} to the syllabic transcription. The score for each composition has additional metadata describing the \gls{gharana}, composer and its musical form. 
+
+We extracted audio from the DVD video and segmented the audio for each composition from the full audio recording. The audio recordings are stereo, sampled at 44.1 kHz and have a soft harmonium accompaniment. A time aligned syllabic transcription for each score and audio file pair was obtained using a spectral flux based onset detector \cite{bello:05:onset} followed by manual correction. The dataset contains about 17 minutes of audio with over 8200 syllables. The syllables in the dataset are grouped based on timbre as described in \tabref{tab:tabla:bolmap}, and \tabref{tab:dataset:tsd} lists the number of instances in the dataset for each group syllable. 
+
+The dataset is freely available for research purposes through a central online repository\footnote{\url{http://compmusic.upf.edu/tabla-solo-dataset}}. The dataset was created in collaboration with Swapnil Gupta and more details are also described in the masters thesis by \citeA{gupta:15:thesis}. The dataset is useful both for building isolated stroke timbre models and for a comprehensive evaluation of \gls{tabla} solo pattern transcription and discovery, as used by \citeA{gupta:15:tabla}. The scores in the dataset can be used to do symbolic analysis of percussion patterns. 
+\subsection{Mridangam datasets}\label{sec:mridangamdatasets}
+There are two percussion datasets for Carnatic music built as a part of CompMusic: a collection of audio examples of mridangam strokes compiled by Akshay Anantapadmanabhan, and a parallel corpus of scores and audio recordings of mridangam solos played by Padmavibhushan Dr. Umayalpuram K. Sivaraman and compiled by IIT Madras, Chennai, India. 
+%
+\subsubsection{Mridangam stroke dataset}
+The \acrfull{AMSD}\footnote{\url{http://compmusic.upf.edu/mridangam-stroke-dataset}} is a collection of 7162 audio examples of individual strokes of the mridangam in various tonics. The dataset can be used for training models for each mridangam stroke \cite{akshay:13:mridangam}. The dataset comprises of ten different strokes played on mridangams with six different tonic\index{Tonic note} values. The audio examples were recorded from a professional Carnatic percussionist in semi-anechoic studio conditions using SM-58 microphones and an H4n ZOOM recorder. The audio was sampled at 44.1 kHz and stored as 16 bit WAV files. All the audio in the dataset is also available on Freesound\footnote{\url{https://www.freesound.org/}}. 
+
+The dataset is described in \tabref{tab:dataset:AAStroke}, with stroke labels along rows and tonic values along columns. As can be seen from the table, the dataset uses different stroke names compared to the notation used in the dissertation, and hence the analogous syllabic symbol corresponding to each stroke label is also shown in the table. 
+\subsubsection{Mridangam solo dataset}
+\begin{table}
+\centering
+\tabcolsep=0.2cm
+\begin{tabular}{@{}l|rrrrrrr|r@{}}
+\toprule 
+Stroke & \textbf{B} & \textbf{C} & \textbf{C\#} & \textbf{D} & \textbf{D\#} & \textbf{E} & \textbf{Total} & Syl.\tabularnewline
+\midrule 
+%\hline 
+\textbf{Bheem} & 5 & 3 & 1 & 0 & 15 & 25 & \textbf{49} & \syl{DM}\tabularnewline
+%\hline 
+\textbf{Cha} & 57 & 50 & 54 & 67 & 49 & 53 & \textbf{330} & \syl{CH}\tabularnewline
+%\hline 
+\textbf{Dheem} & 127 & 86 & 78 & 12 & 111 & 54 & \textbf{468} & \syl{DNT}\tabularnewline
+%\hline 
+\textbf{Dhin} & 48 & 48 & 63 & 12 & 198 & 113 & \textbf{482} & \syl{DN}\tabularnewline
+%\hline 
+\textbf{Num} & 81 & 98 & 97 & 18 & 143 & 60 & \textbf{497} & \syl{NM}\tabularnewline
+%\hline 
+\textbf{Ta} & 145 & 165 & 217 & 180 & 119 & 105 & \textbf{931} & \syl{TA}\tabularnewline
+%\hline 
+\textbf{Tha} & 200 & 185 & 211 & 224 & 196 & 160 & \textbf{1176} & \syl{TH}\tabularnewline
+%\hline 
+\textbf{Tham} & 88 & 80 & 35 & 29 & 92 & 50 & \textbf{374} & \syl{NMT}\tabularnewline
+%\hline 
+\textbf{Thi} & 438 & 334 & 369 & 283 & 444 & 345 & \textbf{2213} & \syl{DH3}\tabularnewline
+%\hline 
+\textbf{Thom} & 136 & 80 & 72 & 91 & 128 & 135 & \textbf{642} & \syl{TM}\tabularnewline
+\midrule 
+\textbf{\textbf{Total}} & \textbf{1325} & \textbf{1129} & \textbf{1197} & \textbf{916} & \textbf{1495} & \textbf{1100} & \textbf{7162} & \tabularnewline
+\bottomrule 
+\end{tabular}
+\caption[The mridangam strokes dataset]{The \acrfull{AMSD}. The row and column headers are the stroke labels and the tonic values, respectively. The last column shows the analogous syllable used in the dissertation from \tabref{tab:mridangam:bolmap}.}\label{tab:dataset:AAStroke} %\comment{Two syllables to be mapped, check!} 
+\end{table}
+The \acrfull{UMSD} is a transcribed collection of two \glspl{tani avartana} (percussion solo) played by the renowned mridangam maestro Padma Vibhushan Dr. Umayalpuram K. Sivaraman. The audio was recorded at IIT Madras, India and annotated by professional Carnatic percussionists \cite{kuriakose:15:mridangam}. 
+
+Since percussion in Carnatic music is organized and transmitted orally with the use of onomatopoeic syllables representative of the different strokes of the mridangam, a syllabic representation of the \gls{tani} and the patterns provides a musically meaningful representation for analysis. The dataset uses such a representation. The dataset consists of two \glspl{tani avartana} played on a mridangam tuned to tonic C\#\index{Tonic note}, one played in \gls{vilambit}a \gls{adi} \gls{tala} (a cycle of 16 beats) and the other played in \gls{rupaka} \gls{tala}. Each \gls{tani} is about 12 minutes long. Both \glspl{tani} were recorded in studio-like conditions using a Zoom H4n recorder with an SM 57 microphone for the treble head (right) and SM 58 microphone for the bass head (left) of the mridangam. The audio files are mono, sampled at 44.1KHz, and stored as 16 bit WAV files. 
+\begin{table}
+\centering
+\begin{tabular}{@{}llrc|llr@{}}\toprule
+ID & Syllable & \#Inst. & & ID & Syllable & \#Inst.\tabularnewline \midrule
+1 & \syl{AC} & 119 & & 12 & \syl{DNT} & 922\tabularnewline
+2 & \syl{ACT} & 50 & & 13 & \syl{LF} & 467\tabularnewline
+3 & \syl{CH} & 114 & & 14 & \syl{LFT} & 12\tabularnewline
+4 & \syl{CHT} & 112 & & 15 & \syl{NM} & 850\tabularnewline
+5 & \syl{DM} & 14 & & 16 & \syl{NMT} & 632\tabularnewline
+6 & \syl{DH3} & 1266 & & 17 & \syl{TH} & 776\tabularnewline
+7 & \syl{DH3T} & 23 & & 18 & \syl{TA} & 754\tabularnewline
+8 & \syl{DH3M} & 602 & & 19 & \syl{TAT} & 13\tabularnewline
+9 & \syl{DH4} & 367 & & 20 & \syl{TM} & 913\tabularnewline
+10 & \syl{DH4T} & 12 & & 21 & \syl{TG} & 30\tabularnewline
+11 & \syl{DN} & 829 & & - & - & -\tabularnewline \bottomrule
+\end{tabular}
+\caption[The mridangam solo dataset]{The \acrfull{UMSD} with 8877 syllables, showing the number of instances of each syllable in the dataset. The syllable group names correspond to that presented in \protect\tabref{tab:mridangam:bolmap}. }\label{tab:dataset:uks}
+\end{table}
+
+The audio file of each \gls{tani} has been segmented into short musically relevant phrases, and each phrase has been transcribed into its constituent strokes, represented as syllables. The segmentation of audio files and syllabic transcription of each phrase was done by professional Carnatic percussionists. The transcriptions also include pauses (denoted by , ) and change in speed (denoted by \{ and \} ). The combined duration of both the tanis is about 24 minutes and consists of 8863 strokes. The stroke syllables are grouped based on timbre as described in \tabref{tab:mridangam:bolmap} into syllable groups, and the dataset is described in \tabref{tab:dataset:uks}, showing the number of instances for each syllable (group) in the audio recordings. The transcription is not time aligned, but only a sequence of the strokes played in the phrase. 
+
+The dataset can be used for several \gls{MIR} tasks such as onset detection, percussion transcription, rhythm and percussion pattern analysis, and mridangam stroke modeling. The dataset (audio + annotations) is freely available for research purposes\footnote{\url{http://compmusic.upf.edu/mridangam-tani-dataset}} and has been recently used by \citeA{kuriakose:15:mridangam} in their work. 
+%
+\subsection{\Gls{jingju} percussion instrument dataset}\label{sec:dataset:bopi}
+The \acrfull{BOPI} is an annotated collection of Beijing opera\index{Beijing opera} percussion instruments, with audio and time aligned onset annotations~\cite{tian:14:icassp}. The dataset is split into training set with audio files containing single strokes of individual percussion instruments and a test dataset that has the whole percussion ensemble playing together. 
+
+The audio in the dataset was recorded by Mi Tian at the Centre for Digital Music (C4DM), Queen Mary University of London. The dataset was built by recording sound samples with professional musicians in studio conditions at C4DM. The audio was recorded in mono using an AKG C414 microphone at a sampling rate of 44.1 KHz. 
+\begin{table}
+\centering
+\begin{tabular}{@{}lrrrrr@{}}\toprule
+Dataset 	& \Gls{bangu} & \Gls{daluo} & \Gls{naobo} & \Gls{xiaoluo} & \textbf{Total}	\\ \midrule
+Training 	& 59 		& 50 		& 62 		& 65 			& \textbf{236}		\\
+Test 			& 1645  & 338 	& 747 	& 291 		& \textbf{3021} 	\\ \bottomrule
+\end{tabular}
+\caption[The \gls{jingju} percussion instrument dataset]{The \acrlong{BOPI} (\acrshort{BOPI} dataset) showing the number of examples for each instrument in the training and test dataset.}\label{tab:dataset:bopi}
+\end{table}
+
+The dataset, shown in \tabref{tab:dataset:bopi}, consists of recordings of the four percussion instrument classes: \gls{bangu}, \gls{daluo}, \gls{naobo} and \gls{xiaoluo}. Unlike pitched instruments, most idiophones cannot be tuned. These percussion instruments are made from metal casting or wood carving hence subtle differences might exist between the physical properties of individual instruments even of the same kind. For each kind of the above instruments, sound samples of 2-4 individual instruments were recorded, played with different playing styles commonly used in Beijing opera performances with a hope to achieve a better coverage of timbre and variations of playing techniques.
+
+The training set consists of short audio samples with single strokes of each individual instrument that capture most of the possible timbres of the instrument that exist in Beijing opera. For the test dataset, the individually recorded instrument examples were manually mixed together using Audacity\footnote{\url{http://audacity.sourceforge.net}} into 30-second long tracks, with possibly simultaneous onsets to closely emulate the real world conditions. The audio examples used in training and test dataset are mutually exclusive. 
+
+For annotating the onsets, manual labeling of onset locations was tedious and time consuming, especially for complex ensemble music consisting of instruments with diverse properties. The onset ground truth was constructed by the taking the average onset locations marked by three participants without any Beijing opera background. Participants were asked to mark the onset locations in each recording using the audio analysis tool Sonic Visualiser~\cite{cannam:10:sv} displaying the waveform and corresponding spectrogram. 
+
+The set of training examples are freely available for research and reuse\footnote{\url{http://compmusic.upf.edu/bo-perc-dataset}}. The dataset can be used for training models for each percussion instrument class, and \gls{MIR} tasks such as percussion instrument identification, source separation, and instrument-wise onset detection, as used by \citeA{tian:14:icassp}. 
+\subsection{\Gls{jingju} percussion pattern dataset}\label{sec:dataset:bopp}
+\begin{table}
+\centering
+\begin{tabular}{@{}llrr@{}}
+\toprule 
+ID & Pattern Class & \# Instances & $\overline{\songlen}$ ($\sigma$)\tabularnewline \midrule
+1 & \gls{daobantou} \gls{cn:daobantou} & 66 & 8.70 (1.73)\tabularnewline 
+2 & \gls{manchangchui} \gls{cn:manchangchui}& 33 & 13.99 (4.47)\tabularnewline 
+3 & \gls{duotou} \gls{cn:duotou} & 19 & 7.18 (1.49)\tabularnewline 
+4 & \gls{xiaoduotou}\gls{cn:xiaoduotou}& 11 & 8.16 (2.15) \tabularnewline 
+5 & \gls{shanchui}\gls{cn:shanchui} & 8 & 10.31 (3.26)\tabularnewline \midrule
+& \textbf{Total} & \textbf{133} & \textbf{9.85 (3.69)}\tabularnewline \bottomrule
+\end{tabular}
+\caption[The \gls{jingju} percussion pattern dataset]{The \acrlong{BOPP} (\acrshort{BOPP} dataset). The last column is the mean pattern length ($\overline{\songlen}$) and standard deviation ($\sigma$) in seconds. \figref{fig:bopatt:scores} shows the music scores for these patterns.}\label{tab:dataset:bopp}
+\end{table}
+
+The \acrfull{BOPP} is a collection of audio examples and scores of percussion patterns played by the percussion ensemble in Beijing opera~\cite{ajay:14:ismirbo}. The dataset was built from commercial \gls{jingju} aria recordings with the help of Rafael Caro, a musicologist working on \gls{jingju}. 
+
+The dataset is a collection of 133 audio percussion patterns spanning five different pattern classes described in \secref{sec:bkgnd:bopercussion}, and comprises about 22 minutes of audio with over 2200 syllables in total. The audio files are short segments containing one of the above mentioned patterns. The audio is stereo, sampled at 44.1 kHz, and stored as wav files. The segments were chosen from the introductory parts of arias, which are characteristic and important. The recordings of arias are from commercially available releases spanning various artists chosen from the CompMusic \gls{jingju} research corpus~\cite{caro:14:jingjudata}.
+
+The music pieces and audio segments were chosen carefully by a musicologist to be representative of the percussion patterns that occur in \gls{jingju}. The audio segments contain diverse instrument timbres of percussion instruments (though the same set of instruments are played, there can be slight variations in the individual instruments across different ensembles), recording quality and period of the recording. Though these recordings were chosen from introductions of arias where only percussion ensemble is playing, there are some examples in the dataset where the melodic accompaniment starts before the percussion pattern ends. 
+
+Each of the audio patterns has an associated syllable level transcription of the audio pattern. The syllabic transcription of each audio pattern is directly obtained from the score of the pattern class it belongs to, and hence is not time aligned to the audio. In case of patterns where a sub-sequence of the pattern can be repeated (e.g. \textit{man changchui} and \textit{shanchui}), the additional syllables that occur due to repetitions were manually added by listening to the pattern. Though most of the dataset consists of isolated percussion patterns, there are a few audio examples that contain a melodic background apart from the percussion pattern. The transcription is done using the reduced set of five syllables described in \tabref{tab:bo:sylmap} and is sufficient to computationally model the timbres of all the syllables. The annotations are stored as \gls{HTK}\footnote{\gls{HTK}: \url{http://htk.eng.cam.ac.uk/}} label files. There is also a single master label file provided with all the annotations for batch processing using \gls{HTK}. 
+
+The annotations are publicly shared and available to all\footnote{\url{http://compmusic.upf.edu/bopp-dataset}}. The audio is from commercially available releases and can be easily accessed using the associated \glspl{MBID}. The dataset can be used for instrument-wise onset detection and percussion pattern transcription and classification, as applied by \citeA{ajay:14:ismirbo}. 
+\subsection{Other evaluation datasets}
+As discussed in \secref{sec:bkgnd:beattrack}, there are several datasets available for beat tracking evaluation, used in \gls{MIREX} or otherwise, e.g. SMC dataset \cite{holzapfel:12:beat}, Ballroom dataset \cite{gouyon:06:tempo}, McKinney dataset \cite{moelants:04:tempo}, RWC database \cite{goto:06:rwc}, Hainsworth dataset \cite{hainsworth:03:pfbeat}, and GTZAN-Rhythm dataset \cite{marchand:15:gtzanrhythm}. Of all these datasets, in addition to Indian art music rhythm datasets, we use the Ballroom dataset for evaluating algorithms and approaches presented in the thesis. There are other non-eurogenetic music (Turkish and Cretan music) datasets for testing automatic rhythm analysis approaches. We do not use them and present any evaluations on those datasets, but they are briefly described for completeness. 
+\subsubsection{Ballroom dataset}
+The Ballroom dataset includes beat and bar annotations audio recordings of several dance styles sourced from \url{BallroomDancers.com} and was first introduced by \citeA{gouyon:06:tempo}. The beat and bar annotations were then added by \citeA{krebs:13:bpm}. The ballroom dataset contains eight different dance styles (Cha cha, Jive, Quickstep, Rumba, Samba, Tango, Viennese Waltz, and (slow) Waltz) and has been widely used for several \gls{MIR} tasks such as genre classification, tempo tracking, beat and downbeat tracking, e.g. by \citeA{gouyon:06:tempo,krebs:15:pf,bock:14:multimodel}. 
+
+It consists of 697 thirty second long audio excerpts and has tempo and dance style annotations. The dataset contains two different meters (3/4 and 4/4) and all pieces have constant meter. The tempo restrictions given the dance style label from \url{http://www.ballroomdancers.com/Dances/} were used to annotate the beats and downbeats at the correct metrical level. 
+
+The ballroom dataset is used as a dataset to present several evaluations of the algorithms and approaches presented in thesis - to compare performance with the state of the art, and to test if the proposed approaches scale and extend to different music genres and cultures. 
+%\comment{Are descriptions of Turkish and Cretan datasets needed, since not many results are included ?} There are other datasets on which we present some evaluation results. 
+\subsubsection{Turkish rhythm dataset}
+The Turkish music rhythm dataset was compiled and annotated by Dr. Andre Holzapfel~\cite{holzapfel:14:odd} and is an extended version of the annotated data used by \citeA{ajay:14:rhythmJNMR}. It includes 82 excerpts of one minute length each, and each piece belongs to one of three rhythm classes that are referred to as \textit{usul} in Turkish makam music. 32 pieces are in the $9/8$-usul \textit{Aksak}, 20 pieces in the $10/8$-usul \textit{Curcuna}, and 30 samples in the $8/8$-usul \textit{D\"uyek}.
+\subsubsection{Cretan music dataset} 
+The Cretan music dataset consists of 42 full length music pieces of Cretan leaping dances compiled and annotated by Dr. Andre Holzapfel~\cite{holzapfel:14:odd}. While there are several dances that differ in terms of their steps, the differences in the sound are most noticeable in the melodic content, and all the pieces of the dataset belong to one rhythmic style. All these dances are usually notated using a $2/4$ time signature, and the accompanying rhythmical patterns are usually played on a Cretan lute. While a variety of rhythmic patterns exist, they do not relate to a specific dance and can be assumed to occur in all of the 42 songs in this dataset. 
+
+To summarize, the chapter presented a comprehensive discussion of the research corpora and test datasets useful for rhythm related \gls{MIR} tasks, focusing on Indian art music. The corpora and datasets are easily accessible and hence are valuable resources for data-driven \gls{MIR}. An illustrative analysis of the Indian art music rhythm datasets showed a good potential for data-driven computational musicology research. The Indian art music rhythm and percussion datasets, along with the Ballroom dataset will be extensively used for the experiments in meter analysis and percussion pattern discovery. 
+% Cite this paper for first bar downbeat annotation: [3] Dixon, S., F. Gouyon & G. Widmer. Towards Characterisation of Music via Rhythmic Patterns. In Proceedings of the 5th International Society for Music Information Retrieval Conference (ISMIR). 2004.
+% \note{Also mention other rhythm datasets: Geoffroy Peeters dataset, Gainsworth dataset, SMC dataset}
+%\note{Ballroom dataset, GTZAN, SMC}
+%
+%\note{A summary of the chapter to be written here. }
+%\citeA{sankalp:12:meter}
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{@{}rrr@{}}
+%\toprule 
+%\centering\glspl{bol} \hspace{2cm} & Symbol & \# Instances\tabularnewline \midrule
+%D, DA, DAA  & \syl{DA} & \tabularnewline 
+%N, NA, TAA, TUN & \syl{NA} & \tabularnewline 
+%DI, DIN, DING, KAR, GHEN & \syl{DIN} &\tabularnewline 
+%KA, KAT, KE, KI, KII & \syl{KI} & \tabularnewline  
+%GA, GHE, GE, GHI, GI & \syl{GE} &\tabularnewline 
+%KDA, KRA, KRI, KRU & \syl{KDA} & \tabularnewline 
+%TA, TI, RA  & \syl{TA} \tabularnewline 
+%CHAP, TIT & \syl{TIT} \tabularnewline 
+%DHA & \syl{DHA} & \tabularnewline
+%DHE & \syl{DHE} & \tabularnewline
+%DHET & \syl{DHET} & \tabularnewline 
+%DHI & \syl{DHI} & \tabularnewline 
+%DHIN & \syl{DHIN} & \tabularnewline 
+%RE & \syl{RE} & \tabularnewline 
+%TE & \syl{TE} & \tabularnewline
+%TII & \syl{TII} & \tabularnewline 
+%TIN & \syl{TIN} & \tabularnewline 
+%TRA & \syl{TRA} & \tabularnewline \midrule 
+%Total & - & 8200+ \tabularnewline \bottomrule 
+%\end{tabular}
+%\caption[The tabla \glspl{bol} used in Hindustani music]{The \glspl{bol} used in tabla, their grouping, and the symbol we use for the syllable group in this thesis. \update{Move to Chap 2}}\label{tab:tabla:bolmap}
+%\end{table}%The symbols \syl{DHA}, \syl{DHE}, \syl{DHET}, \syl{DHI}, \syl{DHIN}, \syl{RE}, \syl{TE}, \syl{TII}, \syl{TIN}, \syl{TRA} have a one to one mapping with a syllable of the same name and hence not shown in the table. We compile a comprehensive set of syllables in tabla.
+%
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{@{}p{6cm}rrr@{}}
+%\toprule 
+%\multirow{2}{*}{\centering\Gls{solkattu}} & \multirow{2}{*}{Symbol} & \multicolumn{2}{c}{\# Instances} \tabularnewline 
+%& & \gls{tani}-1 & \gls{tani}-2 \tabularnewline \midrule
+%achapu & \sylAchapu & 400? & 450? \tabularnewline \hline
+%achaputha, achaputhom & \sylAchaput & &\tabularnewline \hline 
+%chapu	& \sylChapu & & \tabularnewline \hline 
+%chaputha, chaputhom	& \sylChaput & & \tabularnewline \hline 
+%dheem, dheemtha & \sylDheem & & \tabularnewline \hline 
+%dhi3 & \sylDhia & & \tabularnewline \hline 
+%dhi3g, dhi3tha, dhi3thom	& \sylDhiat & & \tabularnewline \hline 
+%dhi3m, dhi3mg & \sylDhiam & & \tabularnewline \hline 
+%dhi4, dhi4p & \sylDhib & & \tabularnewline \hline 
+%dhi4g, dhi4tha & \sylDhibt & & \tabularnewline \hline 
+%dhin & \sylDhin & & \tabularnewline \hline 
+%dhing, dhint, dhintha, dhinthom, dhintom, dot & \sylDhint & & \tabularnewline \hline 
+%lf, lgm & \sylLf & & \tabularnewline \hline
+%lfg, lfthom & \sylLft & & \tabularnewline \hline
+%nam, rnam & \sylNam & & \tabularnewline \hline
+%namg, namtha, namthom, rnamtha, rnamthom & \sylNamt & & \tabularnewline \hline
+%ot, tha & \sylTha & & \tabularnewline \hline
+%ta, tam & \sylTa & & \tabularnewline \hline
+%tatha, tathom & \sylTatha & & \tabularnewline \hline 
+%thom & \sylThom & & \tabularnewline \hline
+%tmg, 3mg & \sylTmg & & \tabularnewline \midrule
+%Total & - & & \tabularnewline \bottomrule
+%\end{tabular}
+%\caption[The \glspl{solkattu} used in Carnatic music percussion]{The \glspl{solkattu} used in mridangam, their grouping, and the symbol we use for the syllable group in this thesis.}\label{tab:mridangam:bolmap}
+%\end{table}
+%
+%
+%
+% The syllables of tabla vary marginally within and across \glspl{gharana}, several \glspl{bol} can represent the same stroke on the tabla. To address this issue, we grouped the full set of 41 syllables into timbrally similar groups resulting into a reduced set of 18 syllable groups as shown in \tabref{tab:tabla:bolmap}. Though each syllable on its own has a functional role, this timbral grouping is presumed to be sufficient for discovery of percussion patterns. For the remainder of the dissertation, we limit ourselves to the reduced set of syllable groups and use them to represent patterns. For convenience, when it is clear from the context, we call the syllable groups as just syllables and denote them by the symbols in \tabref{tab:tabla:bolmap}. 
+%
+%
+%
+%\noindent \comment{Todo: Fix the glossary issues for this chapter} \\
+%\comment{Todo: Move pattern figures closer to the text describing them} \\
+%
+%\nocite{*}
+%\comment{\textit{Chapter in brief: Write about corpora and datasets created and/or used in the context of the thesis by all the collaborators of CompMusic, with an emphasis on their use for rhythm related tasks. Additionally, present a basic statistical analysis of the datasets - emphasizing its utility for various relevant tasks of the thesis. The material for this chapter is from SMC/ICMC 2014, ICASSP 2014, ISMIR 2014, ISMIR 2015, ICASSP’16, CAMUT documentation}}
+%
+%\dtext{The work we do is data-driven and hence datasets play an important role in research. A significant part of the efforts in the CompMusic project and the thesis are to collaborate and develop datasets for use in research. The chapter discusses the datasets developed within the context of CompMusic, by us and other collaborators. The idea is also to discuss how to measure the goodness of a corpus, what data driven research can be done with datasets and what can we learn directly from datasets.}
+%
+%\dtext{Abstract: Research corpora are representative collections of data and are essential to develop data-driven approaches in Music Information Research (MIR). We address the problem of building research corpora for MIR in Indian art music traditions of Hindustani and Carnatic music, considering several relevant criteria for building such corpora. We also discuss a methodology to assess the corpora based on these criteria and present an evaluation of the corpora in their coverage and completeness. In addition to the corpora, we briefly describe the test datasets that we have built for use in many research tasks. In specific, we describe the tonic dataset, the Carnatic rhythm dataset, the Carnatic \gls{varnam} dataset, and the Mridangam stroke dataset.}
