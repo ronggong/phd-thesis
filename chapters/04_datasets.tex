@@ -337,15 +337,43 @@ The pinyin of the middle syllable in \figref{fig:ch4:da_dan_ren} is ``dan", whic
 
 Given the analysis of the above three spectrogram examples, we can design the methodologies for the syllable and phoneme segmentation task in an intuitive way. Firstly, as most of the phoneme categories can be distinguished between each other except for medial vowel-central vowel and voiced consonant-central vowel, we can develop the segmentation algorithm based on the discrimination between phonemes. Secondly, as there are usually obvious spectrogram pattern transitions between phoneme segments, we can also devise the algorithm based on the detection of these transitions. The segmentation algorithms development and evaluation will be presented in detail in the next Chapter.
 
-\subsection{Dataset for mispronunciation detection}
+\subsection{Dataset for mispronunciation detection}\label{sec:ch4:dataset_mispronunciation}
 
-table -- unique work number, recording number, shengqiang, banshi 
+As we have mentioned in \secref{sec:ch3:mispronunciation}, we consider only two types of mispronunciation in jingju singing -- the mispronunciation of special pronunciation and that of jianzi. The first type of mispronunciation -- special pronunciation, is that some written characters in jingju singing pieces should be pronounced differently than in Mandarin Chinese, however, the student doesn't pronounce them correctly as in teacher's demonstrative singing. The second type of mispronunciation -- jianzi, is that certain rounded syllables (团子, pinyin: tuanzi) in jingju singing pieces can be altered to pronounce as the pointed sounds (尖子, pinyin: jianzi), however, the student doesn't pay attention and still pronounce them as rounded syllables. 
 
-Recording source
+In the actual jingju teaching scenario, the teacher's demonstrative singing pieces are given, thus we can identify in advance those special pronounced and jianzi written characters in the pieces. After we obtain the student's imitative singing pieces, the detection process can be carried out only on those special pronounced and jianzi written characters. To this end, we need a model which either can transcribe orthographically each singing syllables considering the special pronunciations and jianzi, or can distinguish between the standard Mandarin pronunciations and the special pronunciations/jianzi. Either way, we need a test dataset where the special pronounced syllables and jianzi are annotated orthographically in pinyin and in phoneme using X-SAMPA format.
 
-Annotation format
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{l|ccccc}
+        \toprule
+        & \makecell{\#Melodic\\line} & \#Syl. & \makecell{\#Special\\pronunciation} & \#jianzi & \#Phn. \\
+        \midrule
+        Train           & 937 & 8263 & 752 & 50 & 21088 \\
+        Test               & 71 & 651 & 59 & 4  & 1790\\
+        \bottomrule
+    \end{tabular}
+    \caption{Statistics of the MD test dataset. Syl.: syllable; Phn.: phoneme.}
+    \label{table:ch4:detailInfoDataset_md}
+\end{table}
 
-Visualize normal pronunciation phoneme, and special pronounce phoneme, from the same syllable
+The Mispronunciation Detection -- MD test dataset is annotated for the above purpose. MD is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected mainly from the part 1 and 2 of the corpus. \tabref{table:ch4:detailInfoDataset_md} shows the statistics of the MD test dataset which are split into train and test parts. As we can see from the table, the occurrence of the special pronounced syllables is much larger than jianzi.
+
+\begin{figure}[ht!]
+\makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{figs/dstats/occurrence_special.png}}
+\caption{The occurrence of each special pronounced syllable.}
+\label{fig:ch4:occurrence_special}
+\end{figure}
+
+\figref{fig:ch4:occurrence_special} shows the occurrence of each special pronounced syllables in MD dataset. The most frequently occurred syllables are /ngo (我), shen, qin, tin, bin, yin, chen, go, min, lin, xin, ho/. The pronunciation /ngo/ is altered from /wo/ in standard Mandarin by changing the semivowel /w/ to the nasal consonant /ng/. The syllables /go/ and /ho/ are altered from /ge/ and /he/ in standard Mandarin by changing the vowel /e/ to /o/. The other syllables mentioned above are the alteration from velar nasal to alveolar nasal, for example, changing from /eng/ and /ing/ to /en/ and /in/. The full table of the alteration from Mandarin pronunciation to the special pronunciation appeared in the MD test dataset is presented in \tabref{tab:app:special_pronun}.
+
+\begin{figure}[ht!]
+\includegraphics[width=\textwidth]{figs/dstats/occurrence_jianzi.png}
+\caption{The occurrence of each jianzi syllable.}
+\label{fig:ch4:occurrence_jianzi}
+\end{figure}
+
+\figref{fig:ch4:occurrence_jianzi} shows the occurrence of each jianzi in MD dataset. As we have mentioned in \secref{sec:ch2:jiantuanzi}, the rule of this pronunciation alteration is /j, zh/ -> /z/, /q, ch/ -> /c/, /x, sh/ -> /s/. For example, the pronunciation /siang/ is altered from /xiang/, and /zeng/ is altered from /zheng/. The full table of rounded syllables to the special pronunciation appeared in the MD test dataset is presented in \tabref{tab:app:jianzi}.
 
 \subsection{Dataset for pronunciation and overall quality similarity measures}
 
