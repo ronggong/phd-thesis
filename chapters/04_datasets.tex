@@ -85,7 +85,7 @@ The whole corpus including audio recordings, editorial metadata and audio annota
 
 \subsubsection{Recording setup}\label{sec:ch4:recording_setup}
 
-In the first part of the corpus, the information of recording setup for the audios collected by C4DM has not been given in the original release \cite{Black2014}. However, by listening to each of them, we confirmed that the audios from this part included in the corpus are all good quality. Also in this part, the recordings whose names ending with ‘upf’ are recorded in a professional studio with jinghu accompaniment. Singers and jinghu accompanists are placed separately in different recording rooms and used two recording channels to avoid crosstalk. Other recordings whose name ending with ‘lon’ are recorded by using a Sony PCM-50 portable stereo recorder in a classroom with a certain reverberation. Additionally, another collection of 15 clean singings source-separated from commercial recordings contain audible artefacts of the background accompaniment.
+In the first part of the corpus, the information of recording setup for the audios collected by C4DM has not been given in the original release \cite{Black2014}. However, by listening to each of them, we confirmed that the audios from this part included in the corpus are all good quality. Also in this part, the recordings whose names ending with `upf' are recorded in a professional studio with jinghu accompaniment. Singers and jinghu accompanists are placed separately in different recording rooms and used two recording channels to avoid crosstalk. Other recordings whose name ending with `lon' are recorded by using a Sony PCM-50 portable stereo recorder in a classroom with a certain reverberation. Additionally, another collection of 15 clean singings source-separated from commercial recordings contain audible artefacts of the background accompaniment.
 
 For the second part of the corpus, most of the recording sessions have been conducted in professional recording rooms by using professional equipment. We use two recording equipment sets and two recording rooms:
 
@@ -349,15 +349,16 @@ In the actual jingju teaching scenario, the teacher's demonstrative singing piec
         \toprule
         & \makecell{\#Melodic\\line} & \#Syl. & \makecell{\#Special\\pronunciation} & \#jianzi & \#Phn. \\
         \midrule
-        Train           & 937 & 8263 & 752 & 50 & 21088 \\
-        Test               & 71 & 651 & 59 & 4  & 1790\\
+        Train           & 662 & 5797 & 463 & 41 & 15287 \\
+        Test               & 345 & 3106 & 356 & 13  & 7561 \\
         \bottomrule
     \end{tabular}
     \caption{Statistics of the MD test dataset. Syl.: syllable; Phn.: phoneme.}
     \label{table:ch4:detailInfoDataset_md}
 \end{table}
 
-The Mispronunciation Detection -- MD test dataset is annotated for the above purpose. MD is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected mainly from the part 1 and 2 of the corpus. \tabref{table:ch4:detailInfoDataset_md} shows the statistics of the MD test dataset which are split into train and test parts. As we can see from the table, the occurrence of the special pronounced syllables is much larger than jianzi.
+The Mispronunciation Detection -- MD test dataset is annotated for the above purpose. MD is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected mainly from the part 1 and 2 of the corpus. \tabref{table:ch4:detailInfoDataset_md} shows the statistics of the MD test dataset which are split into train and test parts, and the test part contains only the recordings of amateur singings. As we can see from the table, the occurrence of the special pronounced syllables is much larger than jianzi. Most importantly, in the test part of the MD dataset, there are 102 syllables of special pronunciations and 37 syllables of jianzi which have been mispronounced. These mispronounced syllables are labeled manually by comparing the annotation of the test recording and that of the corresponding teacher's demonstrative recording. For example, if in the teacher's recording, there is a special pronunciation /ngo/ for the syllable ``wo”, however, in the amateur's recording, the corresponding syllable is still pronounced as /wo/, this syllable is labeled as a mispronunciation.
+
 
 \begin{figure}[ht!]
 \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{figs/dstats/occurrence_special.png}}
