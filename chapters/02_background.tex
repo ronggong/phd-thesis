@@ -443,6 +443,8 @@ Authors                                                        & Methods  \\
 
 \subsection{Evaluation metrics}\label{sec:ch2:evaluation_metrics}
 
+\subsubsection{Onset detection metrics}
+
 A simple evaluation metric for onset detection -- \textbf{onset detection accuracy} is adopted in many state of the art works \shortcite{Eybena,Bock2012c,Bock2012b,Bock2013,Bocka,Schluter2014}. We use the same metric for our evaluation. To define a correctly detected onset, a tolerance threshold of $\tau=25$ms is chosen. If the detected onset $o_d$ lies within the tolerance of its ground truth counterpart $o_g$: $|o_d-o_g|<\tau$, we consider that it's correctly detected. A more strict metric can be defined by requiring that the label of the detected onset and that of the ground truth are identical. The F-measure is a number between 0 and 1 calculated as the harmonic mean of the precision and recall. Precision is the ratio between the number of correctly detected onsets and all detected onsets, and recall is the ratio between the number of correctly detected onsets and the total annotated onsets.
 
 \begin{equation}
@@ -464,6 +466,18 @@ The metric presented above can also be used to evaluate alignment algorithm. How
 \textrm{Percentage of correct segments} =\\\frac{\textrm{duration of correctly aligned segments}}{\textrm{total duration of the music piece}}
 \end{split}
 \end{equation}
+
+\subsubsection{Binary classification evaluation metric}
+
+In binary classification task, such as mispronunciation detection, which classifies the singing syllable or phoneme segment into mispronounced or correctly pronounced class, we use classification accuracy as the evaluation metric. The classification accuracy is defined as:
+
+\begin{equation}
+\textrm{Accuracy} = \frac{TP + NP}{\textrm{number of total population}}
+\end{equation}
+
+Where $TP$ is true positive -- correctly classified as positive (e.g., mispronunciation in mispronunciation detection task), and $NP$ is true negative -- correctly classified as negative (e.g., correct pronunciation in mispronunciation detection task). 
+
+\subsubsection{Similarity measurement metrics}
 
 In this dissertation, the acoustic embedding will be always used as a representation for the similairy (distance) computation. Thus the evaluation of acoustic embedding needs to be done with the help of a simlarity (distance) measure. The ground truth label is set to 1 if two singing segments belong to the same class (phoneme, special pronunciation, etc.), 0 vice versa. We report the average precision (AP) between the pairwise similarities of the segments and the ground truth as the evaluation metric. The AP is used previously to evaluate speech word acoustic embedding \cite{Kampera,Settle2016a}. It is also suggested as the metric for imbalanced test set \cite{Davis2006}, which is the case of the pronunciation aspect evaluation.
 
