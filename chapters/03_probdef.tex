@@ -259,7 +259,22 @@ We illustrate some signal characteristics of jingju singing voice that will be h
 
 In jingju singing, the breath must be under purposeful control at all times \cite{Wichmann1991a}. 偷气 (pinyin: touqi, stealing breath) is one of the primary methods to taking the breath in jingju singing. Performer inhales rapidly without exhaling beforehand. Touqi is performed when a sound is too long to be delivered in one breath and should be undetectable to the audience \cite{Wichmann1991a}. However, this is not the only technique which can lead to pauses within a syllable. Another singing technique (\textit{zu yin}, literally translated as block sound), provokes also pauses without occurring exhalation or inhalation. This kind of pause can be very short in duration and can be easily found in jingju singing syllables. 
 
-Vibrato (颤音 chanyin and 波浪音 bolangyin) is extremely important in jingju singing such that a single pitch is rarely prolonged without a vibrato. Compared to the Western opera, jingju singing vibrato is slower and wider regarding vibrato rate and extent \cite{Yang2015a}.  
+Vibrato (颤音 chanyin and 波浪音 bolangyin) is extremely important in jingju singing such that a single pitch is rarely prolonged without a vibrato. Compared to the Western opera, jingju singing vibrato is slower and wider regarding vibrato rate and extent \cite{Yang2015a}. 
+
+\begin{figure}[ht!]
+    \includegraphics[width=\textwidth]{figs/spectro_vis/ch3_jianzi_mispronunciation.png}
+    \caption{The Mel spectrograms of pointed syllable (jianzi) ``siang" and its corresponding rounded syllable (tuanzi) ``xiang".}
+    \label{fig:ch3:jianzi_mispronunciation_example}
+\end{figure}
+
+\begin{figure}[ht!]
+    \includegraphics[width=\textwidth]{figs/spectro_vis/ch3_special_mispronunciation.png}
+    \caption{The Mel spectrograms of the special pronounced syllable ``ngo" and its corresponding normal pronounced syllable ``wo".}
+        \label{fig:ch3:special_mispronunciation_example}
+\end{figure}
+
+In jingju singing training, correctly pronouncing each written-character (syllable) is essential. The important role of pronunciation in jingju singing training has been discussed in \secref{sec:probdef:role_pronunciation}. However, in the actual training scenario, the student is likely to commit the pronunciation errors regarding two types of syllable -- jiantuanzi and special pronunciation, where their definitions have been introduced in \secref{sec:ch2:jiantuanzi} and \secref{sec:ch2:special_pronunciation}. Jiantuanzi mispronunciation means that the student mispronounces a pointed sound syllable (jianzi) as the rounded sound (tuanzi). The mispronunciation of the special syllables means that the student mispronounces a special pronounced syllable as the standard pronunciation in Chinese Mandarin. \figref{fig:ch3:jianzi_mispronunciation_example} and \figref{fig:ch3:special_mispronunciation_example} shows the Mel spectrograms of the mispronounced syllables. We can observe that the spectral difference between jianzi ``siang" and its corresponding tuanzi ``xiang" mainly lies in the non-voiced consonant part, and the difference between special pronounced syllable ``ngo" and its corresponding normal pronunciation ``wo" also lies in the syllable head part. The mispronunciation in jingju singing training and the formulation of the problem of mispronunciation detection will be continued to discuss in \secref{sec:ch3:mispronunciation_challenge} and \secref{sec:ch3:mispronunciation}.
+
 
 \begin{figure}[ht!]
 \includegraphics[width=\textwidth]{figs/spectro_vis/ch3_overall_qua.png}
@@ -286,11 +301,11 @@ The jingju music characteristics allow a certain freedom of improvisation in cha
 
 Regarding segmentations in finer granularities than banshi, as we have mentioned above, long syllable, silences within a syllable and spectral pattern variation pose challenge to the relevant segmentation/alignment tasks. 
 
-mispronunciation challenges
+Pronunciation correctness is essential in jing singing training. According to the discussion of mispronunciation in \secref{sec:ch3:char_singing}, the mispronunciation is revealed usually in some parts of a syllable. If the student mispronounces a jianzi, she/he probably only pronounces badly the non-voiced consonant part of the syllable. For example, the mispronunciation of jianzi ``siang" to ``xiang" is characterized only by the non-voiced consonant part. If the student mispronounces a special pronounced syllable, she/he might pronounce badly any part of the syllable. Please consult \tabref{tab:app:special_pronun} for the mispronunciation patterns regarding the special pronunciation. As a consequence, the model which can discriminate the mispronounced and correctly pronounced syllables should be able to locate the relevant parts in the syllable, which is a potential challenge.
 
 Pronunciation and overall quality of a singing syllable or phoneme are both abstract and perceptual related concepts. Pronunciation is a subconcept of the timbre which is defined by what is not ``a set of auditory attributes of sound events in addition to pitch, loudness, duration, and spatial position". In a signal point of view, timbre is related to the spectral envelope shape and the time variation of spectral content \cite{Pons2017Timbre}. While overall quality is a more general concept than pronunciation since it is a mixture of different musical dimensions -- intonation, loudness, duration and timbre (apart from pronunciation). In consequence, to define a pronunciation similarity measure requires a perceptual related representation of the time-varying spectral content, and to define an overall quality similarity measure requires a representation of all relevant dimensions. To identify the proper representations for similarity measures is a potential challenge.
 
-In summary, the absence of an absolute tempo and local tempo variation are challenging. Long syllable, silences within a syllable and spectral pattern variation pose challenges to existing segmentation approaches. The fuzziness of pronunciation and overall quality concepts present challenges in finding proper representations for their similarity measurement.
+In summary, the absence of an absolute tempo and local tempo variation are challenging. Long syllable, silences within a syllable and spectral pattern variation pose challenges to existing segmentation approaches. The locality of the mispronunciation presents challenges in mispronunciation detection. The fuzziness of pronunciation and overall quality concepts present challenges in finding proper representations for their similarity measurement.
 
 \subsection{Opportunities}
 
@@ -350,9 +365,15 @@ The work on lyrics-to-audio alignment for jingju singing has been very limited s
 
 It is to be noted that prior musical information such as score is usually available for the assessment of jingju singing, and can be exploited to tackle the related challenges. Lastly, since we adopt the melodic line directly as the input of the assessment pipeline, couplet or melodic line segmentation will not be a problem considered in this dissertation. Syllable and phoneme segmentation is one of the problems addressed in this dissertation and is formulated more concretely in \secref{sec:ch3:segmentation_formulation}.
 
-\subsection{Mispronunciation detection}
+\subsection{Mispronunciation detection}\label{sec:ch3:mispronunciation_challenge}
 
-mispronunciation detection for mandarin speech
+Mispronunciation detection refers to build the computational model to detect the badly pronounced syllables or phonemes in student's singing voice. The detection could be done in either syllable or phoneme granularities. In this dissertation, we tackle only the problem of building the models to detect the mispronunciation at syllable-level since syllable or written-character is the basic unit of which the teacher corrects the pronunciation in the actual singing training scenario. More specifically, we tackle only the problem of mispronunciation detection for jiantuanzi and special pronounced syllables since these two types of the syllable is the main source of the mispronunciation in jingju singing training. The application of such detection model is not limited to singing voice. Other potential applications are the mispronunciation detection in the second language (L2) learning or broadcasting training.
+
+The challenge of this topic, as mentioned in \secref{sec:ch3:challenges}, is to take consideration of the locality of the mispronunciation within a syllable, which is to say, the model should be able to detect the mispronunciation of a syllable according to some parts of the syllable. We can formulate the detection problem as a supervised discriminate task, and a labeled dataset which contains mispronunciation syllable segments (positive samples) and correctly pronounced syllable segments (negative samples) can be used to build the model.
+
+There exist a significant amount of works on the topic of speech mispronunciation detection applied in L2 learning. The most relevant work in this field is the Goodness of pronunciation (GOP) measure proposed by S. M. Witt and S. J. Young \cite{Witt2000}, which used forced alignment method with a pronunciation dictionary to generate GOP score for the mispronunciation detection task of English phonemes. In the singing voice application, Gupta et al. \cite{Guptac} first generalized the mispronunciation rules for the singing voice of Southeast Asian English accent. Then they also applied forced alignment with an adapted dictionary for the mispronunciation detection.
+
+Mispronunciation detection is one of the problems addressed in this dissertation. A more comprehensive problem formulation will be presented in \secref{sec:ch3:mispronunciation}.
 
 \subsection{Pronunciation and overall quality similarity measures}
 
@@ -389,6 +410,14 @@ The a priori syllable durations of the target melodic line are stored in an arra
 The approaches, experiments and results for syllable and phoneme segmentation are presented in Chapter.
 
 \subsection{Mispronunciation detection}\label{sec:ch3:mispronunciation}
+
+The problem of mispronunciation detection at syllable-level is the third problem that will be addressed in this thesis. The goal is to build supervised discriminative deep learning models to classify mispronounced and correctly pronounced syllabic segments. We explore integrating the attention mechanism into the approach, and the learned model is supposed to concentrate on some certain parts of the syllable. Differ from the widely adopted forced alignment-based approach, the proposed method only requires that the training data has the binary annotation -- mispronounced or correctly pronounced, rather than the detailed mispronunciation patterns.
+
+As the preliminary step, the syllables are segmented automatically by using the approach presented in \secref{sec:ch3:segmentation_formulation}. Although this approach will cause some segmentation errors which might be propagated to the mispronunciation detection step, we use it to allow a fair comparison with the baseline forced alignment-based method, since the latter also segment the syllables automatically. We restrict in this dissertation the mispronunciation detection on two types of the syllable -- jiantuanzi and special pronunciation since they are the main sources of mispronunciation happened in actual jingju singing training. Jiantuanzi mispronunciation means that the student mispronounces a pointed sound syllable (jianzi) as the rounded sound (tuanzi). The mispronunciation of the special syllables means that the student mispronounces a special pronounced syllable as the standard pronunciation in Chinese Mandarin. The mispronunciation patterns -- from correctly pronounced syllable to mispronounced syllable, is shown in \appref{app:special_pronunciation}. Thus, two different models will be explored. The first one classifies the mispronounced special syllables from the correctly pronounced special syllables, and the second one classifies the mispronounced jianzi from the correctly pronounced jianzi.
+
+Let the set of variable-length mispronounced special syllable segments be denoted as $S_{positive}$, and the set of correctly pronounced special syllable segments to be denoted as $S_{negative}$. The discriminative model should be able to classify binarily the samples between these two classes. The similar model can be built for jiantuanzi mispronunciation detection as well. 
+
+The approaches, experiments and results for mispronunciation detection are presented in chapter.
 
 \subsection{Pronunciation and overall quality similarity measures at phoneme level}\label{sec:ch3:similarity_formulation}
 
