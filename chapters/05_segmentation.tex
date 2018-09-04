@@ -49,7 +49,7 @@ The syllable durations of the teacher's singing phrase are stored in an array $M
 
 The \textit{a priori} duration model is shaped with a Gaussian function $\mathcal{N} (d; {\mu}_n, \sigma_n^2)$. It provides the prior likelihood of an onset to occur according to the syllable/phoneme duration of the teacher's singing. The mean ${\mu}_n$ of the Gaussian represents the expected duration of nth teacher's syllable/phoneme. Its standard deviation $\sigma_n$ is proportional to $\mu_n$: $\sigma_n=\gamma \mu_n$ and $\gamma$ is heuristically set to 0.35. Figure \ref{fig:coarse_dur} provides an intuitive example of how the \textit{a priori} duration model works. The a priori phoneme duration model will be used as the state occupancy distribution in the HSMM-based segmentation method, and the a priori syllable and phoneme duration models will be incorporated into a duration-informed HMM as the state transition probabilities to inform that where syllable/phoneme onsets is likely to occur in student's singing phrase.
 
-\section{HSMM-based segmentation method}
+\section{HSMM-based segmentation method}\label{sec:ch5:hsmm_segmentation}
 
 As a baseline, we develop an lyrics-to-audio alignment system which also makes use of the prior phoneme duration information. This lyrics-to-audio alignment system is a 1-state monophone DNN/HSMM model. We use monophone model because our small dataset doesn't have enough phoneme instances for exploring the context-dependent triphones model, also Brognaux and Drugman \cite{brognaux2016hmm} and Pakoci et al. \cite{pakoci2016phonetic} argued that context-dependent model can not bring significant alignment improvement. It is convenient to apply 1-state model because each phoneme can be represented by a semi-Markovian state carrying a state occupancy time distribution. The audio preprocessing step is presented in \secref{sec:ch5:input_representation}.
 
@@ -119,7 +119,7 @@ We only show the F1-measure of the results of the HSMM-based method in \tabref{t
 
 The unsatisfactory performance of the HSMM-based segmentation method might be due to the lack of a large training dataset. The DNN acoustic model usually requires a certain amount of training dataset such that it can effectively learn the temporal-spectral patterns of each phoneme class.
 
-\section{Onset detection-based segmentation method}
+\section{Onset detection-based segmentation method}\label{sec:ch5:onset_segmentation}
 
 The unsatisfactory performance of the HSMM-based segmentation method motivates us to search for a more accurate segmentation method. As we mentioned in \secref{sec:ch5:results_hsmm}, the lack of enough training dataset might be the cause of the unsatisfactory performance. In this section, we devise a coarse duration-informed syllable and phoneme segmentation method based on syllable and phoneme onset detection. As the onset detection is generally a binary detection problem -- to classify the spectrogram of each frame into onset or non-onset class, it can greatly reduce the amount of the required training dataset. The coarse syllable and phoneme durations extracted from the annotation of teacher's recording can be used in the algorithm to boost the segmentation performance.
 

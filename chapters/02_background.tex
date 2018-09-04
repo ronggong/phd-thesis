@@ -443,7 +443,7 @@ Authors                                                        & Methods  \\
 
 \subsection{Evaluation metrics}\label{sec:ch2:evaluation_metrics}
 
-\subsubsection{Onset detection metrics}
+\subsubsection{Onset detection metrics}\label{sec:ch2:onset_detection_metrics}
 
 A simple evaluation metric for onset detection -- \textbf{onset detection accuracy} is adopted in many state of the art works \shortcite{Eybena,Bock2012c,Bock2012b,Bock2013,Bocka,Schluter2014}. We use the same metric for our evaluation. To define a correctly detected onset, a tolerance threshold of $\tau=25$ms is chosen. If the detected onset $o_d$ lies within the tolerance of its ground truth counterpart $o_g$: $|o_d-o_g|<\tau$, we consider that it's correctly detected. A more strict metric can be defined by requiring that the label of the detected onset and that of the ground truth are identical. The F-measure is a number between 0 and 1 calculated as the harmonic mean of the precision and recall. Precision is the ratio between the number of correctly detected onsets and all detected onsets, and recall is the ratio between the number of correctly detected onsets and the total annotated onsets.
 
@@ -467,7 +467,7 @@ The metric presented above can also be used to evaluate alignment algorithm. How
 \end{split}
 \end{equation}
 
-\subsubsection{Binary classification evaluation metric}
+\subsubsection{Binary classification evaluation metric}\label{sec:ch2:binary_classification_metric}
 
 In binary classification task, such as mispronunciation detection, which classifies the singing syllable or phoneme segment into mispronounced or correctly pronounced class, we use classification accuracy as the evaluation metric. The classification accuracy is defined as:
 
@@ -532,7 +532,7 @@ The difference between CNNs and MLP is that firstly the Input of CNNs is three-d
 Compared with MLP, CNNs are more efficient in learning spatially local input patterns by using the ``filters” and convolution operation. Stacking many Conv layers leads to filters that learn global input patterns. Additionally, the receptive fields of the deeper layers increasingly cover a larger area than their shallow counterparts \cite{Wikipediaa}. CNNs benefit as well from the weight sharing, where each filter convolves on the input image and form a feature map. The learned weights are contained in the filter itself, and each output feature map uses the same weights, which greatly reduces the number of parameters. As a consequence, CNNs are more memory-saving and better to learn different levels of representations than MLP.
 Pooling layer is used in CNNs to reduce the spatial size of the representation, and thus reduce the number of parameters of the network. It is often inserted in-between two Conv layers. The most often used pooling operation is max-pooling, which takes the maximum value of a non-overlapped filter, e.g., $2\times2$, on the feature map. 
 
-\subsubsection{Recurrent neural networks}
+\subsubsection{Recurrent neural networks}\label{sec:ch2:rnn}
 
 Recurrent neural networks (RNNs) is another type of deep learning architecture which is commonly used to model the symbolic or acoustic sequential data such as text, speech, and music. RNNs is called recurrent because it performs the same operation for the input of each timestamp of the sequence. The calculation of the output of the current timestamp depends on all the previous computations with the help of hidden states. The hidden state is the memory of the network, which calculated based on the previous state and the input of the current timestamp. 
 
@@ -623,7 +623,7 @@ In practice, we usually encounter two types of HMM related problems. The first p
 
 A hidden semi-Markov model (HSMM) is an extension of the HMM where the time elapses on a hidden state is defined explicitly by an occupancy distribution. In a standard HMM, the occupancy distribution is defined implicitly by a geometric distribution. However, in the HSMM, the probability of being a change in the hidden state depends on the amount of time has been elapsed on the current state \cite{Wikipedia}. The two basic problems mentioned above in HMM become more complicated for HSMM such that the Baum-Welch algorithm and the Viterbi algorithm need to be modified. The detailed description of HSMM and the adaptation of these two algorithms for HSMM can be consulted in Guédon's work \cite{GUEDON20072379}.
 
-\subsection{Speech recognition tools}
+\subsection{Speech recognition tools}\label{sec:ch2:speech_tools}
 
 Automatic speech recognition is an important research topic in ICT, which has received a great attention from a large research community over the past few decades and has evolved into a mature research area with state of the art methods \cite{an-overview-of-modern-speech-recognition}. There is a potential to use some of its technologies and tools to analogous task in the automatic assessment of singing voice, such as syllable and phoneme segmentation and mispronunciation detection.
 
