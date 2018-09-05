@@ -214,7 +214,39 @@ We use these two architectures to train respectively the final special pronuncia
 \end{tabular}
 \end{table}
 
-\tabref{tab:ch6:results_discriminative_eval} shows the mispronunciation detection results for both special pronunciation syllables and jiantuanzi syllables. We can observe that the discriminative model degrades the detection performance for special pronunciation syllables compared with the baseline forced alignment results -- from 69.08\% to 64.68\%, which might due to that the discriminative model training only accessed a subset of the MD dataset, while the baseline model training utilised the entire MD dataset. On the other hand, the detection accuracy for the jiantuanzi task is improved significantly. Because the attention mechanism allows the model to make the decision mainly on the non-voiced consonant part of the syllable, which is the segment to discriminate a mispronounced and a correctly pronounced jiantuanzi syllable.
+\tabref{tab:ch6:results_discriminative_eval} shows the mispronunciation detection results for both special pronunciation syllables and jiantuanzi syllables. We can observe that the discriminative model degrades the detection performance for special pronunciation syllables compared with the baseline forced alignment results -- from 69.08\% to 64.68\%, which might due to that the discriminative model training only accessed a subset of the MD dataset, while the baseline model training utilised the entire MD dataset. On the other hand, the detection accuracy for the jiantuanzi task is improved significantly. To illustrate the effect of the attention mechanism, we visualize the logarithmic Mel spectrogram and the attention vector output from the model decoding process. Here are the visualization examples of some jianzi syllables. Because the attention mechanism allows the model to make the decision mainly on the non-voiced consonant part of the syllable, which is the segment to discriminate a mispronounced and a correctly pronounced jiantuanzi syllable.
+
+\begin{figure}[ht!]
+    \centering
+    \subfloat[Jiantuanzi 1]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_0.png}}
+        % \label{fig:ch4:c_laosheng}}
+    \subfloat[Jiantuanzi 2]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_1.png}}
+        % \label{fig:ch4:l_laosheng}}
+    \hfill
+
+    \subfloat[Jiantuanzi 3]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_2.png}}
+        % \label{fig:ch4:N_laosheng}}
+    \subfloat[Jiantuanzi 4]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_3.png}}
+        % \label{fig:ch4:@n_laosheng}}
+    \hfill
+
+    \subfloat[Jiantuanzi 5]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_4.png}}
+        % \label{fig:ch4:i_laosheng}}
+    \subfloat[Jiantuanzi 6]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_5.png}}
+        % \label{fig:ch4:a_laosheng}}
+    \hfill
+
+    \subfloat[Jiantuanzi 7]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_6.png}}
+        % \label{fig:ch4:i_laosheng}}
+    \subfloat[Jiantuanzi 8]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_7.png}}
+        % \label{fig:ch4:a_laosheng}}
+  
+    \caption[]{The visualization of the logarithmic Mel spectrogram and the attention vector output from the model decoding process for jiantuanzi syllables.}
+    \label{fig:ch6:jiantuanzi_att_vector}
+\end{figure}
+
+
+We can notice from \figref{fig:ch6:jiantuanzi_att_vector} that the attention vectors have a relatively high value towards the non-voiced consonant part of the syllable (the noise-like spectrogram at the syllable beginning), which means that the attention mechanism allows the model to make the decision mainly on the non-voiced consonant part of the syllable, which is the segment to discriminate a mispronounced and a correctly pronounced jiantuanzi syllable.
 
 \section{Improving the discriminative mispronunciation detection models}
 
@@ -296,3 +328,9 @@ The experimental setup is the same as it has been mentioned in \secref{sec:ch6:e
 Because of the inferior results of TCNs and self-attention mechanism, we would not include them in the final models for the mispronunciation detection tasks. Consider that the relatively small training data size might be the bottleneck of improving the deep learning-based detection models, it is more reasonable to collect more training data firstly, then study the performance of different deep learning architectures.
 
 \section{Conclusions} 
+
+This chapter presented a detailed formulation of the task of mispronunciation detection in jingju singing voice. The approaches utilized the automatic syllable segmentation algorithm presented in the last chapter and a deep learning-based discriminative model to perform the detection on two types of jingju singing syllables. Evaluation on an amateur jingju singing dataset showed the possibility of this approach and its limitations. The goal of developing such model was to present a methodology for mispronunciation detection in automatic singing voice assessment system of jingju music. The work presented in this chapter was preliminary and not comprehensive, with a great possibility for further study and improvement. However, the basic idea of using a deep learning-based discriminative model to achieve the mispronunciation detection is valid.
+
+We mainly addressed the problem of the detection of two types of mispronounced syllables in jingju singing recordings -- special pronunciation and jiantuanzi. The presented method firstly used the onset detection-based automatic syllable segmentation algorithm to obtain the segment of each syllable, then classified each syllable segment to mispronounced or correctly pronounced class by using a deep learning-based discriminative model. Compared to a baseline forced alignment method, we showed that the proposed method is more advantageous in detecting the mispronunciation of the jiantuanzi syllable type. By illustrating the attention vector, we found that the attention mechanism is useful in putting more weights in the non-voiced consonant part of, and thus to help the model to make a better detection of the jiantuanzi mispronunciation. Additionally, intending to improve the detection accuracy of the discriminative model, we adopted two newly developed deep learning techniques for sequential modelling to our mispronunciation detection task. However, the results showed that their performance was not ideal, and inferior to our initial discriminative model.
+
+For future work, we aim to improve the discriminative model performance by collecting more training dataset. Deep learning techniques are known to be data-consuming. However, our current dataset for training the deep learning-based discriminative model is too small to train a proper discriminative model and to outperform the forced alignment-based model which usually requires much less training data. The next steps would be performing an extensive hyperparameter tuning for the deep learning models since the performance of such models can be optimized by considering the coordinative effect between the hyperparameters and the size of the training data.
