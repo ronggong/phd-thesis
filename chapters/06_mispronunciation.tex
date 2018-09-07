@@ -16,6 +16,8 @@ This chapter aims to address the automatic mispronunciation detection task withi
 \item To present an evaluation of the forced alignment-based method and the discriminative model-based method, and explore two deep learning architectures intending to improve the discriminative detection model. 
 \end{enumerate}
 
+The implementation code used in the experiments of this chapter is openly available\footnote{\url{https://github.com/ronggong/mispronunciation-detection}}.
+
 \section{Task description}
 
 We describe the automatic mispronunciation detection task in this section. We will also describe how the approaches presented in this chapter can be adapted to this task, making them flexible to the available audio recordings and annotations. The task description presented in this section is continued building on the problem formulation presented in \secref{sec:ch3:mispronunciation}.
@@ -95,7 +97,7 @@ The results are shown in \tabref{tab:ch6:forced_alignment_results}. 69.08\% of t
 
 To our surprise, the detection for the special pronunciation syllable type reaches an average level detection accuracy -- 69.08\%, as the true positive criterion is quite strict, which requires that the decoded syllable be equal to the teacher's syllable transcription. While the detection accuracy for jianzi syllable type is undesirable. The possible reason could be that the forced alignment system is not able to decode the non-voiced consonants correctly. As we have discussed in \secref{sec:ch4:dataset_mispronunciation}, the difference between the mispronounced jianzi syllable and correctly pronounced jianzi syllable mainly lies on the different pronunciations of the non-voiced consonant. In the next section, we will explore the discriminative model-based detection method which intends to make the decision based on a particular part of the syllable, for example, the non-voiced consonant part.
 
-\section{Discriminative model-based method}
+\section{Discriminative model-based method}\label{sec:ch6:discriminative_model_method}
 
 The unsatisfactory performance of the forced alignment-based model motivates to explore an alternative mispronunciation detection method. In this section, we devise a mispronunciation detection method based on the syllable segmentation and the discriminative model. We use the same syllable segmentation method presented in \secref{sec:ch5:onset_segmentation} to segment automatically the jingju singing melodic line into syllable segments. As the testing set contains only the student's recordings, we use the coarse syllabic durations extracted from the corresponding teacher's recordings to build the a priori duration model. Although the segmentation algorithm will inevitably cause the segmentation errors which can be propagated to the mispronunciation detection step, we still adopt the automatic syllable segmentation rather than the syllable boundary annotation of the ground truth in order to perform a fair evaluation with the baseline algorithm.
 
@@ -111,7 +113,7 @@ As mentioned in \secref{sec:ch2:rnn}, recurrent neural networks (RNNs) are the n
 
 Due to the small size of the training data (\secref{sec:ch6:experimental_setup}), we experiment with a one-layer bidirectional LSTM (BiLSTM) recurrent model, which has 8 LSTM units in each direction. The output layer has one sigmoid unit for the binary classification.
 
-\subsubsection{Additional convolutional layers}
+\subsubsection{Additional convolutional layers}\label{sec:ch6:cnn}
 
 Convolutional layer uses the receptive field to capture the local connectivity of the input representation and can extract music meaningful features by designing the kernel shape \cite{Pons2017Timbre}. We stack a 2-layers CNN between the input and the RNN layer.
 
