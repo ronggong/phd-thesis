@@ -26,7 +26,7 @@ Given the singing audio recording pre-segmented into pieces of melodic line-leve
 
 The two main tasks in this chapter are setting up the forced alignment-based baseline detection method and proposing the discriminative model-based method. As the third task of this chapter, we explore two deep learning architectures intending to improve the discriminative models. The performance of all the three tasks will be evaluated on MD dataset (\secref{sec:ch4:dataset_mispronunciation}). The results and the pros and cons of two misrponunciation detection methods will be discussed in detail.
 
-\section{Forced alignment-based method}
+\section{Forced alignment-based method}\label{sec:ch6:forced_alignment}
 
 Forced alignment is a technique which time-align the syllable or phoneme orthographic transcription with the speech or singing voice audio. It is a preliminary step in a speech recognition system for training the acoustic model. The baseline method for syllable and phoneme segmentation presented in \secref{sec:ch5:hsmm_segmentation} also used the forced alignment technique. In this section, we will build a forced alignment system based on Kaldi toolkit (\secref{sec:ch2:speech_tools}). This system will make use a special pronunciation dictionary to decode the syllable sequence of the jingju singing recording which is intended to reflect the actual pronunciation by inspecting the acoustics of the recording. Then the evaluation of the mispronunciation detection performance is done by comparing the decoded syllable sequence with the teacher's demonstrative syllable sequence.
 
@@ -220,27 +220,27 @@ We use these two architectures to train respectively the final special pronuncia
 
 \begin{figure}[ht!]
     \centering
-    \subfloat[Jiantuanzi 1]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_0.png}}
+    \subfloat[Jiantuanzi 1]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_0.png}}
         % \label{fig:ch4:c_laosheng}}
-    \subfloat[Jiantuanzi 2]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_1.png}}
+    \subfloat[Jiantuanzi 2]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_1.png}}
         % \label{fig:ch4:l_laosheng}}
     \hfill
 
-    \subfloat[Jiantuanzi 3]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_2.png}}
+    \subfloat[Jiantuanzi 3]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_2.png}}
         % \label{fig:ch4:N_laosheng}}
-    \subfloat[Jiantuanzi 4]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_3.png}}
+    \subfloat[Jiantuanzi 4]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_3.png}}
         % \label{fig:ch4:@n_laosheng}}
     \hfill
 
-    \subfloat[Jiantuanzi 5]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_4.png}}
+    \subfloat[Jiantuanzi 5]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_4.png}}
         % \label{fig:ch4:i_laosheng}}
-    \subfloat[Jiantuanzi 6]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_5.png}}
+    \subfloat[Jiantuanzi 6]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_5.png}}
         % \label{fig:ch4:a_laosheng}}
     \hfill
 
-    \subfloat[Jiantuanzi 7]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_6.png}}
+    \subfloat[Jiantuanzi 7]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_6.png}}
         % \label{fig:ch4:i_laosheng}}
-    \subfloat[Jiantuanzi 8]{\includegraphics[width=0.43\textwidth]{figs/spectro_vis/ch6_jiantuanzi_7.png}}
+    \subfloat[Jiantuanzi 8]{\includegraphics[width=0.475\textwidth]{figs/spectro_vis/ch6_jiantuanzi_7.png}}
         % \label{fig:ch4:a_laosheng}}
   
     \caption[]{The visualization of the logarithmic Mel spectrogram and the attention vector output from the model decoding process for jiantuanzi syllables.}
