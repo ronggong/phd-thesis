@@ -34,7 +34,7 @@ In this section, we present two prerequisite processings that will be used in th
 
 \subsection{Logarithmic Mel input representation}\label{sec:ch5:input_representation}
 
-We use \textsc{Madmom}\cite{Bock2016} Python package to calculate the log-mel spectrogram of the singing voice audio. The frame size and hop size of the spectrogram are respectively 46.4ms (2048 samples) and 10ms (441 samples). The low and high frequency bounds of the log-mel calculation are 27.5Hz and 16kHz. We use log-mel input features with a overlapped context window of 15 frames and 80 bins as the input to the networks. The classification acoustic model used in HSMM-based segmentation task takes a categorical phoneme label for every context window. While the onset detection model takes a binary onset/non-onset decision sequentially for every context window. This audio pre-processing configuration is almost the same as in Schl\"{u}ter and B\"{o}ck's work\cite{Schluter2014} except that 3 input channels with respectively frame sizes 23ms, 46ms and 93ms have been used in their work, whereas only 1 channel with frame size 46.4ms input is used in this research.
+We use \textsc{Madmom} \cite{Bock2016} Python package to calculate the log-mel spectrogram of the singing voice audio. The frame size and hop size of the spectrogram are respectively 46.4ms (2048 samples) and 10ms (441 samples). The low and high frequency bounds of the log-mel calculation are 27.5Hz and 16kHz. We use log-mel input features with a overlapped context window of 15 frames and 80 bins as the input to the networks. The classification acoustic model used in HSMM-based segmentation task takes a categorical phoneme label for every context window. While the onset detection model takes a binary onset/non-onset decision sequentially for every context window. This audio pre-processing configuration is almost the same as in Schl\"{u}ter and B\"{o}ck's work \cite{Schluter2014} except that 3 input channels with respectively frame sizes 23ms, 46ms and 93ms have been used in their work, whereas only 1 channel with frame size 46.4ms input is used in this research.
 
 \subsection{Coarse duration and \textit{a priori} duration model}\label{sec:pp_coarse_duration}
 
@@ -47,7 +47,7 @@ The syllable durations of the teacher's singing phrase are stored in an array $M
     \label{fig:coarse_dur}
 \end{figure}
 
-The \textit{a priori} duration model is shaped with a Gaussian function $\mathcal{N} (d; {\mu}_n, \sigma_n^2)$. It provides the prior likelihood of an onset to occur according to the syllable/phoneme duration of the teacher's singing. The mean ${\mu}_n$ of the Gaussian represents the expected duration of nth teacher's syllable/phoneme. Its standard deviation $\sigma_n$ is proportional to $\mu_n$: $\sigma_n=\gamma \mu_n$ and $\gamma$ is heuristically set to 0.35. Figure \ref{fig:coarse_dur} provides an intuitive example of how the \textit{a priori} duration model works. The a priori phoneme duration model will be used as the state occupancy distribution in the HSMM-based segmentation method, and the a priori syllable and phoneme duration models will be incorporated into a duration-informed HMM as the state transition probabilities to inform that where syllable/phoneme onsets is likely to occur in student's singing phrase.
+The \textit{a priori} duration model is shaped with a Gaussian function $\mathcal{N} (d; {\mu}_n, \sigma_n^2)$. It provides the prior likelihood of an onset to occur according to the syllable/phoneme duration of the teacher's singing. The mean ${\mu}_n$ of the Gaussian represents the expected duration of nth teacher's syllable/phoneme. Its standard deviation $\sigma_n$ is proportional to $\mu_n$: $\sigma_n=\gamma \mu_n$ and $\gamma$ is heuristically set to 0.35 for the onset detection-based method. Figure \ref{fig:coarse_dur} provides an intuitive example of how the \textit{a priori} duration model works. The a priori phoneme duration model will be used as the state occupancy distribution in the HSMM-based segmentation method, and the a priori syllable and phoneme duration models will be incorporated into a duration-informed HMM as the state transition probabilities to inform that where syllable/phoneme onsets is likely to occur in student's singing phrase.
 
 \section{HSMM-based segmentation method}\label{sec:ch5:hsmm_segmentation}
 
@@ -55,11 +55,13 @@ As a baseline, we develop an lyrics-to-audio alignment system which also makes u
 
 \subsection{Discriminative acoustic model}
 
-We use a CNN with softmax outputs as the discriminative acoustic model. According to the work of Renals et al. \cite{Renals1994Connectionist}, a neural network with softmax outputs trained for framewise phoneme classification outputs the posterior probability $p(q|x)$ ($q$: state, $x$: observation), which can be approximated as the acoustic model at the frame-level if we assume equal phoneme class priors. In Pons et el.'s work \cite{Pons2017Timbre}, a one-layer CNN with multi-filter shapes has been designed. It has been experimentally proved that this architecture can successfully learn timbral characteristics and outperformed some deeper CNN architectures in the phoneme classification task for a small jingju singing dataset. The convoluational layer of the architecture has 128 filters of sizes $50{\times}1$ and $70{\times}1$, 64 filters of sizes $50{\times}5$ and $70{\times}5$, and 32 filters of sizes $50{\times}10$ and $70{\times}10$. These filters are large in the frequency axis and narrow in temporal axis, which are designed to capture timbral relevant time-frequency spectrogram context. A max-pool layer of $2{\times}N'$ follows before the 32-way softmax output layer with 30\% dropout, where $N'$ is the temporal dimension of the feature map. Max-pooling of $2{\times}N'$ was chosen to achieve time-invariant representations
+We use a CNN with softmax outputs as the discriminative acoustic model. According to the work of Renals et al. \cite{Renals1994Connectionist}, a neural network with softmax outputs trained for framewise phoneme classification outputs the posterior probability $p(q|x)$ ($q$: state, $x$: observation), which can be approximated as the acoustic model at the frame-level if we assume equal phoneme class priors. In Pons et el.'s work \cite{Pons2017Timbre}, a one-layer CNN with multi-filter shapes has been designed. It has been experimentally proved that this architecture can successfully learn timbral characteristics and outperformed some deeper CNN architectures in the phoneme classification task for a small jingju singing dataset. The convoluational layer of the architecture has 128 filters of sizes $50{\times}1$ and $70{\times}1$, 64 filters of sizes $50{\times}5$ and $70{\times}5$, and 32 filters of sizes $50{\times}10$ and $70{\times}10$. These filters are large in the frequency axis and narrow in temporal axis, which are designed to capture timbral relevant time-frequency spectrogram patterns. A max-pool layer of $2{\times}N'$ follows before the 32-way softmax output layer with 30\% dropout, where $N'$ is the temporal dimension of the feature map. Max-pooling of $2{\times}N'$ was chosen to achieve time-invariant representations
 while keeping the frequency resolution. The detailed model architecture is shown in \tabref{table:ch5:cnn_acoustic_model}.
 
 \begin{table}[ht!]
 \centering
+\caption{One-layer CNN architecture of the acoustic model. N' is the temporal dimension of the feature map.}
+\label{table:ch5:cnn_acoustic_model}
 \begin{tabular}{l}
 \toprule
 \makecell[l]{Layer1: Conv 128x $50{\times}1$, 64x $50{\times}5$, 32x $50{\times}5$\\128x $70{\times}1$, 64x $70{\times}5$, 32x $70{\times}10$} \\
@@ -68,8 +70,6 @@ Layer3: Dropout 0.3\\
 Output layer: 29-way softmax\\
 \bottomrule
 \end{tabular}
-\caption{One-layer CNN architecture of the acoustic model. N' is the temporal dimension of the feature map.}
-\label{table:ch5:cnn_acoustic_model}
 \end{table}
 
 \subsubsection{Model training}
@@ -108,12 +108,16 @@ We only show the F1-measure of the results of the HSMM-based method in \tabref{t
   \end{tabular}
 \end{table}
 
+\begin{landscape}
+\mbox{}\vfill
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{figs/results/ch5_results_hsmm_baseline.png}
+    \includegraphics[width=1.4\textwidth]{figs/results/ch5_results_hsmm_baseline.png}
     \caption{An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd row: HSMM-based segmentation method. The staircase-shaped curve in the 2nd row is the alignment path.}
     \label{fig:ch5:results_example_hsmm}
 \end{figure}
+\vfill
+\end{landscape}
 
 \figref{fig:ch5:results_example_hsmm} shows a result example for a singing phrase in the testing part of the dataset. Notice that there are some extra or missing onsets in the detection. This is due to the inconsistency between the coarse duration input and the ground truth, for example, students might sing extra or miss some phonemes in the actual singing. We can also observe the deviations between the detected and ground truth phoneme onsets. Some of the deviations are quite large, for example, the first detected syllable onset after 2 seconds in the 2nd row, which is an indication that the HSMM-based segmentation method cannot meet the need of having a precise segmentation, and it has to be improved or replaced by a better method. 
 
@@ -131,7 +135,7 @@ We build a CNN for classifying each log-mel context and output the syllable and 
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{figs/blockDiags_rong/ch5_cnn_architecture_segmentation.png}
+    \includegraphics[width=0.8\textwidth]{figs/blockDiags_rong/ch5_cnn_architecture_segmentation.png}
     \caption{Diagram of the multi-task CNN model.}
     \label{fig:cnn_architecture}
 \end{figure}
@@ -148,7 +152,7 @@ The inference algorithm receives the syllable and phoneme durations and labels o
 
 We present an HMM configuration which makes use of the coarse duration and label input (section \ref{sec:pp_coarse_duration}) and can be applied to inferring firstly (i) the syllable boundaries and labels on the ODF for the whole singing phrase, then (ii) the phoneme boundaries and labels on the ODF segment constrained by the inferred syllable boundaries. To use the same inference formulation, we unify the notations $N$, $K_n$ (both introduced in section \ref{sec:pp_coarse_duration}) to $N$, and $M^s$, $M^{n}_{p}$ to $M$. The unification of the notations has a practical meaning because we use the same algorithm for both syllable and phoneme inference. The HMM is characterized by the following:
 
-\begin{enumerate}[leftmargin=*]
+\begin{enumerate}[leftmargin=*, itemsep=0pt]
     \item The hidden state space is a set of $T$ candidate onset positions $S_1, S_2, \cdots, S_T$ discretized by the hop size, where $S_{T}$ is the offset position of the last syllable or the last phoneme within a syllable.
     \item The state transition probability at the time instant $t$ associated with state changes is defined by \textit{a priori} duration distribution $\mathcal{N} (d_{ij} ; \mu_t, \sigma_t^2)$, where $d_{ij}$ is the time distance between states $S_i$ and $S_j$ ($j>i$). The length of the inferred state sequence is equal to $N$.
     \item The emission probability for the state $S_j$ is represented by its value in the ODF, which is denoted as $p_j$.
@@ -215,6 +219,7 @@ On both metrics -- onset detection and segmentation, the proposed method outperf
     \caption{An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd and 3rd rows: onset detection-based method, 4th row: HSMM-based segmentation method. The blue curves in the 2nd and 3rd row are respectively the syllable and phoneme ODFs. The staircase-shaped curve in the 2nd row is the alignment path.}
     \label{fig:ch5:results_example_onset}
 \end{figure}
+
 
 Fig \ref{fig:ch5:results_example_onset} shows an result example for a singing phrase in the testing part of the dataset. Notice that there are some extra or missing onsets in the detection. This is due to the inconsistency between the coarse duration input and the ground truth, for example, students might sing extra or miss some phonemes in the actual singing. Also notice that in the 3rd row, the two detected phoneme onsets within the last syllable are not in the peak positions of the ODF. This is due to that the onsets is inferred by taking into account both ODF and the \textit{a priori} duration model, and the latter partially constraints the detected onsets.
 
@@ -381,13 +386,13 @@ BiLSTMs 400 & 82.47$\pm$0.54        & 0.087              \\
 \end{tabular}
 \end{table}
 
-Observing table \ref{table:peak_picking_jingju_archi} -- the results of jingju dataset, \textbf{BiLSTMs 100} and \textbf{200} outperform \textbf{Baseline} with peak-picking onset selection method but not with score-informed HMM method. \textbf{9-layers CNN} overfits and significantly performs worse than \textbf{Baseline}, which means this architecture is too ``deep" and overfitted for this test dataset (check the Github page\footnotemark[\getrefnumber{fn:github}] for its loss curve). \textbf{Temporal} architecture has the p-value of 1 when evaluating by score-informed HMM method, and we confirm that it is a coincidence after having checked its 5 training times F1-measures. \textbf{No dense} architecture performs significantly worse than \textbf{Baseline}. However, considering its tiny TNoTP -- 3,161, this performance is quite acceptable. The similar case has been reported in Lacoste and Eck's work\cite{Lacoste2007a}, where their 1 unit 1 hidden layer architecture achieved a remarkable result (only 4\% F1-measure worse than their best architecture). This means that if the state-of-the-art performance is not required, one can use a quite small and efficient architecture. The score-informed HMM onset selection method outperform the peak-picking by a large margin. Also notice that the score-informed HMM method is able to compensate both good and bad performance of peak-picking, which can be seen by comparing upper and bottom results regarding \textbf{No dense}, \textbf{BiLSTMs 100} and \textbf{200} models.
+Observing table \ref{table:peak_picking_jingju_archi} -- the results of jingju dataset, \textbf{BiLSTMs 100} and \textbf{200} outperform \textbf{Baseline} with peak-picking onset selection method but not with score-informed HMM method. \textbf{9-layers CNN} overfits and significantly performs worse than \textbf{Baseline}, which means this architecture is too ``deep" and overfitted for this test dataset (check the Github page\footnote{\url{https://github.com/ronggong/musical-onset-efficient}\label{fn:github}} for its loss curve). \textbf{Temporal} architecture has the p-value of 1 when evaluating by score-informed HMM method, and we confirm that it is a coincidence after having checked its 5 training times F1-measures. \textbf{No dense} architecture performs significantly worse than \textbf{Baseline}. However, considering its tiny TNoTP -- 3,161, this performance is quite acceptable. The similar case has been reported in Lacoste and Eck's work\cite{Lacoste2007a}, where their 1 unit 1 hidden layer architecture achieved a remarkable result (only 4\% F1-measure worse than their best architecture). This means that if the state-of-the-art performance is not required, one can use a quite small and efficient architecture. The score-informed HMM onset selection method outperform the peak-picking by a large margin. Also notice that the score-informed HMM method is able to compensate both good and bad performance of peak-picking, which can be seen by comparing upper and bottom results regarding \textbf{No dense}, \textbf{BiLSTMs 100} and \textbf{200} models.
 
 Finally, we choose \textbf{5-layers CNN} as the most efficient architecture because it performs consistently equivalent to \textbf{Baseline} but only contains 28.3\% TNoTP. Although \textbf{Temporal} architecture performs equally well, it is not selected because its equal TNoTP to \textbf{Baseline} and the complex configuration of its front-end B. \textbf{BiLSTMs} outperforms \textbf{Baseline} on jingju dataset, however, due to its overfitting on B\"{o}ck dataset and slow training, we don't consider it as an efficient architecture.
 
 Experiment code
 %full results (precision, recall and F1-measure) 
-and pre-trained models used in the experiments are available in Github\footnotemark[\getrefnumber{fn:github}]. A Jupyter notebook is prepared for showcasing the performance of different network architectures\footnote{\url{https://goo.gl/Y5KAFC}}. 
+and pre-trained models used in the experiments are available in Github\footnotemark[\getrefnumber{fn:github}]. A Jupyter notebook running in Google Colab is prepared for showcasing the performance of different network architectures\footnote{\url{https://goo.gl/Y5KAFC}}. 
 
 \section{Conclusions}
 
@@ -399,7 +404,7 @@ The duration-informed onset detection-based method explicitly considered coarse 
 
 The duration-informed onset detection-based method shows significant promise in syllable and phoneme segmentation task. It provides a significant improvement in both onset detection and segmentation performance compared with the baseline HSMM-based method for jingju a cappella singing. An exploration of various deep learning syllable onset detection models showed that the architecture of the deep learning model cannot affect significantly the onset detection performance, however, one can design an efficient architecture to reach the state of the art performance.
 
-One main limitation of the onset detection-based method presented was the assumption that a similar duration of each syllable or phoneme and the same syllable or phoneme sequence should be sung between teacher's and student's singing pieces. While this is a fair and realistic assumption for jingju professional training since the students can usually imitate the teacher's singing very well, amateur singers might imitate very badly because of a large deviation of the syllable or phoneme duration and missing or extra syllable or phoneme. A coarse syllable and phoneme duration correction might be necessary there before applying the segmentation algorithm. The syllable or phoneme recognition might be the method used to tackle the problem of missing or extra syllable in student's singing.
+One main limitation of the onset detection-based method presented was the assumption that a similar duration of each syllable or phoneme and the same syllable or phoneme sequence should be sung in both teacher's and student's singing pieces. While this is a fair and realistic assumption for jingju professional training since the students can usually imitate the teacher's singing very well, amateur singers might imitate very badly because of a large deviation of the syllable or phoneme duration and missing or extra syllable or phoneme. A coarse syllable and phoneme duration correction might be necessary there before applying the segmentation algorithm. The syllable or phoneme recognition might be the method used to tackle the problem of missing or extra syllable in student's singing.
 
 The onset detection-based segmentation method utilized duration-informed HMM to select the correct onsets on the onset detection function (ODF). A good quality ODF is essential to reach a desirable syllable or phoneme onset detection/segmentation accuracy. Various deep learning architectures were experimented to search for a most effective and efficient one which can lead to a superior syllable onset detection performance. Although the experiment did not show an improvement in onset detection accuracy, we witnessed that a CNN architecture without dense connection reached the state of the art performance, while it has much less trainable parameters than the baseline architecture, which indicates that the segmentation model efficiency can be improved by using this deep learning architecture.
 

@@ -2,9 +2,7 @@
 
 Pronunciation and overall quality similarities measurement is a subtask in singing voice assessment. which is useful in the online singing training scenario to assess the pronunciation quality and the overall quality of the student's singing. In the last chapter, we have discussed the possibility of using computational models to detect the mispronunciation syllables in jingju singing. However, as we have mentioned in \secref{sec:ch3:char_singing}, in some cases, although the student does not commit any mispronunciation, there still exists a clear gap on pronunciation and overall quality between the singing of teacher and student. The rigour of the jingju singing training and the learning by imitation training method require the student, especially the professional one, to imitate the timbre quality of the jingju master. Thus, a system which can measure the pronunciation and overall quality similarities between the singing of teacher and student is a useful component of the automatic system for jingju singing assessment.
 
-In the context of this dissertation, pronunciation and overall quality similarities measurement aims to measure the pronunciation and overall quality similarities between the teacher and student's corresponding phoneme segments. We will explain the constraint of phoneme-level measurement in the next section.
-
-This chapter aims to address the pronunciation and overall quality similarities measurement task in the context of jingju singing training, presenting several methods and an evaluation of these methods. The main goal of this chapter are:
+In the context of this dissertation, pronunciation and overall quality similarities measurement aims to measure the pronunciation and overall quality similarities between the teacher and student's corresponding phoneme segments. This chapter aims to address the pronunciation and overall quality similarities measurement task in the context of jingju singing training, presenting several methods and an evaluation of these methods. The main goal of this chapter are:
 
 \begin{enumerate}[leftmargin=*]
 \item To address the similarity measure problem for jingju singing. The problem is formulated as building machine learning models to perform phoneme embedding regarding pronunciation and overall quality aspects. Several neural network architectures are experimented to address this problem.
@@ -16,9 +14,9 @@ This chapter aims to address the pronunciation and overall quality similarities 
 
 \section{Task description}
 
-The describe the pronunciation and overall quality similarities measurement task in this section, which is continued building on the problem formulation presented in \secref{sec:ch3:similarity_formulation}.
+Task description of the pronunciation and overall quality similarities measurement in this section is continued building on the problem formulation presented in \secref{sec:ch3:similarity_formulation}.
 
-Given the singing audio recording pre-segmented into phoneme-level, the most relevant task is to develop the computational models which can measure the pronunciation and overall quality similarities between phoneme segments. We constrain the granularity at phoneme-level because it is the smallest pronunciation unit in jingju singing teacher, and it is also the basic component to constitute the high-level singing unit, such as syllable and phrase. In the context of this thesis, we mainly consider using phoneme embedding to distill the pronunciation and overall quality information of the phoneme segment, then apply distance measures to define the similarity between two segments. The advantages of using phoneme embedding rather than the traditional sequential alignment method for the similarity measures have been discussed in \secref{sec:ch3:similarity_formulation}. We adopt deep learning-based methods for generating phoneme embeddings from variable-length phoneme segments. The deep learning-based classification model aims to classify the phoneme segment into phoneme and overall quality categories. The output of the second last layer of the classification model will be used as the embedding. As an exploration, we also experiment the siamese network architecture for phoneme embedding learning task since this architecture was designed for measuring similarity between multiple inputs. The similarity between two phoneme segments can be obtained by calculating the distance measure of their phoneme embeddings. Differ from the last chapter, we will evaluate the model performance directly on the manually pre-segmented phoneme segments rather than involving any automatic phoneme segmentation step into the pipeline. Thus, we leave the joint evaluation of phoneme segmentation and similarity measure for future work.
+Given the singing audio recording pre-segmented into phoneme-level, the most relevant task is to develop the computational models which can measure the pronunciation and overall quality similarities between phoneme segments. We constrain the granularity at phoneme-level because it is the smallest pronunciation unit in jingju singing teacher, and it is also the basic component to constitute the high-level singing unit, such as syllable and phrase. In the context of this thesis, we mainly consider using phoneme embedding to distill the pronunciation and overall quality information of the phoneme segment, then apply distance measures to define the similarity between two segments. The advantages of using phoneme embedding rather than the traditional sequential alignment method for the similarity measures have been discussed in \secref{sec:ch3:similarity_formulation}. We adopt deep learning-based methods for generating phoneme embeddings from variable-length phoneme segments. The deep learning-based classification model aims to classify the phoneme segment into phoneme and overall quality categories. The output of the second last layer of the classification model will be used as the embedding. As an exploration, we also experiment the siamese network architecture for phoneme embedding learning task since this architecture was designed for measuring similarity between multiple inputs. Then, the similarity between two phoneme segments can be obtained by calculating the distance measure of their phoneme embeddings. Differ from the last chapter, we will evaluate the model performance directly on the manually pre-segmented phoneme segments rather than involving any automatic phoneme segmentation step into the pipeline. Thus, we leave the joint evaluation of phoneme segmentation and similarity measure for future work.
 
 The two main tasks in this chapter are setting up the classification phoneme embedding model, proposing several improvements, and explore the siamese phoneme embedding model. The performance of these two tasks will be evaluated on POQSM test dataset. The results of the two models will be discussed in detail.
 
@@ -32,7 +30,7 @@ We call this network the fully-supervised classification network, because we use
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{figs/ch7/classification_net.png}
+    \includegraphics[width=0.7\textwidth]{figs/ch7/classification_net.png}
     \caption{Fully-supervised classification phoneme embedding network for learning pronunciation (left part) or overall quality (right part) embeddings. RNN: recurrent network network.}
     \label{fig:ch7:classification_net}
 \end{figure}
@@ -140,7 +138,7 @@ Figure \ref{fig:ch7:feature_nvc} shows that, for the non-voiced phoneme class, n
 
 We explore four experiments to improve the phoneme embedding:
 
-\begin{enumerate}
+\begin{enumerate}[itemsep=0pt]
 \item adding \textbf{attention} mechanism in the network architecture.
 \item using \textbf{32 embedding} dimensionality.
 \item stacking convolutional layers \textbf{CNN} before the RNN layers.
@@ -191,20 +189,24 @@ Figure \ref{fig:ch7:tsne_dense} shows the t-SNE projection of the 32-dimensional
         \label{fig:ch7:tsne_dense}
     \end{figure}
 
-We can also notice that, for phoneme O class, most of the test set amateur segments are no longer mixed up within the professional cluster, although some segments lie on the border between the professional and the amateur clusters. It worth to notice that the amateur segments in the train and validation sets are entirely composed by the singing samples of the primary school students, while the professional segments are entirely composed by the recordings of the adult singers. The segregation between the amateur test segments and the professional segments means that the model is not overfitted by the age of the singers. Additionally, compared to figure \ref{fig:ch7:tsne_nodense}, 32D embedding presents a remarkable improvement in separating professional and amateur groups for these two phoneme classes.
+We can also notice that, for phoneme O class, most of the test set amateur segments are no longer mixed up within the professional cluster, although some segments lie on the border between the professional and the amateur clusters. It worth to notice that the amateur segments in the train and validation sets are entirely composed by the singing samples of the primary school students, while the professional segments are entirely composed by the recordings of the adult singers. The segregation between the amateur test segments and the professional segments means that the model is not overfitted by the age of the singers. Additionally, compared to figure \ref{fig:ch7:tsne_nodense}, 32 dimensional embedding presents a remarkable improvement in separating professional and amateur groups for these two phoneme classes.
 
+\begin{landscape}
+\mbox{}\vfill
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{figs/ch7/yang_yu_huan.png}
+    \includegraphics[width=1.5\textwidth]{figs/ch7/yang_yu_huan.png}
     \caption{Illustration of the similarities of embeddings used in grading the singing phonemes on a singing excerpt of three syllables -- yang yu huan. First row: professional singing log-mel spectrogram; Second row: amateur singing log-mel spectrogram; Third row: pronunciation and overall quality similarities by comparing the corresponding professional and amateur phonemes. Vertical red lines: phoneme onsets. Red label following the vertical line is the phoneme name in XSAMPA format.}
     \label{fig:ch7:illustration_embedding}
 \end{figure}
+\vfill
+\end{landscape}
 
-Figure \ref{fig:ch7:illustration_embedding} shows the similarity measurement results by using the phoneme embeddings to grade the amateur singing at phoneme-level. We measure the cosine similarity between the professional and amateur corresponding phoneme embeddings, and ignore the extra or missing phonemes, e.g., the third phoneme ``N" in the professional singing. The pronunciation and overall quality similarity of each phoneme segment are indicated in the third row of the figure. The similarity measures have a potential application for the automatic assessment of jingju singing voice in online education scenario, where the visualization feedback of the pronunciation and overall quality similarities could be a effective guidance for the students to improve their singing.
+Figure \ref{fig:ch7:illustration_embedding} shows the similarity measurement results by using the phoneme embeddings to grade the amateur singing at phoneme-level. We measure the cosine similarity between the professional and amateur corresponding phoneme embeddings, and ignore the extra or missing phonemes, e.g., the third phoneme ``N" in the professional singing. The pronunciation and overall quality similarity of each phoneme segment are indicated in the third row of the figure. The similarity measures have a potential application for the automatic assessment of jingju singing voice in online education scenario, where the visualization feedback of the pronunciation and overall quality similarities could be an effective guidance for the students to improve their singing.
 
 \section{Siamese phoneme embedding networks}
 
-Siamese network is a network architecture which receives multiple inputs, and shares the same weights. It uses a contrastive loss to learn the similarity between multiple inputs. This network architecture is more complicated than the classification network. However, it outperforms the first network in learning speech word acoustic embeddings \cite{Settle2016a}. Additionally, the siamese network and the contrastive loss have been initially proposed to learn the similarity between multiple inputs, such as the similarity between images or sounds, which is coherent with the task we are dealing with -- to model the pronunciation and overall quality similarities between phonemes. Thus in this section, we explore the performance of the siamese network on singing voice phoneme embedding. 
+Siamese network is a network architecture which receives multiple inputs, and shares the same weights. It uses a contrastive loss to learn the similarity between multiple inputs. This network architecture is more complicated than the classification network. However, it outperforms the classification network in learning speech word acoustic embeddings \cite{Settle2016a}. Additionally, the siamese network and the contrastive loss have been initially proposed to learn the similarity between multiple inputs, such as the similarity between images or sounds, which is coherent with the task we are dealing with -- to model the pronunciation and overall quality similarities between phonemes. Thus in this section, we explore the performance of the siamese network on singing voice phoneme embedding. 
 
 \subsection{Semi-supervised Siamese network}
 

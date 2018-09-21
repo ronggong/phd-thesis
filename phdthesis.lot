@@ -1,0 +1,70 @@
+\select@language {english}
+\select@language {english}
+\addvspace {10pt}
+\addvspace {10pt}
+\select@language {english}
+\select@language {english}
+\select@language {english}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Jingju four role-types and their sub role-types. The role-types with * superscript are the main research objects of this dissertation because singing is their major discipline.\relax }}{21}{table.caption.8}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Jingju metred banshi.\relax }}{23}{table.caption.9}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Summary table of the previous studies on automatic assessment of singing voice.\relax }}{35}{table.caption.13}
+\contentsline {table}{\numberline {2.4}{\ignorespaces Summary table of the previous studies on automatic assessment of singing voice. (continued)\relax }}{36}{table.caption.14}
+\contentsline {table}{\numberline {2.4}{\ignorespaces Summary table of the previous studies on automatic assessment of instrumental musical performance.\relax }}{38}{table.caption.16}
+\contentsline {table}{\numberline {2.5}{\ignorespaces Summary table of the previous studies on musical onset detection.\relax }}{41}{table.caption.17}
+\contentsline {table}{\numberline {2.5}{\ignorespaces Summary table of the previous studies on musical onset detection. (continued)\relax }}{42}{table.caption.18}
+\contentsline {table}{\numberline {2.6}{\ignorespaces Summary table of the previous studies on text-to-speech alignment.\relax }}{44}{table.caption.19}
+\contentsline {table}{\numberline {2.7}{\ignorespaces Summary table of the previous studies on lyrics-to-audio alignment.\relax }}{46}{table.caption.20}
+\contentsline {table}{\numberline {2.8}{\ignorespaces Summary table of the previous studies on neural acoustic embeddings.\relax }}{49}{table.caption.21}
+\addvspace {10pt}
+\contentsline {table}{\numberline {3.1}{\ignorespaces The statistics of the correction occurrence analysis materials.\relax }}{68}{table.caption.35}
+\contentsline {table}{\numberline {3.2}{\ignorespaces The statistics of the correction occurrence dimension classification. Inton.: intonation; Loud.: loudness, Pronun.: pronunciation.\relax }}{75}{table.caption.44}
+\addvspace {10pt}
+\contentsline {table}{\numberline {4.1}{\ignorespaces General statistics of the jingju a cappella singing corpus.\relax }}{104}{table.caption.53}
+\contentsline {table}{\numberline {4.2}{\ignorespaces A list of shengqiang and banshi included in the corpus.\relax }}{108}{table.caption.56}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Metadata and annotations completeness. Table cell format: \#annotated recordings/total recordings; percentage.\relax }}{109}{table.caption.59}
+\contentsline {table}{\numberline {4.4}{\ignorespaces The number of annotated melodic line, syllable and phoneme in the corpus.\relax }}{110}{table.caption.60}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Mean and standard deviation duration, minimum and maximum duration of melodic line, syllable and phoneme (second).\relax }}{111}{table.caption.62}
+\contentsline {table}{\numberline {4.6}{\ignorespaces Statistics of the ASPS\textsubscript {1} test dataset.\relax }}{115}{table.caption.66}
+\contentsline {table}{\numberline {4.7}{\ignorespaces Statistics of the ASPS\textsubscript {2} test dataset.\relax }}{116}{table.caption.67}
+\contentsline {table}{\numberline {4.8}{\ignorespaces Statistics of the MD test dataset. Syl.: syllable; Phn.: phoneme.\relax }}{119}{table.caption.69}
+\contentsline {table}{\numberline {4.9}{\ignorespaces POQSM test dataset split, numbers of the professional and amateur singing phonemes and the source of the professional and amateur singers.\relax }}{123}{table.caption.72}
+\addvspace {10pt}
+\contentsline {table}{\numberline {5.1}{\ignorespaces One-layer CNN architecture of the acoustic model. N' is the temporal dimension of the feature map.\relax }}{130}{table.caption.74}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Evaluation results table. Table cell: mean score$\pm $standard deviation score.\relax }}{132}{table.caption.76}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Evaluation results of HSMM-based and onset detection-based methods. Table cell: mean score$\pm $standard deviation score.\relax }}{138}{table.caption.80}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Architecture front-ends\relax }}{141}{table.caption.83}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Architecture back-ends\relax }}{141}{table.caption.84}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Total numbers of trainable parameters (TNoTP) of each architecture.\relax }}{143}{table.caption.85}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Jingju dataset peak-picking (upper) and score-informed HMM (bottom) results of different architectures.\relax }}{145}{table.caption.87}
+\addvspace {10pt}
+\contentsline {table}{\numberline {6.1}{\ignorespaces The evaluation result table of the forced alignment mispronunciation detection method. \#Correctly detected: number of correctly detected syllables; \#Total: number of total syllables; Accuracy: binary classification accuracy; Special: special pronunciation task; jianzi: jiantuanzi task.\relax }}{154}{table.caption.90}
+\contentsline {table}{\numberline {6.2}{\ignorespaces 6-layers CNN, ``8x $1\times 3$ ReLU" means 8 kernels of which each convolves on 1 frequency bins and 3 temporal frames, using ReLU activation function.\relax }}{156}{table.caption.93}
+\contentsline {table}{\numberline {6.3}{\ignorespaces Numbers of the special pronunciation (special) and jiantuanzi syllables in the training set.\relax }}{158}{table.caption.97}
+\contentsline {table}{\numberline {6.4}{\ignorespaces Evaluation results of the preliminary automatic syllable segmentation step. Onset detection F1-measure and segmentation accuracy are reported.\relax }}{159}{table.caption.98}
+\contentsline {table}{\numberline {6.5}{\ignorespaces The number of parameters of each model architecture and the mean validation loss (MVL) results of the special pronunciation (special) and jiantuanzi models. CNN: additional convolutional layers, Att.: feed-forward attention mechanism, Comb.: combine BiLSTM, CNN, attention and dropout architectures.\relax }}{159}{table.caption.99}
+\contentsline {table}{\numberline {6.6}{\ignorespaces The evaluation result table of the discriminative model-based mispronunciation detection method. \#Correctly detected: number of correctly detected syllables; \#Total: number of total syllables; Accuracy: binary classification accuracy; Special: special pronunciation task; jianzi: jiantuanzi task.\relax }}{160}{table.caption.100}
+\contentsline {table}{\numberline {6.7}{\ignorespaces Configurations of three TCNs. $n$: number of stacks, $k$: filter size, $d$: dilation factor.\relax }}{162}{table.caption.102}
+\contentsline {table}{\numberline {6.8}{\ignorespaces Mean validation loss (MVL) of three TCN hyperparameter configurations for special pronunciation and jiantuanzi detection tasks.\relax }}{164}{table.caption.103}
+\contentsline {table}{\numberline {6.9}{\ignorespaces Mean validation loss (MVL) of self-attention and feed-forward attention architectures for special pronunciation and jiantuanzi detection tasks. Self-att.: self-attention, Feed-forward: feed-forward attention, Comb.: combine BiLSTM, CNN, self-attention and dropout.\relax }}{165}{table.caption.104}
+\addvspace {10pt}
+\contentsline {table}{\numberline {7.1}{\ignorespaces Mean value of average precision on the validation set over 5 runs, using classification network embedding. R: \# recurrent layers, F: \# fully-connected layers.\relax }}{172}{table.caption.106}
+\contentsline {table}{\numberline {7.2}{\ignorespaces Average precision on the test set over 5 runs, using optimal network architectures.\relax }}{172}{table.caption.107}
+\contentsline {table}{\numberline {7.3}{\ignorespaces 6-layers CNN, ``8x $1\times 3$ ReLU" means 8 kernels of which each convolves on 1 frequency bins and 3 temporal frames, using ReLU activation function.\relax }}{176}{table.caption.111}
+\contentsline {table}{\numberline {7.4}{\ignorespaces Mean value of average precision on the validation set over 5 runs, using siamese network with the optimal architectures. $m$: margin parameter.\relax }}{183}{table.caption.116}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {table}{\numberline {A.1}{\ignorespaces Initial consonants\relax }}{201}{table.caption.120}
+\contentsline {table}{\numberline {A.1}{\ignorespaces Initial consonants (continued)\relax }}{202}{table.caption.121}
+\contentsline {table}{\numberline {A.2}{\ignorespaces Terminal consonants (nasal finals)\relax }}{202}{table.caption.122}
+\contentsline {table}{\numberline {A.3}{\ignorespaces Final vowels\relax }}{202}{table.caption.123}
+\contentsline {table}{\numberline {A.3}{\ignorespaces Final vowels (continued)\relax }}{203}{table.caption.124}
+\addvspace {10pt}
+\contentsline {table}{\numberline {B.1}{\ignorespaces Mandarin pronunciations and their special pronunciations in pinyin format in MD test dataset Section~\ref {sec:ch4:dataset_mispronunciation}.\relax }}{205}{table.caption.125}
+\contentsline {table}{\numberline {B.1}{\ignorespaces Mandarin pronunciations and their special pronunciations in pinyin format in MD test dataset Section~\ref {sec:ch4:dataset_mispronunciation}. (continued)\relax }}{206}{table.caption.126}
+\contentsline {table}{\numberline {B.1}{\ignorespaces Mandarin pronunciations and their special pronunciations in pinyin format in MD test dataset Section~\ref {sec:ch4:dataset_mispronunciation}. (continued)\relax }}{207}{table.caption.127}
+\contentsline {table}{\numberline {B.2}{\ignorespaces Mandarin pronunciations and their jianzi in pinyin format in MD test dataset Section~\ref {sec:ch4:dataset_mispronunciation}.\relax }}{208}{table.caption.128}
+\addvspace {10pt}
+\addvspace {10pt}
+\addvspace {10pt}

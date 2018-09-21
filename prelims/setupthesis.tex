@@ -54,8 +54,8 @@
   \def\indexmark{\markboth{\indexname}{\indexname}}%
 }
 \makeevenhead{mainmatter}{\normalfont\thepage}{}%\bfseries
-                        {\normalfont\scshape\leftmark}
-\makeoddhead{mainmatter}{\normalfont\scshape\rightmark}{}%
+                        {\normalfont\slshape\leftmark}
+\makeoddhead{mainmatter}{\normalfont\slshape\rightmark}{}%
                        {\normalfont\thepage}%\bfseries
 \ifdraftdoc
 \makeevenfoot{mainmatter}{\thepage}{}{\textit{Draft: \today, \printtime*{}}}
@@ -64,8 +64,8 @@
 \makeatother
 % For front matter
 \makepagestyle{frontmatter}
-\makeevenhead{frontmatter}{\normalfont\thepage}{}{}%\bfseries
-\makeoddhead{frontmatter}{}{}{\normalfont\thepage}%\bfseries
+\makeevenhead{frontmatter}{\thepage}{}{}%\bfseries
+\makeoddhead{frontmatter}{}{}{\thepage}%\bfseries
 
 \chapterstyle{madsen}
 \renewcommand\partnamefont{\normalfont\Huge\sffamily\scshape\raggedleft}

@@ -4,7 +4,6 @@
 \documentclass[12pt,a4paper,twoside,showtrims]{memoir}
 % Some information about the thesis
 \renewcommand{\title}{Automatic Assessment of Singing Voice Pronunciation: A Case Study with Jingju Music}
-%\newcommand{\subtitle}{A data-driven Bayesian approach}
 \renewcommand{\author}{Rong Gong}
 \newcommand{\thyear}{2018}
 \newcommand{\departmenta}{Music Technology Group}
@@ -56,7 +55,7 @@
 % \definecolor{ExtLinkColor}{rgb}{0, 0.4, 0}
 \definecolor{ExtLinkColor}{rgb}{0, 0, 0.6}
 % Some settings for the pdf generated using hyperref
-\hypersetup{pdfauthor = {\author},pdftitle = {\title},pdfkeywords = {Meter tracking, rhythm analysis},pdfcreator = {XeLaTeX+hyperref}}
+\hypersetup{pdfauthor = {\author},pdftitle = {\title},pdfkeywords = {pronunciation assessment, singing voice},pdfcreator = {XeLaTeX+hyperref}}
 \ifdefined\PRINTVER
 \hypersetup{citecolor=black,linkcolor=black,urlcolor=black}
 \else
@@ -84,7 +83,7 @@
 \newcommand\ipa[1]{{\ipafont #1}}
 
 % Bibliography and index
-\usepackage[nodoi]{apacite}
+\usepackage{apacite}
 \bibliographystyle{myapacite}
 %
 % Define custom things for the document
@@ -103,34 +102,34 @@
 %\clearpage
 \sloppy  
 % Revoke sloppy with \fussy if it is giving too much space between words
-%\input{prelims/licence}
-%\cleartorecto
+\input{prelims/licence}
+\cleartorecto
 \begingroup
-%\setlength{\parindent}{0in}
-%\nonzeroparskip
-%\input{prelims/tribunal}
-%\cleartorecto
-%\input{prelims/dedication}
-%\cleartorecto
-%\clearpage
-%\input{prelims/preface}
-%\cleartorecto
-%\input{prelims/acknowledgements}
-%\cleartorecto
+\setlength{\parindent}{0in}
+\nonzeroparskip
+\input{prelims/tribunal}
+\cleartorecto
+\input{prelims/dedication}
+\cleartorecto
+\clearpage
+\input{prelims/preface}
+\cleartorecto
+\input{prelims/acknowledgements}
+\cleartorecto
 \input{prelims/abstract}
 \cleartorecto
 \tableofcontents
 \cleartorecto
 %\input{./chapters/symbolList}
 %\cleartorecto
-%\listoffigures
-%\cleartorecto
-%\listoftables
-%\cleartorecto
+\listoffigures
+\cleartorecto
+\listoftables
+\cleartorecto
 \endgroup
 %%% Main Matter starts %%%
 \mainmatter
-\fussy
+%\fussy
 \pagestyle{mainmatter}
 \input{chapters/01_introduction}
 \input{chapters/02_background}
@@ -146,16 +145,16 @@
 \appendix
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \input{chapters/09_appendix}
-%\input{chapters/mypublications}
-%
-%\chapter{Glossary}\label{app:glossary}
-%\printglossary[type=TechTerms]
+\input{chapters/mypublications}
+
+\chapter{Glossary}\label{app:glossary}
+\printglossary[type=TechTerms]
 %\printglossary[type=CM]
 %\printglossary[type=HM]
-%\printglossary[type=BO]
-% \printglossary[type=TM]
-%\printglossary[type=\acronymtype]
-%
+\printglossary[type=BO]
+%\printglossary[type=TM]
+\printglossary[type=\acronymtype]
+
 %%%%%% Backmatter: Bibliography, Index 
 \backmatter
 

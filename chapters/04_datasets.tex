@@ -7,31 +7,31 @@
 %
 %\dtext{Abstract: Research corpora are representative collections of data and are essential to develop data-driven approaches in Music Information Research (MIR). We address the problem of building research corpora for MIR in Indian art music traditions of Hindustani and Carnatic music, considering several relevant criteria for building such corpora. We also discuss a methodology to assess the corpora based on these criteria and present an evaluation of the corpora in their coverage and completeness. In addition to the corpora, we briefly describe the test datasets that we have built for use in many research tasks. In specific, we describe the tonic dataset, the Carnatic rhythm dataset, the Carnatic \gls{varnam} dataset, and the Mridangam stroke dataset.}
 
-Computational data-driven MIR research requires a well-curated data corpus for training and testing the models. The corpus should meet certain criteria so that the models can be built successfully built and applicable to real-world scenarios. A research corpus is an evolving data collection which is representative of the research domain under study. A good corpus can be built by a single research institute or by crowdsourcing within a community. Regarding MIR research, a research corpus is a representative subset of one or several music genres, since it is nearly impossible to work with all the relevant music pieces. Computational models developed upon this subset can be assumed generalizable to real-world scenarios.
+Computational data-driven \gls{MIR} research requires a well-curated data corpus for training and testing the models. The corpus should meet certain criteria so that the models can be built successfully and applicable to real-world scenarios. A research corpus is an evolving data collection which is representative of the research domain under study. A good corpus can be built by a single research institute or by crowdsourcing within a community. Regarding \gls{MIR} research, a research corpus is a representative subset of one or several music genres, since it is nearly impossible to work with all the relevant music pieces. Computational models developed upon this subset can be assumed generalizable to real-world scenarios.
 
 A test dataset is a subset of the research corpus which is designed for a specific research task. In the research task, the test dataset is used to develop and evaluate computational models. For better reproducibility of experiment results, the test dataset is usually fixed or properly versioned.
 
-Building a research corpus is a research problem itself and has been studied in many fields. There are many repositories for the research of speech such as Linguistic Data Consortium\footnote{\url{https://www.ldc.upenn.edu/}}, Librispeech\footnote{\url{http://www.openslr.org/}}, and for the research of musicology such as IMSLP/Petrucci Music Library\footnote{\url{https://imslp.org/}} and MusicBrainz\footnote{\url{https://musicbrainz.org/}}. There have been efforts to compile large collections for MIR or general sound analysis research such as Million Song Dataset \cite{Bertin-Mahieux2011a}, FMA dataset \cite{Defferrard2017}, AcousticBrainz\footnote{\url{https://acousticbrainz.org/}} and Freesound datasets \cite{Fonseca2017}. These music data collections are good resources for developing MIR models on Western Pop music. A systematic way of building a research corpus is essential for the MIR research, and receives attention from the research community. Serra \cite{Serra2014} described a set of criteria to build a MIR research corpus -- Purpose, Coverage, Completeness, Quality and Reusability. We use these criteria to help develop a corpus for automatic assessment of jingju singing pronunciation.
+Building a research corpus is a research problem itself and has been studied in many fields. There are many repositories for the research of speech such as Linguistic Data Consortium\footnote{\url{https://www.ldc.upenn.edu/}}, Librispeech\footnote{\url{http://www.openslr.org/}}, and for the research of musicology such as IMSLP/Petrucci Music Library\footnote{\url{https://imslp.org/}} and MusicBrainz\footnote{\url{https://musicbrainz.org/}}. There have been efforts to compile large collections for \gls{MIR} or general sound analysis research such as Million Song Dataset \cite{Bertin-Mahieux2011a}, FMA dataset \cite{Defferrard2017}, AcousticBrainz\footnote{\url{https://acousticbrainz.org/}} and Freesound datasets \cite{Fonseca2017}. These music data collections are good resources for developing \gls{MIR} models on Western Pop music. A systematic way of building a research corpus is essential for the \gls{MIR} research, and receives attention from the research community. Serra \cite{Serra2014} described a set of criteria to build a \gls{MIR} research corpus -- Purpose, Coverage, Completeness, Quality and Reusability. We use these criteria to help develop a corpus for automatic assessment of jingju singing pronunciation.
 
 In this chapter, we compile and analyse the research corpus and test datasets for the research of this dissertation. We will discuss the corpus building criteria and evaluation methodologies. Our main focus in this chapter will be jingju music, while other relevant test datasets are also presented. We aim:
 
-\begin{enumerate}[noitemsep]
+\begin{enumerate}[leftmargin=*]
 \item To describe the corpus and the test datasets, emphasizing the research problems and tasks relevant to this thesis.
 \item To describe a set of corpus design criteria and methodologies, then use them to evaluate the jingju a cappella singing voice corpus.
 \item To present both corpus-level and test dataset-level musically meaning data analysis and visualization.
 \end{enumerate}
 
-We mainly emphasize on presenting a scientific approach for corpus building and the evaluation of its coverage and completeness. Apart from the corpus description, the musically meaningful data analysis and visualization is another contribution of this chapter. Finally, the research corpus and test datasets presented in this chapter will be made available for further jingju MIR research.
+We mainly emphasize on presenting a scientific approach for corpus building and the evaluation of its coverage and completeness. Apart from the corpus description, the musically meaningful data analysis and visualization is another contribution of this chapter. Finally, the research corpus and test datasets presented in this chapter will be made available for further jingju \gls{MIR} research.
 
 \section{CompMusic research corpora}\label{sec:ch4:compmusic_corpora}
 
-Although different music genres share some basic concepts such as melody and rhythm, some other important aspects can be described only by considering the musical specificity of that tradition. In the context of CompMusic project, Serra \cite{serra_multicultural_2011} highlighted the needs for culture-specific MIR research corpora to develop approaches which benefit from the essential aspects of the music tradition. 
+Although different music genres share some basic concepts such as melody and rhythm, some other important aspects can be described only by considering the musical specificity of that tradition. In the context of CompMusic project, Serra \cite{serra_multicultural_2011} highlighted the needs for culture-specific \gls{MIR} research corpora to develop approaches which benefit from the essential aspects of the music tradition. 
 
 In CompMusic project, we work with five music traditions of the world which expose different research problems. A significant effort has been put towards the design the research corpora for the relevant problems of the specific musical traditions. In this chapter, we focus mainly on the a cappella singing voice of jingju music, while jingju commercial audio recording \cite{repetto_creating_2014}, lyrics and musical score collections \cite{Repetto2017} have been presented by other researchers of the CompMusic project. The Carnatic and Hindustani research corpora have been described thoroughly by \cite{Srinivasamurthy2014}. The Turkish makam music research corpus has been presented in detail by \cite{Uyar2014a}.
 
 \subsection{Criteria for the creation of research corpora}
 
-Serra \cite{Serra2014} listed five criteria for build culture-specific MIR research corpus:
+Serra \cite{Serra2014} listed five criteria for build culture-specific \gls{MIR} research corpus:
 
 ``Purpose: The first step in the design of a corpus is to define the research problem that wants to be addressed and the research approach that will be used. In CompMusic, we want to develop methodologies with which to extract musically meaningful representations from audio music recordings, mainly related to melody, rhythm, timbre and pronunciation. The approaches are based on signal processing and machine learning techniques; thus the corpus has to be aligned with this purpose.
 
@@ -51,28 +51,28 @@ The jingju a cappella singing corpus mainly contains audio recordings, editorial
 
 Given that aria is the natural unit of jingju music, most audio recordings in this corpus are arias. A unique aria might be sung by different singers with different singing levels -- professional or amateur. To facilitate the development of singing voice assessment models, the audio recordings in this corpus are all a cappella version, meaning without instrumental accompaniment. The singer's singing level is most important metadata associated with a recording.
 
-To build the corpus, we consulted jingju professors and musicologists. The main institutional reference is the National Academy of Chinese Theatre Arts (NACTA)\footnote{\url{https://www.nacta.edu.cn/}}, which is the premier institution dedicated to jingju performing training in Beijing, China, and is the only institute of its kind in China that offers both B.A. and M.A. degrees in jingju performing.
+To build the corpus, we consulted jingju professors and musicologists. The main institutional reference is the \gls{NACTA}, which is the premier institution dedicated to jingju performing training in Beijing, China, and is the only institute of its kind in China that offers both B.A. and M.A. degrees in jingju performing.
 
-We wish to compile recordings sung by both professional and amateur singers from different backgrounds. The professional recording singers are the professors and students of NACTA. The amateur singers are from various sources -- students of jingju associations in non-art universities, amateurs of jingju groups in community activity centers located in Beijing, amateurs of jingju associations located in London and students from several primary schools. We did not keep track the singer information of the amateurs of jingju groups in community activity centers located in Beijing and the students from several primary schools due to that a large number of singers participated in these recording sessions. Otherwise, the singer information of the other recordings is written in the editorial metadata. 
+We wish to compile recordings sung by both professional and amateur singers from different backgrounds. The professional singers are the professors and students of \gls{NACTA}. The amateur singers are from various sources -- students of jingju associations in non-art universities, amateurs of jingju groups in community activity centers located in Beijing, amateurs of jingju associations located in London and students from several primary schools. We did not keep track the singer information of the amateurs of jingju groups in community activity centers located in Beijing and the students from several primary schools due to that a large number of singers participated in these recording sessions. Otherwise, the singer information of the other recordings is written in the editorial metadata. 
 
 The corpus has been collected in three different stages and thus been split into three parts. The audios in the first part are recorded with the joint effort of two music technology research institutes -- Center for Digital Music, Queen Mary University of London (C4DM) \cite{Black2014} and Music Technology Group, Universitat Pompeu Fabra (MTG-UPF). Additionally, another 15 clean singing recordings separated from the commercial releases have been included in this part. The audios in the second and third parts are recorded by the author of this thesis during his two times research stay in Beijing.
 
-The corpus consists of 2 role-types (dan and laosheng), 121 unique arias with 289 recordings, meaning several arias have been recorded more than once by different singers. The total duration is 13.61 hours. Other information related to the corpus is described in \tabref{table:ch4:general_statistics_jingju_a_cappella_corpus}.
+The corpus consists of 2 role-types (\gls{dan} and \gls{laosheng}), 121 unique arias with 289 recordings, meaning several arias have been recorded more than once by different singers. The total duration is 13.61 hours. Other information related to the corpus is described in \tabref{table:ch4:general_statistics_jingju_a_cappella_corpus}.
 
 \begin{landscape}
 \mbox{}\vfill
 \begin{table}[ht]
     \centering
+    \caption{General statistics of the jingju a cappella singing corpus.}
+    \label{table:ch4:general_statistics_jingju_a_cappella_corpus}
     \begin{tabular}{l|ccccc}
         \toprule
-        Role-type & \makecell{\#Unique aria\\(A: amateur,\\P: professional)} & \#Recording & \#Singers & \makecell{\#Total duration\\(hours)} & \makecell{\#Median recording\\duration (minutes)} \\
+        Role-type & \#Unique aria & \makecell{\#Recording\\(A: amateur,\\P: professional)} & \#Singers & \makecell{\#Total duration\\(hours)} & \makecell{\#Median recording\\duration (minutes)} \\
         \midrule
         dan           & 73 & 171 (A: 79, P: 83) & 14+ & 8.26 & 1.87 \\
         laosheng      & 48 & 118 (A: 67, P: 51) & 13+ & 5.35 & 2.01 \\
         \bottomrule
     \end{tabular}
-    \caption{General statistics of the jingju a cappella singing corpus}
-    \label{table:ch4:general_statistics_jingju_a_cappella_corpus}
 \end{table}
 \vfill
 \end{landscape}
@@ -89,10 +89,10 @@ In the first part of the corpus, the information of recording setup for the audi
 
 For the second part of the corpus, most of the recording sessions have been conducted in professional recording rooms by using professional equipment. We use two recording equipment sets and two recording rooms:
 
-\begin{itemize}[noitemsep]
+\begin{itemize}[itemsep=0pt]
     \item Set 1: M-Audio Luna condenser microphone + RME Fireface UCX audio interface + Apple GarageBand for Mac DAW;
     \item Set 2: Mojave MA-200 condenser microphone + ART voice channel microphone preamp + RME Fireface 800 audio interface + Adobe Audition 2.0 DAW;
-    \item Room 1: The conference room in NACTA's business incubator with reflective walls, carpet-covered floor, conference furniture and medium room reverberation;
+    \item Room 1: The conference room in \gls{NACTA}'s business incubator with reflective walls, carpet-covered floor, conference furniture and medium room reverberation;
     \item Room 2: The sound recording studio in Institute of Automation, Chinese Academy of Science, with acoustic absorption and isolation.
 \end{itemize}
 
@@ -102,12 +102,14 @@ For the third part of the corpus, the recording sessions are done by using a Son
 
 \subsubsection{Coverage}
 
-A research corpus needs to be representative of the real world in the concepts that are primary to the music culture \cite{Srinivasamurthy2016}. The main concepts of jingju music -- role-type, shengqiang and banshi, are presented previously in \secref{sec:ch2:jingju_music}. The concepts of jingju singing -- syllable and phoneme are the essential units for the pronunciation assessment. In this work, the coverage analysis is presented for role-type, shengqiang, banshi and phoneme. We do not analyse syllable because there are excessive syllable classes in the languages of jingju singing.
+A research corpus needs to be representative of the real world in the concepts that are primary to the music culture \cite{Srinivasamurthy2016}. The main concepts of jingju music -- role-type, \gls{shengqiang} and \gls{banshi}, are presented previously in \secref{sec:ch2:jingju_music}. The concepts of jingju singing -- syllable and phoneme are the essential units for the pronunciation assessment. In this work, the coverage analysis is presented for role-type, \gls{shengqiang}, \gls{banshi} and phoneme. We do not analyse syllable because there are excessive syllable classes in the languages of jingju singing.
 
-The corpus includes the two jingju role-types whose main discipline is singing -- \textit{laosheng} and \textit{dan}. Both professional and amateur singers have been recorded. For \textit{dan} role-type, there are 79 amateur recordings and 83 professional recordings. For \textit{laosheng} role-type, there are 67 amateur recordings and 51 professional recordings (see \tabref{table:ch4:general_statistics_jingju_a_cappella_corpus}).
+The corpus includes the two jingju role-types whose main discipline is singing -- \gls{laosheng} and \gls{dan}. Both professional and amateur singers have been recorded. For \gls{dan} role-type, there are 79 amateur recordings and 83 professional recordings. For \gls{laosheng} role-type, there are 67 amateur recordings and 51 professional recordings (see \tabref{table:ch4:general_statistics_jingju_a_cappella_corpus}).
 
 \begin{table}[ht]
     \centering
+    \caption{A list of shengqiang and banshi included in the corpus.}
+    \label{table:ch4:shengqiang_banshi_corpus}
     \begin{tabular}{l|cc}
         \toprule
         Role-type & shengqiang & banshi \\
@@ -117,13 +119,11 @@ The corpus includes the two jingju role-types whose main discipline is singing -
 	    laosheng      & \makecell{xipi, erhuang,\\fanxipi, fanerhuang} & \makecell{yuanban, manban,\\kuaiban, liushui,\\erliu, kuaisanyan,\\zhongsanyan, sanyan,\\daoban, huilong,\\yaoban, sanban} \\
         \bottomrule
     \end{tabular}
-    \caption{A list of shengqiang and banshi included in the corpus.}
-    \label{table:ch4:shengqiang_banshi_corpus}
 \end{table}
 
-The corpus also includes the two main \textit{shengqiang} - \textit{xipi} and \textit{erhuang}, and a few auxiliary ones, such as \textit{fanxipi}, \textit{fanerhuang}, \textit{sipingdiao}, \textit{nanbangzi}.
+The corpus also includes the two main \gls{shengqiang} - \textit{xipi} and \textit{erhuang}, and a few auxiliary ones, such as \textit{fanxipi}, \textit{fanerhuang}, \textit{sipingdiao}, \textit{nanbangzi}.
 
-In terms of \textit{banshi}, the whole range of metered ones is represented in the dataset - \textit{yuanban}, \textit{manban}, \textit{kuaiban}, \textit{erliu}, \textit{liushui}, \textit{sanyan} and its three variations -- \textit{kuaisanyan}, \textit{zhongsanyan} and \textit{mansanyan}. Besides these metered \textit{banshi}, there are a few unmetered ones -- \textit{sanban}, \textit{daoban}, \textit{yaoban} and \textit{huilong}, whose occurrence is very punctual in performance. A list of shengqiang and banshi included in the corpus for \textit{dan} and \textit{laosheng} role-types is shown in \tabref{table:ch4:shengqiang_banshi_corpus}.
+In terms of \gls{banshi}, the whole range of metered ones is represented in the dataset - \textit{yuanban}, \textit{manban}, \textit{kuaiban}, \textit{erliu}, \textit{liushui}, \textit{sanyan} and its three variations -- \textit{kuaisanyan}, \textit{zhongsanyan} and \textit{mansanyan}. Besides these metered \gls{banshi}, there are a few unmetered ones -- \textit{sanban}, \textit{daoban}, \textit{yaoban} and \textit{huilong}, whose occurrence is very punctual in performance. A list of \gls{shengqiang} and \gls{banshi} included in the corpus for \gls{dan} and \gls{laosheng} role-types is shown in \tabref{table:ch4:shengqiang_banshi_corpus}.
 
 \begin{figure}[ht!]
     \centering
@@ -137,7 +137,7 @@ In terms of \textit{banshi}, the whole range of metered ones is represented in t
     \label{fig:ch4:number_occurrence}
 \end{figure}
 
-\figref{fig:ch4:number_occurrence} represents the number of occurrence for each phoneme for dan and laosheng role-types. We can see that the corpus cover all the phoneme classes for both dan and laosheng role-types, although some phonemes such as ``@", ``yn" have tiny number of occurrence. In all the phoneme classes, ``c", a meta-phoneme class which is merged by all the non-voiced consonants, has the largest number of occurrence. An interesting observation is that the semivowel ``j" has a large number of occurrence because this semivowel is used for both syllable initial and medial vowel. Another large number of occurrence phoneme ``n" is also used for both syllable initial and terminal consonants. Phoneme ``AN" is presented much more in dan singing than in laosheng singing, which indicates that it is preferable to use the syllables constituted with this nasal final in dan singing than in laosheng singing.
+\figref{fig:ch4:number_occurrence} represents the number of occurrence for each phoneme for \gls{dan} and \gls{laosheng} role-types. We can see that the corpus cover all the phoneme classes for both \gls{dan} and \gls{laosheng} role-types, although some phonemes such as ``@", ``yn" have tiny number of occurrence. In all the phoneme classes, ``c", a meta-phoneme class which is merged by all the non-voiced consonants, has the largest number of occurrence. An interesting observation is that the semivowel ``j" has a large number of occurrence because this semivowel is used for both syllable initial and medial vowel. Another large number of occurrence phoneme ``n" is also used for both syllable initial and terminal consonants. Phoneme ``AN" is presented much more in \gls{dan} singing than in \gls{laosheng} singing, which indicates that it is preferable to use the syllables constituted with this nasal final in \gls{dan} singing than in \gls{laosheng} singing.
 
 \subsubsection{Completeness}
 
@@ -145,6 +145,8 @@ In the context of this dissertation, completeness of the corpus refers to the co
 
 \begin{table}[ht]
     \centering
+    \caption{Metadata and annotations completeness. Table cell format: \#annotated recordings/total recordings; percentage.}
+    \label{table:ch4:metadata_completeness}
     \begin{tabular}{l|cccc}
         \toprule
         Role-type & Metadata & Melodic line & Syllable & Phoneme \\
@@ -154,12 +156,12 @@ In the context of this dissertation, completeness of the corpus refers to the co
         laosheng      & 100\% & \makecell{89/118;\\75.42\%} & \makecell{89/118;\\75.42\%} 	& \makecell{52/118;\\44.06\%} \\
         \bottomrule
     \end{tabular}
-    \caption{Metadata and annotations completeness. Table cell format: \#annotated recordings/total recordings; percentage.}
-    \label{table:ch4:metadata_completeness}
 \end{table}
 
 \begin{table}[ht]
     \centering
+    \caption{The number of annotated melodic line, syllable and phoneme in the corpus.}
+    \label{table:ch4:annotated_number}
     \begin{tabular}{l|cccc}
         \toprule
         Role-type & \#Melodic line & \#Syllable & \#Phoneme \\
@@ -168,8 +170,6 @@ In the context of this dissertation, completeness of the corpus refers to the co
         laosheng      & 893 	& 8239 	& 13378 	\\
         \bottomrule
     \end{tabular}
-    \caption{The number of annotated melodic line, syllable and phoneme in the corpus.}
-    \label{table:ch4:annotated_number}
 \end{table}
 
 The corpus contains the metadata of each recording -- the artist's singing level, the name of the aria, the name of the play and the name of the singing characters. The metadata is 100\% annotated for all recording in the corpus.
@@ -184,6 +184,8 @@ In this section, we present a corpus-level statistic analysis towards the durati
 
 \begin{table}[ht]
     \centering
+    \caption{Mean and standard deviation duration, minimum and maximum duration of melodic line, syllable and phoneme (second).}
+    \label{table:ch4:mean_std_min_max}
     \begin{tabular}{l|cc|cc|cc}
         \toprule
         \multirow{2}{*}{Role-type} & \multicolumn{2}{c|}{Melodic line} & \multicolumn{2}{c|}{Syllable} & \multicolumn{2}{c}{Phoneme} \\
@@ -194,79 +196,78 @@ In this section, we present a corpus-level statistic analysis towards the durati
         laosheng      & \makecell{10.02\\8.86} & \makecell{1.82\\55.92} & \makecell{1.08\\0.84} & \makecell{0.07\\20.63} & \makecell{0.29\\0.62} & \makecell{0.0025\\13.59} \\
         \bottomrule
     \end{tabular}
-    \caption{Mean and standard deviation duration, minimum and maximum duration of melodic line, syllable and phoneme (second).}
-    \label{table:ch4:mean_std_min_max}
 \end{table}
 
-\tabref{table:ch4:mean_std_min_max} shows a basic statistics of duration for melodic line, syllable and phoneme. Some interesting insights can be drawn from the table. Firstly, the mean and standard deviation of melodic line, syllable and phoneme durations of dan role-type are all larger than those of laosheng, which indicates that the length of dan singing regarding melodic line, syllable and phoneme are longer and more varying than that of laosheng. Secondly, the maximum duration of dan melodic line and syllable are more than two times longer than those of laosheng. However, the maximum duration of dan phoneme is shorter than that of laosheng, which indicates that dan role-type tends to prolong the singing syllables and to take more breaths such that a long syllable is split into several phoneme segments by short pauses. Lastly, compared with the mean $<$ 250 ms and standard deviation $<$ 50 ms of the duration of Mandarin speech syllable \cite{wang_syllable_1994}, those of jingju singing voice are at least four times longer and more varying. As we have mentioned in \chapref{chap:probdef}, many singing skills such as ornamentation, breath control, are usually used in interpreting a prolonged syllable. Breath control leads to silences within a syllable; ornamentation leads the variation of the spectral pattern. Long syllable, silences within a syllable and spectral pattern variation bring challenges in developing singing assessment methodologies.
+\tabref{table:ch4:mean_std_min_max} shows a basic statistics of duration for melodic line, syllable and phoneme. Some interesting insights can be drawn from the table. Firstly, the mean and standard deviation of melodic line, syllable and phoneme durations of \gls{dan} role-type are all larger than those of \gls{laosheng}, which indicates that the length of \gls{dan} singing regarding melodic line, syllable and phoneme are longer and more varying than that of \gls{laosheng}. Secondly, the maximum duration of \gls{dan} melodic line and syllable are more than two times longer than those of \gls{laosheng}. However, the maximum duration of \gls{dan} phoneme is shorter than that of \gls{laosheng}, which indicates that \gls{dan} role-type tends to prolong the singing syllables and to take more breaths such that a long syllable is split into several phoneme segments by short pauses. Lastly, compared with the mean $<$ 250 ms and standard deviation $<$ 50 ms of the duration of Mandarin speech syllable \cite{wang_syllable_1994}, those of jingju singing voice are at least four times longer and more varying. As we have mentioned in \chapref{chap:probdef}, many singing skills such as ornamentation, breath control, are usually used in interpreting a prolonged syllable. Breath control leads to silences within a syllable; ornamentation leads the variation of the spectral pattern. Long syllable, silences within a syllable and spectral pattern variation bring challenges in developing singing assessment methodologies.
 
 \begin{figure}[ht!]
     \centering
-    \subfloat[Dan melodic line]{\includegraphics[width=0.32\textwidth]{figs/dstats/dan_melodic_line.png}
+    \subfloat[Dan melodic line]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_melodic_line.png}
         \label{fig:ch4:melodic_line_dan}}
-    \subfloat[Dan syllable]{\includegraphics[width=0.32\textwidth]{figs/dstats/dan_syllable.png}
-        \label{fig:ch4:syllable_dan}}
-    \subfloat[Dan phoneme]{\includegraphics[width=0.32\textwidth]{figs/dstats/dan_phoneme.png}
-        \label{fig:ch4:phoneme_dan}}
-    \hfill
-    \subfloat[Laosheng melodic line]{\includegraphics[width=0.32\textwidth]{figs/dstats/laosheng_melodic_line.png}
+     \subfloat[Laosheng melodic line]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_melodic_line.png}
         \label{fig:ch4:melodic_line_laosheng}}
-    \subfloat[Laosheng syllable]{\includegraphics[width=0.32\textwidth]{figs/dstats/laosheng_syllable.png}
+    \hfill
+    \subfloat[Dan syllable]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_syllable.png}
+        \label{fig:ch4:syllable_dan}}
+    \subfloat[Laosheng syllable]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_syllable.png}
         \label{fig:ch4:syllable_laosheng}}
-    \subfloat[Laosheng phoneme]{\includegraphics[width=0.32\textwidth]{figs/dstats/laosheng_phoneme.png}
+    \hfill
+    \subfloat[Dan phoneme]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_phoneme.png}
+        \label{fig:ch4:phoneme_dan}}
+    \subfloat[Laosheng phoneme]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_phoneme.png}
         \label{fig:ch4:phoneme_laosheng}}
   
     \caption[]{Dan and laosheng melodic line, syllable and phoneme duration histograms normalized to unit density. Vertical red dash lines indicate the median duration.}
     \label{fig:ch4:dan_laosheng_histo}
 \end{figure}
 
-\figref{fig:ch4:dan_laosheng_histo} shows the duration histograms of melodic line, syllable and phoneme for dan and laosheng role-types. The general shapes of the histogram distribution between dan and laosheng are similar. Although there are prominent peaks on all the histograms, the durations are varied, which can be observed by the extended long-tails on each histogram. For example, the median melodic line duration of dan is 5.93s. However, a significant amount of melodic lines are longer than 10s; the median phoneme duration of laosheng is 0.15s, whereas those phonemes whose durations are more prolonged than 0.4s are not the minority.
+\figref{fig:ch4:dan_laosheng_histo} shows the duration histograms of melodic line, syllable and phoneme for \gls{dan} and \gls{laosheng} role-types. The general shapes of the histogram distribution between \gls{dan} and \gls{laosheng} are similar. Although there are prominent peaks on all the histograms, the durations are varied, which can be observed by the extended long-tails on each histogram. For example, the median melodic line duration of \gls{dan} is 5.93s. However, a significant amount of melodic lines are longer than 10s; the median phoneme duration of \gls{laosheng} is 0.15s, whereas those phonemes whose durations are more prolonged than 0.4s are not the minority.
 
 \begin{figure}[ht!]
     \centering
-    \subfloat[c]{\includegraphics[width=0.43\textwidth]{figs/dstats/dan_c.png}
+    \subfloat[c]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_c.png}
         \label{fig:ch4:c_dan}}
-    \subfloat[l]{\includegraphics[width=0.43\textwidth]{figs/dstats/dan_l.png}
+    \subfloat[l]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_l.png}
         \label{fig:ch4:l_dan}}
     \hfill
 
-    \subfloat[N]{\includegraphics[width=0.43\textwidth]{figs/dstats/dan_N.png}
+    \subfloat[N]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_N.png}
         \label{fig:ch4:N_dan}}
-    \subfloat[@n]{\includegraphics[width=0.43\textwidth]{figs/dstats/dan_@n.png}
+    \subfloat[@n]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_@n.png}
         \label{fig:ch4:@n_dan}}
     \hfill
-    \subfloat[i]{\includegraphics[width=0.43\textwidth]{figs/dstats/dan_i.png}
+    \subfloat[i]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_i.png}
         \label{fig:ch4:i_dan}}
-    \subfloat[a]{\includegraphics[width=0.43\textwidth]{figs/dstats/dan_a.png}
+    \subfloat[a]{\includegraphics[width=0.475\textwidth]{figs/dstats/dan_a.png}
         \label{fig:ch4:a_dan}}
   
-    \caption[]{Dan histograms normalized to the unit density of durations for phonemes c, l, N, @n, i, a. Vertical red dash lines are the median phoneme durations.}
+    \caption[]{Dan histograms normalized to the unit density of durations for phonemes ``c, l, N, @n, i, a". Vertical red dash lines are the median phoneme durations.}
     \label{fig:ch4:dan_histo_phoneme}
 \end{figure}
 
 \begin{figure}[ht!]
     \centering
-    \subfloat[c]{\includegraphics[width=0.43\textwidth]{figs/dstats/laosheng_c.png}
+    \subfloat[c]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_c.png}
         \label{fig:ch4:c_laosheng}}
-    \subfloat[l]{\includegraphics[width=0.43\textwidth]{figs/dstats/laosheng_l.png}
+    \subfloat[l]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_l.png}
         \label{fig:ch4:l_laosheng}}
     \hfill
 
-    \subfloat[N]{\includegraphics[width=0.43\textwidth]{figs/dstats/laosheng_N.png}
+    \subfloat[N]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_N.png}
         \label{fig:ch4:N_laosheng}}
-    \subfloat[@n]{\includegraphics[width=0.43\textwidth]{figs/dstats/laosheng_@n.png}
+    \subfloat[@n]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_@n.png}
         \label{fig:ch4:@n_laosheng}}
     \hfill
-    \subfloat[i]{\includegraphics[width=0.43\textwidth]{figs/dstats/laosheng_i.png}
+    \subfloat[i]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_i.png}
         \label{fig:ch4:i_laosheng}}
-    \subfloat[a]{\includegraphics[width=0.43\textwidth]{figs/dstats/laosheng_a.png}
+    \subfloat[a]{\includegraphics[width=0.475\textwidth]{figs/dstats/laosheng_a.png}
         \label{fig:ch4:a_laosheng}}
   
-    \caption[]{Laosheng histograms normalized to the unit density of durations for phonemes c, l, N, @n, i, a. Vertical red dash lines are the median phoneme durations.}
+    \caption[]{Laosheng histograms normalized to the unit density of durations for phonemes ``c, l, N, @n, i, a". Vertical red dash lines are the median phoneme durations.}
     \label{fig:ch4:laosheng_histo_phoneme}
 \end{figure}
 
-\figref{fig:ch4:dan_histo_phoneme} and \figref{fig:ch4:laosheng_histo_phoneme} show the histograms of durations for the individual phoneme. The phonemes which we are selected to show are c, l, N, @n, i, a, in X-SAMPA format. c is an ensemble phoneme class of non-voiced consonants; l is a voiced phoneme; N is a terminal consonant; @n is a diphthong used as the central vowel in a syllable; i and a are single vowels also used as the central vowel in a syllable. Again, the general shapes of the histogram distribution between dan and laosheng are similar. The median duration of the individual phoneme of dan is longer than that of laosheng except for syllable initial consonants -- c and l. The duration of initial consonants does not vary much. However, the central vowels show a large duration variation since which are the primary part of a syllable sung by a singer in a prolonged way.
+\figref{fig:ch4:dan_histo_phoneme} and \figref{fig:ch4:laosheng_histo_phoneme} show the histograms of durations for the individual phoneme. The phonemes which we are selected to show are ``c, l, N, @n, i, a" in X-SAMPA format. `c' is an ensemble phoneme class of non-voiced consonants; `l' is a voiced phoneme; `N' is a terminal consonant; `@n' is a diphthong used as the central vowel in a syllable; `i' and `a' are single vowels also used as the central vowel in a syllable. Again, the general shapes of the histogram distribution between \gls{dan} and \gls{laosheng} are similar. The median duration of the individual phoneme of \gls{dan} is longer than that of \gls{laosheng} except for syllable initial consonants -- `c' and `l'. The duration of initial consonants does not vary much. However, the central vowels show a large duration variation since which are the primary part of a syllable sung by a singer in a prolonged way.
 
 \section{Test datasets}\label{sec:ch4:test_datasets}
 The test datasets are designed for special research tasks. There are several test datasets built in CompMusic for different musical traditions\footnote{\url{http://compmusic.upf.edu/datasets}}. We describe in this section only the test datasets for the tasks of automatic assessment of jingju singing pronunciation.
@@ -275,10 +276,12 @@ The test datasets are designed for special research tasks. There are several tes
 
 Automatic syllable and phoneme segmentation task require the data having syllable and phoneme time boundary and label annotations. Thus, we select the recordings with associated annotations in the corpus to form the test datasets. Two datasets are prepared -- ASPS\textsubscript{1} and ASPS\textsubscript{2}. ASPS\textsubscript{1} will be used for setting the baseline syllable and phoneme segmentation model, while ASPS\textsubscript{2} will be applied for searching an efficient state of the art syllable segmentation model.
 
-ASPS\textsubscript{1} is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected from all three parts of the corpus. ASPS\textsubscript{1} contains two jingju role-types: \textit{dan} and \textit{laosheng}. 
+ASPS\textsubscript{1} is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected from all three parts of the corpus. ASPS\textsubscript{1} contains two jingju role-types: \gls{dan} and \gls{laosheng}. 
 
 \begin{table}[ht]
     \centering
+    \caption{Statistics of the ASPS\textsubscript{1} test dataset.}
+    \label{table:ch4:detailInfoDataset_asps_1}
     \begin{tabular}{l|cccc}
         \toprule
         & \#Recordings & \#Melodic line & \#Syllables & \#Phonemes \\
@@ -287,14 +290,14 @@ ASPS\textsubscript{1} is a subset of the jingju a cappella singing corpus. The r
         Test               & 39 & 216 & 1758 & 4651  \\
         \bottomrule
     \end{tabular}
-    \caption{Statistics of the ASPS\textsubscript{1} test dataset.}
-    \label{table:ch4:detailInfoDataset_asps_1}
 \end{table}
 
 The dataset contains 95 recordings split into train and test sets (table \ref{table:ch4:detailInfoDataset_asps_1}). The recordings in the test set only include student imitative singing. The corresponding teacher's demonstrative recordings can be found in the train set, which guarantees that the coarse syllable/phoneme duration and labels are available as a priori information being used in model testing. Recordings are pre-segmented into melodic line units. The syllable/phoneme ground truth boundaries (onsets/offsets) and phoneme labels are manually annotated. 29 phoneme categories are annotated, which include a silence category and a non-identifiable phoneme category, e.g. throat-clearing sound. The category table can be found in the Github page\footnote{\label{ft:github}\url{https://github.com/ronggong/interspeech2018_submission01}}. The dataset is publicly available\footnote{\url{https://doi.org/10.5281/zenodo.1185123}}.
 
 \begin{table}[ht]
     \centering
+    \caption{Statistics of the ASPS\textsubscript{2} test dataset.}
+    \label{table:ch4:detail_info_jingju_dataset_asps_2}
     \begin{tabular}{l|ccc}
         \toprule
         & \#Recordings & \#Melodic line & \#Syllables \\
@@ -303,11 +306,9 @@ The dataset contains 95 recordings split into train and test sets (table \ref{ta
         Test               & 15 & 133 & 1203  \\
         \bottomrule
     \end{tabular}
-    \caption{Statistics of the ASPS\textsubscript{2} test dataset.}
-    \label{table:ch4:detail_info_jingju_dataset_asps_2}
 \end{table}
 
-ASPS\textsubscript{2} test dataset is also a subset of the jingju a cappella singing corpus. It also includes recordings of dan and laosheng role-types. ASPS\textsubscript{2} contains 100 recordings manually annotated for each syllable onset. The syllable segmentation evaluation will be conducted on each melodic line which has been pre-segmented manually. The statistics and train-test sets split are shown in table \ref{table:ch4:detail_info_jingju_dataset_asps_2}. It is worth to mention that the artists, recording rooms and recording equipment used for the test set is completely different from the training set. This train-test split setup avoids the artist/room/equipment filtering effects which might be happening in the evaluation process\cite{Flexer2010}. The musical score is also included in this dataset, which provides the syllable duration prior information for the evaluation. This dataset is openly available\footnote{\url{https://doi.org/10.5281/zenodo.1341070}\label{fn:jingju_dataset}}.
+ASPS\textsubscript{2} test dataset is also a subset of the jingju a cappella singing corpus. It also includes recordings of \gls{dan} and \gls{laosheng} role-types. ASPS\textsubscript{2} contains 100 recordings manually annotated for each syllable onset. The syllable segmentation evaluation will be conducted on each melodic line which has been pre-segmented manually. The statistics and train-test sets split are shown in table \ref{table:ch4:detail_info_jingju_dataset_asps_2}. It is worth to mention that the artists, recording rooms and recording equipment used for the test set is completely different from the training set. This train-test split setup avoids the artist/room/equipment filtering effects which might be happening in the evaluation process \cite{Flexer2010}. The musical score is also included in this dataset, which provides the syllable duration prior information for the evaluation. This dataset is openly available\footnote{\url{https://doi.org/10.5281/zenodo.1341070}\label{fn:jingju_dataset}}.
 
 As it has been mentioned in \secref{sec:ch3:challenges}, pronunciation is a subconcept of the timbre, and in a signal point of view, timbre is related to the spectral envelope shape and the time variation of spectral content. In the following of this section, we show several spectrogram examples of various phoneme categories -- syllable initial non-voiced consonant, voiced consonant, medial vowel, central vowel and syllable terminal consonant, and the transition between two phonemes such as from syllable initial non-voice consonant to media vowel and from central vowel to syllable terminal consonant.
 
@@ -323,7 +324,7 @@ As it has been mentioned in \secref{sec:ch3:challenges}, pronunciation is a subc
     \subfloat[Mel spectrogram of syllables ``da, dan, ren".]{\includegraphics[width=\textwidth]{figs/dstats/spectro_da_dan_ren.png}
         \label{fig:ch4:da_dan_ren}}
   
-    \caption[]{Three examples of syllablic Mel spectrogram. Vertical red solid lines are syllable onsets; vertical black dash lines are phoneme onsets.}
+    \caption[]{Three examples of syllablic Mel spectrogram. Vertical red solid lines are syllable onsets; vertical black dash lines are phoneme onsets. On top of each subfigure, the first line is the phoneme transcription in X-SAMPA format, the second line is the syllable transcription in pinyin format.}
     \label{fig:ch4:task1_visualization}
 \end{figure}
 
@@ -339,12 +340,14 @@ Given the analysis of the above three spectrogram examples, we can design the me
 
 \subsection{Dataset for mispronunciation detection}\label{sec:ch4:dataset_mispronunciation}
 
-As we have mentioned in \secref{sec:ch3:mispronunciation}, we consider only two types of mispronunciation in jingju singing -- the mispronunciation of special pronunciation and that of jianzi. The first type of mispronunciation -- special pronunciation, is that some written characters in jingju singing pieces should be pronounced differently than in Mandarin Chinese, however, the student doesn't pronounce them correctly as in teacher's demonstrative singing. The second type of mispronunciation -- jianzi, is that certain rounded syllables (团子, pinyin: tuanzi) in jingju singing pieces can be altered to pronounce as the pointed sounds (尖子, pinyin: jianzi), however, the student doesn't pay attention and still pronounce them as rounded syllables. 
+As we have mentioned in \secref{sec:ch3:mispronunciation}, we consider only two types of mispronunciation in jingju singing -- the mispronunciation of special pronunciation and that of \gls{jianzi}. The first type of mispronunciation -- special pronunciation, is that some written characters in jingju singing pieces should be pronounced differently than in Mandarin Chinese, however, the student doesn't pronounce them correctly as in teacher's demonstrative singing. The second type of mispronunciation -- \gls{jianzi}, is that certain rounded syllables (\gls{tuanzi}) in jingju singing pieces can be altered to pronounce as the pointed sounds (\gls{jianzi}), however, the student doesn't pay attention and still pronounce them as rounded syllables. 
 
-In the actual jingju teaching scenario, the teacher's demonstrative singing pieces are given, thus we can identify in advance those special pronounced and jianzi written characters in the pieces. After we obtain the student's imitative singing pieces, the detection process can be carried out only on those special pronounced and jianzi written characters. To this end, we need a model which either can transcribe orthographically each singing syllables considering the special pronunciations and jianzi, or can distinguish between the standard Mandarin pronunciations and the special pronunciations/jianzi. Either way, we need a test dataset where the special pronounced syllables and jianzi are annotated orthographically in pinyin and in phoneme using X-SAMPA format.
+In the actual jingju teaching scenario, the teacher's demonstrative singing pieces are given, thus we can identify in advance those special pronounced and \gls{jianzi} written characters in the pieces. After we obtain the student's imitative singing pieces, the detection process can be carried out only on those special pronounced and \gls{jianzi} written characters. To this end, we need a model which either can transcribe orthographically each singing syllables considering the special pronunciations and \gls{jianzi}, or can distinguish between the standard Mandarin pronunciations and the special pronunciations/\gls{jianzi}. Either way, we need a test dataset where the special pronounced syllables and \gls{jianzi} are annotated orthographically in pinyin and in phoneme using X-SAMPA format.
 
 \begin{table}[ht]
     \centering
+    \caption{Statistics of the MD test dataset. Syl.: syllable; Phn.: phoneme.}
+    \label{table:ch4:detailInfoDataset_md}
     \begin{tabular}{l|ccccc}
         \toprule
         & \makecell{\#Melodic\\line} & \#Syl. & \makecell{\#Special\\pronunciation} & \#jianzi & \#Phn. \\
@@ -353,11 +356,9 @@ In the actual jingju teaching scenario, the teacher's demonstrative singing piec
         Test               & 345 & 3106 & 356 & 13 & 7561 \\
         \bottomrule
     \end{tabular}
-    \caption{Statistics of the MD test dataset. Syl.: syllable; Phn.: phoneme.}
-    \label{table:ch4:detailInfoDataset_md}
 \end{table}
 
-The Mispronunciation Detection -- MD test dataset is annotated for the above purpose. MD is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected mainly from the part 1 and 2 of the corpus. \tabref{table:ch4:detailInfoDataset_md} shows the statistics of the MD test dataset which are split into train and test parts, and the test part contains only the recordings of amateur singings. As we can see from the table, the occurrence of the special pronounced syllables is much larger than jianzi. Most importantly, in the test part of the MD dataset, according to the teacher's demonstrative recordings, there are in total 451 syllables of special pronunciation and 50 syllables of jianzi should be pronounced correctly by the students. However, in the actual recordings of the test part of the MD dataset, there are 102 syllables of special pronunciation and 37 syllables of jianzi which have been mispronounced, and 349 syllables of special pronunciation and 13 syllables of jianzi which have been pronounced correctly. These mispronounced syllables are labeled manually by comparing the annotation of the test recording and that of the corresponding teacher's demonstrative recording. For example, if in the teacher's recording, there is a special pronunciation /ngo/ for the syllable ``wo”, however, in the amateur's recording, the corresponding syllable is still pronounced as /wo/, this syllable is labeled as a mispronunciation.
+The Mispronunciation Detection -- MD test dataset is annotated for the above purpose. MD is a subset of the jingju a cappella singing corpus. The recordings in this dataset are selected mainly from the part 1 and 2 of the corpus. \tabref{table:ch4:detailInfoDataset_md} shows the statistics of the MD test dataset which are split into train and test parts, and the test part contains only the recordings of amateur singings. As we can see from the table, the occurrence of the special pronounced syllables is much larger than \gls{jianzi}. Most importantly, in the test part of the MD dataset, according to the teacher's demonstrative recordings, there are in total 451 syllables of special pronunciation and 50 syllables of \gls{jianzi} should be pronounced correctly by the students. However, in the actual recordings of the test part of the MD dataset, there are 102 syllables of special pronunciation and 37 syllables of \gls{jianzi} which have been mispronounced, and 349 syllables of special pronunciation and 13 syllables of \gls{jianzi} which have been pronounced correctly. These mispronounced syllables are labeled manually by comparing the annotation of the test recording and that of the corresponding teacher's demonstrative recording. For example, if in the teacher's recording, there is a special pronunciation /ngo/ for the syllable ``wo”, however, in the amateur's recording, the corresponding syllable is still pronounced as /wo/, this syllable is labeled as a mispronunciation.
 
 
 \begin{figure}[ht!]
@@ -366,7 +367,7 @@ The Mispronunciation Detection -- MD test dataset is annotated for the above pur
 \label{fig:ch4:occurrence_special}
 \end{figure}
 
-\figref{fig:ch4:occurrence_special} shows the occurrence of each special pronounced syllables in MD dataset. The most frequently occurred syllables are /ngo (我), shen, qin, tin, bin, yin, chen, go, min, lin, xin, ho/. The pronunciation /ngo/ is altered from /wo/ in standard Mandarin by changing the semivowel /w/ to the nasal consonant /ng/. The syllables /go/ and /ho/ are altered from /ge/ and /he/ in standard Mandarin by changing the vowel /e/ to /o/. The other syllables mentioned above are the alteration from velar nasal to alveolar nasal, for example, changing from /eng/ and /ing/ to /en/ and /in/. The full table of the alteration from Mandarin pronunciation to the special pronunciation appeared in the MD test dataset is presented in \tabref{tab:app:special_pronun}.
+\figref{fig:ch4:occurrence_special} shows the occurrence of each special pronounced syllables in MD dataset. The most frequently occurred syllables are /ngo, shen, qin, tin, bin, yin, chen, go, min, lin, xin, ho/. The pronunciation /ngo/ is altered from /wo/ in standard Mandarin by changing the semivowel /w/ to the nasal consonant /ng/. The syllables /go/ and /ho/ are altered from /ge/ and /he/ in standard Mandarin by changing the vowel /e/ to /o/. The other syllables mentioned above are the alteration from velar nasal to alveolar nasal, for example, changing from /eng/ and /ing/ to /en/ and /in/. The full table of the alteration from Mandarin pronunciation to the special pronunciation appeared in the MD test dataset is presented in \tabref{tab:app:special_pronun}.
 
 \begin{figure}[ht!]
 \includegraphics[width=\textwidth]{figs/dstats/occurrence_jianzi.png}
@@ -374,7 +375,7 @@ The Mispronunciation Detection -- MD test dataset is annotated for the above pur
 \label{fig:ch4:occurrence_jianzi}
 \end{figure}
 
-\figref{fig:ch4:occurrence_jianzi} shows the occurrence of each jianzi in MD dataset. As we have mentioned in \secref{sec:ch2:jiantuanzi}, the rule of this pronunciation alteration is /j, zh/ -> /z/, /q, ch/ -> /c/, /x, sh/ -> /s/. For example, the pronunciation /siang/ is altered from /xiang/, and /zeng/ is altered from /zheng/. The full table of rounded syllables to the special pronunciation appeared in the MD test dataset is presented in \tabref{tab:app:jianzi}.
+\figref{fig:ch4:occurrence_jianzi} shows the occurrence of each \gls{jianzi} in MD dataset. As we have mentioned in \secref{sec:ch2:jiantuanzi}, the rule of this pronunciation alteration is /j, zh/ $\rightarrow$ /z/, /q, ch/ $\rightarrow$ /c/, /x, sh/ $\rightarrow$ /s/. For example, the pronunciation /siang/ is altered from /xiang/, and /zeng/ is altered from /zheng/. The full table of rounded syllables to the special pronunciation appeared in the MD test dataset is presented in \tabref{tab:app:jianzi}.
 
 \subsection{Dataset for pronunciation and overall quality similarity measures}\label{sec:ch4:poqsm_dataset}
 
@@ -384,6 +385,8 @@ The test dataset for the task of pronunciation and overall quality similarity me
 \mbox{}\vfill
 \begin{table}[ht!]
 \centering
+\caption{POQSM test dataset split, numbers of the professional and amateur singing phonemes and the source of the professional and amateur singers.}
+\label{tab:ch4:exp_dataset_poqsm}
 \begin{tabular}{l|c|c|c|c}
 \toprule
            & \makecell{\#Professional\\phonemes} & \makecell{\#Amateur\\phonemes} & Professional singers                                        & Amateur singers                                 \\
@@ -395,8 +398,6 @@ Validation & 1733                     & 1429                &                   
 Test       & 2167                     & 2021                &                                                             & Adult amateur singers \\
 \bottomrule
 \end{tabular}
-\caption{POQSM test dataset split, numbers of the professional and amateur singing phonemes and the source of the professional and amateur singers.}
-\label{tab:ch4:exp_dataset_poqsm}
 \end{table}
 \vfill
 \end{landscape}

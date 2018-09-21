@@ -1,0 +1,95 @@
+\select@language {english}
+\select@language {english}
+\addvspace {10pt}
+\addvspace {10pt}
+\select@language {english}
+\select@language {english}
+\select@language {english}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Example of automatic singing voice assessment from the reference and imitative singing audio recordings}}{8}{figure.caption.7}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces An illustration of two Mandarin Chinese syllable structures.\relax }}{26}{figure.caption.10}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The general flowchart of automatic assessment of musical performance. A: assessment for the entire music piece. B: assessment for musical event units.\relax }}{31}{figure.caption.11}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces An example of calculating average precision for the pairwise similarities of three segments.\relax }}{52}{figure.caption.25}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The flowchart of a single correction occurrence.\relax }}{65}{figure.caption.32}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The identification process of the importance of musical dimensions.\relax }}{67}{figure.caption.33}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The pitch contours of the syllable ``yuan" for occurrence 1.\relax }}{69}{figure.caption.36}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The pitch contours of the syllables ``dang nian jie bai" for occurrence 2.\relax }}{70}{figure.caption.37}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces The loudness contours of the syllable ``yang" for occurrence 3.\relax }}{71}{figure.caption.38}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The spectrograms of the syllable ``yang" for occurrence 3.\relax }}{71}{figure.caption.39}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces The spectrograms of the syllable ``shang" for occurrence 4.\relax }}{72}{figure.caption.40}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces The spectrograms of the syllables ``kai huai" for occurrence 5.\relax }}{73}{figure.caption.41}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces An example of a \gls {dan} role-type singing phrase. Red vertical lines indicate the syllable onset time positions. Black arrows at the bottom specify the time positions of pause within the syllable. Red horizontal bracket shows a prominent singing vibrato.\relax }}{78}{figure.caption.46}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces The Mel spectrograms of pointed syllable (\gls {jianzi}) ``siang" and its corresponding rounded syllable (\gls {tuanzi}) ``xiang".\relax }}{80}{figure.caption.47}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces The Mel spectrograms of the special pronounced syllable ``ngo" and its corresponding normal pronounced syllable ``wo".\relax }}{80}{figure.caption.48}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces The Mel spectrograms of teacher and student singing the same phrase ``meng ting de jin gu xiang hua jiao sheng zhen (in pinyin format)". Red vertical lines are the onset time positions of each syllable.\relax }}{81}{figure.caption.49}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Related research topics of automatic assessment of singing voice pronunciation in jingju music.\relax }}{86}{figure.caption.50}
+\addvspace {10pt}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dan role-type}}}{109}{subfigure.1.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Laosheng role-type}}}{109}{subfigure.1.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dan melodic line}}}{112}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Laosheng melodic line}}}{112}{subfigure.2.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Dan syllable}}}{112}{subfigure.2.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Laosheng syllable}}}{112}{subfigure.2.4}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {Dan phoneme}}}{112}{subfigure.2.5}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {Laosheng phoneme}}}{112}{subfigure.2.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {c}}}{113}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {l}}}{113}{subfigure.3.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {N}}}{113}{subfigure.3.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {@n}}}{113}{subfigure.3.4}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {i}}}{113}{subfigure.3.5}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {a}}}{113}{subfigure.3.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {c}}}{114}{subfigure.4.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {l}}}{114}{subfigure.4.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {N}}}{114}{subfigure.4.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {@n}}}{114}{subfigure.4.4}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {i}}}{114}{subfigure.4.5}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {a}}}{114}{subfigure.4.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mel spectrogram of syllables ``hua, jie, shen".}}}{117}{subfigure.5.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Mel spectrogram of syllables ``lai, li, hua".}}}{117}{subfigure.5.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Mel spectrogram of syllables ``da, dan, ren".}}}{117}{subfigure.5.3}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces The occurrence of each special pronounced syllable.\relax }}{121}{figure.caption.70}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces The occurrence of each jianzi syllable.\relax }}{122}{figure.caption.71}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Illustration of the syllable $M^s$ and phoneme $M_p$ coarse duration sequences and their \textit {a priori} duration models -- $\mathcal {N}^s$, $\mathcal {N}^p$. The blank rectangulars in $M_p$ represent the phonemes.\relax }}{129}{figure.caption.73}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd row: HSMM-based segmentation method. The staircase-shaped curve in the 2nd row is the alignment path.\relax }}{133}{figure.caption.77}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Diagram of the multi-task CNN model.\relax }}{135}{figure.caption.78}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd and 3rd rows: onset detection-based method, 4th row: HSMM-based segmentation method. The blue curves in the 2nd and 3rd row are respectively the syllable and phoneme ODFs. The staircase-shaped curve in the 2nd row is the alignment path.\relax }}{139}{figure.caption.81}
+\addvspace {10pt}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Jiantuanzi 1}}}{161}{subfigure.1.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Jiantuanzi 2}}}{161}{subfigure.1.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Jiantuanzi 3}}}{161}{subfigure.1.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Jiantuanzi 4}}}{161}{subfigure.1.4}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {Jiantuanzi 5}}}{161}{subfigure.1.5}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {Jiantuanzi 6}}}{161}{subfigure.1.6}
+\contentsline {subfigure}{\numberline {(g)}{\ignorespaces {Jiantuanzi 7}}}{161}{subfigure.1.7}
+\contentsline {subfigure}{\numberline {(h)}{\ignorespaces {Jiantuanzi 8}}}{161}{subfigure.1.8}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Fully-supervised classification phoneme embedding network for learning pronunciation (left part) or overall quality (right part) embeddings. RNN: recurrent network network.\relax }}{170}{figure.caption.105}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Non-voiced consonant phoneme class}}}{173}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Phoneme O class}}}{173}{subfigure.2.2}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Value distributions of the most discriminative features for non-voiced consonant phoneme segments. For the definition of each feature, please consult online.}}{174}{figure.caption.109}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Max der before max}}}{174}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {ERB bands skewness mean}}}{174}{subfigure.3.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Bark bands skewness mean}}}{174}{subfigure.3.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Spectral complexity std}}}{174}{subfigure.3.4}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Value distributions of the most discriminative features for phoneme O segments. For the definition of each feature, please consult online.}}{175}{figure.caption.110}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Phoneme duration}}}{175}{subfigure.4.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Spectral RMS mean}}}{175}{subfigure.4.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Strong decay}}}{175}{subfigure.4.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Spectral flux mean}}}{175}{subfigure.4.4}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Average precision on the test set over 5 runs, using optimal classification networks (baseline), and four architectures to improve the baseline. The best combination of pronunciation aspect is to combine attention, CNN and dropout; that of overall quality aspect is to combine 32 embedding and CNN.\relax }}{177}{figure.caption.112}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Non-voiced consonant phoneme class}}}{178}{subfigure.6.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Phoneme O class}}}{178}{subfigure.6.2}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Illustration of the similarities of embeddings used in grading the singing phonemes on a singing excerpt of three syllables -- yang yu huan. First row: professional singing log-mel spectrogram; Second row: amateur singing log-mel spectrogram; Third row: pronunciation and overall quality similarities by comparing the corresponding professional and amateur phonemes. Vertical red lines: phoneme onsets. Red label following the vertical line is the phoneme name in XSAMPA format.\relax }}{179}{figure.caption.114}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Semi-supervised siamese phoneme embedding network example for learning overall quality aspect.\relax }}{181}{figure.caption.115}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Average precision on the test set over 5 runs, using optimal network architectures and margin parameter $m=0.15$.\relax }}{183}{figure.caption.117}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces A screenshot of the recording page of the solège assessment tool. The student can listen the demonstrative singing by clicking ``Start exercise", then record their singing twice by clicking ``Take 1" and ``Take 2" buttons.\relax }}{191}{figure.caption.118}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces The visualzation of a student's recording. The rectangles in grey are the ground truth solfège notes of which the name is labeled at the beginning of each note. The curve indicates the pitch. The vertical lines before each detected notes indicate the note onset positions. The character on top of the vertical line indicates the detected note name. The singing quality is indicated by the color system -- green: good performance, red: bad performance.\relax }}{192}{figure.caption.119}
+\addvspace {10pt}
+\addvspace {10pt}
+\addvspace {10pt}
+\addvspace {10pt}
+\addvspace {10pt}
