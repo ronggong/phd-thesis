@@ -55,7 +55,7 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Illustration of the syllable $M^s$ and phoneme $M_p$ coarse duration sequences and their \textit {a priori} duration models -- $\mathcal {N}^s$, $\mathcal {N}^p$. The blank rectangulars in $M_p$ represent the phonemes.\relax }}{129}{figure.caption.73}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd row: HSMM-based segmentation method. The staircase-shaped curve in the 2nd row is the alignment path.\relax }}{133}{figure.caption.77}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Diagram of the multi-task CNN model.\relax }}{135}{figure.caption.78}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd and 3rd rows: onset detection-based method, 4th row: HSMM-based segmentation method. The blue curves in the 2nd and 3rd row are respectively the syllable and phoneme ODFs. The staircase-shaped curve in the 2nd row is the alignment path.\relax }}{139}{figure.caption.81}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces An illustration of the result for a singing phrase in the testing part of the dataset. The red solid and black dash vertical lines are respectively the syllable and phoneme onset positions. 1st row: ground truth, 2nd and 3rd rows: onset detection-based method, 4th row: \gls {HSMM}-based segmentation method. The blue curves in the 2nd and 3rd row are respectively the syllable and phoneme ODFs. The staircase-shaped curve in the 2nd row is the alignment path.\relax }}{139}{figure.caption.81}
 \addvspace {10pt}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Jiantuanzi 1}}}{161}{subfigure.1.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Jiantuanzi 2}}}{161}{subfigure.1.2}
@@ -66,7 +66,7 @@
 \contentsline {subfigure}{\numberline {(g)}{\ignorespaces {Jiantuanzi 7}}}{161}{subfigure.1.7}
 \contentsline {subfigure}{\numberline {(h)}{\ignorespaces {Jiantuanzi 8}}}{161}{subfigure.1.8}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Fully-supervised classification phoneme embedding network for learning pronunciation (left part) or overall quality (right part) embeddings. RNN: recurrent network network.\relax }}{170}{figure.caption.105}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Fully-supervised classification phoneme embedding network for learning pronunciation (left part) or overall quality (right part) embeddings. \gls {RNN}: recurrent network network.\relax }}{170}{figure.caption.105}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Non-voiced consonant phoneme class}}}{173}{subfigure.2.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Phoneme O class}}}{173}{subfigure.2.2}
 \contentsline {figure}{\numberline {7.3}{\ignorespaces Value distributions of the most discriminative features for non-voiced consonant phoneme segments. For the definition of each feature, please consult online.}}{174}{figure.caption.109}

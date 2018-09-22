@@ -31,7 +31,7 @@
 \contentsline {table}{\numberline {4.8}{\ignorespaces Statistics of the MD test dataset. Syl.: syllable; Phn.: phoneme.\relax }}{119}{table.caption.69}
 \contentsline {table}{\numberline {4.9}{\ignorespaces POQSM test dataset split, numbers of the professional and amateur singing phonemes and the source of the professional and amateur singers.\relax }}{123}{table.caption.72}
 \addvspace {10pt}
-\contentsline {table}{\numberline {5.1}{\ignorespaces One-layer CNN architecture of the acoustic model. N' is the temporal dimension of the feature map.\relax }}{130}{table.caption.74}
+\contentsline {table}{\numberline {5.1}{\ignorespaces One-layer \gls {CNN} architecture of the acoustic model. N' is the temporal dimension of the feature map.\relax }}{130}{table.caption.74}
 \contentsline {table}{\numberline {5.2}{\ignorespaces Evaluation results table. Table cell: mean score$\pm $standard deviation score.\relax }}{132}{table.caption.76}
 \contentsline {table}{\numberline {5.3}{\ignorespaces Evaluation results of HSMM-based and onset detection-based methods. Table cell: mean score$\pm $standard deviation score.\relax }}{138}{table.caption.80}
 \contentsline {table}{\numberline {5.4}{\ignorespaces Architecture front-ends\relax }}{141}{table.caption.83}
@@ -40,10 +40,10 @@
 \contentsline {table}{\numberline {5.7}{\ignorespaces Jingju dataset peak-picking (upper) and score-informed HMM (bottom) results of different architectures.\relax }}{145}{table.caption.87}
 \addvspace {10pt}
 \contentsline {table}{\numberline {6.1}{\ignorespaces The evaluation result table of the forced alignment mispronunciation detection method. \#Correctly detected: number of correctly detected syllables; \#Total: number of total syllables; Accuracy: binary classification accuracy; Special: special pronunciation task; jianzi: jiantuanzi task.\relax }}{154}{table.caption.90}
-\contentsline {table}{\numberline {6.2}{\ignorespaces 6-layers CNN, ``8x $1\times 3$ ReLU" means 8 kernels of which each convolves on 1 frequency bins and 3 temporal frames, using ReLU activation function.\relax }}{156}{table.caption.93}
+\contentsline {table}{\numberline {6.2}{\ignorespaces 6-layers CNN, ``8x $1\times 3$ ReLU" means 8 kernels of which each convolves on 1 frequency bins and 3 temporal frames, using \gls {ReLU} activation function.\relax }}{156}{table.caption.93}
 \contentsline {table}{\numberline {6.3}{\ignorespaces Numbers of the special pronunciation (special) and jiantuanzi syllables in the training set.\relax }}{158}{table.caption.97}
 \contentsline {table}{\numberline {6.4}{\ignorespaces Evaluation results of the preliminary automatic syllable segmentation step. Onset detection F1-measure and segmentation accuracy are reported.\relax }}{159}{table.caption.98}
-\contentsline {table}{\numberline {6.5}{\ignorespaces The number of parameters of each model architecture and the mean validation loss (MVL) results of the special pronunciation (special) and jiantuanzi models. CNN: additional convolutional layers, Att.: feed-forward attention mechanism, Comb.: combine BiLSTM, CNN, attention and dropout architectures.\relax }}{159}{table.caption.99}
+\contentsline {table}{\numberline {6.5}{\ignorespaces The number of parameters of each model architecture and the MVL results of the special pronunciation (special) and jiantuanzi models. CNN: additional convolutional layers, Att.: feed-forward attention mechanism, Comb.: combine \gls {BiLSTM}, CNN, attention and dropout architectures.\relax }}{159}{table.caption.99}
 \contentsline {table}{\numberline {6.6}{\ignorespaces The evaluation result table of the discriminative model-based mispronunciation detection method. \#Correctly detected: number of correctly detected syllables; \#Total: number of total syllables; Accuracy: binary classification accuracy; Special: special pronunciation task; jianzi: jiantuanzi task.\relax }}{160}{table.caption.100}
 \contentsline {table}{\numberline {6.7}{\ignorespaces Configurations of three TCNs. $n$: number of stacks, $k$: filter size, $d$: dilation factor.\relax }}{162}{table.caption.102}
 \contentsline {table}{\numberline {6.8}{\ignorespaces Mean validation loss (MVL) of three TCN hyperparameter configurations for special pronunciation and jiantuanzi detection tasks.\relax }}{164}{table.caption.103}
@@ -51,7 +51,7 @@
 \addvspace {10pt}
 \contentsline {table}{\numberline {7.1}{\ignorespaces Mean value of average precision on the validation set over 5 runs, using classification network embedding. R: \# recurrent layers, F: \# fully-connected layers.\relax }}{172}{table.caption.106}
 \contentsline {table}{\numberline {7.2}{\ignorespaces Average precision on the test set over 5 runs, using optimal network architectures.\relax }}{172}{table.caption.107}
-\contentsline {table}{\numberline {7.3}{\ignorespaces 6-layers CNN, ``8x $1\times 3$ ReLU" means 8 kernels of which each convolves on 1 frequency bins and 3 temporal frames, using ReLU activation function.\relax }}{176}{table.caption.111}
+\contentsline {table}{\numberline {7.3}{\ignorespaces 6-layers \gls {CNN}, ``8x $1\times 3$ \gls {ReLU}" means 8 kernels of which each convolves on 1 frequency bins and 3 temporal frames, using \gls {ReLU} activation function.\relax }}{176}{table.caption.111}
 \contentsline {table}{\numberline {7.4}{\ignorespaces Mean value of average precision on the validation set over 5 runs, using siamese network with the optimal architectures. $m$: margin parameter.\relax }}{183}{table.caption.116}
 \addvspace {10pt}
 \addvspace {10pt}
