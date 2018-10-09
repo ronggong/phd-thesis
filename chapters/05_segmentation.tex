@@ -146,7 +146,7 @@ The target labels of the training set are prepared according to the ground truth
 
 The model parameters are learned with mini-batch training (batch size 256), adam \cite{kingma2014adam} update rule and early stopping -- if validation loss is not decreasing after 15 epochs. The \gls{ODF}s output from the \gls{CNN} model is used as the emission probabilities for the syllable/phoneme boundary inference.
 
-\subsection{Phoneme boundaries and labels inference}\label{sec:ch5:dur_label}
+\subsection{Syllable and phoneme boundaries and labels inference}\label{sec:ch5:dur_label}
 
 The inference algorithm receives the syllable and phoneme durations and labels of teacher's singing phrase as the prior input and infers the syllable and phoneme boundaries and labels for the student's singing phrase.
 
